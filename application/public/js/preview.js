@@ -189,57 +189,78 @@ function attachElementEvents(elementContainer) {
     const deleteButton = elementContainer.querySelector('.delete-element');
     const previewContent = document.getElementById('previewContent');
     
-    moveButtons.querySelector('.move-up').addEventListener('click', () => {
+    // Ajout des gestionnaires d'événements tactiles
+    const moveUpBtn = moveButtons.querySelector('.move-up');
+    const moveDownBtn = moveButtons.querySelector('.move-down');
+    
+    // Fonction pour gérer le déplacement vers le haut
+    const moveUp = (e) => {
+        e.preventDefault(); // Empêcher le scroll sur mobile
         const previousSibling = elementContainer.previousElementSibling;
         if (previousSibling) {
             previewContent.insertBefore(elementContainer, previousSibling);
             updateCodePreview();
             saveCurrentState();
         }
-    });
-    
-    moveButtons.querySelector('.move-down').addEventListener('click', () => {
+    };
+
+    // Fonction pour gérer le déplacement vers le bas
+    const moveDown = (e) => {
+        e.preventDefault(); // Empêcher le scroll sur mobile
         const nextSibling = elementContainer.nextElementSibling;
         if (nextSibling) {
             previewContent.insertBefore(elementContainer, nextSibling.nextElementSibling);
             updateCodePreview();
             saveCurrentState();
         }
-    });
+    };
+
+    // Ajout des événements tactiles et clic
+    moveUpBtn.addEventListener('click', moveUp);
+    moveUpBtn.addEventListener('touchstart', moveUp, { passive: false });
     
-    deleteButton.addEventListener('click', () => {
-        elementContainer.remove();
-        updateCodePreview();
-        saveCurrentState();
-    });
+    moveDownBtn.addEventListener('click', moveDown);
+    moveDownBtn.addEventListener('touchstart', moveDown, { passive: false });
+    
+    // Amélioration du bouton de suppression pour mobile
+    const handleDelete = (e) => {
+        e.preventDefault();
+        if (confirm('Voulez-vous vraiment supprimer cet élément ?')) {
+            elementContainer.remove();
+            updateCodePreview();
+            saveCurrentState();
+        }
+    };
+    
+    deleteButton.addEventListener('click', handleDelete);
+    deleteButton.addEventListener('touchstart', handleDelete, { passive: false });
 }
 
 // Fonction pour ajouter un élément à la prévisualisation
 function addElementToPreview(element) {
     const previewContent = document.getElementById('previewContent');
     
-    // Créer un conteneur pour l'élément
     const elementContainer = document.createElement('div');
     elementContainer.className = 'relative group mb-4';
     
-    // Créer le conteneur pour les boutons de déplacement
+    // Amélioration des boutons pour mobile
     const moveButtons = document.createElement('div');
-    moveButtons.className = 'absolute left-1 top-1 opacity-0 group-hover:opacity-100 flex flex-col gap-0.5 z-[100]';
+    moveButtons.className = 'absolute left-1 top-1 opacity-100 md:opacity-0 group-hover:opacity-100 flex flex-col gap-0.5 z-[100]';
     moveButtons.innerHTML = `
-        <button class="move-up bg-gray-500 hover:bg-gray-600 text-white p-1 rounded-lg transition-colors w-6 h-6 flex items-center justify-center">
-            <i class="fas fa-chevron-up text-[10px]"></i>
+        <button class="move-up bg-gray-500 hover:bg-gray-600 active:bg-gray-700 text-white p-2 rounded-lg transition-colors w-8 h-8 md:w-6 md:h-6 flex items-center justify-center touch-manipulation">
+            <i class="fas fa-chevron-up text-xs md:text-[10px]"></i>
         </button>
-        <button class="move-down bg-gray-500 hover:bg-gray-600 text-white p-1 rounded-lg transition-colors w-6 h-6 flex items-center justify-center">
-            <i class="fas fa-chevron-down text-[10px]"></i>
+        <button class="move-down bg-gray-500 hover:bg-gray-600 active:bg-gray-700 text-white p-2 rounded-lg transition-colors w-8 h-8 md:w-6 md:h-6 flex items-center justify-center touch-manipulation">
+            <i class="fas fa-chevron-down text-xs md:text-[10px]"></i>
         </button>
     `;
     
-    // Ajouter le bouton de suppression
+    // Amélioration du bouton de suppression pour mobile
     const deleteButton = document.createElement('div');
-    deleteButton.className = 'absolute right-1 top-1 opacity-0 group-hover:opacity-100 z-[100]';
+    deleteButton.className = 'absolute right-1 top-1 opacity-100 md:opacity-0 group-hover:opacity-100 z-[100]';
     deleteButton.innerHTML = `
-        <button class="delete-element bg-red-500 text-white p-1 rounded-lg hover:bg-red-600 transition-colors">
-            <i class="fas fa-trash text-xs"></i>
+        <button class="delete-element bg-red-500 text-white p-2 rounded-lg hover:bg-red-600 active:bg-red-700 transition-colors w-8 h-8 md:w-6 md:h-6 flex items-center justify-center touch-manipulation">
+            <i class="fas fa-trash text-sm md:text-xs"></i>
         </button>
     `;
     
@@ -374,12 +395,80 @@ function copyCompleteCode() {
 
 // Fonction pour réinitialiser l'éditeur
 function resetEditor() {
-    if (confirm("Êtes-vous sûr de vouloir réinitialiser l'éditeur ? Tout le contenu non sauvegardé sera perdu.")) {
-        localStorage.removeItem('webazonEditorState');
-        const previewContent = document.getElementById('previewContent');
-        previewContent.innerHTML = '<!-- Le contenu HTML sera injecté ici -->';
-        updateCodePreview();
-    }
+    const confirmReset = () => {
+        return new Promise((resolve) => {
+            const dialog = document.createElement('div');
+            dialog.className = 'fixed inset-0 bg-black/50 flex items-center justify-center z-[1000] p-4';
+            dialog.innerHTML = `
+                <div class="bg-white dark:bg-gray-800 rounded-lg p-6 max-w-sm w-full">
+                    <h3 class="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-4">
+                        Réinitialiser l'éditeur ?
+                    </h3>
+                    <p class="text-gray-700 dark:text-gray-300 mb-6">
+                        Tout le contenu non sauvegardé sera perdu.
+                    </p>
+                    <div class="flex justify-end gap-4">
+                        <button id="cancelReset" class="px-4 py-2 text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors">
+                            Annuler
+                        </button>
+                        <button id="confirmReset" class="px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition-colors">
+                            Réinitialiser
+                        </button>
+                    </div>
+                </div>
+            `;
+            
+            document.body.appendChild(dialog);
+            
+            // Ajouter les gestionnaires d'événements avec removeEventListener
+            const handleCancel = () => {
+                dialog.remove();
+                resolve(false);
+            };
+            
+            const handleConfirm = () => {
+                dialog.remove();
+                resolve(true);
+            };
+            
+            // Gestionnaire pour le clic en dehors
+            const handleOutsideClick = (e) => {
+                if (e.target === dialog) {
+                    handleCancel();
+                }
+            };
+            
+            // Gestionnaire pour la touche Echap
+            const handleEscape = (e) => {
+                if (e.key === 'Escape') {
+                    handleCancel();
+                }
+            };
+            
+            // Ajouter les écouteurs d'événements
+            dialog.querySelector('#cancelReset').addEventListener('click', handleCancel);
+            dialog.querySelector('#confirmReset').addEventListener('click', handleConfirm);
+            dialog.addEventListener('click', handleOutsideClick);
+            document.addEventListener('keydown', handleEscape);
+        });
+    };
+
+    confirmReset().then(confirmed => {
+        if (confirmed) {
+            try {
+                localStorage.removeItem('webazonEditorState');
+                const previewContent = document.getElementById('previewContent');
+                if (previewContent) {
+                    previewContent.innerHTML = '<!-- Le contenu HTML sera injecté ici -->';
+                    updateCodePreview();
+                }
+            } catch (error) {
+                console.error('Erreur lors de la réinitialisation:', error);
+            }
+        }
+    }).catch(error => {
+        console.error('Erreur lors de la confirmation:', error);
+    });
 }
 
 // Initialisation
