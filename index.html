@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="fr" class="dark theme-transition-disabled">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Webazon</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="application/public/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="application/public/js/config.js"></script>
+    <script>
+        tailwind.config = tailwindConfig;
+        window.addEventListener('load', () => {
+            document.documentElement.classList.remove('theme-transition-disabled');
+        });
+    </script>
+</head>
+<body class="min-h-screen theme-sensitive gpu-accelerated bg-light-bg dark:bg-dark-bg">
+    <header class="flex justify-between items-center px-8 py-3 theme-transition-ready bg-light-nav dark:bg-dark-nav shadow-lg">
+        <h1 class="text-4xl font-bold theme-transition-ready bg-gradient-to-r from-light-primary to-light-secondary dark:from-dark-primary dark:to-dark-secondary bg-clip-text text-transparent hover:scale-105 transition-transform duration-300">
+            <a href="application/public/app.html">Webazon</a>
+        </h1>
+        
+        <nav class="hidden md:flex items-center gap-8">
+            <div class="flex items-center gap-8">
+                <a href="application/public/app.html" class="relative theme-transition-ready text-gray-700 dark:text-gray-200 hover:text-light-primary dark:hover:text-dark-primary">
+                    Editeur
+                </a>
+                <a href="index.html" class="relative theme-transition-ready text-light-primary dark:text-dark-primary">
+                    Présentation
+                </a>
+            </div>
+            
+            <button onclick="toggleTheme()" class="theme-transition-ready text-gray-600 dark:text-gray-300 hover:text-light-primary dark:hover:text-dark-primary w-6 h-6 focus:outline-none focus:ring-0 relative">
+                <i class="fas fa-sun absolute inset-0 transition-transform duration-300 rotate-0 dark:-rotate-90 dark:scale-0"></i>
+                <i class="fas fa-moon absolute inset-0 transition-transform duration-300 rotate-90 scale-0 dark:rotate-0 dark:scale-100"></i>
+            </button>
+        </nav>
+
+        <button id="menuButton" class="md:hidden theme-transition-ready text-gray-600 dark:text-gray-300 hover:text-light-primary dark:hover:text-dark-primary transition-colors duration-200 focus:outline-none">
+            <i class="fas fa-bars text-2xl"></i>
+        </button>
+    </header>
+
+    <!-- Menu mobile -->
+    <div id="mobileMenu" class="hidden md:hidden fixed w-full theme-transition-ready bg-light-nav dark:bg-dark-nav shadow-lg z-50">
+        <nav class="flex flex-col p-4 space-y-4">
+            <a href="application/public/app.html" class="theme-transition-ready text-gray-700 dark:text-gray-200 hover:text-light-primary dark:hover:text-dark-primary px-4 py-2">
+                Editeur
+            </a>
+            <a href="index.html" class="theme-transition-ready text-light-primary dark:text-dark-primary px-4 py-2">
+                Présentation
+            </a>
+        </nav>
+    </div>
+
+    <!-- Hero Section -->
+    <div class="relative overflow-hidden bg-gradient-to-br from-light-primary/10 to-light-secondary/10 dark:from-dark-primary/10 dark:to-dark-secondary/10 py-20">
+        <div class="container mx-auto px-4 max-w-6xl">
+            <div class="flex flex-col md:flex-row items-center gap-12">
+                <div class="md:w-1/2 text-center md:text-left">
+                    <h1 class="text-4xl md:text-5xl font-bold mb-6 theme-transition-ready text-gray-800 dark:text-gray-200 leading-tight">
+                        Créez des sites web <span class="bg-gradient-to-r from-light-primary to-light-secondary dark:from-dark-primary dark:to-dark-secondary bg-clip-text text-transparent">magnifiques</span> en quelques clics
+                    </h1>
+                    <p class="text-xl theme-transition-ready text-gray-600 dark:text-gray-300 mb-8">
+                        Découvrez comment utiliser Webazon pour créer des interfaces modernes et responsives, adaptées aux modes clair et sombre.
+                    </p>
+                    <a href="application/public/app.html" class="inline-flex items-center px-6 py-3 rounded-lg bg-gradient-to-r from-light-primary to-light-secondary dark:from-dark-primary dark:to-dark-secondary text-white font-semibold hover:scale-105 transition-transform duration-300">
+                        Commencer maintenant
+                        <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+                <div class="md:w-1/2">
+                    <div class="relative">
+                        <div class="absolute inset-0 bg-gradient-to-r from-light-primary to-light-secondary dark:from-dark-primary dark:to-dark-secondary opacity-20 blur-3xl rounded-full"></div>
+                        <img src="application/public/images/release.png" alt="Interface Webazon" class="relative rounded-lg shadow-2xl">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <main class="container mx-auto px-4 py-16 max-w-6xl" id="start">
+        <!-- Introduction avec statistiques -->
+        <section class="mb-20">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="theme-transition-ready bg-light-nav dark:bg-dark-nav rounded-xl p-6 shadow-lg transform hover:scale-105 transition-transform duration-300">
+                    <div class="text-4xl mb-4 text-light-primary dark:text-dark-primary">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h3 class="text-2xl font-semibold mb-2 theme-transition-ready text-gray-800 dark:text-gray-200">Rapide</h3>
+                    <p class="theme-transition-ready text-gray-600 dark:text-gray-400">Créez une page web complète en moins de 5 minutes</p>
+                </div>
+                <div class="theme-transition-ready bg-light-nav dark:bg-dark-nav rounded-xl p-6 shadow-lg transform hover:scale-105 transition-transform duration-300">
+                    <div class="text-4xl mb-4 text-light-primary dark:text-dark-primary">
+                        <i class="fas fa-paint-brush"></i>
+                    </div>
+                    <h3 class="text-2xl font-semibold mb-2 theme-transition-ready text-gray-800 dark:text-gray-200">Élégant</h3>
+                    <p class="theme-transition-ready text-gray-600 dark:text-gray-400">Des designs modernes et professionnels</p>
+                </div>
+                <div class="theme-transition-ready bg-light-nav dark:bg-dark-nav rounded-xl p-6 shadow-lg transform hover:scale-105 transition-transform duration-300">
+                    <div class="text-4xl mb-4 text-light-primary dark:text-dark-primary">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3 class="text-2xl font-semibold mb-2 theme-transition-ready text-gray-800 dark:text-gray-200">Optimisé</h3>
+                    <p class="theme-transition-ready text-gray-600 dark:text-gray-400">Code propre et prêt à l'emploi</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Interface principale avec split design -->
+        <section class="mb-20">
+            <div class="flex flex-col md:flex-row items-center gap-12">
+                <div class="md:w-1/2 text-center md:text-left w-full">
+                    <h2 class="text-3xl font-bold mb-8 theme-transition-ready text-gray-800 dark:text-gray-200">
+                        Interface intuitive
+                    </h2>
+                    <div class="space-y-6 theme-transition-ready text-gray-700 dark:text-gray-300 max-w-lg mx-auto md:mx-0">
+                        <div class="flex flex-col sm:flex-row items-center sm:items-start gap-4 p-4 rounded-lg hover:bg-light-nav/50 dark:hover:bg-dark-nav/50 transition-colors">
+                            <div class="w-12 h-12 rounded-lg bg-light-primary/10 dark:bg-dark-primary/10 flex items-center justify-center text-light-primary dark:text-dark-primary shrink-0">
+                                <i class="fas fa-eye text-xl"></i>
+                            </div>
+                            <div class="text-center sm:text-left">
+                                <h3 class="font-semibold mb-2 text-lg">Prévisualisation en temps réel</h3>
+                                <p class="text-gray-600 dark:text-gray-400">Visualisez instantanément vos modifications</p>
+                            </div>
+                        </div>
+                        <div class="flex flex-col sm:flex-row items-center sm:items-start gap-4 p-4 rounded-lg hover:bg-light-nav/50 dark:hover:bg-dark-nav/50 transition-colors">
+                            <div class="w-12 h-12 rounded-lg bg-light-primary/10 dark:bg-dark-primary/10 flex items-center justify-center text-light-primary dark:text-dark-primary shrink-0">
+                                <i class="fas fa-text-width text-xl"></i>
+                            </div>
+                            <div class="text-center sm:text-left">
+                                <h3 class="font-semibold mb-2 text-lg">Éditeur de texte</h3>
+                                <p class="text-gray-600 dark:text-gray-400">Accédez et modifiez le texte facilement</p>
+                            </div>
+                        </div>
+                        <div class="flex flex-col sm:flex-row items-center sm:items-start gap-4 p-4 rounded-lg hover:bg-light-nav/50 dark:hover:bg-dark-nav/50 transition-colors">
+                            <div class="w-12 h-12 rounded-lg bg-light-primary/10 dark:bg-dark-primary/10 flex items-center justify-center text-light-primary dark:text-dark-primary shrink-0">
+                                <i class="fas fa-puzzle-piece text-xl"></i>
+                            </div>
+                            <div class="text-center sm:text-left">
+                                <h3 class="font-semibold mb-2 text-lg">Composants flexibles</h3>
+                                <p class="text-gray-600 dark:text-gray-400">Cliquez sur les composants pour les ajouter à votre page</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="md:w-1/2">
+                    <div class="relative">
+                        <div class="absolute inset-0 bg-gradient-to-r from-light-primary to-light-secondary dark:from-dark-primary dark:to-dark-secondary opacity-20 blur-3xl rounded-full"></div>
+                        <img src="application/public/images/preview.png" alt="Interface Webazon" class="relative rounded-lg shadow-2xl">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Composants disponibles -->
+        <section class="mb-20">
+            <h2 class="text-3xl font-bold mb-12 text-center theme-transition-ready text-gray-800 dark:text-gray-200">
+                Une bibliothèque complète de composants
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- En-têtes -->
+                <div class="theme-transition-ready bg-light-nav dark:bg-dark-nav rounded-xl p-6 shadow-lg flex flex-col items-center md:items-start text-center md:text-left">
+                    <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-light-primary to-light-secondary dark:from-dark-primary dark:to-dark-secondary flex items-center justify-center text-white mb-4">
+                        <i class="fas fa-heading text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-4 theme-transition-ready text-gray-800 dark:text-gray-200">En-têtes</h3>
+                    <p class="theme-transition-ready text-gray-600 dark:text-gray-400 mb-4">10 styles différents d'en-têtes pour tous vos besoins</p>
+                    <button onclick="window.location.href='application/public/app.html'" class="text-light-primary dark:text-dark-primary hover:underline">Voir les variantes →</button>
+                </div>
+
+                <!-- Sections -->
+                <div class="theme-transition-ready bg-light-nav dark:bg-dark-nav rounded-xl p-6 shadow-lg flex flex-col items-center md:items-start text-center md:text-left">
+                    <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-light-primary to-light-secondary dark:from-dark-primary dark:to-dark-secondary flex items-center justify-center text-white mb-4">
+                        <i class="fas fa-layer-group text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-4 theme-transition-ready text-gray-800 dark:text-gray-200">Sections</h3>
+                    <p class="theme-transition-ready text-gray-600 dark:text-gray-400 mb-4">6 sections héro et fonctionnalités préconçues</p>
+                    <button onclick="window.location.href='application/public/app.html'" class="text-light-primary dark:text-dark-primary hover:underline">Voir les variantes →</button>
+                </div>
+
+                <!-- Formulaires -->
+                <div class="theme-transition-ready bg-light-nav dark:bg-dark-nav rounded-xl p-6 shadow-lg flex flex-col items-center md:items-start text-center md:text-left">
+                    <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-light-primary to-light-secondary dark:from-dark-primary dark:to-dark-secondary flex items-center justify-center text-white mb-4">
+                        <i class="fas fa-wpforms text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-4 theme-transition-ready text-gray-800 dark:text-gray-200">Formulaires</h3>
+                    <p class="theme-transition-ready text-gray-600 dark:text-gray-400 mb-4">6 styles de formulaires pour vos interactions</p>
+                    <button onclick="window.location.href='application/public/app.html'" class="text-light-primary dark:text-dark-primary hover:underline">Voir les variantes →</button>
+                </div>
+
+                <!-- FAQ -->
+                <div class="theme-transition-ready bg-light-nav dark:bg-dark-nav rounded-xl p-6 shadow-lg flex flex-col items-center md:items-start text-center md:text-left">
+                    <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-light-primary to-light-secondary dark:from-dark-primary dark:to-dark-secondary flex items-center justify-center text-white mb-4">
+                        <i class="fas fa-question-circle text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-4 theme-transition-ready text-gray-800 dark:text-gray-200">FAQ</h3>
+                    <p class="theme-transition-ready text-gray-600 dark:text-gray-400 mb-4">10 styles de FAQ pour répondre aux questions</p>
+                    <button onclick="window.location.href='application/public/app.html'" class="text-light-primary dark:text-dark-primary hover:underline">Voir les variantes →</button>
+                </div>
+
+                <!-- Composants sociaux -->
+                <div class="theme-transition-ready bg-light-nav dark:bg-dark-nav rounded-xl p-6 shadow-lg flex flex-col items-center md:items-start text-center md:text-left">
+                    <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-light-primary to-light-secondary dark:from-dark-primary dark:to-dark-secondary flex items-center justify-center text-white mb-4">
+                        <i class="fas fa-share-alt text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-4 theme-transition-ready text-gray-800 dark:text-gray-200">Social</h3>
+                    <p class="theme-transition-ready text-gray-600 dark:text-gray-400 mb-4">9 composants sociaux pour votre visibilité</p>
+                    <button onclick="window.location.href='application/public/app.html'" class="text-light-primary dark:text-dark-primary hover:underline">Voir les variantes →</button>
+                </div>
+
+                <!-- Pieds de page -->
+                <div class="theme-transition-ready bg-light-nav dark:bg-dark-nav rounded-xl p-6 shadow-lg flex flex-col items-center md:items-start text-center md:text-left">
+                    <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-light-primary to-light-secondary dark:from-dark-primary dark:to-dark-secondary flex items-center justify-center text-white mb-4">
+                        <i class="fas fa-shoe-prints text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-4 theme-transition-ready text-gray-800 dark:text-gray-200">Footer</h3>
+                    <p class="theme-transition-ready text-gray-600 dark:text-gray-400 mb-4">2 styles de pieds de page élégants</p>
+                    <button onclick="window.location.href='application/public/app.html'" class="text-light-primary dark:text-dark-primary hover:underline">Voir les variantes →</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Mode sombre/clair showcase -->
+        <section class="mb-20">
+            <div class="relative rounded-2xl overflow-hidden">
+                <div class="absolute inset-0 bg-gradient-to-r from-light-primary to-light-secondary dark:from-dark-primary dark:to-dark-secondary opacity-10"></div>
+                <div class="relative p-12">
+                    <h2 class="text-3xl font-bold mb-8 text-center theme-transition-ready text-gray-800 dark:text-gray-200">
+                        Adaptatif au mode clair et sombre
+                    </h2>
+                    <div class="flex flex-col md:flex-row gap-8 items-center justify-center">
+                        <div class="md:w-1/2">
+                            <div class="theme-transition-ready bg-white dark:bg-gray-800 rounded-lg shadow-xl p-6">
+                                <img src="application/public/images/clair.png" alt="Mode clair" class="rounded-lg mb-4">
+                                <h3 class="text-xl font-semibold mb-2 theme-transition-ready text-gray-600">Mode clair</h3>
+                                <p class="text-gray-600">Design épuré et professionnel</p>
+                            </div>
+                        </div>
+                        <div class="md:w-1/2">
+                            <div class="theme-transition-ready bg-gray-900 rounded-lg shadow-xl p-6">
+                                <img src="application/public/images/sombre.png" alt="Mode sombre" class="rounded-lg mb-4">
+                                <h3 class="text-xl font-semibold mb-2 text-gray-200">Mode sombre</h3>
+                                <p class="text-gray-400">Confort visuel optimal</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Avantages techniques -->
+        <section class="mb-20">
+            <h2 class="text-3xl font-bold mb-12 text-center theme-transition-ready text-gray-800 dark:text-gray-200">
+                Avantages techniques
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Code optimisé -->
+                <div class="theme-transition-ready bg-light-nav dark:bg-dark-nav rounded-xl p-8 shadow-lg">
+                    <div class="flex items-start gap-6">
+                        <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-light-primary to-light-secondary dark:from-dark-primary dark:to-dark-secondary flex items-center justify-center text-white">
+                            <i class="fas fa-code text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-semibold mb-4 theme-transition-ready text-gray-800 dark:text-gray-200">Code optimisé</h3>
+                            <ul class="space-y-3 theme-transition-ready text-gray-600 dark:text-gray-400">
+                                <li class="flex items-center gap-2">
+                                    <i class="fas fa-check text-green-500"></i>
+                                    HTML et CSS optimisés
+                                </li>
+                                <li class="flex items-center gap-2">
+                                    <i class="fas fa-check text-green-500"></i>
+                                    Classes Tailwind préconfigurées
+                                </li>
+                                <li class="flex items-center gap-2">
+                                    <i class="fas fa-check text-green-500"></i>
+                                    Compatibilité cross-browser
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Thème adaptatif -->
+                <div class="theme-transition-ready bg-light-nav dark:bg-dark-nav rounded-xl p-8 shadow-lg">
+                    <div class="flex items-start gap-6">
+                        <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-light-primary to-light-secondary dark:from-dark-primary dark:to-dark-secondary flex items-center justify-center text-white">
+                            <i class="fas fa-palette text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-semibold mb-4 theme-transition-ready text-gray-800 dark:text-gray-200">Thème adaptatif</h3>
+                            <ul class="space-y-3 theme-transition-ready text-gray-600 dark:text-gray-400">
+                                <li class="flex items-center gap-2">
+                                    <i class="fas fa-check text-green-500"></i>
+                                    Transitions fluides
+                                </li>
+                                <li class="flex items-center gap-2">
+                                    <i class="fas fa-check text-green-500"></i>
+                                    Couleurs harmonieuses
+                                </li>
+                                <li class="flex items-center gap-2">
+                                    <i class="fas fa-check text-green-500"></i>
+                                    Styles cohérents
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Limites et responsabilités -->
+        <section class="mb-20">
+            <div class="theme-transition-ready bg-light-nav dark:bg-dark-nav rounded-xl p-6 sm:p-8 shadow-lg">
+                <div class="max-w-3xl mx-auto">
+                    <div class="flex flex-col sm:flex-row items-center gap-4 mb-6">
+                        <div class="w-12 h-12 rounded-xl bg-light-primary/10 dark:bg-dark-primary/10 flex items-center justify-center text-light-primary dark:text-dark-primary shrink-0">
+                            <i class="fas fa-info-circle text-2xl"></i>
+                        </div>
+                        <h2 class="text-2xl font-semibold theme-transition-ready text-gray-800 dark:text-gray-200 text-center sm:text-left">
+                            À noter
+                        </h2>
+                    </div>
+                    <div class="prose prose-lg theme-transition-ready text-gray-600 dark:text-gray-400 max-w-none">
+                        <p class="mb-6 text-center sm:text-left">Webazon est un outil de design frontend. Cela signifie que :</p>
+                        <ul class="space-y-4">
+                            <li class="flex flex-col sm:flex-row items-center sm:items-start gap-3 text-center sm:text-left">
+                                <i class="fas fa-arrow-right text-light-primary dark:text-dark-primary shrink-0 mt-1"></i>
+                                <span>L'intégration backend est à votre charge</span>
+                            </li>
+                            <li class="flex flex-col sm:flex-row items-center sm:items-start gap-3 text-center sm:text-left">
+                                <i class="fas fa-arrow-right text-light-primary dark:text-dark-primary shrink-0 mt-1"></i>
+                                <span>La logique métier doit être implémentée par vos soins</span>
+                            </li>
+                            <li class="flex flex-col sm:flex-row items-center sm:items-start gap-3 text-center sm:text-left">
+                                <i class="fas fa-arrow-right text-light-primary dark:text-dark-primary shrink-0 mt-1"></i>
+                                <span>La sécurisation des données reste votre responsabilité</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Call to action -->
+        <section>
+            <div class="relative rounded-2xl overflow-hidden">
+                <div class="absolute inset-0 bg-gradient-to-r from-light-primary to-light-secondary dark:from-dark-primary dark:to-dark-secondary opacity-90"></div>
+                <div class="relative p-12 text-center">
+                    <h2 class="text-3xl font-bold mb-6 text-white">Prêt à créer votre site ?</h2>
+                    <p class="text-xl text-white/90 mb-8">Commencez dès maintenant avec notre éditeur intuitif</p>
+                    <a href="application/public/app.html" class="inline-flex items-center px-8 py-4 rounded-lg bg-white text-light-primary dark:text-dark-primary font-semibold hover:scale-105 transition-transform duration-300">
+                        Lancer l'éditeur
+                        <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="application/public/js/theme.js"></script>
+</body>
+</html> 

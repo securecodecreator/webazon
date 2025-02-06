@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="fr" class="dark theme-transition-disabled">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mailsend</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="js/config.js"></script>
+    <script>
+        tailwind.config = tailwindConfig;
+        // Activer les transitions après le chargement initial
+        window.addEventListener('load', () => {
+            document.documentElement.classList.remove('theme-transition-disabled');
+        });
+    </script>
+    <meta name="theme-color" content="#ffffff">
+</head>
+<body class="min-h-screen theme-sensitive gpu-accelerated bg-light-bg dark:bg-dark-bg">
+
+<header class="flex justify-between items-center px-8 py-3 theme-transition-ready bg-light-nav dark:bg-dark-nav shadow-lg">
+    <h1 class="text-4xl font-bold theme-transition-ready bg-gradient-to-r from-light-primary to-light-secondary dark:from-dark-primary dark:to-dark-secondary bg-clip-text text-transparent hover:scale-105 transition-transform duration-300">Webazon</h1>
+    
+    <!-- Navigation desktop -->
+    <nav class="hidden md:flex items-center gap-8">
+        <div class="flex items-center gap-8">
+            <a href="app.html" class="relative theme-transition-ready text-gray-700 dark:text-gray-200 hover:text-light-primary dark:hover:text-dark-primary after:absolute after:block after:content-[''] after:h-0.5 after:w-full after:bg-light-primary dark:after:bg-dark-primary after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-200 after:origin-left after:-bottom-2">
+                Editeur
+            </a>
+            <a href="/" class="relative theme-transition-ready text-gray-700 dark:text-gray-200 hover:text-light-primary dark:hover:text-dark-primary after:absolute after:block after:content-[''] after:h-0.5 after:w-full after:bg-light-primary dark:after:bg-dark-primary after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-200 after:origin-left after:-bottom-2">
+                Présentation
+            </a>
+        </div>
+        
+        <!-- Bouton thème desktop -->
+        <button onclick="toggleTheme()" class="theme-transition-ready text-gray-600 dark:text-gray-300 hover:text-light-primary dark:hover:text-dark-primary w-6 h-6 focus:outline-none focus:ring-0 relative">
+            <i class="fas fa-sun absolute inset-0 transition-transform duration-300 rotate-0 dark:-rotate-90 dark:scale-0"></i>
+            <i class="fas fa-moon absolute inset-0 transition-transform duration-300 rotate-90 scale-0 dark:rotate-0 dark:scale-100"></i>
+        </button>
+    </nav>
+
+    <!-- Bouton hamburger -->
+    <button id="menuButton" class="md:hidden theme-transition-ready text-gray-600 dark:text-gray-300 hover:text-light-primary dark:hover:text-dark-primary transition-colors duration-200 focus:outline-none z-50">
+        <i class="fas fa-bars text-2xl"></i>
+    </button>
+
+    <!-- Menu mobile -->
+    <div id="mainNav" class="fixed inset-y-0 right-0 w-72 theme-transition-ready bg-light-nav/95 dark:bg-dark-nav/95 backdrop-blur-md transform translate-x-full transition-transform duration-300 z-50 md:hidden flex flex-col">
+        <!-- En-tête avec bouton fermeture -->
+        <div class="flex justify-between items-center p-6">
+            <h2 class="text-xl font-bold text-gray-800 dark:text-gray-200">Menu</h2>
+            <button id="closeMenu" class="theme-transition-ready text-gray-600 dark:text-gray-300 hover:text-light-primary dark:hover:text-dark-primary transition-colors duration-200 focus:outline-none select-none">
+                <i class="fas fa-xmark text-2xl"></i>
+            </button>
+        </div>
+
+        <!-- Navigation -->
+        <nav class="flex flex-col gap-2 px-6">
+            <a href="app.html" class="flex items-center gap-3 py-3 theme-transition-ready text-gray-700 dark:text-gray-200 hover:text-light-primary dark:hover:text-dark-primary transition-colors duration-200 select-none focus:outline-none focus:ring-0">
+                <i class="fas fa-home text-xl w-6"></i>
+                <span>Editeur</span>
+            </a>
+            <a href="/" class="flex items-center gap-3 py-3 theme-transition-ready text-gray-700 dark:text-gray-200 hover:text-light-primary dark:hover:text-dark-primary transition-colors duration-200 select-none">
+                <i class="fas fa-cogs text-xl w-6"></i>
+                <span>Présentation</span>
+            </a>
+        </nav>
+
+        <!-- Bouton thème -->
+        <div class="mt-6 px-6">
+            <button onclick="toggleTheme()" class="w-full flex items-center gap-3 py-3 text-gray-700 dark:text-gray-200 hover:text-light-primary dark:hover:text-dark-primary transition-colors duration-200 select-none focus:outline-none focus:ring-0">
+                <div class="w-6 text-xl relative flex justify-center">
+                    <i class="fas fa-sun transition-transform duration-300 rotate-0 dark:-rotate-90 dark:scale-0"></i>
+                    <i class="fas fa-moon transition-transform duration-300 rotate-90 scale-0 dark:rotate-0 dark:scale-100"></i>
+                </div>
+                <span>Thème</span>
+            </button>
+        </div>
+    </div>
+</header>
+
+<main class="flex md:flex-row flex-col gap-6 p-4 md:h-[calc(100vh-88px)] h-auto md:overflow-hidden">
+    <!-- Section principale (plus large) -->
+    <section class="md:w-2/3 w-full theme-transition-ready bg-light-nav dark:bg-dark-nav shadow-lg rounded-xl p-6 flex flex-col md:min-h-0 max-h-[600px] md:h-[calc(100vh-104px)]">
+        <h2 class="text-2xl font-semibold text-gray-800 dark:text-gray-200 mb-4 flex-shrink-0 flex items-center gap-4">
+            Editeur HTML
+            <button id="toggleSections" class="theme-transition-ready text-gray-600 dark:text-gray-300 hover:text-light-primary dark:hover:text-dark-primary transition-colors duration-200">
+                <i class="fas fa-eye text-xl"></i>
+            </button>
+        </h2>
+        <div id="previewContainer" class="flex-1 bg-white dark:bg-dark-bg rounded-lg overflow-auto min-h-0">
+            <div id="previewContent" class="p-4">
+                <!-- Le contenu HTML sera injecté ici -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Conteneur des deux sections en colonne -->
+    <div class="md:w-1/3 w-full flex flex-col gap-6 md:h-[calc(100vh-104px)]">
+        <!-- Section supérieure -->
+        <section class="theme-transition-ready bg-light-nav dark:bg-dark-nav rounded-xl shadow-lg p-6 flex flex-col max-h-[400px] md:min-h-0 md:h-[40%]">
+            <div class="flex justify-between items-center mb-4 flex-shrink-0">
+                <h2 class="text-2xl font-semibold text-gray-800 dark:text-gray-200">Code HTML & CSS</h2>
+                <button id="copyCodeBtn" class="theme-transition-ready text-gray-600 dark:text-gray-300 hover:text-light-primary dark:hover:text-dark-primary transition-colors duration-200">
+                    <i class="fas fa-copy text-xl"></i>
+                </button>
+            </div>
+            <div class="flex-1 bg-white dark:bg-dark-bg rounded-lg overflow-auto min-h-0">
+                <div class="h-full p-4">
+                    <pre id="codePreview" class="text-base leading-6 font-mono theme-transition-ready text-gray-800 dark:text-gray-200 whitespace-pre min-w-max"></pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section de personnalisation -->
+        <section class="theme-transition-ready bg-light-nav dark:bg-dark-nav rounded-xl shadow-lg p-6 flex flex-col max-h-[500px] md:min-h-0 md:h-[60%]">
+            <h2 class="text-2xl font-semibold text-gray-800 dark:text-gray-200 mb-4 flex-shrink-0">Personnalisation</h2>
+            <div class="flex-1 bg-white dark:bg-dark-bg rounded-lg overflow-auto min-h-0">
+                <div class="p-6 space-y-8">
+                    <!-- En-têtes -->
+                    <div class="space-y-4">
+                        <h3 class="text-lg font-semibold theme-transition-ready text-gray-700 dark:text-gray-300">En-têtes</h3>
+                        <div class="space-y-3">
+                            <button data-element="headers.simple" class="w-full text-left px-4 py-3 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 theme-transition-ready text-gray-700 dark:text-gray-300">
+                                En-tête Simple
+                            </button>
+                            <button data-element="headers.withNav" class="w-full text-left px-4 py-3 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 theme-transition-ready text-gray-700 dark:text-gray-300">
+                                En-tête avec Navigation
+                            </button>
+                            <button data-element="headers.modern" class="w-full text-left px-4 py-3 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 theme-transition-ready text-gray-700 dark:text-gray-300">
+                                En-tête Moderne
+                            </button>
+                            <button data-element="headers.minimal" class="w-full text-left px-4 py-3 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 theme-transition-ready text-gray-700 dark:text-gray-300">
+                                En-tête Minimaliste
+                            </button>
+                            <button data-element="headers.gradient" class="w-full text-left px-4 py-3 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 theme-transition-ready text-gray-700 dark:text-gray-300">
+                                En-tête Gradient
+                            </button>
+                            <button data-element="headers.centered" class="w-full text-left px-4 py-3 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 theme-transition-ready text-gray-700 dark:text-gray-300">
+                                En-tête Centré
+                            </button>
+                            <button data-element="headers.transparent" class="w-full text-left px-4 py-3 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 theme-transition-ready text-gray-700 dark:text-gray-300">
+                                En-tête Transparent
+                            </button>
+                            <button data-element="headers.compact" class="w-full text-left px-4 py-3 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 theme-transition-ready text-gray-700 dark:text-gray-300">
+                                En-tête Compact
+                            </button>
+                            <button data-element="headers.creative" class="w-full text-left px-4 py-3 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 theme-transition-ready text-gray-700 dark:text-gray-300">
+                                En-tête Créatif
+                            </button>
+                            <button data-element="headers.ecommerce" class="w-full text-left px-4 py-3 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 theme-transition-ready text-gray-700 dark:text-gray-300">
+                                En-tête E-commerce
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- À propos -->
+                    <div class="space-y-4">
+                        <h3 class="text-lg font-semibold theme-transition-ready text-gray-700 dark:text-gray-300">À propos</h3>
+                        <div class="space-y-3">
+                            <button data-element="about.simple" class="w-full text-left px-4 py-3 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 theme-transition-ready text-gray-700 dark:text-gray-300">
+                                À propos Simple
+                            </button>
+                            <button data-element="about.withImage" class="w-full text-left px-4 py-3 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 theme-transition-ready text-gray-700 dark:text-gray-300">
+                                À propos avec Image
+                            </button>
+                            <button data-element="about.team" class="w-full text-left px-4 py-3 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 theme-transition-ready text-gray-700 dark:text-gray-300">
+                                Équipe
+                            </button>
+                            <button data-element="about.stats" class="w-full text-left px-4 py-3 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 theme-transition-ready text-gray-700 dark:text-gray-300">
+                                Statistiques
+                            </button>
+                            <button data-element="about.mission" class="w-full text-left px-4 py-3 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 theme-transition-ready text-gray-700 dark:text-gray-300">
+                                Notre Mission
+                            </button>
+                            <button data-element="about.values" class="w-full text-left px-4 py-3 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 theme-transition-ready text-gray-700 dark:text-gray-300">
+                                Nos Valeurs
+                            </button>
+                            <button data-element="about.timeline" class="w-full text-left px-4 py-3 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 theme-transition-ready text-gray-700 dark:text-gray-300">
+                                Notre Histoire Timeline
+                            </button>
+                            <button data-element="about.testimonials" class="w-full text-left px-4 py-3 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 theme-transition-ready text-gray-700 dark:text-gray-300">
+                                Témoignages
+                            </button>
+                            <button data-element="about.cta" class="w-full text-left px-4 py-3 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 theme-transition-ready text-gray-700 dark:text-gray-300">
+                                Call-to-Action
+                            </button>
+                            <button data-element="about.contact" class="w-full text-left px-4 py-3 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 theme-transition-ready text-gray-700 dark:text-gray-300">
+                                Contact Info
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Sections -->
+                    <div class="space-y-4">
+                        <h3 class="text-lg font-semibold theme-transition-ready text-gray-700 dark:text-gray-300">Sections</h3>
+                        <div class="space-y-3">
+                            <button data-element="sections.hero" class="w-full text-left px-4 py-3 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 theme-transition-ready text-gray-700 dark:text-gray-300">
+                                Section Héro Simple
+                            </button>
+                            <button data-element="sections.heroWithImage" class="w-full text-left px-4 py-3 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 theme-transition-ready text-gray-700 dark:text-gray-300">
+                                Section Héro avec Image
+                            </button>
+                            <button data-element="sections.heroGradient" class="w-full text-left px-4 py-3 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 theme-transition-ready text-gray-700 dark:text-gray-300">
+                                Section Héro avec Gradient
+                            </button>
+                            <button data-element="sections.features" class="w-full text-left px-4 py-3 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 theme-transition-ready text-gray-700 dark:text-gray-300">
+                                Section Fonctionnalités Simple
+                            </button>
+                            <button data-element="sections.featuresWithIcons" class="w-full text-left px-4 py-3 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 theme-transition-ready text-gray-700 dark:text-gray-300">
+                                Section Fonctionnalités avec Icônes
+                            </button>
+                            <button data-element="sections.featuresGrid" class="w-full text-left px-4 py-3 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 theme-transition-ready text-gray-700 dark:text-gray-300">
+                                Section Fonctionnalités en Grille
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Formulaires -->
+                    <div class="space-y-4">
+                        <h3 class="text-lg font-semibold theme-transition-ready text-gray-700 dark:text-gray-300">Formulaires</h3>
+                        <div class="space-y-3">
+                            <button data-element="forms.contact" class="w-full text-left px-4 py-3 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 theme-transition-ready text-gray-700 dark:text-gray-300">
+                                Formulaire de Contact
+                            </button>
+                            <button data-element="forms.login" class="w-full text-left px-4 py-3 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 theme-transition-ready text-gray-700 dark:text-gray-300">
+                                Formulaire de Connexion
+                            </button>
+                            <button data-element="forms.register" class="w-full text-left px-4 py-3 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 theme-transition-ready text-gray-700 dark:text-gray-300">
+                                Formulaire d'Inscription
+                            </button>
+                            <button data-element="forms.newsletter" class="w-full text-left px-4 py-3 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 theme-transition-ready text-gray-700 dark:text-gray-300">
+                                Inscription Newsletter
+                            </button>
+                            <button data-element="forms.search" class="w-full text-left px-4 py-3 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 theme-transition-ready text-gray-700 dark:text-gray-300">
+                                Barre de Recherche
+                            </button>
+                            <button data-element="forms.searchAdvanced" class="w-full text-left px-4 py-3 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 theme-transition-ready text-gray-700 dark:text-gray-300">
+                                Recherche Avancée
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- FAQ -->
+                    <div class="space-y-4">
+                        <h3 class="text-lg font-semibold theme-transition-ready text-gray-700 dark:text-gray-300">FAQ</h3>
+                        <div class="space-y-3">
+                            <button data-element="faq.simple" class="w-full text-left px-4 py-3 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 theme-transition-ready text-gray-700 dark:text-gray-300">
+                                FAQ Simple
+                            </button>
+                            <button data-element="faq.modern" class="w-full text-left px-4 py-3 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 theme-transition-ready text-gray-700 dark:text-gray-300">
+                                FAQ Moderne
+                            </button>
+                            <button data-element="faq.gradient" class="w-full text-left px-4 py-3 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 theme-transition-ready text-gray-700 dark:text-gray-300">
+                                FAQ Gradient
+                            </button>
+                            <button data-element="faq.boxed" class="w-full text-left px-4 py-3 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 theme-transition-ready text-gray-700 dark:text-gray-300">
+                                FAQ Encadrée
+                            </button>
+                            <button data-element="faq.numbered" class="w-full text-left px-4 py-3 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 theme-transition-ready text-gray-700 dark:text-gray-300">
+                                FAQ Numérotée
+                            </button>
+                            <button data-element="faq.cards" class="w-full text-left px-4 py-3 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 theme-transition-ready text-gray-700 dark:text-gray-300">
+                                FAQ Accordéon Animé
+                            </button>
+                            <button data-element="faq.minimal" class="w-full text-left px-4 py-3 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 theme-transition-ready text-gray-700 dark:text-gray-300">
+                                FAQ Minimale
+                            </button>
+                            <button data-element="faq.interactive" class="w-full text-left px-4 py-3 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 theme-transition-ready text-gray-700 dark:text-gray-300">
+                                FAQ Interactive
+                            </button>
+                            <button data-element="faq.sidebar" class="w-full text-left px-4 py-3 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 theme-transition-ready text-gray-700 dark:text-gray-300">
+                                FAQ Accordéon Interactif
+                            </button>
+                            <button data-element="faq.grid" class="w-full text-left px-4 py-3 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 theme-transition-ready text-gray-700 dark:text-gray-300">
+                                FAQ Accordéon Élégant
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Composants sociaux -->
+                    <div class="space-y-4">
+                        <h3 class="text-lg font-semibold theme-transition-ready text-gray-700 dark:text-gray-300">Composants Sociaux</h3>
+                        <div class="space-y-3">
+                            <button data-element="social.simpleIcons" class="w-full text-left px-4 py-3 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 theme-transition-ready text-gray-700 dark:text-gray-300">
+                                Icônes Simples
+                            </button>
+                            <button data-element="social.roundedIcons" class="w-full text-left px-4 py-3 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 theme-transition-ready text-gray-700 dark:text-gray-300">
+                                Icônes Arrondies
+                            </button>
+                            <button data-element="social.coloredIcons" class="w-full text-left px-4 py-3 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 theme-transition-ready text-gray-700 dark:text-gray-300">
+                                Icônes Colorées
+                            </button>
+                            <button data-element="social.floatingBar" class="w-full text-left px-4 py-3 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 theme-transition-ready text-gray-700 dark:text-gray-300">
+                                Barre Flottante
+                            </button>
+                            <button data-element="social.shareButtons" class="w-full text-left px-4 py-3 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 theme-transition-ready text-gray-700 dark:text-gray-300">
+                                Boutons de Partage
+                            </button>
+                            <button data-element="social.minimalShare" class="w-full text-left px-4 py-3 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 theme-transition-ready text-gray-700 dark:text-gray-300">
+                                Partage Minimal
+                            </button>
+                            <button data-element="social.shareCard" class="w-full text-left px-4 py-3 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 theme-transition-ready text-gray-700 dark:text-gray-300">
+                                Carte de Partage
+                            </button>
+                            <button data-element="social.socialStats" class="w-full text-left px-4 py-3 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 theme-transition-ready text-gray-700 dark:text-gray-300">
+                                Statistiques Sociales
+                            </button>
+                            <button data-element="social.shareWithCopy" class="w-full text-left px-4 py-3 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 theme-transition-ready text-gray-700 dark:text-gray-300">
+                                Partage avec Copie
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Pieds de page -->
+                    <div class="space-y-4">
+                        <h3 class="text-lg font-semibold theme-transition-ready text-gray-700 dark:text-gray-300">Pieds de page</h3>
+                        <div class="space-y-3">
+                            <button data-element="footers.simple" class="w-full text-left px-4 py-3 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 theme-transition-ready text-gray-700 dark:text-gray-300">
+                                Pied de Page Simple
+                            </button>
+                            <button data-element="footers.withLinks" class="w-full text-left px-4 py-3 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 theme-transition-ready text-gray-700 dark:text-gray-300">
+                                Pied de Page avec Liens
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</main>
+
+<script>
+// Gestion du menu mobile
+document.addEventListener('DOMContentLoaded', function() {
+    const menuButton = document.getElementById('menuButton');
+    const closeMenu = document.getElementById('closeMenu');
+    const mainNav = document.getElementById('mainNav');
+    const toggleSections = document.getElementById('toggleSections');
+    const mainContainer = document.querySelector('main');
+    const editorSection = document.querySelector('main > section:first-child');
+    const sideSections = document.querySelector('main > div:last-child');
+    
+    let sectionsVisible = true;
+
+    toggleSections.addEventListener('click', () => {
+        sectionsVisible = !sectionsVisible;
+        
+        if (!sectionsVisible) {
+            sideSections.classList.add('translate-x-full', 'opacity-0', 'absolute');
+            editorSection.classList.remove('md:w-2/3');
+            editorSection.classList.add('w-full');
+            toggleSections.querySelector('i').classList.remove('fa-eye');
+            toggleSections.querySelector('i').classList.add('fa-eye-slash');
+        } else {
+            sideSections.classList.remove('translate-x-full', 'opacity-0', 'absolute');
+            editorSection.classList.add('md:w-2/3');
+            editorSection.classList.remove('w-full');
+            toggleSections.querySelector('i').classList.add('fa-eye');
+            toggleSections.querySelector('i').classList.remove('fa-eye-slash');
+        }
+    });
+    
+    function toggleMenu() {
+        const isOpen = mainNav.classList.contains('translate-x-0');
+        mainNav.classList.toggle('translate-x-0', !isOpen);
+        mainNav.classList.toggle('translate-x-full', isOpen);
+    }
+    
+    menuButton.addEventListener('click', toggleMenu);
+    closeMenu.addEventListener('click', toggleMenu);
+    
+    // Fermer le menu lors du clic sur un lien
+    const menuLinks = mainNav.querySelectorAll('a');
+    menuLinks.forEach(link => {
+        link.addEventListener('click', toggleMenu);
+    });
+});
+</script>
+
+<script src="js/theme.js"></script>
+<script type="module" src="js/preview.js"></script>
+</body>
+</html>
