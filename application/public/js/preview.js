@@ -96,6 +96,124 @@ function makeElementEditable(element) {
     });
 }
 
+// Fonction pour sauvegarder l'état actuel
+function saveCurrentState() {
+    const previewContent = document.getElementById('previewContent');
+    const elements = previewContent.querySelectorAll(':scope > div.relative');
+    const savedState = [];
+    
+    elements.forEach(element => {
+        const elementContent = element.querySelector(':scope > :not(.absolute)');
+        const editableTexts = element.querySelectorAll('.editable-text');
+        const textContent = {};
+        
+        editableTexts.forEach((text, index) => {
+            textContent[index] = text.textContent;
+        });
+        
+        if (elementContent) {
+            savedState.push({
+                html: elementContent.outerHTML,
+                editableContent: textContent
+            });
+        }
+    });
+    
+    localStorage.setItem('webazonEditorState', JSON.stringify(savedState));
+}
+
+// Fonction pour restaurer l'état sauvegardé
+function restoreState() {
+    const savedState = localStorage.getItem('webazonEditorState');
+    if (savedState) {
+        const previewContent = document.getElementById('previewContent');
+        previewContent.innerHTML = ''; // Nettoyer le contenu actuel
+        
+        const state = JSON.parse(savedState);
+        state.forEach(item => {
+            const elementContainer = document.createElement('div');
+            elementContainer.className = 'relative group mb-4';
+            
+            // Recréer les boutons de déplacement
+            const moveButtons = document.createElement('div');
+            moveButtons.className = 'absolute left-1 top-1 opacity-0 group-hover:opacity-100 flex flex-col gap-0.5 z-[100]';
+            moveButtons.innerHTML = `
+                <button class="move-up bg-gray-500 hover:bg-gray-600 text-white p-1 rounded-lg transition-colors w-6 h-6 flex items-center justify-center">
+                    <i class="fas fa-chevron-up text-[10px]"></i>
+                </button>
+                <button class="move-down bg-gray-500 hover:bg-gray-600 text-white p-1 rounded-lg transition-colors w-6 h-6 flex items-center justify-center">
+                    <i class="fas fa-chevron-down text-[10px]"></i>
+                </button>
+            `;
+            
+            // Recréer le bouton de suppression
+            const deleteButton = document.createElement('div');
+            deleteButton.className = 'absolute right-1 top-1 opacity-0 group-hover:opacity-100 z-[100]';
+            deleteButton.innerHTML = `
+                <button class="delete-element bg-red-500 text-white p-1 rounded-lg hover:bg-red-600 transition-colors">
+                    <i class="fas fa-trash text-xs"></i>
+                </button>
+            `;
+            
+            // Ajouter le contenu
+            const content = document.createElement('div');
+            content.innerHTML = item.html;
+            content.firstElementChild.classList.add('pl-8');
+            
+            elementContainer.appendChild(moveButtons);
+            elementContainer.appendChild(deleteButton);
+            elementContainer.appendChild(content.firstElementChild);
+            
+            // Rendre le texte éditable et restaurer le contenu
+            makeElementEditable(elementContainer);
+            const editableTexts = elementContainer.querySelectorAll('.editable-text');
+            Object.entries(item.editableContent).forEach(([index, text]) => {
+                if (editableTexts[index]) {
+                    editableTexts[index].textContent = text;
+                }
+            });
+            
+            // Réattacher les événements
+            attachElementEvents(elementContainer);
+            
+            previewContent.appendChild(elementContainer);
+        });
+        
+        updateCodePreview();
+    }
+}
+
+// Fonction pour attacher les événements aux éléments
+function attachElementEvents(elementContainer) {
+    const moveButtons = elementContainer.querySelector('.absolute');
+    const deleteButton = elementContainer.querySelector('.delete-element');
+    const previewContent = document.getElementById('previewContent');
+    
+    moveButtons.querySelector('.move-up').addEventListener('click', () => {
+        const previousSibling = elementContainer.previousElementSibling;
+        if (previousSibling) {
+            previewContent.insertBefore(elementContainer, previousSibling);
+            updateCodePreview();
+            saveCurrentState();
+        }
+    });
+    
+    moveButtons.querySelector('.move-down').addEventListener('click', () => {
+        const nextSibling = elementContainer.nextElementSibling;
+        if (nextSibling) {
+            previewContent.insertBefore(elementContainer, nextSibling.nextElementSibling);
+            updateCodePreview();
+            saveCurrentState();
+        }
+    });
+    
+    deleteButton.addEventListener('click', () => {
+        elementContainer.remove();
+        updateCodePreview();
+        saveCurrentState();
+    });
+}
+
 // Fonction pour ajouter un élément à la prévisualisation
 function addElementToPreview(element) {
     const previewContent = document.getElementById('previewContent');
@@ -104,35 +222,47 @@ function addElementToPreview(element) {
     const elementContainer = document.createElement('div');
     elementContainer.className = 'relative group mb-4';
     
+    // Créer le conteneur pour les boutons de déplacement
+    const moveButtons = document.createElement('div');
+    moveButtons.className = 'absolute left-1 top-1 opacity-0 group-hover:opacity-100 flex flex-col gap-0.5 z-[100]';
+    moveButtons.innerHTML = `
+        <button class="move-up bg-gray-500 hover:bg-gray-600 text-white p-1 rounded-lg transition-colors w-6 h-6 flex items-center justify-center">
+            <i class="fas fa-chevron-up text-[10px]"></i>
+        </button>
+        <button class="move-down bg-gray-500 hover:bg-gray-600 text-white p-1 rounded-lg transition-colors w-6 h-6 flex items-center justify-center">
+            <i class="fas fa-chevron-down text-[10px]"></i>
+        </button>
+    `;
+    
     // Ajouter le bouton de suppression
     const deleteButton = document.createElement('div');
-    deleteButton.className = 'absolute right-1 top-1 opacity-0 group-hover:opacity-100 transition-all transform scale-0 group-hover:scale-100 duration-200 z-[100]';
+    deleteButton.className = 'absolute right-1 top-1 opacity-0 group-hover:opacity-100 z-[100]';
     deleteButton.innerHTML = `
         <button class="delete-element bg-red-500 text-white p-1 rounded-lg hover:bg-red-600 transition-colors">
             <i class="fas fa-trash text-xs"></i>
         </button>
     `;
     
-    // Ajouter le contenu de l'élément
+    // Ajouter le contenu de l'élément avec un padding à gauche plus petit
     const content = document.createElement('div');
     content.innerHTML = element.html;
+    content.firstElementChild.classList.add('pl-8');
     
     // Assembler le conteneur
+    elementContainer.appendChild(moveButtons);
     elementContainer.appendChild(deleteButton);
     elementContainer.appendChild(content.firstElementChild);
     
     // Rendre le texte éditable
     makeElementEditable(elementContainer);
     
-    // Ajouter l'événement de suppression
-    deleteButton.querySelector('.delete-element').addEventListener('click', () => {
-        elementContainer.remove();
-        updateCodePreview();
-    });
+    // Attacher les événements
+    attachElementEvents(elementContainer);
     
     // Ajouter l'élément à la prévisualisation
     previewContent.appendChild(elementContainer);
     updateCodePreview();
+    saveCurrentState();
 }
 
 // Fonction pour copier le code complet
@@ -242,6 +372,16 @@ function copyCompleteCode() {
     });
 }
 
+// Fonction pour réinitialiser l'éditeur
+function resetEditor() {
+    if (confirm("Êtes-vous sûr de vouloir réinitialiser l'éditeur ? Tout le contenu non sauvegardé sera perdu.")) {
+        localStorage.removeItem('webazonEditorState');
+        const previewContent = document.getElementById('previewContent');
+        previewContent.innerHTML = '<!-- Le contenu HTML sera injecté ici -->';
+        updateCodePreview();
+    }
+}
+
 // Initialisation
 document.addEventListener('DOMContentLoaded', () => {
     // Ajouter les événements aux boutons de composants
@@ -260,6 +400,22 @@ document.addEventListener('DOMContentLoaded', () => {
     if (copyBtn) {
         copyBtn.addEventListener('click', copyCompleteCode);
     }
+    
+    // Restaurer l'état sauvegardé
+    restoreState();
+    
+    // Ajouter l'événement de réinitialisation
+    const resetBtn = document.getElementById('resetEditor');
+    if (resetBtn) {
+        resetBtn.addEventListener('click', resetEditor);
+    }
+    
+    // Ajouter la sauvegarde lors de l'édition du texte
+    document.addEventListener('input', (e) => {
+        if (e.target.classList.contains('editable-text')) {
+            saveCurrentState();
+        }
+    });
     
     updateCodePreview();
 }); 

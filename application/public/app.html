@@ -21,7 +21,13 @@
 <body class="min-h-screen theme-sensitive gpu-accelerated bg-light-bg dark:bg-dark-bg">
 
 <header class="flex justify-between items-center px-8 py-3 theme-transition-ready bg-light-nav dark:bg-dark-nav shadow-lg">
-    <h1 class="text-4xl font-bold theme-transition-ready bg-gradient-to-r from-light-primary to-light-secondary dark:from-dark-primary dark:to-dark-secondary bg-clip-text text-transparent hover:scale-105 transition-transform duration-300">Webazon</h1>
+    <div class="flex items-center gap-3">
+        <h1 class="text-4xl font-bold theme-transition-ready bg-gradient-to-r from-light-primary to-light-secondary dark:from-dark-primary dark:to-dark-secondary bg-clip-text text-transparent hover:scale-105 transition-transform duration-300">Webazon</h1>
+        <p class="flex items-center gap-2 theme-transition-ready text-gray-700 dark:text-gray-300">
+            <span class="text-lg">✨</span>
+            <button id="versionBtn" class="font-medium hover:text-light-primary dark:hover:text-dark-primary transition-colors">V1.0.1</button>
+        </p>
+    </div>
     
     <!-- Navigation desktop -->
     <nav class="hidden md:flex items-center gap-8">
@@ -88,6 +94,9 @@
             Editeur HTML
             <button id="toggleSections" class="theme-transition-ready text-gray-600 dark:text-gray-300 hover:text-light-primary dark:hover:text-dark-primary transition-colors duration-200">
                 <i class="fas fa-eye text-xl"></i>
+            </button>
+            <button id="resetEditor" class="theme-transition-ready text-gray-600 dark:text-gray-300 hover:text-red-500 dark:hover:text-red-400 transition-colors duration-200 ml-auto">
+                <i class="fas fa-rotate-right text-xl"></i>
             </button>
         </h2>
         <div id="previewContainer" class="flex-1 bg-white dark:bg-dark-bg rounded-lg overflow-auto min-h-0">
@@ -332,6 +341,55 @@
     </div>
 </main>
 
+<div id="versionModal" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 hidden">
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-11/12 max-w-2xl max-h-[80vh] theme-transition-ready bg-light-nav dark:bg-dark-nav rounded-xl shadow-xl flex flex-col">
+        <!-- En-tête de la modale -->
+        <div class="flex justify-between items-center p-8 pb-4">
+            <h2 class="text-2xl font-bold theme-transition-ready text-gray-800 dark:text-gray-200">Notes de version</h2>
+            <button id="closeVersionModal" class="theme-transition-ready text-gray-600 dark:text-gray-300 hover:text-light-primary dark:hover:text-dark-primary">
+                <i class="fas fa-times text-xl"></i>
+            </button>
+        </div>
+
+        <!-- Timeline des versions avec scroll -->
+        <div class="overflow-y-auto p-8 pt-4">
+            <div class="relative pl-8 space-y-8 before:absolute before:left-[11px] before:top-2 before:bottom-2 before:w-0.5 theme-transition-ready before:bg-light-primary dark:before:bg-dark-primary">
+                <!-- Version actuelle -->
+                <div class="relative">
+                    <div class="absolute left-[-33px] w-6 h-6 rounded-full theme-transition-ready bg-light-primary dark:bg-dark-primary"></div>
+                    <div class="theme-transition-ready bg-white/50 dark:bg-gray-800/50 rounded-lg p-4">
+                        <h3 class="text-lg font-semibold theme-transition-ready text-gray-800 dark:text-gray-200 mb-2">Version 1.0.1</h3>
+                        <p class="text-sm text-gray-600 dark:text-gray-400 mb-2">6 Février 2025</p>
+                        <ul class="list-disc list-inside space-y-1 text-gray-700 dark:text-gray-300">
+                            <li>Ajout des notes de version</li>
+                            <li>Amélioration de la stabilité générale</li>
+                            <li>Correction de bugs mineurs</li>
+                            <li>Ajout d'une fonctionnalité pour déplacer/réorganiser les éléments dans la prévisualisation</li>
+                            <li>Ajout d'une fonctionnalité pour réinitialiser l'éditeur</li>
+                            <li>Ajout du stockage de l'état de l'éditeur dans le navigateur</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Version 1.0.0 -->
+                <div class="relative">
+                    <div class="absolute left-[-33px] w-6 h-6 rounded-full theme-transition-ready bg-gray-300 dark:bg-gray-700"></div>
+                    <div class="theme-transition-ready bg-white/50 dark:bg-gray-800/50 rounded-lg p-4">
+                        <h3 class="text-lg font-semibold theme-transition-ready text-gray-800 dark:text-gray-200 mb-2">Version 1.0.0</h3>
+                        <p class="text-sm text-gray-600 dark:text-gray-400 mb-2">3 Février 2025</p>
+                        <ul class="list-disc list-inside space-y-1 text-gray-700 dark:text-gray-300">
+                            <li>Lancement initial de l'application</li>
+                            <li>Implémentation de l'éditeur HTML</li>
+                            <li>Support du thème clair/sombre</li>
+                            <li>Composants de base disponibles</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <script>
 // Gestion du menu mobile
 document.addEventListener('DOMContentLoaded', function() {
@@ -376,6 +434,33 @@ document.addEventListener('DOMContentLoaded', function() {
     const menuLinks = mainNav.querySelectorAll('a');
     menuLinks.forEach(link => {
         link.addEventListener('click', toggleMenu);
+    });
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+    const versionBtn = document.getElementById('versionBtn');
+    const versionModal = document.getElementById('versionModal');
+    const closeVersionModal = document.getElementById('closeVersionModal');
+
+    function toggleModal() {
+        versionModal.classList.toggle('hidden');
+    }
+
+    versionBtn.addEventListener('click', toggleModal);
+    closeVersionModal.addEventListener('click', toggleModal);
+
+    // Fermer la modale en cliquant en dehors
+    versionModal.addEventListener('click', function(e) {
+        if (e.target === versionModal) {
+            toggleModal();
+        }
+    });
+
+    // Fermer la modale avec la touche Echap
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && !versionModal.classList.contains('hidden')) {
+            toggleModal();
+        }
     });
 });
 </script>
