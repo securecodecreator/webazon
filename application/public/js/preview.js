@@ -94,6 +94,122 @@ function makeElementEditable(element) {
         });
         textNode.parentNode.replaceChild(span, textNode);
     });
+
+    // Ajouter la gestion des liens pour les boutons et icônes
+    // On exclut les boutons de contrôle (déplacement et suppression)
+    const mainContent = element.querySelector(':scope > :not(.absolute)');
+    if (mainContent) {
+        const buttons = mainContent.querySelectorAll('button, a, .fa, .fas, .fab, .far');
+        buttons.forEach(button => {
+            // Vérifier que le bouton n'est pas un bouton de contrôle
+            if (!button.closest('.move-up, .move-down, .delete-element')) {
+                button.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    showLinkEditor(button);
+                });
+                
+                // Ajouter un indicateur visuel pour montrer que l'élément est cliquable
+                button.classList.add('cursor-pointer', 'hover:ring-2', 'hover:ring-blue-500', 'hover:ring-opacity-50', 'rounded');
+            }
+        });
+    }
+}
+
+// Nouvelle fonction pour afficher l'éditeur de lien
+function showLinkEditor(element) {
+    // Supprimer tout menu flottant existant
+    const existingMenu = document.querySelector('.floating-link-editor');
+    if (existingMenu) existingMenu.remove();
+
+    const menu = document.createElement('div');
+    menu.className = 'floating-link-editor fixed bg-white dark:bg-gray-800 rounded-lg shadow-lg p-4 z-[1000] border dark:border-gray-700';
+    
+    // Récupérer le lien existant
+    const parentLink = element.closest('a');
+    const currentHref = parentLink ? parentLink.getAttribute('href') : '';
+    const currentTarget = parentLink ? parentLink.getAttribute('target') : '_self';
+
+    menu.innerHTML = `
+        <div class="space-y-4">
+            <div>
+                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">URL du lien</label>
+                <input type="text" value="${currentHref || ''}" 
+                    class="w-full px-3 py-2 border rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white" 
+                    placeholder="https://..." 
+                    id="linkUrl">
+            </div>
+            <div class="flex items-center gap-2">
+                <input type="checkbox" id="newTab" ${currentTarget === '_blank' ? 'checked' : ''}>
+                <label class="text-sm text-gray-700 dark:text-gray-300" for="newTab">
+                    Ouvrir dans un nouvel onglet
+                </label>
+            </div>
+            <div class="flex justify-end gap-2">
+                <button class="px-3 py-1 text-sm bg-gray-200 dark:bg-gray-700 rounded-lg" id="cancelLink">
+                    Annuler
+                </button>
+                <button class="px-3 py-1 text-sm bg-blue-500 text-white rounded-lg" id="applyLink">
+                    Appliquer
+                </button>
+            </div>
+        </div>
+    `;
+
+    // Positionner le menu près de l'élément
+    const rect = element.getBoundingClientRect();
+    menu.style.top = `${rect.bottom + window.scrollY + 10}px`;
+    menu.style.left = `${rect.left + window.scrollX}px`;
+
+    document.body.appendChild(menu);
+
+    // Gestionnaires d'événements
+    const handleApply = () => {
+        const url = document.getElementById('linkUrl').value;
+        const newTab = document.getElementById('newTab').checked;
+
+        if (url) {
+            let targetElement = element;
+            if (!element.closest('a')) {
+                // Créer un nouveau lien
+                const link = document.createElement('a');
+                element.parentNode.insertBefore(link, element);
+                link.appendChild(element);
+                targetElement = link;
+            }
+
+            const linkElement = element.closest('a');
+            linkElement.href = url;
+            linkElement.target = newTab ? '_blank' : '_self';
+            if (newTab) {
+                linkElement.rel = 'noopener noreferrer';
+            } else {
+                linkElement.removeAttribute('rel');
+            }
+        } else if (element.closest('a')) {
+            // Supprimer le lien si l'URL est vide
+            const link = element.closest('a');
+            link.replaceWith(element);
+        }
+
+        menu.remove();
+        updateCodePreview();
+        saveCurrentState();
+    };
+
+    const handleCancel = () => {
+        menu.remove();
+    };
+
+    document.getElementById('applyLink').addEventListener('click', handleApply);
+    document.getElementById('cancelLink').addEventListener('click', handleCancel);
+
+    // Fermer le menu si on clique en dehors
+    document.addEventListener('click', (e) => {
+        if (!menu.contains(e.target) && !element.contains(e.target)) {
+            menu.remove();
+        }
+    });
 }
 
 // Fonction pour sauvegarder l'état actuel
@@ -189,10 +305,20 @@ function attachElementEvents(elementContainer) {
     const deleteButton = elementContainer.querySelector('.delete-element');
     const previewContent = document.getElementById('previewContent');
     
-    // Ajout des gestionnaires d'événements tactiles
+    // Améliorer la structure des boutons de contrôle
+    moveButtons.style.pointerEvents = 'none'; // Désactiver les événements sur le conteneur
+    
     const moveUpBtn = moveButtons.querySelector('.move-up');
     const moveDownBtn = moveButtons.querySelector('.move-down');
     
+    // Réactiver les événements uniquement sur les boutons
+    moveUpBtn.style.pointerEvents = 'auto';
+    moveDownBtn.style.pointerEvents = 'auto';
+    
+    // Ajuster le z-index des boutons de contrôle
+    moveButtons.classList.add('z-[200]');
+    elementContainer.querySelector('.delete-element').parentElement.classList.add('z-[200]');
+
     // Fonction pour gérer le déplacement vers le haut
     const moveUp = (e) => {
         e.preventDefault(); // Empêcher le scroll sur mobile
@@ -222,14 +348,12 @@ function attachElementEvents(elementContainer) {
     moveDownBtn.addEventListener('click', moveDown);
     moveDownBtn.addEventListener('touchstart', moveDown, { passive: false });
     
-    // Amélioration du bouton de suppression pour mobile
+    // Simplification de la gestion de la suppression
     const handleDelete = (e) => {
         e.preventDefault();
-        if (confirm('Voulez-vous vraiment supprimer cet élément ?')) {
-            elementContainer.remove();
-            updateCodePreview();
-            saveCurrentState();
-        }
+        elementContainer.remove();
+        updateCodePreview();
+        saveCurrentState();
     };
     
     deleteButton.addEventListener('click', handleDelete);
@@ -243,14 +367,14 @@ function addElementToPreview(element) {
     const elementContainer = document.createElement('div');
     elementContainer.className = 'relative group mb-4';
     
-    // Amélioration des boutons pour mobile
+    // Améliorer la structure des boutons de contrôle
     const moveButtons = document.createElement('div');
-    moveButtons.className = 'absolute left-1 top-1 opacity-100 md:opacity-0 group-hover:opacity-100 flex flex-col gap-0.5 z-[100]';
+    moveButtons.className = 'absolute left-1 top-1 opacity-0 md:opacity-0 group-hover:opacity-100 flex flex-col gap-0.5 z-[200] pointer-events-none';
     moveButtons.innerHTML = `
-        <button class="move-up bg-gray-500 hover:bg-gray-600 active:bg-gray-700 text-white p-2 rounded-lg transition-colors w-8 h-8 md:w-6 md:h-6 flex items-center justify-center touch-manipulation">
+        <button class="move-up bg-gray-500 hover:bg-gray-600 active:bg-gray-700 text-white p-2 rounded-lg transition-colors w-8 h-8 md:w-6 md:h-6 flex items-center justify-center touch-manipulation pointer-events-auto">
             <i class="fas fa-chevron-up text-xs md:text-[10px]"></i>
         </button>
-        <button class="move-down bg-gray-500 hover:bg-gray-600 active:bg-gray-700 text-white p-2 rounded-lg transition-colors w-8 h-8 md:w-6 md:h-6 flex items-center justify-center touch-manipulation">
+        <button class="move-down bg-gray-500 hover:bg-gray-600 active:bg-gray-700 text-white p-2 rounded-lg transition-colors w-8 h-8 md:w-6 md:h-6 flex items-center justify-center touch-manipulation pointer-events-auto">
             <i class="fas fa-chevron-down text-xs md:text-[10px]"></i>
         </button>
     `;
