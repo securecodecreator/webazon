@@ -133,30 +133,26 @@ export function addElementToPreview(element) {
  */
 export function resetEditor() {
     const confirmReset = () => {
-        return new Promise((resolve) => {
-            const dialog = document.createElement('div');
-            dialog.className = 'fixed inset-0 bg-black/50 flex items-center justify-center z-[1000] p-4';
-            dialog.innerHTML = `
-                <div class="bg-white dark:bg-gray-800 rounded-lg p-6 max-w-sm w-full">
-                    <h3 class="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-4">
-                        Réinitialiser l'éditeur ?
-                    </h3>
-                    <p class="text-gray-700 dark:text-gray-300 mb-6">
-                        Tout le contenu non sauvegardé sera perdu.
-                    </p>
-                    <div class="flex justify-end gap-4">
-                        <button id="cancelReset" class="px-4 py-2 text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors">
-                            Annuler
-                        </button>
-                        <button id="confirmReset" class="px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition-colors">
-                            Réinitialiser
-                        </button>
-                    </div>
+        const dialog = document.createElement('div');
+        dialog.className = 'fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-[1000]';
+        dialog.innerHTML = `
+            <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-xl max-w-md w-full mx-4">
+                <h3 class="text-lg font-semibold mb-4 text-gray-900 dark:text-white">Confirmer la réinitialisation</h3>
+                <p class="text-gray-600 dark:text-gray-300 mb-6">Êtes-vous sûr de vouloir réinitialiser l'éditeur ? Cette action est irréversible.</p>
+                <div class="flex justify-end gap-4">
+                    <button id="cancelReset" class="px-4 py-2 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg">
+                        Annuler
+                    </button>
+                    <button id="confirmReset" class="px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600">
+                        Réinitialiser
+                    </button>
                 </div>
-            `;
-            
-            document.body.appendChild(dialog);
-            
+            </div>
+        `;
+        
+        document.body.appendChild(dialog);
+        
+        return new Promise((resolve) => {
             const handleCancel = () => {
                 dialog.remove();
                 resolve(false);
@@ -187,12 +183,23 @@ export function resetEditor() {
     confirmReset().then(confirmed => {
         if (confirmed) {
             try {
+                // Supprimer toutes les données de stockage
                 localStorage.removeItem('webazonEditorState');
+                sessionStorage.removeItem('webazonEditorState');
+                sessionStorage.removeItem('webazonEditorStateBackup');
+                
                 const previewContent = document.getElementById('previewContent');
+                const codePreview = document.getElementById('codePreview');
+                
                 if (previewContent) {
                     previewContent.innerHTML = '<!-- Le contenu HTML sera injecté ici -->';
-                    window.dispatchEvent(new CustomEvent('preview:update'));
                 }
+                
+                if (codePreview) {
+                    codePreview.innerHTML = '<!-- Le contenu HTML sera injecté ici -->';
+                }
+                
+                window.dispatchEvent(new CustomEvent('preview:update'));
             } catch (error) {
                 console.error('Erreur lors de la réinitialisation:', error);
             }

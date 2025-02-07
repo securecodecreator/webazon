@@ -1,3 +1,4 @@
+import { createElementContainer, makeElementEditable, attachElementEvents } from '../utils/dom.js';
 
 /**
  * Sauvegarde l'état actuel de l'éditeur
@@ -6,9 +7,17 @@ export function saveCurrentState() {
     const previewContent = document.getElementById('previewContent');
     if (!previewContent) return;
 
-    // Sauvegarder l'état exact du contenu HTML
+    // Sauvegarder l'état exact du contenu HTML et la structure
+    const elements = previewContent.querySelectorAll(':scope > div.relative');
     const savedState = {
-        content: previewContent.innerHTML
+        content: previewContent.innerHTML,
+        elementsOrder: Array.from(elements).map(element => {
+            const mainContent = element.querySelector(':scope > :not(.absolute)');
+            return {
+                id: element.dataset.elementId || Math.random().toString(36).substr(2, 9),
+                html: mainContent ? mainContent.outerHTML : ''
+            };
+        })
     };
     
     try {
@@ -56,7 +65,33 @@ export function restoreState() {
 
             const state = JSON.parse(savedState);
             
-            if (state.content) {
+            if (state.elementsOrder && Array.isArray(state.elementsOrder)) {
+                // Restaurer les éléments dans l'ordre sauvegardé
+                previewContent.innerHTML = ''; // Nettoyer le contenu existant
+                state.elementsOrder.forEach(elementData => {
+                    const tempContainer = document.createElement('div');
+                    tempContainer.innerHTML = elementData.html;
+                    const element = tempContainer.firstElementChild;
+                    
+                    if (element) {
+                        // Créer le conteneur avec les contrôles
+                        const elementContainer = createElementContainer(element);
+                        elementContainer.dataset.elementId = elementData.id;
+                        
+                        // Rendre le texte éditable
+                        makeElementEditable(elementContainer);
+                        
+                        // Attacher les événements
+                        attachElementEvents(elementContainer);
+                        
+                        // Ajouter l'élément à la prévisualisation
+                        previewContent.appendChild(elementContainer);
+                    }
+                });
+                
+                window.dispatchEvent(new CustomEvent('preview:update'));
+            } else if (state.content) {
+                // Fallback pour l'ancien format
                 previewContent.innerHTML = state.content;
                 window.dispatchEvent(new CustomEvent('preview:update'));
             } else {

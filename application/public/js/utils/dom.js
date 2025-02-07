@@ -110,50 +110,65 @@ export function attachElementEvents(elementContainer) {
     const deleteButton = elementContainer.querySelector('.delete-element');
     const previewContent = document.getElementById('previewContent');
     
-    moveButtons.style.pointerEvents = 'none';
-    
+    if (!moveButtons || !deleteButton || !previewContent) {
+        console.error('Éléments de contrôle manquants');
+        return;
+    }
+
+    // Configuration des boutons de déplacement
     const moveUpBtn = moveButtons.querySelector('.move-up');
     const moveDownBtn = moveButtons.querySelector('.move-down');
     
-    moveUpBtn.style.pointerEvents = 'auto';
-    moveDownBtn.style.pointerEvents = 'auto';
-    
-    moveButtons.classList.add('z-[200]');
-    elementContainer.querySelector('.delete-element').parentElement.classList.add('z-[200]');
+    if (moveUpBtn && moveDownBtn) {
+        moveButtons.style.pointerEvents = 'none';
+        moveUpBtn.style.pointerEvents = 'auto';
+        moveDownBtn.style.pointerEvents = 'auto';
+        
+        moveButtons.classList.add('z-[200]');
 
-    const moveUp = (e) => {
-        e.preventDefault();
-        const previousSibling = elementContainer.previousElementSibling;
-        if (previousSibling) {
-            previewContent.insertBefore(elementContainer, previousSibling);
+        const moveUp = (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            const previousSibling = elementContainer.previousElementSibling;
+            if (previousSibling) {
+                previewContent.insertBefore(elementContainer, previousSibling);
+                window.dispatchEvent(new CustomEvent('preview:update'));
+                window.dispatchEvent(new CustomEvent('state:save'));
+            }
+        };
+
+        const moveDown = (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            const nextSibling = elementContainer.nextElementSibling;
+            if (nextSibling) {
+                previewContent.insertBefore(elementContainer, nextSibling.nextElementSibling);
+                window.dispatchEvent(new CustomEvent('preview:update'));
+                window.dispatchEvent(new CustomEvent('state:save'));
+            }
+        };
+
+        // Attacher les événements de déplacement
+        moveUpBtn.addEventListener('click', moveUp);
+        moveUpBtn.addEventListener('touchstart', moveUp, { passive: false });
+        
+        moveDownBtn.addEventListener('click', moveDown);
+        moveDownBtn.addEventListener('touchstart', moveDown, { passive: false });
+    }
+
+    // Configuration du bouton de suppression
+    if (deleteButton) {
+        deleteButton.parentElement.classList.add('z-[200]');
+        
+        const handleDelete = (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            elementContainer.remove();
             window.dispatchEvent(new CustomEvent('preview:update'));
             window.dispatchEvent(new CustomEvent('state:save'));
-        }
-    };
-
-    const moveDown = (e) => {
-        e.preventDefault();
-        const nextSibling = elementContainer.nextElementSibling;
-        if (nextSibling) {
-            previewContent.insertBefore(elementContainer, nextSibling.nextElementSibling);
-            window.dispatchEvent(new CustomEvent('preview:update'));
-            window.dispatchEvent(new CustomEvent('state:save'));
-        }
-    };
-
-    moveUpBtn.addEventListener('click', moveUp);
-    moveUpBtn.addEventListener('touchstart', moveUp, { passive: false });
-    
-    moveDownBtn.addEventListener('click', moveDown);
-    moveDownBtn.addEventListener('touchstart', moveDown, { passive: false });
-    
-    const handleDelete = (e) => {
-        e.preventDefault();
-        elementContainer.remove();
-        window.dispatchEvent(new CustomEvent('preview:update'));
-        window.dispatchEvent(new CustomEvent('state:save'));
-    };
-    
-    deleteButton.addEventListener('click', handleDelete);
-    deleteButton.addEventListener('touchstart', handleDelete, { passive: false });
+        };
+        
+        deleteButton.addEventListener('click', handleDelete);
+        deleteButton.addEventListener('touchstart', handleDelete, { passive: false });
+    }
 } 
