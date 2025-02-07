@@ -274,7 +274,6 @@ function restoreState() {
             // Ajouter le contenu
             const content = document.createElement('div');
             content.innerHTML = item.html;
-            content.firstElementChild.classList.add('pl-8');
             
             elementContainer.appendChild(moveButtons);
             elementContainer.appendChild(deleteButton);
@@ -391,7 +390,6 @@ function addElementToPreview(element) {
     // Ajouter le contenu de l'élément avec un padding à gauche plus petit
     const content = document.createElement('div');
     content.innerHTML = element.html;
-    content.firstElementChild.classList.add('pl-8');
     
     // Assembler le conteneur
     elementContainer.appendChild(moveButtons);
