@@ -1,7 +1,7 @@
 # Webazon - Application de conception de site web Frontend
 
 ## 📋 Description
-Webazon est une application web moderne de commerce électronique offrant une expérience d'achat intuitive et sécurisée.
+Webazon est une application de conception de site web Frontend simple et moderne permettant de créer des maquettes de site web en HTML et style CSS moderne grâce à Tailwind CSS.
 
 ## 🚀 Fonctionnalités Principales
 
@@ -9,14 +9,8 @@ Webazon est une application web moderne de commerce électronique offrant une ex
 - Design moderne et responsive
 - Navigation intuitive
 - Thème personnalisable
-- Prévisualisation des produits
+- Prévisualisation en direct
 - Interface adaptative pour tous les appareils
-
-### 🔐 Sécurité
-- Authentification sécurisée des utilisateurs
-- Protection des données sensibles
-- Sessions sécurisées
-- Gestion des autorisations
 
 ### 📱 Application
 - Structure modulaire
@@ -27,14 +21,24 @@ Webazon est une application web moderne de commerce électronique offrant une ex
 ## 🛠️ Structure du Projet
 ```
 Webazon/
+├── .git/
 ├── application/
+│   ├── README.md (1.5KB, 66 lignes)
 │   └── public/
-│       ├── app.html
+│       ├── app.html (34KB, 472 lignes)
+│       ├── css/
+│       │   └── style.css (2.2KB, 91 lignes)
+│       ├── images/
+│       │   ├── sombre.png (317KB)
+│       │   ├── release.png (287KB)
+│       │   ├── preview.png (397KB)
+│       │   └── clair.png (316KB)
 │       └── js/
-│           ├── preview.js
-│           ├── config.js
-│           └── theme.js
-└── index.html
+│           ├── preview.js (25KB, 632 lignes)
+│           ├── config.js (735B, 26 lignes)
+│           ├── theme.js (4.1KB, 132 lignes)
+│           └── assets.js (129KB, 1767 lignes)
+└── index.html (26KB, 365 lignes)
 ```
 
 ## 💻 Technologies Utilisées
