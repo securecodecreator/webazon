@@ -220,82 +220,308 @@ function saveCurrentState() {
     
     elements.forEach(element => {
         const elementContent = element.querySelector(':scope > :not(.absolute)');
-        const editableTexts = element.querySelectorAll('.editable-text');
-        const textContent = {};
-        
-        editableTexts.forEach((text, index) => {
-            textContent[index] = text.textContent;
-        });
-        
         if (elementContent) {
+            // Sauvegarder tous les textes éditables avec leur position exacte
+            const editableTexts = {};
+            element.querySelectorAll('.editable-text').forEach((text, index) => {
+                // Créer un chemin unique pour chaque texte éditable
+                const path = generateElementPath(text, elementContent);
+                editableTexts[path] = {
+                    content: text.textContent,
+                    index: index
+                };
+            });
+
+            // Sauvegarder tous les liens avec leurs attributs
+            const links = {};
+            elementContent.querySelectorAll('a').forEach((link, index) => {
+                const path = generateElementPath(link, elementContent);
+                links[path] = {
+                    href: link.getAttribute('href'),
+                    target: link.getAttribute('target'),
+                    rel: link.getAttribute('rel'),
+                    index: index
+                };
+            });
+
+            // Sauvegarder les classes personnalisées
+            const customClasses = {};
+            elementContent.querySelectorAll('[class]').forEach((el, index) => {
+                const path = generateElementPath(el, elementContent);
+                const classList = Array.from(el.classList)
+                    .filter(cls => !['editable-text', 'focus:outline-none', 'focus:bg-gray-100', 'dark:focus:bg-gray-800', 'px-1', 'rounded'].includes(cls));
+                if (classList.length > 0) {
+                    customClasses[path] = {
+                        classes: classList,
+                        index: index
+                    };
+                }
+            });
+
             savedState.push({
                 html: elementContent.outerHTML,
-                editableContent: textContent
+                editableContent: editableTexts,
+                links: links,
+                customClasses: customClasses,
+                originalStructure: serializeStructure(elementContent)
             });
         }
     });
     
-    localStorage.setItem('webazonEditorState', JSON.stringify(savedState));
+    try {
+        localStorage.setItem('webazonEditorState', JSON.stringify(savedState));
+        // Sauvegarder une copie de backup
+        sessionStorage.setItem('webazonEditorStateBackup', JSON.stringify(savedState));
+    } catch (error) {
+        console.error('Erreur lors de la sauvegarde:', error);
+        // En cas d'erreur avec localStorage, essayer sessionStorage
+        try {
+            sessionStorage.setItem('webazonEditorState', JSON.stringify(savedState));
+        } catch (e) {
+            console.error('Erreur de sauvegarde complète:', e);
+        }
+    }
+}
+
+// Fonction pour générer un chemin unique pour un élément
+function generateElementPath(element, root) {
+    const path = [];
+    let current = element;
+    
+    while (current !== root && current.parentElement) {
+        const parent = current.parentElement;
+        const children = Array.from(parent.children);
+        const index = children.indexOf(current);
+        const tagName = current.tagName.toLowerCase();
+        path.unshift(`${tagName}[${index}]`);
+        current = parent;
+    }
+    
+    return path.join(' > ');
+}
+
+// Fonction pour sérialiser la structure d'un élément
+function serializeStructure(element) {
+    return {
+        tagName: element.tagName.toLowerCase(),
+        children: Array.from(element.children).map(child => serializeStructure(child)),
+        attributes: Array.from(element.attributes).reduce((acc, attr) => {
+            if (!['contenteditable', 'class'].includes(attr.name)) {
+                acc[attr.name] = attr.value;
+            }
+            return acc;
+        }, {})
+    };
 }
 
 // Fonction pour restaurer l'état sauvegardé
 function restoreState() {
-    const savedState = localStorage.getItem('webazonEditorState');
+    let savedState;
+    
+    // Essayer de récupérer l'état depuis différentes sources
+    try {
+        savedState = localStorage.getItem('webazonEditorState');
+        if (!savedState) {
+            savedState = sessionStorage.getItem('webazonEditorStateBackup');
+        }
+        if (!savedState) {
+            savedState = sessionStorage.getItem('webazonEditorState');
+        }
+    } catch (error) {
+        console.error('Erreur lors de la récupération de l\'état:', error);
+        return;
+    }
+
     if (savedState) {
-        const previewContent = document.getElementById('previewContent');
-        previewContent.innerHTML = ''; // Nettoyer le contenu actuel
-        
-        const state = JSON.parse(savedState);
-        state.forEach(item => {
-            const elementContainer = document.createElement('div');
-            elementContainer.className = 'relative group mb-4';
+        try {
+            const previewContent = document.getElementById('previewContent');
+            const codePreview = document.getElementById('codePreview');
             
-            // Recréer les boutons de déplacement
-            const moveButtons = document.createElement('div');
-            moveButtons.className = 'absolute left-1 top-1 opacity-0 group-hover:opacity-100 flex flex-col gap-0.5 z-[100]';
-            moveButtons.innerHTML = `
-                <button class="move-up bg-gray-500 hover:bg-gray-600 text-white p-1 rounded-lg transition-colors w-6 h-6 flex items-center justify-center">
-                    <i class="fas fa-chevron-up text-[10px]"></i>
-                </button>
-                <button class="move-down bg-gray-500 hover:bg-gray-600 text-white p-1 rounded-lg transition-colors w-6 h-6 flex items-center justify-center">
-                    <i class="fas fa-chevron-down text-[10px]"></i>
-                </button>
-            `;
+            if (!previewContent || !codePreview) {
+                console.error('Éléments nécessaires non trouvés');
+                return;
+            }
             
-            // Recréer le bouton de suppression
-            const deleteButton = document.createElement('div');
-            deleteButton.className = 'absolute right-1 top-1 opacity-0 group-hover:opacity-100 z-[100]';
-            deleteButton.innerHTML = `
-                <button class="delete-element bg-red-500 text-white p-1 rounded-lg hover:bg-red-600 transition-colors">
-                    <i class="fas fa-trash text-xs"></i>
-                </button>
-            `;
+            previewContent.innerHTML = ''; // Nettoyer le contenu actuel
             
-            // Ajouter le contenu
-            const content = document.createElement('div');
-            content.innerHTML = item.html;
+            const state = JSON.parse(savedState);
+            if (!Array.isArray(state)) {
+                console.error('État invalide:', state);
+                return;
+            }
+
+            let hasRestoredContent = false;
             
-            elementContainer.appendChild(moveButtons);
-            elementContainer.appendChild(deleteButton);
-            elementContainer.appendChild(content.firstElementChild);
-            
-            // Rendre le texte éditable et restaurer le contenu
-            makeElementEditable(elementContainer);
-            const editableTexts = elementContainer.querySelectorAll('.editable-text');
-            Object.entries(item.editableContent).forEach(([index, text]) => {
-                if (editableTexts[index]) {
-                    editableTexts[index].textContent = text;
+            state.forEach(item => {
+                if (!item || !item.html) {
+                    console.warn('Élément d\'état invalide:', item);
+                    return;
+                }
+
+                try {
+                    const elementContainer = document.createElement('div');
+                    elementContainer.className = 'relative group mb-4';
+                    
+                    // Recréer les boutons de contrôle
+                    const moveButtons = document.createElement('div');
+                    moveButtons.className = 'absolute left-1 top-1 opacity-0 group-hover:opacity-100 flex flex-col gap-0.5 z-[200]';
+                    moveButtons.innerHTML = `
+                        <button class="move-up bg-gray-500 hover:bg-gray-600 text-white p-1 rounded-lg transition-colors w-6 h-6 flex items-center justify-center">
+                            <i class="fas fa-chevron-up text-[10px]"></i>
+                        </button>
+                        <button class="move-down bg-gray-500 hover:bg-gray-600 text-white p-1 rounded-lg transition-colors w-6 h-6 flex items-center justify-center">
+                            <i class="fas fa-chevron-down text-[10px]"></i>
+                        </button>
+                    `;
+                    
+                    // Recréer le bouton de suppression
+                    const deleteButton = document.createElement('div');
+                    deleteButton.className = 'absolute right-1 top-1 opacity-0 group-hover:opacity-100 z-[200]';
+                    deleteButton.innerHTML = `
+                        <button class="delete-element bg-red-500 text-white p-1 rounded-lg hover:bg-red-600 transition-colors">
+                            <i class="fas fa-trash text-xs"></i>
+                        </button>
+                    `;
+                    
+                    // Créer un conteneur temporaire pour parser le HTML
+                    const tempContainer = document.createElement('div');
+                    tempContainer.innerHTML = item.html;
+                    const mainElement = tempContainer.firstElementChild;
+                    
+                    if (!mainElement) {
+                        console.warn('Élément principal non trouvé dans:', item.html);
+                        return;
+                    }
+
+                    // Restaurer les textes éditables
+                    if (item.editableContent) {
+                        Object.entries(item.editableContent).forEach(([path, data]) => {
+                            try {
+                                const element = findElementByPath(path, mainElement);
+                                if (element && data.content !== undefined) {
+                                    element.textContent = data.content;
+                                }
+                            } catch (e) {
+                                console.warn('Erreur lors de la restauration du texte:', e);
+                            }
+                        });
+                    }
+                    
+                    // Restaurer les liens
+                    if (item.links) {
+                        Object.entries(item.links).forEach(([path, data]) => {
+                            try {
+                                const element = findElementByPath(path, mainElement);
+                                if (element) {
+                                    if (data.href) element.href = data.href;
+                                    if (data.target) element.target = data.target;
+                                    if (data.rel) element.rel = data.rel;
+                                }
+                            } catch (e) {
+                                console.warn('Erreur lors de la restauration du lien:', e);
+                            }
+                        });
+                    }
+                    
+                    // Restaurer les classes personnalisées
+                    if (item.customClasses) {
+                        Object.entries(item.customClasses).forEach(([path, data]) => {
+                            try {
+                                const element = findElementByPath(path, mainElement);
+                                if (element && Array.isArray(data.classes)) {
+                                    data.classes.forEach(cls => element.classList.add(cls));
+                                }
+                            } catch (e) {
+                                console.warn('Erreur lors de la restauration des classes:', e);
+                            }
+                        });
+                    }
+                    
+                    // Vérifier la structure
+                    if (item.originalStructure) {
+                        try {
+                            validateAndFixStructure(mainElement, item.originalStructure);
+                        } catch (e) {
+                            console.warn('Erreur lors de la validation de la structure:', e);
+                        }
+                    }
+                    
+                    elementContainer.appendChild(moveButtons);
+                    elementContainer.appendChild(deleteButton);
+                    elementContainer.appendChild(mainElement);
+                    
+                    // Rendre le texte éditable
+                    makeElementEditable(elementContainer);
+                    
+                    // Attacher les événements
+                    attachElementEvents(elementContainer);
+                    
+                    previewContent.appendChild(elementContainer);
+                    hasRestoredContent = true;
+                } catch (e) {
+                    console.error('Erreur lors de la restauration d\'un élément:', e);
                 }
             });
-            
-            // Réattacher les événements
-            attachElementEvents(elementContainer);
-            
-            previewContent.appendChild(elementContainer);
-        });
-        
-        updateCodePreview();
+
+            if (hasRestoredContent) {
+                updateCodePreview();
+            } else {
+                // Si aucun contenu n'a été restauré, afficher un message par défaut
+                previewContent.innerHTML = '<!-- Le contenu HTML sera injecté ici -->';
+                codePreview.innerHTML = '<!-- Le contenu HTML sera injecté ici -->';
+            }
+        } catch (error) {
+            console.error('Erreur critique lors de la restauration:', error);
+            // Réinitialiser en cas d'erreur critique
+            document.getElementById('previewContent').innerHTML = '<!-- Le contenu HTML sera injecté ici -->';
+            document.getElementById('codePreview').innerHTML = '<!-- Le contenu HTML sera injecté ici -->';
+        }
     }
+}
+
+// Fonction pour trouver un élément par son chemin
+function findElementByPath(path, root) {
+    const parts = path.split(' > ');
+    let current = root;
+    
+    for (const part of parts) {
+        const [tagName, indexStr] = part.match(/([a-z]+)\[(\d+)\]/).slice(1);
+        const index = parseInt(indexStr);
+        const children = Array.from(current.children).filter(child => 
+            child.tagName.toLowerCase() === tagName
+        );
+        
+        if (children[index]) {
+            current = children[index];
+        } else {
+            return null;
+        }
+    }
+    
+    return current;
+}
+
+// Fonction pour valider et corriger la structure
+function validateAndFixStructure(element, structure) {
+    if (element.tagName.toLowerCase() !== structure.tagName) {
+        console.warn('Structure mismatch detected:', element.tagName, structure.tagName);
+        return;
+    }
+
+    // Restaurer les attributs manquants
+    Object.entries(structure.attributes).forEach(([name, value]) => {
+        if (element.getAttribute(name) !== value) {
+            element.setAttribute(name, value);
+        }
+    });
+
+    // Vérifier récursivement les enfants
+    const elementChildren = Array.from(element.children);
+    structure.children.forEach((childStructure, index) => {
+        if (elementChildren[index]) {
+            validateAndFixStructure(elementChildren[index], childStructure);
+        }
+    });
 }
 
 // Fonction pour attacher les événements aux éléments
