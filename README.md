@@ -29,32 +29,32 @@ Webazon est une application web moderne et intuitive conçue pour simplifier la 
 
 ```
 Webazon/
-├── LICENSE                                    # Licence MIT (1.0 KB, 23 lignes)
-├── README.md                                  # Documentation principale (4.8 KB,122 lignes)
-├── index.html                                 # Page d'accueil (26 KB, 365 lignes)
+├── LICENSE                                    # Licence MIT
+├── README.md                                  # Documentation principale
+├── index.html                                 # Page d'accueil
 └── application/                               # Cœur de l'application
     ├── public/                               # Ressources publiques
-    │   ├── app.html                          # Application principale (34 KB, 478 lignes)
+    │   ├── app.html                          # Application principale
     │   ├── css/
-    │   │   └── style.css                     # Styles globaux (2.2 KB, 156 lignes)
+    │   │   └── style.css                     # Styles globaux
     │   ├── images/                           # Ressources graphiques
-    │   │   ├── clair.png                     # Aperçu thème clair (316 KB)
-    │   │   ├── preview.png                   # Image de présentation (397 KB)
-    │   │   ├── release.png                   # Image de version (287 KB)
-    │   │   └── sombre.png                    # Aperçu thème sombre (317 KB)
+    │   │   ├── clair.png                     # Aperçu thème clair
+    │   │   ├── preview.png                   # Image de présentation
+    │   │   ├── release.png                   # Image de version
+    │   │   └── sombre.png                    # Aperçu thème sombre
     │   └── js/                               # Scripts JavaScript
     │       ├── components/                    # Composants de l'application
-    │       │   ├── editor.js                 # Éditeur de code (7.8 KB, 245 lignes)
-    │       │   ├── preview.js                # Prévisualisation (1.9 KB, 89 lignes)
-    │       │   └── state.js                  # Gestion d'état (9.3 KB, 312 lignes)
+    │       │   ├── editor.js                 # Éditeur de code
+    │       │   ├── preview.js                # Prévisualisation
+    │       │   └── state.js                  # Gestion d'état
     │       ├── utils/                        # Utilitaires
-    │       │   ├── dom.js                    # Manipulation DOM (6.3 KB, 198 lignes)
-    │       │   ├── html.js                   # Gestion HTML (4.9 KB, 167 lignes)
-    │       │   └── path.js                   # Gestion chemins (3.1 KB, 112 lignes)
-    │       ├── assets.js                     # Ressources JS (129 KB, 3456 lignes)
-    │       ├── config.js                     # Configuration (735 B, 28 lignes)
-    │       ├── main.js                       # Point d'entrée JS (1.5 KB, 67 lignes)
-    │       └── theme.js                      # Gestion thèmes (4.1 KB, 145 lignes)
+    │       │   ├── dom.js                    # Manipulation DOM
+    │       │   ├── html.js                   # Gestion HTML
+    │       │   └── path.js                   # Gestion chemins
+    │       ├── assets.js                     # Ressources JS
+    │       ├── config.js                     # Configuration
+    │       ├── main.js                       # Point d'entrée JS
+    │       └── theme.js                      # Gestion thèmes
 ```
 
 ## 🚀 Installation

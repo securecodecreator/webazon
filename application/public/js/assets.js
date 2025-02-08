@@ -71,59 +71,37 @@ const htmlAssets = {
     headers: {
         simple: {
             name: "En-tête Simple",
-            html: `<header class="theme-transition-ready bg-white dark:bg-gray-900 p-2 w-full">
-                <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            html: `<header class="theme-transition-ready bg-white dark:bg-gray-900 py-4 w-full">
+                <div class="container mx-auto px-4">
                     <h1 class="text-xl sm:text-2xl lg:text-3xl font-bold theme-transition-ready text-gray-800 dark:text-white text-center">Votre Titre</h1>
                 </div>
             </header>`
         },
         withNav: {
             name: "En-tête avec Navigation",
-            html: `<header class="theme-transition-ready bg-white dark:bg-gray-800 py-4 px-3 w-full">
-                <div class="max-w-7xl mx-auto">
+            html: `<header class="theme-transition-ready bg-white dark:bg-gray-800 py-4 w-full">
+                <div class="mx-auto px-4">
                     <nav class="relative z-[100] flex justify-between items-center">
                         <h1 class="text-xl sm:text-2xl lg:text-3xl font-bold theme-transition-ready text-gray-800 dark:text-white">Nom du site</h1>
-                        <button id="mobile-menu-button" class="sm:hidden theme-transition-ready text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400">
+                        <button id="mobile-menu-button" onclick="this.querySelector('.menu-open').classList.toggle('hidden'); this.querySelector('.menu-close').classList.toggle('hidden'); document.getElementById('mobile-menu').classList.toggle('hidden');" class="sm:hidden theme-transition-ready text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400">
                             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path class="menu-open" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
                                 <path class="menu-close hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
                             </svg>
                         </button>
-                        <ul id="mobile-menu" class="hidden sm:flex flex-col sm:flex-row absolute sm:relative w-full sm:w-auto left-0 top-full sm:top-auto bg-white dark:bg-gray-900 sm:bg-transparent sm:dark:bg-transparent py-4 sm:py-0 mt-2 sm:mt-0 shadow-lg sm:shadow-none sm:space-x-6 z-[100]">
-                            <li class="text-center sm:text-left mb-4 sm:mb-0"><a href="#" class="theme-transition-ready text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400 text-base sm:text-lg block sm:inline-block px-4 sm:px-0">Accueil</a></li>
-                            <li class="text-center sm:text-left mb-4 sm:mb-0"><a href="#" class="theme-transition-ready text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400 text-base sm:text-lg block sm:inline-block px-4 sm:px-0">Services</a></li>
-                            <li class="text-center sm:text-left"><a href="#" class="theme-transition-ready text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400 text-base sm:text-lg block sm:inline-block px-4 sm:px-0">Contact</a></li>
+                        <ul id="mobile-menu" class="hidden sm:flex flex-col sm:flex-row absolute sm:relative w-full sm:w-auto left-0 top-full sm:top-auto bg-white dark:bg-gray-900 sm:bg-transparent sm:dark:bg-transparent py-4 sm:py-0 mt-2 sm:mt-0 shadow-lg sm:shadow-none sm:items-center sm:space-x-6">
+                            <li><a href="#" class="theme-transition-ready text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400 text-base block sm:inline-block px-4 sm:px-0 py-2 sm:py-0">Accueil</a></li>
+                            <li><a href="#" class="theme-transition-ready text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400 text-base block sm:inline-block px-4 sm:px-0 py-2 sm:py-0">Services</a></li>
+                            <li><a href="#" class="theme-transition-ready text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400 text-base block sm:inline-block px-4 sm:px-0 py-2 sm:py-0">Contact</a></li>
                         </ul>
                     </nav>
                 </div>
-                <script>
-                    document.addEventListener('DOMContentLoaded', function() {
-                        const mobileMenuButton = document.getElementById('mobile-menu-button');
-                        const mobileMenu = document.getElementById('mobile-menu');
-                        const menuOpen = mobileMenuButton.querySelector('.menu-open');
-                        const menuClose = mobileMenuButton.querySelector('.menu-close');
-
-                        mobileMenuButton.addEventListener('click', function() {
-                            mobileMenu.classList.toggle('hidden');
-                            menuOpen.classList.toggle('hidden');
-                            menuClose.classList.toggle('hidden');
-                        });
-
-                        document.addEventListener('click', function(event) {
-                            if (!mobileMenu.contains(event.target) && !mobileMenuButton.contains(event.target) && !mobileMenu.classList.contains('hidden')) {
-                                mobileMenu.classList.add('hidden');
-                                menuOpen.classList.remove('hidden');
-                                menuClose.classList.add('hidden');
-                            }
-                        });
-                    });
-                </script>
             </header>`
         },
         modern: {
             name: "En-tête Moderne",
-            html: `<header class="theme-transition-ready bg-white dark:bg-gray-900 shadow-lg">
-                <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-4">
+            html: `<header class="theme-transition-ready bg-white dark:bg-gray-900 shadow-lg py-4 w-full">
+                <div class="mx-auto px-4">
                     <div class="flex justify-between items-center">
                         <div class="flex items-center space-x-8">
                             <h1 class="text-2xl font-bold bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent">Logo</h1>
@@ -137,35 +115,61 @@ const htmlAssets = {
                         <div class="flex items-center space-x-4">
                             <button class="theme-transition-ready px-4 py-2 rounded-lg bg-blue-500 hover:bg-blue-600 text-white">Connexion</button>
                             <button class="theme-transition-ready px-4 py-2 rounded-lg border border-blue-500 text-blue-500 hover:bg-blue-50 dark:hover:bg-gray-800">Inscription</button>
+                            <button id="modern-menu-button" onclick="this.querySelector('.menu-open').classList.toggle('hidden'); this.querySelector('.menu-close').classList.toggle('hidden'); document.getElementById('modern-mobile-menu').classList.toggle('hidden');" class="md:hidden theme-transition-ready text-gray-600 dark:text-gray-300 hover:text-blue-500">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path class="menu-open" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                                    <path class="menu-close hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                                </svg>
+                            </button>
                         </div>
                     </div>
+                    <nav id="modern-mobile-menu" class="md:hidden hidden mt-4 space-y-2">
+                        <a href="#" class="block theme-transition-ready text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400 py-2">Accueil</a>
+                        <a href="#" class="block theme-transition-ready text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400 py-2">Produits</a>
+                        <a href="#" class="block theme-transition-ready text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400 py-2">Services</a>
+                        <a href="#" class="block theme-transition-ready text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400 py-2">Contact</a>
+                    </nav>
                 </div>
             </header>`
         },
         minimal: {
             name: "En-tête Minimaliste",
-            html: `<header class="theme-transition-ready bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800">
-                <div class="container mx-auto px-4 py-3">
+            html: `<header class="theme-transition-ready bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 py-4 w-full">
+                <div class="mx-auto px-4">
                     <div class="flex justify-between items-center">
                         <h1 class="text-xl font-medium theme-transition-ready text-gray-800 dark:text-white">MinimalBrand</h1>
-                        <nav class="flex items-center space-x-4">
-                            <a href="#" class="theme-transition-ready text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white">Menu</a>
-                            <div class="h-4 border-l border-gray-300 dark:border-gray-700"></div>
-                            <button class="theme-transition-ready text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white">
-                                <i class="fas fa-search"></i>
+                        <div class="flex items-center space-x-4">
+                            <nav class="hidden md:flex items-center space-x-4">
+                                <a href="#" class="theme-transition-ready text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white">Menu</a>
+                                <div class="h-4 border-l border-gray-300 dark:border-gray-700"></div>
+                                <button class="theme-transition-ready text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white">
+                                    <i class="fas fa-search"></i>
+                                </button>
+                            </nav>
+                            <button id="minimal-menu-button" onclick="this.querySelector('.menu-open').classList.toggle('hidden'); this.querySelector('.menu-close').classList.toggle('hidden'); document.getElementById('minimal-mobile-menu').classList.toggle('hidden');" class="md:hidden theme-transition-ready text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path class="menu-open" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                                    <path class="menu-close hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                                </svg>
                             </button>
-                        </nav>
+                        </div>
                     </div>
+                    <nav id="minimal-mobile-menu" class="md:hidden hidden mt-3 pt-3 border-t theme-transition-ready border-gray-200 dark:border-gray-800">
+                        <a href="#" class="block theme-transition-ready text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white py-2">Menu</a>
+                        <button class="w-full text-left theme-transition-ready text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white py-2">
+                            <i class="fas fa-search mr-2"></i> Rechercher
+                        </button>
+                    </nav>
                 </div>
             </header>`
         },
         gradient: {
             name: "En-tête Gradient",
-            html: `<header class="theme-transition-ready bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 dark:from-blue-600 dark:via-purple-600 dark:to-pink-600">
-                <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-4">
+            html: `<header class="theme-transition-ready bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 dark:from-blue-600 dark:via-purple-600 dark:to-pink-600 py-4 w-full">
+                <div class="mx-auto px-4">
                     <div class="flex justify-between items-center">
                         <h1 class="text-2xl font-bold text-white">GradientBrand</h1>
-                        <nav class="hidden md:flex items-center space-x-6">
+                        <nav class="hidden md:flex items-center space-x-8">
                             <a href="#" class="text-white/90 hover:text-white dark:text-white/80 dark:hover:text-white transition-colors">Accueil</a>
                             <a href="#" class="text-white/90 hover:text-white dark:text-white/80 dark:hover:text-white transition-colors">À propos</a>
                             <a href="#" class="text-white/90 hover:text-white dark:text-white/80 dark:hover:text-white transition-colors">Services</a>
@@ -174,28 +178,59 @@ const htmlAssets = {
                                 Commencer
                             </button>
                         </nav>
+                        <button id="gradient-menu-button" onclick="this.querySelector('.menu-open').classList.toggle('hidden'); this.querySelector('.menu-close').classList.toggle('hidden'); document.getElementById('gradient-mobile-menu').classList.toggle('hidden');" class="md:hidden text-white">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path class="menu-open" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                                <path class="menu-close hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                            </svg>
+                        </button>
                     </div>
+                    <nav id="gradient-mobile-menu" class="md:hidden hidden mt-4 space-y-2">
+                        <a href="#" class="block text-white/90 hover:text-white py-2">Accueil</a>
+                        <a href="#" class="block text-white/90 hover:text-white py-2">À propos</a>
+                        <a href="#" class="block text-white/90 hover:text-white py-2">Services</a>
+                        <a href="#" class="block text-white/90 hover:text-white py-2">Contact</a>
+                        <button class="mt-2 w-full px-4 py-2 bg-white text-blue-500 dark:bg-gray-800 dark:text-white rounded-lg hover:bg-opacity-90 dark:hover:bg-gray-700 transition-colors">
+                            Commencer
+                        </button>
+                    </nav>
                 </div>
             </header>`
         },
         centered: {
             name: "En-tête Centré",
-            html: `<header class="theme-transition-ready bg-white dark:bg-gray-900 shadow-md">
-                <div class="container mx-auto px-4 py-6 text-center">
-                    <h1 class="text-3xl font-bold mb-4 theme-transition-ready text-gray-900 dark:text-white">CenteredBrand</h1>
-                    <nav class="flex justify-center space-x-8">
+            html: `<header class="theme-transition-ready bg-white dark:bg-gray-900 shadow-md py-4 w-full">
+                <div class="mx-auto px-4">
+                    <div class="flex md:justify-center justify-between items-center">
+                        <h1 class="text-3xl font-bold theme-transition-ready text-gray-900 dark:text-white">CenteredBrand</h1>
+                        <button id="centered-menu-button" onclick="this.querySelector('.menu-open').classList.toggle('hidden'); this.querySelector('.menu-close').classList.toggle('hidden'); document.getElementById('centered-mobile-menu').classList.toggle('hidden');" class="md:hidden theme-transition-ready text-gray-600 dark:text-gray-300 hover:text-blue-500">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path class="menu-open" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                                <path class="menu-close hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <nav class="hidden md:flex justify-center mt-4 space-x-8">
                         <a href="#" class="theme-transition-ready text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400">Accueil</a>
                         <a href="#" class="theme-transition-ready text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400">Collection</a>
                         <a href="#" class="theme-transition-ready text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400">Lookbook</a>
                         <a href="#" class="theme-transition-ready text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400">Contact</a>
+                    </nav>
+                    <nav id="centered-mobile-menu" class="md:hidden hidden mt-4">
+                        <div class="flex flex-col justify-between">
+                            <a href="#" class="block theme-transition-ready text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400 py-2">Accueil</a>
+                            <a href="#" class="block theme-transition-ready text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400 py-2">Collection</a>
+                            <a href="#" class="block theme-transition-ready text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400 py-2">Lookbook</a>
+                            <a href="#" class="block theme-transition-ready text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400 py-2">Contact</a>
+                        </div>
                     </nav>
                 </div>
             </header>`
         },
         transparent: {
             name: "En-tête Transparent",
-            html: `<header class="absolute top-0 left-0 right-0 z-50 bg-transparent">
-                <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-6">
+            html: `<header class="absolute top-0 left-0 right-0 z-50 bg-transparent py-4 w-full">
+                <div class="mx-auto px-4">
                     <div class="flex justify-between items-center">
                         <h1 class="text-2xl font-bold text-white dark:text-white">TransBrand</h1>
                         <nav class="hidden md:flex items-center space-x-8">
@@ -207,34 +242,62 @@ const htmlAssets = {
                                 Contact
                             </button>
                         </nav>
+                        <button id="trans-menu-button" onclick="this.querySelector('.menu-open').classList.toggle('hidden'); this.querySelector('.menu-close').classList.toggle('hidden'); document.getElementById('trans-mobile-menu').classList.toggle('hidden');" class="md:hidden text-white">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path class="menu-open" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                                <path class="menu-close hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                            </svg>
+                        </button>
                     </div>
+                    <nav id="trans-mobile-menu" class="md:hidden hidden mt-4 space-y-2">
+                        <a href="#" class="block text-white/90 hover:text-white py-2">Accueil</a>
+                        <a href="#" class="block text-white/90 hover:text-white py-2">Services</a>
+                        <a href="#" class="block text-white/90 hover:text-white py-2">Portfolio</a>
+                        <a href="#" class="block text-white/90 hover:text-white py-2">Contact</a>
+                        <button class="mt-2 w-full px-6 py-2 border-2 border-white text-white rounded-full hover:bg-white hover:text-gray-900 dark:hover:bg-gray-800 dark:hover:text-white dark:hover:border-gray-700 transition-colors">
+                            Contact
+                        </button>
+                    </nav>
                 </div>
             </header>`
         },
         compact: {
             name: "En-tête Compact",
-            html: `<header class="theme-transition-ready bg-white dark:bg-gray-900">
-                <div class="container mx-auto px-4">
-                    <div class="h-14 flex items-center justify-between">
+            html: `<header class="theme-transition-ready bg-white dark:bg-gray-900 py-4 w-full">
+                <div class="mx-auto px-4">
+                    <div class="flex items-center justify-between">
                         <div class="flex items-center space-x-4">
-                            <span class="w-8 h-8 bg-blue-500 dark:bg-blue-600 rounded-full"></span>
                             <span class="font-medium theme-transition-ready text-gray-900 dark:text-white">CompactBrand</span>
                         </div>
-                        <nav class="flex items-center space-x-6">
-                            <a href="#" class="theme-transition-ready text-sm text-gray-600 dark:text-gray-400 hover:text-blue-500 dark:hover:text-blue-400">Accueil</a>
-                            <a href="#" class="theme-transition-ready text-sm text-gray-600 dark:text-gray-400 hover:text-blue-500 dark:hover:text-blue-400">Produits</a>
-                            <a href="#" class="theme-transition-ready text-sm text-gray-600 dark:text-gray-400 hover:text-blue-500 dark:hover:text-blue-400">Support</a>
-                            <button class="theme-transition-ready text-sm px-3 py-1 bg-blue-500 dark:bg-blue-600 text-white rounded-full hover:bg-blue-600 dark:hover:bg-blue-700">Login</button>
-                        </nav>
+                        <div class="flex items-center">
+                            <nav class="hidden md:flex items-center space-x-6">
+                                <a href="#" class="theme-transition-ready text-sm text-gray-600 dark:text-gray-400 hover:text-blue-500 dark:hover:text-blue-400">Accueil</a>
+                                <a href="#" class="theme-transition-ready text-sm text-gray-600 dark:text-gray-400 hover:text-blue-500 dark:hover:text-blue-400">Produits</a>
+                                <a href="#" class="theme-transition-ready text-sm text-gray-600 dark:text-gray-400 hover:text-blue-500 dark:hover:text-blue-400">Support</a>
+                                <button class="theme-transition-ready text-sm px-3 py-1 bg-blue-500 dark:bg-blue-600 text-white rounded-full hover:bg-blue-600 dark:hover:bg-blue-700">Login</button>
+                            </nav>
+                            <button id="compact-menu-button" onclick="this.querySelector('.menu-open').classList.toggle('hidden'); this.querySelector('.menu-close').classList.toggle('hidden'); document.getElementById('compact-mobile-menu').classList.toggle('hidden');" class="md:hidden theme-transition-ready text-gray-600 dark:text-gray-300 hover:text-blue-500 ml-4">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path class="menu-open" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                                    <path class="menu-close hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                                </svg>
+                            </button>
+                        </div>
                     </div>
+                    <nav id="compact-mobile-menu" class="md:hidden hidden py-4 space-y-2 border-t theme-transition-ready border-gray-200 dark:border-gray-800 mt-2">
+                        <a href="#" class="block theme-transition-ready text-sm text-gray-600 dark:text-gray-400 hover:text-blue-500 dark:hover:text-blue-400 py-2">Accueil</a>
+                        <a href="#" class="block theme-transition-ready text-sm text-gray-600 dark:text-gray-400 hover:text-blue-500 dark:hover:text-blue-400 py-2">Produits</a>
+                        <a href="#" class="block theme-transition-ready text-sm text-gray-600 dark:text-gray-400 hover:text-blue-500 dark:hover:text-blue-400 py-2">Support</a>
+                        <button class="mt-2 w-full theme-transition-ready text-sm px-3 py-1 bg-blue-500 dark:bg-blue-600 text-white rounded-full hover:bg-blue-600 dark:hover:bg-blue-700">Login</button>
+                    </nav>
                 </div>
             </header>`
         },
         creative: {
             name: "En-tête Créatif",
-            html: `<header class="theme-transition-ready bg-white dark:bg-gray-900 relative overflow-hidden">
+            html: `<header class="theme-transition-ready bg-white dark:bg-gray-900 relative overflow-hidden py-4 w-full">
                 <div class="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-purple-500/10 dark:from-blue-500/5 dark:to-purple-500/5"></div>
-                <div class="container mx-auto px-4 py-6 relative">
+                <div class="mx-auto px-4 relative">
                     <div class="flex justify-between items-center">
                         <h1 class="text-2xl font-bold bg-gradient-to-r from-blue-500 to-purple-500 dark:from-blue-400 dark:to-purple-400 bg-clip-text text-transparent">CreativeBrand</h1>
                         <nav class="hidden md:flex items-center space-x-8">
@@ -250,18 +313,26 @@ const htmlAssets = {
                                 <span class="theme-transition-ready text-gray-700 dark:text-gray-300 group-hover:text-blue-500 dark:group-hover:text-blue-400">Blog</span>
                                 <span class="absolute bottom-0 left-0 w-full h-0.5 bg-blue-500 dark:bg-blue-400 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></span>
                             </a>
-                            <button class="theme-transition-ready px-6 py-2 bg-gradient-to-r from-blue-500 to-purple-500 dark:from-blue-600 dark:to-purple-600 text-white rounded-full hover:opacity-90 dark:hover:opacity-100 dark:hover:from-blue-500 dark:hover:to-purple-500">
-                                Contact
-                            </button>
                         </nav>
+                        <button id="creative-menu-button" onclick="this.querySelector('.menu-open').classList.toggle('hidden'); this.querySelector('.menu-close').classList.toggle('hidden'); document.getElementById('creative-mobile-menu').classList.toggle('hidden');" class="md:hidden theme-transition-ready text-gray-600 dark:text-gray-300 hover:text-blue-500">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path class="menu-open" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                                <path class="menu-close hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                            </svg>
+                        </button>
                     </div>
+                    <nav id="creative-mobile-menu" class="md:hidden hidden mt-4 space-y-2">
+                        <a href="#" class="block theme-transition-ready text-gray-700 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400 py-2">Accueil</a>
+                        <a href="#" class="block theme-transition-ready text-gray-700 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400 py-2">Portfolio</a>
+                        <a href="#" class="block theme-transition-ready text-gray-700 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400 py-2">Blog</a>
+                    </nav>
                 </div>
             </header>`
         },
         ecommerce: {
             name: "En-tête E-commerce",
-            html: `<header class="theme-transition-ready bg-white dark:bg-gray-900">
-                <div class="container mx-auto">
+            html: `<header class="theme-transition-ready bg-white dark:bg-gray-900 w-full">
+                <div class="mx-auto">
                     <!-- Barre supérieure -->
                     <div class="py-2 border-b theme-transition-ready border-gray-200 dark:border-gray-800">
                         <div class="flex justify-between items-center px-4">
@@ -297,9 +368,26 @@ const htmlAssets = {
                                         <i class="fas fa-shopping-bag text-xl"></i>
                                         <span class="absolute -top-2 -right-2 w-5 h-5 bg-blue-500 dark:bg-blue-600 text-white text-xs rounded-full flex items-center justify-center">3</span>
                                     </button>
+                                    <button id="shop-menu-button" onclick="this.querySelector('.menu-open').classList.toggle('hidden'); this.querySelector('.menu-close').classList.toggle('hidden'); document.getElementById('shop-mobile-menu').classList.toggle('hidden');" class="md:hidden theme-transition-ready text-gray-600 dark:text-gray-300 hover:text-blue-500">
+                                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path class="menu-open" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                                            <path class="menu-close hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                                        </svg>
+                                    </button>
                                 </div>
                             </div>
                         </div>
+                        <!-- Menu mobile -->
+                        <nav id="shop-mobile-menu" class="md:hidden hidden mt-4 py-4 space-y-4 theme-transition-ready border-t border-gray-200 dark:border-gray-800">
+                            <a href="#" class="block theme-transition-ready text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400 px-2 py-2">Nouveautés</a>
+                            <a href="#" class="block theme-transition-ready text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400 px-2 py-2">Femmes</a>
+                            <a href="#" class="block theme-transition-ready text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400 px-2 py-2">Hommes</a>
+                            <a href="#" class="block theme-transition-ready text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400 px-2 py-2">Enfants</a>
+                            <div class="pt-4 mt-4 border-t theme-transition-ready border-gray-200 dark:border-gray-800">
+                                <a href="#" class="block theme-transition-ready text-sm text-gray-600 dark:text-gray-400 hover:text-blue-500 dark:hover:text-blue-400 px-2 py-2">Support</a>
+                                <a href="#" class="block theme-transition-ready text-sm text-gray-600 dark:text-gray-400 hover:text-blue-500 dark:hover:text-blue-400 px-2 py-2">Trouver un magasin</a>
+                            </div>
+                        </nav>
                     </div>
                 </div>
             </header>`

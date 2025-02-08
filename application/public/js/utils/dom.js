@@ -43,7 +43,11 @@ export function makeElementEditable(element) {
     if (mainContent) {
         const buttons = mainContent.querySelectorAll('button, a, .fa, .fas, .fab, .far');
         buttons.forEach(button => {
-            if (!button.closest('.move-up, .move-down, .delete-element')) {
+            // Vérifier si le bouton n'est pas un bouton de menu mobile ou un élément de contrôle
+            if (!button.closest('.move-up, .move-down, .delete-element') && 
+                !button.id?.includes('menu-button') && 
+                !button.closest('[id$="mobile-menu"]') &&
+                !button.closest('script')) {
                 button.addEventListener('click', (e) => {
                     e.preventDefault();
                     e.stopPropagation();
