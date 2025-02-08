@@ -365,6 +365,37 @@
     </div>
 </div>
 
+<div id="previewModal" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-[999] hidden">
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-11/12 max-w-4xl max-h-[80vh] theme-transition-ready bg-light-nav dark:bg-dark-nav rounded-xl shadow-xl flex flex-col">
+        <!-- En-tête de la modale -->
+        <div class="flex justify-between items-center p-8 pb-4">
+            <h2 class="text-2xl font-bold theme-transition-ready text-gray-800 dark:text-gray-200">Prévisualisation de l'élément</h2>
+            <button id="closePreviewModal" class="theme-transition-ready text-gray-600 dark:text-gray-300 hover:text-light-primary dark:hover:text-dark-primary">
+                <i class="fas fa-times text-xl"></i>
+            </button>
+        </div>
+
+        <!-- Contenu de la prévisualisation -->
+        <div class="overflow-y-auto p-8 pt-4">
+            <div id="previewModalContent" class="bg-white dark:bg-dark-bg rounded-lg p-6">
+                <!-- Le contenu sera injecté ici -->
+            </div>
+        </div>
+
+        <!-- Bouton de copie -->
+        <div class="p-8 pt-4 flex justify-end gap-4">
+            <button id="backToSelectiveModal" class="theme-transition-ready border-2 border-light-primary dark:border-dark-primary text-light-primary dark:text-dark-primary px-6 py-3 rounded-lg hover:bg-light-primary/10 hover:dark:bg-dark-primary/20 transition-colors">
+                <i class="fas fa-arrow-left mr-2"></i>
+                Retour à la liste
+            </button>
+            <button id="copyPreviewElement" class="theme-transition-ready bg-light-primary dark:bg-dark-primary text-white px-6 py-3 rounded-lg hover:opacity-90 transition-opacity">
+                <i class="fas fa-copy mr-2"></i>
+                Copier l'élément
+            </button>
+        </div>
+    </div>
+</div>
+
 <script>
 // Gestion du menu mobile
 document.addEventListener('DOMContentLoaded', function() {
