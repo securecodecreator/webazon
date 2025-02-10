@@ -227,36 +227,60 @@ const htmlAssets = {
                 </div>
             </header>`
         },
-        transparent: {
-            name: "En-tête Transparent",
-            html: `<header class="absolute top-0 left-0 right-0 z-50 bg-transparent py-4 w-full">
-                <div class="mx-auto px-4">
+        minuit: {
+            name: "En-tête Dégradé Bleu Minuit",
+            html: `<header class="relative w-full py-4 bg-gradient-to-r from-blue-900 via-blue-800 to-indigo-900 shadow-lg">
+                <div class="mx-auto px-4 max-w-7xl">
                     <div class="flex justify-between items-center">
-                        <h1 class="text-2xl font-bold text-white dark:text-white">TransBrand</h1>
+                        <div class="flex items-center space-x-2">
+                            <h1 class="text-2xl font-bold text-white tracking-wider">Brand</h1>
+                            <span class="hidden sm:block h-6 w-px bg-blue-400/30"></span>
+                            <span class="hidden sm:block text-blue-200 text-sm">Innovation & Design</span>
+                        </div>
                         <nav class="hidden md:flex items-center space-x-8">
-                            <a href="#" class="text-white/90 hover:text-white dark:text-white/80 dark:hover:text-white transition-colors">Accueil</a>
-                            <a href="#" class="text-white/90 hover:text-white dark:text-white/80 dark:hover:text-white transition-colors">Services</a>
-                            <a href="#" class="text-white/90 hover:text-white dark:text-white/80 dark:hover:text-white transition-colors">Portfolio</a>
-                            <a href="#" class="text-white/90 hover:text-white dark:text-white/80 dark:hover:text-white transition-colors">Contact</a>
-                            <button class="px-6 py-2 border-2 border-white text-white rounded-full hover:bg-white hover:text-gray-900 dark:hover:bg-gray-800 dark:hover:text-white dark:hover:border-gray-700 transition-colors">
-                                Contact
+                            <a href="#" class="text-blue-100 hover:text-white relative group">
+                                Accueil
+                                <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-300 transition-all group-hover:w-full"></span>
+                            </a>
+                            <a href="#" class="text-blue-100 hover:text-white relative group">
+                                Services
+                                <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-300 transition-all group-hover:w-full"></span>
+                            </a>
+                            <a href="#" class="text-blue-100 hover:text-white relative group">
+                                Portfolio
+                                <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-300 transition-all group-hover:w-full"></span>
+                            </a>
+                            <button class="px-6 py-2 bg-blue-700 hover:bg-blue-600 text-white rounded-full shadow-md hover:shadow-lg transition-all duration-300 border border-blue-600 hover:border-blue-500">
+                                <span class="flex items-center space-x-2">
+                                    <span>Nous Contacter</span>
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+                                    </svg>
+                                </span>
                             </button>
                         </nav>
-                        <button id="trans-menu-button" onclick="this.querySelector('.menu-open').classList.toggle('hidden'); this.querySelector('.menu-close').classList.toggle('hidden'); document.getElementById('trans-mobile-menu').classList.toggle('hidden');" class="md:hidden text-white">
+                        <button id="trans-menu-button" onclick="this.querySelector('.menu-open').classList.toggle('hidden'); this.querySelector('.menu-close').classList.toggle('hidden'); document.getElementById('trans-mobile-menu').classList.toggle('hidden');" class="md:hidden text-white p-2 rounded-lg hover:bg-blue-800/50 transition-colors">
                             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path class="menu-open" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
                                 <path class="menu-close hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
                             </svg>
                         </button>
                     </div>
-                    <nav id="trans-mobile-menu" class="md:hidden hidden mt-4 space-y-2">
-                        <a href="#" class="block text-white/90 hover:text-white py-2">Accueil</a>
-                        <a href="#" class="block text-white/90 hover:text-white py-2">Services</a>
-                        <a href="#" class="block text-white/90 hover:text-white py-2">Portfolio</a>
-                        <a href="#" class="block text-white/90 hover:text-white py-2">Contact</a>
-                        <button class="mt-2 w-full px-6 py-2 border-2 border-white text-white rounded-full hover:bg-white hover:text-gray-900 dark:hover:bg-gray-800 dark:hover:text-white dark:hover:border-gray-700 transition-colors">
-                            Contact
-                        </button>
+                    <nav id="trans-mobile-menu" class="md:hidden hidden mt-4 bg-blue-800/50 rounded-lg p-4 backdrop-blur-sm">
+                        <div class="space-y-3">
+                            <a href="#" class="block text-blue-100 hover:text-white hover:bg-blue-700/50 px-4 py-2 rounded-md transition-colors">Accueil</a>
+                            <a href="#" class="block text-blue-100 hover:text-white hover:bg-blue-700/50 px-4 py-2 rounded-md transition-colors">Services</a>
+                            <a href="#" class="block text-blue-100 hover:text-white hover:bg-blue-700/50 px-4 py-2 rounded-md transition-colors">Portfolio</a>
+                            <a href="#" class="block text-blue-100 hover:text-white hover:bg-blue-700/50 px-4 py-2 rounded-md transition-colors">Contact</a>
+                            <button class="w-full mt-4 px-6 py-2 bg-blue-700 hover:bg-blue-600 text-white rounded-full shadow-md hover:shadow-lg transition-all duration-300 border border-blue-600 hover:border-blue-500">
+                                <span class="flex items-center justify-center space-x-2">
+                                    <span>Nous Contacter</span>
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+                                    </svg>
+                                </span>
+                            </button>
+                        </div>
                     </nav>
                 </div>
             </header>`
@@ -391,7 +415,7 @@ const htmlAssets = {
                     </div>
                 </div>
             </header>`
-        }
+        },
     },
 
     // Section À propos
@@ -704,32 +728,46 @@ const htmlAssets = {
     sections: {
         hero: {
             name: "Section Héro",
-            html: `<section class="theme-transition-ready bg-gray-100 dark:bg-gray-900 py-12 sm:py-16 lg:py-20 px-4 w-full">
-                <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl">
-                    <div class="text-center">
-                        <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold theme-transition-ready text-gray-800 dark:text-white mb-4">Titre Principal</h2>
-                        <p class="text-lg sm:text-xl theme-transition-ready text-gray-600 dark:text-gray-300 mb-8">Votre texte descriptif ici</p>
-                        <button class="theme-transition-ready bg-blue-500 hover:bg-blue-600 dark:bg-blue-600 dark:hover:bg-blue-700 text-white px-4 sm:px-6 py-2 rounded-lg text-sm sm:text-base">Action</button>
+            html: `<section class="theme-transition-ready bg-gradient-to-b from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800 py-16 sm:py-20 lg:py-24 px-4 w-full">
+                <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-5xl">
+                    <div class="text-center space-y-8">
+                        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold theme-transition-ready text-gray-900 dark:text-white leading-tight">Titre Principal</h2>
+                        <p class="text-xl sm:text-2xl theme-transition-ready text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">Votre texte descriptif ici</p>
+                        <div class="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
+                            <button class="theme-transition-ready bg-blue-600 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 text-white px-8 py-4 rounded-xl text-lg font-semibold shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-300 w-full sm:w-auto">Action Principale</button>
+                            <button class="theme-transition-ready bg-white hover:bg-gray-50 dark:bg-gray-800 dark:hover:bg-gray-700 text-gray-900 dark:text-white px-8 py-4 rounded-xl text-lg font-semibold shadow-md hover:shadow-lg border border-gray-200 dark:border-gray-700 transform hover:-translate-y-0.5 transition-all duration-300 w-full sm:w-auto">En savoir plus</button>
+                        </div>
                     </div>
                 </div>
             </section>`
         },
         heroWithImage: {
             name: "Section Héro avec Image",
-            html: `<section class="theme-transition-ready bg-gray-100 dark:bg-gray-900 py-12 sm:py-16 lg:py-20 px-4 w-full">
-                <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-                    <div class="flex flex-col lg:flex-row items-center gap-8 lg:gap-12">
+            html: `<section class="theme-transition-ready bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800 py-16 sm:py-20 lg:py-24 px-4 w-full overflow-hidden">
+                <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+                    <div class="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
                         <div class="w-full lg:w-1/2 text-center lg:text-left">
-                            <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold theme-transition-ready text-gray-800 dark:text-white mb-4">Titre avec Image</h2>
-                            <p class="text-lg sm:text-xl theme-transition-ready text-gray-600 dark:text-gray-300 mb-8">Une description plus détaillée de votre produit ou service qui capture l'attention de vos visiteurs.</p>
+                            <span class="inline-block px-4 py-2 rounded-full bg-blue-100 dark:bg-blue-900/50 text-blue-600 dark:text-blue-400 text-sm font-semibold mb-6">Nouveau</span>
+                            <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold theme-transition-ready text-gray-900 dark:text-white mb-6 leading-tight">Titre avec Image</h2>
+                            <p class="text-xl theme-transition-ready text-gray-600 dark:text-gray-300 mb-10 leading-relaxed">Une description plus détaillée de votre produit ou service qui capture l'attention de vos visiteurs.</p>
                             <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-                                <button class="theme-transition-ready bg-blue-500 hover:bg-blue-600 dark:bg-blue-600 dark:hover:bg-blue-700 text-white px-6 py-3 rounded-lg text-sm sm:text-base">Commencer</button>
-                                <button class="theme-transition-ready border border-gray-300 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-400 px-6 py-3 rounded-lg text-sm sm:text-base text-gray-700 dark:text-gray-300">En savoir plus</button>
+                                <button class="theme-transition-ready bg-blue-600 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 text-white px-8 py-4 rounded-xl text-lg font-semibold shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-300">
+                                    <span class="flex items-center justify-center gap-2">
+                                        <span>Commencer</span>
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+                                        </svg>
+                                    </span>
+                                </button>
+                                <button class="theme-transition-ready bg-white hover:bg-gray-50 dark:bg-gray-800 dark:hover:bg-gray-700 text-gray-900 dark:text-white px-8 py-4 rounded-xl text-lg font-semibold shadow-md hover:shadow-lg border border-gray-200 dark:border-gray-700 transform hover:-translate-y-0.5 transition-all duration-300">En savoir plus</button>
                             </div>
                         </div>
                         <div class="w-full lg:w-1/2">
-                            <div class="aspect-video rounded-xl overflow-hidden shadow-xl">
-                                <img src="https://placehold.co/800x450" alt="Hero Image" class="w-full h-full object-cover">
+                            <div class="relative">
+                                <div class="absolute -inset-4 bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl opacity-30 blur-xl"></div>
+                                <div class="relative aspect-video rounded-xl overflow-hidden shadow-2xl">
+                                    <img src="https://placehold.co/800x450" alt="Hero Image" class="w-full h-full object-cover transform hover:scale-105 transition-transform duration-700">
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -738,15 +776,37 @@ const htmlAssets = {
         },
         heroGradient: {
             name: "Section Héro avec Gradient",
-            html: `<section class="relative overflow-hidden theme-transition-ready bg-gradient-to-br from-blue-500 to-purple-600 dark:from-blue-700 dark:to-purple-800 py-16 sm:py-24 lg:py-32 px-4 w-full">
-                <div class="absolute inset-0 bg-grid-white/[0.05] dark:bg-grid-white/[0.02]"></div>
-                <div class="container relative mx-auto px-4 sm:px-6 lg:px-8 max-w-5xl">
-                    <div class="text-center">
-                        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6">Titre Accrocheur</h2>
-                        <p class="text-xl sm:text-2xl text-white/90 mb-10 max-w-3xl mx-auto">Une description captivante qui met en valeur votre proposition unique de valeur.</p>
-                        <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                            <button class="theme-transition-ready bg-white hover:bg-gray-100 dark:bg-gray-900 dark:hover:bg-gray-800 text-blue-600 dark:text-blue-400 px-8 py-4 rounded-lg text-lg font-semibold shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all">Démarrer</button>
-                            <button class="theme-transition-ready bg-transparent border-2 border-white text-white rounded-lg text-lg font-semibold hover:bg-white/10 transition-colors">Voir la démo</button>
+            html: `<section class="relative overflow-hidden theme-transition-ready bg-gradient-to-br from-blue-600 via-indigo-600 to-purple-700 dark:from-blue-800 dark:via-indigo-800 dark:to-purple-900 py-20 sm:py-28 lg:py-32 px-4 w-full">
+                <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiNmZmYiIGZpbGwtb3BhY2l0eT0iMC4xIj48cGF0aCBkPSJNMzYgMzBoLTJWMGgydjMwem0tMiAwSDJ2MmgzMnYtMnptMCAydjI4aDJ2LTI4aC0yem0yLTJ2LTNoLTJ2M2gyem0tMiAwSDB2MmgzNHYtMnoiLz48L2c+PC9nPjwvc3ZnPg==')] bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0.7))]"></div>
+                <div class="container relative mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
+                    <div class="text-center space-y-8">
+                        <span class="inline-flex items-center justify-center gap-2 px-6 py-2 rounded-full bg-white/10 backdrop-blur-sm text-white text-sm font-semibold mb-2">
+                            <span class="relative flex h-2 w-2">
+                                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
+                                <span class="relative inline-flex rounded-full h-2 w-2 bg-white"></span>
+                            </span>
+                            Nouveau
+                        </span>
+                        <h2 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">Titre Accrocheur</h2>
+                        <p class="text-xl sm:text-2xl text-white/90 mb-12 max-w-3xl mx-auto leading-relaxed">Une description captivante qui met en valeur votre proposition unique de valeur.</p>
+                        <div class="flex flex-col sm:flex-row gap-6 justify-center">
+                            <button class="group theme-transition-ready bg-white hover:bg-gray-50 dark:bg-gray-900 dark:hover:bg-gray-800 text-blue-600 dark:text-blue-400 px-8 py-4 rounded-xl text-lg font-semibold shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-300">
+                                <span class="flex items-center justify-center gap-2">
+                                    <span>Démarrer</span>
+                                    <svg class="w-5 h-5 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+                                    </svg>
+                                </span>
+                            </button>
+                            <button class="theme-transition-ready bg-transparent border-2 border-white/80 hover:border-white text-white rounded-xl text-lg font-semibold px-8 py-4 hover:bg-white/10 transition-all duration-300 backdrop-blur-sm">
+                                <span class="flex items-center justify-center gap-2">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/>
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                    </svg>
+                                    <span>Voir la démo</span>
+                                </span>
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -754,90 +814,163 @@ const htmlAssets = {
         },
         features: {
             name: "Section Fonctionnalités",
-            html: `<section class="container mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-16">
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-                    <div class="theme-transition-ready bg-white dark:bg-gray-800 p-6 rounded-lg shadow">
-                        <h3 class="text-lg sm:text-xl font-semibold theme-transition-ready text-gray-800 dark:text-white mb-4 text-center">Fonctionnalité 1</h3>
-                        <p class="theme-transition-ready text-gray-600 dark:text-gray-300 text-center">Description de la fonctionnalité</p>
+            html: `<section class="container mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20 lg:py-24">
+                <div class="max-w-7xl mx-auto">
+                    <div class="text-center mb-16">
+                        <span class="inline-block px-4 py-2 rounded-full bg-blue-100 dark:bg-blue-900/50 text-blue-600 dark:text-blue-400 text-sm font-semibold mb-4">Caractéristiques</span>
+                        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold theme-transition-ready text-gray-900 dark:text-white mb-6">Fonctionnalités Essentielles</h2>
+                        <p class="text-xl theme-transition-ready text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">Découvrez les fonctionnalités qui font la différence dans votre expérience utilisateur</p>
                     </div>
-                    <div class="theme-transition-ready bg-white dark:bg-gray-800 p-6 rounded-lg shadow">
-                        <h3 class="text-lg sm:text-xl font-semibold theme-transition-ready text-gray-800 dark:text-white mb-4 text-center">Fonctionnalité 2</h3>
-                        <p class="theme-transition-ready text-gray-600 dark:text-gray-300 text-center">Description de la fonctionnalité</p>
-                    </div>
-                    <div class="theme-transition-ready bg-white dark:bg-gray-800 p-6 rounded-lg shadow">
-                        <h3 class="text-lg sm:text-xl font-semibold theme-transition-ready text-gray-800 dark:text-white mb-4 text-center">Fonctionnalité 3</h3>
-                        <p class="theme-transition-ready text-gray-600 dark:text-gray-300 text-center">Description de la fonctionnalité</p>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-10 lg:gap-12 max-w-6xl mx-auto">
+                        <div class="theme-transition-ready bg-white dark:bg-gray-800/50 backdrop-blur-sm p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-gray-100 dark:border-gray-700/50 text-center">
+                            <div class="w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center mb-6 shadow-lg mx-auto">
+                                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                                </svg>
+                            </div>
+                            <h3 class="text-xl font-bold theme-transition-ready text-gray-900 dark:text-white mb-4">Fonctionnalité 1</h3>
+                            <p class="theme-transition-ready text-gray-600 dark:text-gray-300 leading-relaxed">Description détaillée de la fonctionnalité avec des exemples concrets d'utilisation.</p>
+                        </div>
+                        <div class="theme-transition-ready bg-white dark:bg-gray-800/50 backdrop-blur-sm p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-gray-100 dark:border-gray-700/50 text-center">
+                            <div class="w-12 h-12 bg-gradient-to-br from-green-500 to-green-600 rounded-xl flex items-center justify-center mb-6 shadow-lg mx-auto">
+                                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
+                                </svg>
+                            </div>
+                            <h3 class="text-xl font-bold theme-transition-ready text-gray-900 dark:text-white mb-4">Fonctionnalité 2</h3>
+                            <p class="theme-transition-ready text-gray-600 dark:text-gray-300 leading-relaxed">Description détaillée de la fonctionnalité avec des exemples concrets d'utilisation.</p>
+                        </div>
+                        <div class="theme-transition-ready bg-white dark:bg-gray-800/50 backdrop-blur-sm p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-gray-100 dark:border-gray-700/50 text-center">
+                            <div class="w-12 h-12 bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl flex items-center justify-center mb-6 shadow-lg mx-auto">
+                                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/>
+                                </svg>
+                            </div>
+                            <h3 class="text-xl font-bold theme-transition-ready text-gray-900 dark:text-white mb-4">Fonctionnalité 3</h3>
+                            <p class="theme-transition-ready text-gray-600 dark:text-gray-300 leading-relaxed">Description détaillée de la fonctionnalité avec des exemples concrets d'utilisation.</p>
+                        </div>
                     </div>
                 </div>
             </section>`
         },
         featuresWithIcons: {
             name: "Section Fonctionnalités avec Icônes",
-            html: `<section class="container mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20">
-                <div class="text-center mb-12">
-                    <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold theme-transition-ready text-gray-800 dark:text-white mb-4">Nos Fonctionnalités</h2>
-                    <p class="text-lg theme-transition-ready text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">Découvrez tout ce que nous pouvons faire pour vous</p>
-                </div>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <div class="theme-transition-ready bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300">
-                        <div class="w-12 h-12 bg-blue-100 dark:bg-blue-900 rounded-lg flex items-center justify-center mb-6 mx-auto md:mx-0">
-                            <i class="fas fa-rocket text-blue-500 dark:text-blue-400 text-2xl"></i>
-                        </div>
-                        <h3 class="text-xl font-semibold theme-transition-ready text-gray-800 dark:text-white mb-4 text-center md:text-left">Performance</h3>
-                        <p class="theme-transition-ready text-gray-600 dark:text-gray-300 text-center md:text-left">Des performances optimales pour une expérience utilisateur exceptionnelle.</p>
+            html: `<section class="container mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20 lg:py-24">
+                <div class="max-w-7xl mx-auto">
+                    <div class="text-center mb-16">
+                        <span class="inline-block px-4 py-2 rounded-full bg-blue-100 dark:bg-blue-900/50 text-blue-600 dark:text-blue-400 text-sm font-semibold mb-4">Fonctionnalités</span>
+                        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold theme-transition-ready text-gray-900 dark:text-white mb-6">Nos Fonctionnalités</h2>
+                        <p class="text-xl theme-transition-ready text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">Découvrez tout ce que nous pouvons faire pour vous avec notre suite complète d'outils innovants</p>
                     </div>
-                    <div class="theme-transition-ready bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300">
-                        <div class="w-12 h-12 bg-green-100 dark:bg-green-900 rounded-lg flex items-center justify-center mb-6 mx-auto md:mx-0">
-                            <i class="fas fa-shield-alt text-green-500 dark:text-green-400 text-2xl"></i>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12 max-w-6xl mx-auto">
+                        <div class="theme-transition-ready bg-white dark:bg-gray-800/50 backdrop-blur-sm p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-gray-100 dark:border-gray-700/50 group">
+                            <div class="relative w-14 h-14 mb-8 mx-auto">
+                                <div class="absolute inset-0 bg-gradient-to-br from-blue-600 to-blue-400 rounded-2xl opacity-20 group-hover:opacity-30 blur-xl transition-opacity"></div>
+                                <div class="relative w-full h-full bg-gradient-to-br from-blue-600 to-blue-400 rounded-2xl flex items-center justify-center transform group-hover:scale-105 transition-transform">
+                                    <i class="fas fa-rocket text-white text-2xl"></i>
+                                </div>
+                            </div>
+                            <h3 class="text-xl font-bold theme-transition-ready text-gray-900 dark:text-white mb-4 text-center">Performance</h3>
+                            <p class="theme-transition-ready text-gray-600 dark:text-gray-300 leading-relaxed mb-6 text-center">Des performances optimales pour une expérience utilisateur exceptionnelle et des résultats rapides.</p>
+                            <div class="text-center">
+                                <a href="#" class="inline-flex items-center text-blue-600 dark:text-blue-400 font-semibold group-hover:text-blue-700 dark:group-hover:text-blue-300 transition-colors">
+                                    En savoir plus
+                                    <svg class="w-5 h-5 ml-2 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                                    </svg>
+                                </a>
+                            </div>
                         </div>
-                        <h3 class="text-xl font-semibold theme-transition-ready text-gray-800 dark:text-white mb-4 text-center md:text-left">Sécurité</h3>
-                        <p class="theme-transition-ready text-gray-600 dark:text-gray-300 text-center md:text-left">Protection maximale de vos données et de votre vie privée.</p>
-                    </div>
-                    <div class="theme-transition-ready bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300">
-                        <div class="w-12 h-12 bg-purple-100 dark:bg-purple-900 rounded-lg flex items-center justify-center mb-6 mx-auto md:mx-0">
-                            <i class="fas fa-magic text-purple-500 dark:text-purple-400 text-2xl"></i>
+                        <div class="theme-transition-ready bg-white dark:bg-gray-800/50 backdrop-blur-sm p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-gray-100 dark:border-gray-700/50 group">
+                            <div class="relative w-14 h-14 mb-8 mx-auto">
+                                <div class="absolute inset-0 bg-gradient-to-br from-green-600 to-green-400 rounded-2xl opacity-20 group-hover:opacity-30 blur-xl transition-opacity"></div>
+                                <div class="relative w-full h-full bg-gradient-to-br from-green-600 to-green-400 rounded-2xl flex items-center justify-center transform group-hover:scale-105 transition-transform">
+                                    <i class="fas fa-shield-alt text-white text-2xl"></i>
+                                </div>
+                            </div>
+                            <h3 class="text-xl font-bold theme-transition-ready text-gray-900 dark:text-white mb-4 text-center">Sécurité</h3>
+                            <p class="theme-transition-ready text-gray-600 dark:text-gray-300 leading-relaxed mb-6 text-center">Protection maximale de vos données avec des protocoles de sécurité avancés.</p>
+                            <div class="text-center">
+                                <a href="#" class="inline-flex items-center text-green-600 dark:text-green-400 font-semibold group-hover:text-green-700 dark:group-hover:text-green-300 transition-colors">
+                                    En savoir plus
+                                    <svg class="w-5 h-5 ml-2 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                                    </svg>
+                                </a>
+                            </div>
                         </div>
-                        <h3 class="text-xl font-semibold theme-transition-ready text-gray-800 dark:text-white mb-4 text-center md:text-left">Innovation</h3>
-                        <p class="theme-transition-ready text-gray-600 dark:text-gray-300 text-center md:text-left">Des solutions innovantes pour répondre à vos besoins.</p>
+                        <div class="theme-transition-ready bg-white dark:bg-gray-800/50 backdrop-blur-sm p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-gray-100 dark:border-gray-700/50 group">
+                            <div class="relative w-14 h-14 mb-8 mx-auto">
+                                <div class="absolute inset-0 bg-gradient-to-br from-purple-600 to-purple-400 rounded-2xl opacity-20 group-hover:opacity-30 blur-xl transition-opacity"></div>
+                                <div class="relative w-full h-full bg-gradient-to-br from-purple-600 to-purple-400 rounded-2xl flex items-center justify-center transform group-hover:scale-105 transition-transform">
+                                    <i class="fas fa-magic text-white text-2xl"></i>
+                                </div>
+                            </div>
+                            <h3 class="text-xl font-bold theme-transition-ready text-gray-900 dark:text-white mb-4 text-center">Innovation</h3>
+                            <p class="theme-transition-ready text-gray-600 dark:text-gray-300 leading-relaxed mb-6 text-center">Des solutions innovantes et créatives pour répondre à tous vos besoins.</p>
+                            <div class="text-center">
+                                <a href="#" class="inline-flex items-center text-purple-600 dark:text-purple-400 font-semibold group-hover:text-purple-700 dark:group-hover:text-purple-300 transition-colors">
+                                    En savoir plus
+                                    <svg class="w-5 h-5 ml-2 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>`
         },
         featuresGrid: {
             name: "Section Fonctionnalités en Grille",
-            html: `<section class="container mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20">
-                <div class="text-center mb-12">
-                    <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold theme-transition-ready text-gray-800 dark:text-white mb-4">Fonctionnalités Complètes</h2>
-                    <p class="text-lg theme-transition-ready text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">Une suite complète d'outils pour votre réussite</p>
-                </div>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                    <div class="theme-transition-ready bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
-                        <div class="text-blue-500 dark:text-blue-400 mb-4">
-                            <i class="fas fa-chart-line text-3xl"></i>
-                        </div>
-                        <h3 class="text-lg font-semibold theme-transition-ready text-gray-800 dark:text-white mb-2">Analytique</h3>
-                        <p class="theme-transition-ready text-gray-600 dark:text-gray-300 text-sm">Suivez vos performances en temps réel</p>
+            html: `<section class="container mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20 lg:py-24">
+                <div class="max-w-7xl mx-auto">
+                    <div class="text-center mb-16">
+                        <span class="inline-block px-4 py-2 rounded-full bg-indigo-100 dark:bg-indigo-900/50 text-indigo-600 dark:text-indigo-400 text-sm font-semibold mb-4">Tout-en-un</span>
+                        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold theme-transition-ready text-gray-900 dark:text-white mb-6">Fonctionnalités Complètes</h2>
+                        <p class="text-xl theme-transition-ready text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">Une suite complète d'outils puissants pour propulser votre réussite</p>
                     </div>
-                    <div class="theme-transition-ready bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
-                        <div class="text-green-500 dark:text-green-400 mb-4">
-                            <i class="fas fa-users text-3xl"></i>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
+                        <div class="theme-transition-ready bg-white dark:bg-gray-800/50 backdrop-blur-sm p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-gray-100 dark:border-gray-700/50 group text-center">
+                            <div class="relative w-12 h-12 mb-6 mx-auto">
+                                <div class="absolute inset-0 bg-gradient-to-br from-blue-600 to-indigo-600 rounded-xl opacity-20 group-hover:opacity-30 blur-lg transition-opacity"></div>
+                                <div class="relative w-full h-full bg-gradient-to-br from-blue-600 to-indigo-600 rounded-xl flex items-center justify-center transform group-hover:scale-105 transition-transform">
+                                    <i class="fas fa-chart-line text-white text-xl"></i>
+                                </div>
+                            </div>
+                            <h3 class="text-lg font-bold theme-transition-ready text-gray-900 dark:text-white mb-3">Analytique</h3>
+                            <p class="theme-transition-ready text-gray-600 dark:text-gray-300 text-sm leading-relaxed">Suivez et analysez vos performances en temps réel</p>
                         </div>
-                        <h3 class="text-lg font-semibold theme-transition-ready text-gray-800 dark:text-white mb-2">Collaboration</h3>
-                        <p class="theme-transition-ready text-gray-600 dark:text-gray-300 text-sm">Travaillez en équipe efficacement</p>
-                    </div>
-                    <div class="theme-transition-ready bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
-                        <div class="text-purple-500 dark:text-purple-400 mb-4">
-                            <i class="fas fa-cloud text-3xl"></i>
+                        <div class="theme-transition-ready bg-white dark:bg-gray-800/50 backdrop-blur-sm p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-gray-100 dark:border-gray-700/50 group text-center">
+                            <div class="relative w-12 h-12 mb-6 mx-auto">
+                                <div class="absolute inset-0 bg-gradient-to-br from-green-600 to-teal-600 rounded-xl opacity-20 group-hover:opacity-30 blur-lg transition-opacity"></div>
+                                <div class="relative w-full h-full bg-gradient-to-br from-green-600 to-teal-600 rounded-xl flex items-center justify-center transform group-hover:scale-105 transition-transform">
+                                    <i class="fas fa-users text-white text-xl"></i>
+                                </div>
+                            </div>
+                            <h3 class="text-lg font-bold theme-transition-ready text-gray-900 dark:text-white mb-3">Collaboration</h3>
+                            <p class="theme-transition-ready text-gray-600 dark:text-gray-300 text-sm leading-relaxed">Travaillez efficacement en équipe</p>
                         </div>
-                        <h3 class="text-lg font-semibold theme-transition-ready text-gray-800 dark:text-white mb-2">Cloud</h3>
-                        <p class="theme-transition-ready text-gray-600 dark:text-gray-300 text-sm">Accédez à vos données partout</p>
-                    </div>
-                    <div class="theme-transition-ready bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
-                        <div class="text-red-500 dark:text-red-400 mb-4">
-                            <i class="fas fa-lock text-3xl"></i>
+                        <div class="theme-transition-ready bg-white dark:bg-gray-800/50 backdrop-blur-sm p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-gray-100 dark:border-gray-700/50 group text-center">
+                            <div class="relative w-12 h-12 mb-6 mx-auto">
+                                <div class="absolute inset-0 bg-gradient-to-br from-purple-600 to-pink-600 rounded-xl opacity-20 group-hover:opacity-30 blur-lg transition-opacity"></div>
+                                <div class="relative w-full h-full bg-gradient-to-br from-purple-600 to-pink-600 rounded-xl flex items-center justify-center transform group-hover:scale-105 transition-transform">
+                                    <i class="fas fa-cloud text-white text-xl"></i>
+                                </div>
+                            </div>
+                            <h3 class="text-lg font-bold theme-transition-ready text-gray-900 dark:text-white mb-3">Cloud</h3>
+                            <p class="theme-transition-ready text-gray-600 dark:text-gray-300 text-sm leading-relaxed">Accédez à vos données de partout</p>
                         </div>
-                        <h3 class="text-lg font-semibold theme-transition-ready text-gray-800 dark:text-white mb-2">Sécurité</h3>
-                        <p class="theme-transition-ready text-gray-600 dark:text-gray-300 text-sm">Protection de vos données</p>
+                        <div class="theme-transition-ready bg-white dark:bg-gray-800/50 backdrop-blur-sm p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-gray-100 dark:border-gray-700/50 group text-center">
+                            <div class="relative w-12 h-12 mb-6 mx-auto">
+                                <div class="absolute inset-0 bg-gradient-to-br from-red-600 to-orange-600 rounded-xl opacity-20 group-hover:opacity-30 blur-lg transition-opacity"></div>
+                                <div class="relative w-full h-full bg-gradient-to-br from-red-600 to-orange-600 rounded-xl flex items-center justify-center transform group-hover:scale-105 transition-transform">
+                                    <i class="fas fa-lock text-white text-xl"></i>
+                                </div>
+                            </div>
+                            <h3 class="text-lg font-bold theme-transition-ready text-gray-900 dark:text-white mb-3">Sécurité</h3>
+                            <p class="theme-transition-ready text-gray-600 dark:text-gray-300 text-sm leading-relaxed">Protection avancée de vos données</p>
+                        </div>
                     </div>
                 </div>
             </section>`
