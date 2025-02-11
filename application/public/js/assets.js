@@ -977,6 +977,8 @@ const htmlAssets = {
         }
     },
 
+    
+
     // Formulaires
     forms: {
         contact: {
@@ -1714,6 +1716,553 @@ const htmlAssets = {
             </footer>`
         }
     },
+    
+    // composants de prix
+    pricing: {
+        simple: {
+            name: "Prix Simple",
+            html: `<div class="max-w-sm mx-auto theme-transition-ready bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 my-4 p-6 sm:p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300">
+                <div class="text-center">
+                    <h3 class="text-xl font-bold mb-2 theme-transition-ready text-gray-800 dark:text-white">Offre Starter</h3>
+                    <div class="flex items-center justify-center mb-4">
+                        <span class="text-3xl font-extrabold theme-transition-ready text-gray-800 dark:text-white">19,99€</span>
+                        <span class="text-sm ml-2 theme-transition-ready text-gray-500 dark:text-gray-400">/mois</span>
+                    </div>
+                </div>
+                <div class="space-y-4 mb-6">
+                    <div class="flex items-center">
+                        <svg class="w-5 h-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                        </svg>
+                        <p class="theme-transition-ready text-gray-600 dark:text-gray-300">5 templates par mois</p>
+                    </div>
+                    <div class="flex items-center">
+                        <svg class="w-5 h-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                        </svg>
+                        <p class="theme-transition-ready text-gray-600 dark:text-gray-300">Support par email</p>
+                    </div>
+                    <div class="flex items-center">
+                        <svg class="w-5 h-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                        </svg>
+                        <p class="theme-transition-ready text-gray-600 dark:text-gray-300">Mises à jour basiques</p>
+                    </div>
+                </div>
+                <button class="w-full theme-transition-ready px-6 py-3 bg-gray-600 hover:bg-gray-700 text-white rounded-lg font-semibold transition-colors duration-200">
+                    Commencer
+                </button>
+            </div>`
+        },
+        premium: {
+            name: "Prix Premium",
+            html: `<div class="max-w-sm mx-auto theme-transition-ready bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 p-6 sm:p-8 my-4 rounded-xl shadow-xl border border-blue-100 dark:border-blue-900 transform hover:scale-102 transition-all duration-300">
+                <div class="relative text-center">
+                    <span class="absolute -top-10 left-1/2 transform -translate-x-1/2 bg-blue-500 text-white text-xs font-bold px-3 py-1 rounded-full">POPULAIRE</span>
+                    <h3 class="text-xl font-bold mb-2 theme-transition-ready text-gray-800 dark:text-white">Pack Business</h3>
+                    <div class="flex items-center justify-center mb-4">
+                        <span class="text-3xl font-extrabold theme-transition-ready text-blue-600 dark:text-blue-400">39,99€</span>
+                        <span class="text-sm ml-2 theme-transition-ready text-gray-500 dark:text-gray-400">/mois</span>
+                    </div>
+                </div>
+                <div class="space-y-4 mb-6">
+                    <div class="flex items-center">
+                        <svg class="w-5 h-5 text-green-500 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                        </svg>
+                        <p class="theme-transition-ready text-gray-600 dark:text-gray-300">Accès illimité aux templates</p>
+                    </div>
+                    <div class="flex items-center">
+                        <svg class="w-5 h-5 text-green-500 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                        </svg>
+                        <p class="theme-transition-ready text-gray-600 dark:text-gray-300">Support prioritaire 24/7</p>
+                    </div>
+                    <div class="flex items-center">
+                        <svg class="w-5 h-5 text-green-500 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                        </svg>
+                        <p class="theme-transition-ready text-gray-600 dark:text-gray-300">Mises à jour premium</p>
+                    </div>
+                </div>
+                <button class="w-full theme-transition-ready px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-200">
+                    <span class="mr-2">Commencer Maintenant</span>
+                    <svg class="w-5 h-5 inline-block" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                    </svg>
+                </button>
+                <p class="text-center text-sm theme-transition-ready text-gray-500 dark:text-gray-400 mt-4">
+                    Annulation gratuite pendant 30 jours
+                </p>
+            </div>`
+        },
+    // Ajout des nouvelles variantes
+        basic: {
+            name: "Prix Basique",
+            html: `<div class="max-w-sm mx-auto theme-transition-ready bg-gray-100 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 my-4 p-6 rounded-lg shadow hover:shadow-md transition-all duration-300">
+                <div class="text-center">
+                    <h3 class="text-lg font-semibold mb-2 theme-transition-ready text-gray-700 dark:text-white">Offre Basique</h3>
+                    <div class="flex items-center justify-center mb-4">
+                        <span class="text-2xl font-bold theme-transition-ready text-gray-800 dark:text-white">9,99€</span>
+                        <span class="text-xs ml-1 theme-transition-ready text-gray-500 dark:text-gray-400">/mois</span>
+                    </div>
+                </div>
+                <div class="space-y-3 mb-5">
+                    <div class="flex items-center">
+                        <svg class="w-4 h-4 text-blue-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        <p class="text-sm theme-transition-ready text-gray-600 dark:text-gray-300">2 templates par mois</p>
+                    </div>
+                    <div class="flex items-center">
+                        <svg class="w-4 h-4 text-blue-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        <p class="text-sm theme-transition-ready text-gray-600 dark:text-gray-300">Support email basique</p>
+                    </div>
+                </div>
+                <button class="w-full theme-transition-ready px-4 py-2 bg-gray-500 hover:bg-gray-600 text-white rounded-md text-sm font-medium transition-colors duration-200">
+                    Choisir
+                </button>
+            </div>`
+        },
+         enterprise: {
+            name: "Prix Entreprise",
+            html: `<div class="max-w-md mx-auto theme-transition-ready bg-gradient-to-r from-purple-500 to-indigo-600 dark:from-purple-700 dark:to-indigo-800 text-white p-8 my-4 rounded-2xl shadow-2xl transform transition-all duration-300">
+                <div class="text-center">
+                    <h3 class="text-2xl font-bold mb-3">Solution Entreprise</h3>
+                    <div class="flex items-center justify-center mb-6">
+                        <span class="text-4xl font-extrabold">Sur Mesure</span>
+                    </div>
+                    <p class="mb-6 text-purple-100 dark:text-purple-200">
+                    Conçu pour les entreprises ayant besoin de solutions personnalisées et d'un support dédié.
+                </p>
+                </div>
+                
+                <div class="space-y-4 mb-8">
+                    <div class="flex items-center">
+                        <svg class="w-6 h-6 text-purple-200 dark:text-purple-300 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                        <p class="text-purple-100 dark:text-purple-200">Templates personnalisés illimités</p>
+                    </div>
+                    <div class="flex items-center">
+                       <svg class="w-6 h-6 text-purple-200 dark:text-purple-300 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path></svg>
+                        <p class="text-purple-100 dark:text-purple-200">Support technique dédié 24/7</p>
+                    </div>
+                     <div class="flex items-center">
+                        <svg class="w-6 h-6 text-purple-200 dark:text-purple-300 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"></path>
+                        </svg>
+                        <p class="text-purple-100 dark:text-purple-200">Intégrations personnalisées</p>
+                    </div>
+                </div>
+                <button class="w-full theme-transition-ready px-8 py-4 bg-white text-purple-600 dark:text-purple-500 rounded-full font-bold shadow-lg hover:shadow-xl hover:bg-purple-100 dark:hover:bg-purple-200 transition-all duration-200">
+                    Nous Contacter
+                </button>
+            </div>`
+        },
+        annual: {
+            name: "Prix Annuel",
+            html: `<div class="max-w-sm mx-auto theme-transition-ready bg-green-50 dark:bg-green-800 border border-green-200 dark:border-green-700 my-4 p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300">
+            <div class="text-center">
+                <h3 class="text-xl font-bold mb-2 theme-transition-ready text-green-800 dark:text-white">Offre Annuelle</h3>
+                <div class="flex items-center justify-center mb-4">
+                    <span class="text-3xl font-extrabold theme-transition-ready text-green-900 dark:text-green-400">299€</span>
+                    <span class="text-sm ml-2 theme-transition-ready text-green-500 dark:text-green-300">/an</span>
+                </div>
+                <p class="text-sm theme-transition-ready text-green-600 dark:text-green-200 mb-4">Économisez 20% par rapport à l'abonnement mensuel!</p>
+            </div>
+            <div class="space-y-4 mb-6">
+                <div class="flex items-center">
+                    <svg class="w-5 h-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                    <p class="theme-transition-ready text-green-600 dark:text-green-300">Accès complet à toutes les fonctionnalités</p>
+                </div>
+                <div class="flex items-center">
+                   <svg class="w-5 h-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                    <p class="theme-transition-ready text-green-600 dark:text-green-300">Support client premium</p>
+                </div>
+            </div>
+            <button class="w-full theme-transition-ready px-6 py-3 bg-green-600 hover:bg-green-700 text-white rounded-lg font-semibold transition-colors duration-200">
+                S'abonner
+            </button>
+        </div>`
+        },
+        free: {
+            name: "Prix Gratuit",
+            html: `<div class="max-w-sm mx-auto theme-transition-ready bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-800 my-4 p-6 rounded-xl shadow hover:shadow-md transition-all duration-300">
+                <div class="text-center">
+                    <h3 class="text-lg font-semibold mb-2 theme-transition-ready text-gray-700 dark:text-gray-300">Offre Gratuite</h3>
+                    <div class="flex items-center justify-center mb-4">
+                        <span class="text-2xl font-bold theme-transition-ready text-gray-800 dark:text-gray-300">0€</span>
+                        <span class="text-xs ml-1 theme-transition-ready text-gray-500 dark:text-gray-400">/toujours</span>
+                    </div>
+                </div>
+                <div class="space-y-3 mb-5">
+                    <div class="flex items-center">
+                        <svg class="w-4 h-4 text-gray-400 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        <p class="text-sm theme-transition-ready text-gray-600 dark:text-gray-400">1 template par mois</p>
+                    </div>
+                    <div class="flex items-center">
+                        <svg class="w-4 h-4 text-gray-400 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        <p class="text-sm theme-transition-ready text-gray-600 dark:text-gray-400">Fonctionnalités limitées</p>
+                    </div>
+                </div>
+                <button class="w-full theme-transition-ready px-4 py-2 bg-gray-400 hover:bg-gray-500 text-white rounded-md text-sm font-medium transition-colors duration-200">
+                    Essayer Gratuitement
+                </button>
+            </div>`
+        },
+        student: {
+            name: "Prix Étudiant",
+            html: `<div class="max-w-sm mx-auto theme-transition-ready bg-yellow-50 dark:bg-yellow-800 border border-yellow-200 dark:border-yellow-700 my-4 p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300">
+                <div class="text-center">
+                   <span class="relative -top-9  transform  bg-yellow-500 text-white text-xs font-bold px-3 py-1 rounded-full uppercase mb-2">Réduction</span>
+                    <h3 class="text-xl font-bold mb-2 theme-transition-ready text-yellow-800 dark:text-yellow-200">Offre Étudiant</h3>
+                    <div class="flex items-center justify-center mb-4">
+                        <span class="text-3xl font-extrabold theme-transition-ready text-yellow-900 dark:text-yellow-300">4,99€</span>
+                        <span class="text-sm ml-2 theme-transition-ready text-yellow-500 dark:text-yellow-400">/mois</span>
+                    </div>
+                    <p class="text-sm theme-transition-ready text-yellow-600 dark:text-yellow-300 mb-4">Accès complet avec une réduction de 50% pour les étudiants!</p>
+                </div>
+                <div class="space-y-4 mb-6">
+                    <div class="flex items-center">
+                        <svg class="w-5 h-5 text-yellow-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        <p class="theme-transition-ready text-yellow-600 dark:text-yellow-300">Toutes les fonctionnalités Premium</p>
+                    </div>
+                    <div class="flex items-center">
+                        <svg class="w-5 h-5 text-yellow-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+
+                        <p class="theme-transition-ready text-yellow-600 dark:text-yellow-300">Support prioritaire</p>
+                    </div>
+                </div>
+                <button class="w-full theme-transition-ready px-6 py-3 bg-yellow-600 hover:bg-yellow-700 text-white rounded-lg font-semibold transition-colors duration-200">
+                    Obtenir la Réduction
+                </button>
+            </div>`
+        },
+        team: {
+            name: "Prix Équipe",
+            html: `<div class="max-w-md mx-auto theme-transition-ready bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 my-4 p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300">
+                <div class="text-center">
+                    <h3 class="text-2xl font-bold mb-3 theme-transition-ready text-gray-800 dark:text-white">Pack Équipe</h3>
+                    <div class="flex items-center justify-center mb-6">
+                        <span class="text-4xl font-extrabold theme-transition-ready text-blue-600 dark:text-blue-400">99,99€</span>
+                        <span class="text-sm ml-2 theme-transition-ready text-gray-500 dark:text-gray-400">/mois</span>
+                    </div>
+                    <p class="mb-6 theme-transition-ready text-gray-600 dark:text-gray-300">
+                        Pour les équipes jusqu'à 10 membres.  Collaboration simplifiée.
+                    </p>
+                </div>
+                <div class="space-y-4 mb-8">
+                    <div class="flex items-center">
+                        <svg class="w-6 h-6 text-green-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                         <p class="theme-transition-ready text-gray-600 dark:text-gray-300">Accès illimité pour 10 utilisateurs</p>
+                    </div>
+                    <div class="flex items-center">
+                        <svg class="w-6 h-6 text-green-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        <p class="theme-transition-ready text-gray-600 dark:text-gray-300">Outils de collaboration en équipe</p>
+                    </div>
+                     <div class="flex items-center">
+                        <svg class="w-6 h-6 text-green-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        <p class="theme-transition-ready text-gray-600 dark:text-gray-300">Support client dédié</p>
+                    </div>
+                </div>
+                <button class="w-full theme-transition-ready px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-200">
+                    Commencer
+                </button>
+            </div>`
+        },
+        pro: {
+            name: "Prix Pro",
+            html: `<div class="max-w-sm mx-auto theme-transition-ready bg-gradient-to-br from-pink-500 to-red-600 dark:from-pink-700 dark:to-red-800 text-white p-6 my-4 rounded-xl shadow-xl border border-pink-100 dark:border-pink-900 transform hover:scale-102 transition-all duration-300">
+                <div class="text-center">
+                  <span class="relative -top-9  transform  bg-red-500 text-white text-xs font-bold px-3 py-1 rounded-full">AVANCÉ</span>
+                    <h3 class="text-xl font-bold mb-2">Offre Pro</h3>
+                    <div class="flex items-center justify-center mb-4">
+                        <span class="text-3xl font-extrabold">59,99€</span>
+                        <span class="text-sm ml-2">/mois</span>
+                    </div>
+                </div>
+                <div class="space-y-4 mb-6">
+                    <div class="flex items-center">
+                        <svg class="w-5 h-5 text-pink-200 dark:text-pink-300 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        <p>Fonctionnalités illimitées</p>
+                    </div>
+                    <div class="flex items-center">
+                        <svg class="w-5 h-5 text-pink-200 dark:text-pink-300 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        <p>Support premium 24/7</p>
+                    </div>
+                     <div class="flex items-center">
+                        <svg class="w-5 h-5 text-pink-200 dark:text-pink-300 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        <p>Accès anticipé aux nouvelles fonctionnalités</p>
+                    </div>
+                </div>
+                <button class="w-full px-6 py-3 bg-white text-red-600 dark:text-red-600 rounded-lg font-semibold shadow-lg hover:shadow-xl hover:bg-pink-100 dark:hover:bg-pink-200 transition-all duration-200">
+                   <span class="mr-2">Passer Pro</span>
+                    <svg class="w-5 h-5 inline-block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                </button>
+            </div>`
+        },
+        
+        // Exemple avec plusieurs cartes (3 cartes)
+       triple: {
+            name: "Prix Triple",
+            html: `
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto my-12 px-4 sm:px-6 lg:px-8">
+    <!-- Carte 1: Standard -->
+    <div class="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-3xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden flex flex-col">
+        <div class="px-6 py-8 flex-grow">
+            <div class="text-center">
+                <h3 class="text-2xl font-bold mb-1 text-gray-800 dark:text-white">Standard</h3>
+                <p class="text-sm text-gray-600 dark:text-gray-400 mb-3">Idéal pour commencer</p>
+                <div class="flex items-baseline justify-center">
+                    <span class="text-4xl font-extrabold text-gray-800 dark:text-white">29,99€</span>
+                    <span class="text-lg ml-1 text-gray-500 dark:text-gray-400">/mois</span>
+                </div>
+            </div>
+
+            <div class="mt-6 border-t border-gray-200 dark:border-gray-700 pt-4">
+                <ul class="space-y-4">
+                    <li class="flex items-center">
+                        <svg class="w-6 h-6 text-green-500 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                        </svg>
+                        <span class="text-base text-gray-700 dark:text-gray-300">10 templates par mois</span>
+                    </li>
+                    <li class="flex items-center">
+                        <svg class="w-6 h-6 text-green-500 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                        </svg>
+                        <span class="text-base text-gray-700 dark:text-gray-300">Accès à la bibliothèque de base</span>
+                    </li>
+                    <li class="flex items-center">
+                       <svg class="w-6 h-6 text-red-500 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
+                        <span class="text-base text-gray-700 dark:text-gray-300 line-through">Support prioritaire</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+         <div class="px-6 py-4 bg-gray-100 dark:bg-gray-700">
+            <button class="w-full px-6 py-3 bg-gray-600 hover:bg-gray-700 text-white rounded-full font-semibold text-lg transition-colors duration-200">Choisir le plan Standard</button>
+        </div>
+    </div>
+
+    <!-- Carte 2: Plus (Meilleur Choix) -->
+<div class="bg-gradient-to-br from-blue-100 to-blue-300 dark:from-blue-700 dark:to-blue-900 rounded-3xl shadow-xl border border-blue-200 dark:border-blue-600 transition-all duration-300 overflow-hidden flex flex-col relative">
+    <div class="px-6 py-8 flex-grow relative">
+        <div class="text-center">
+            <h3 class="text-2xl font-bold mb-1 text-blue-900 dark:text-white">Plus</h3>
+            <p class="text-sm text-gray-700 dark:text-gray-200 mb-3">Le plus populaire</p>
+            <div class="flex items-baseline justify-center">
+                <span class="text-4xl font-extrabold text-blue-700 dark:text-blue-300">49,99€</span>
+                <span class="text-lg ml-1 text-gray-600 dark:text-gray-400">/mois</span>
+            </div>
+        </div>
+
+        <div class="mt-6 border-t border-blue-200 dark:border-blue-700 pt-4">
+            <ul class="space-y-4">
+                <li class="flex items-center">
+                    <svg class="w-6 h-6 text-green-500 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                    </svg>
+                    <span class="text-base text-blue-800 dark:text-gray-200">Templates illimités</span>
+                </li>
+                <li class="flex items-center">
+                    <svg class="w-6 h-6 text-green-500 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                    </svg>
+                    <span class="text-base text-blue-800 dark:text-gray-200">Accès à toutes les fonctionnalités</span>
+                </li>
+                 <li class="flex items-center">
+                    <svg class="w-6 h-6 text-green-500 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                    </svg>
+                    <span class="text-base text-blue-800 dark:text-gray-200">Nouvelles fonctionnalités en avant-première</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="px-6 py-4 bg-blue-50 dark:bg-blue-800">
+        <button class="w-full px-6 py-3 bg-blue-700 hover:bg-blue-800 text-white rounded-full font-semibold text-lg shadow-md hover:shadow-lg transition-all duration-200">Choisir le plan Plus</button>
+    </div>
+</div>
+
+    <!-- Carte 3: Expert -->
+    <div class="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-3xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden flex flex-col">
+        <div class="px-6 py-8 flex-grow">
+            <div class="text-center">
+                <h3 class="text-2xl font-bold mb-1 text-gray-800 dark:text-white">Expert</h3>
+                <p class="text-sm text-gray-600 dark:text-gray-400 mb-3">Pour les professionnels exigeants</p>
+                <div class="flex items-baseline justify-center">
+                    <span class="text-4xl font-extrabold text-gray-800 dark:text-white">79,99€</span>
+                    <span class="text-lg ml-1 text-gray-500 dark:text-gray-400">/mois</span>
+                </div>
+            </div>
+
+            <div class="mt-6 border-t border-gray-200 dark:border-gray-700 pt-4">
+                <ul class="space-y-4">
+                    <li class="flex items-center">
+                        <svg class="w-6 h-6 text-green-500 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                        </svg>
+                        <span class="text-base text-gray-700 dark:text-gray-300">Support dédié 24/7</span>
+                    </li>
+                    <li class="flex items-center">
+                        <svg class="w-6 h-6 text-green-500 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                        </svg>
+                        <span class="text-base text-gray-700 dark:text-gray-300">Accès à des consultants experts</span>
+                    </li>
+                     <li class="flex items-center">
+                        <svg class="w-6 h-6 text-green-500 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                        </svg>
+                        <span class="text-base text-gray-700 dark:text-gray-300">Intégrations personnalisées</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="px-6 py-4 bg-gray-100 dark:bg-gray-700">
+            <button class="w-full px-6 py-3 bg-gray-600 hover:bg-gray-700 text-white rounded-full font-semibold text-lg transition-colors duration-200">Choisir le plan Expert</button>
+        </div>
+    </div>
+</div>
+            `
+        },
+    //Une carte avec une periode d'essai
+    trial: {
+        name: "Prix Essai",
+        html: `<div class="max-w-md mx-auto theme-transition-ready bg-gradient-to-r from-teal-400 to-cyan-500 dark:from-teal-600 dark:to-cyan-700 text-white p-8 my-4 rounded-2xl shadow-2xl relative transform hover:scale-103 transition-all duration-500">
+                <div class="absolute top-0 right-0 p-2 bg-red-500 text-white text-xs font-bold rounded-bl-full">ESSAI GRATUIT</div>
+                <div class="text-center">
+                    <h3 class="text-2xl font-bold mb-3">Essai Gratuit 14 Jours</h3>
+                    <p class="mb-6 text-teal-100 dark:text-teal-200">
+                        Découvrez toutes nos fonctionnalités premium pendant 14 jours, sans engagement.
+                    </p>
+                </div>
+                <div class="space-y-4 mb-8">
+                    <div class="flex items-center">
+                       <svg class="w-6 h-6 text-teal-200 dark:text-teal-300 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"></path></svg>
+                        <p class="text-teal-100 dark:text-teal-200">Accès complet à toutes les templates</p>
+                    </div>
+                     <div class="flex items-center">
+                        <svg class="w-6 h-6 text-teal-200 dark:text-teal-300 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg>
+                        <p class="text-teal-100 dark:text-teal-200">Support prioritaire</p>
+                    </div>
+
+                </div>
+                <button class="w-full theme-transition-ready px-8 py-4 bg-white text-teal-500 dark:text-teal-700 rounded-full font-bold shadow-lg hover:shadow-xl hover:bg-teal-100 dark:hover:bg-teal-200 transition-all duration-200">
+                    Commencer l'Essai
+                </button>
+             <p class="text-center text-sm theme-transition-ready text-teal-200 dark:text-teal-300 mt-3">Aucune carte de crédit requise</p>
+            </div>`
+    },
+
+     // Version "Lite" de la carte "Premium"
+    premiumLite: {
+      name: "Prix Premium Lite",
+      html: `<div class="max-w-sm mx-auto theme-transition-ready bg-gradient-to-br from-blue-50 to-gray-100 dark:from-gray-700 dark:to-gray-800 p-6 sm:p-8 my-4 rounded-xl shadow-md border border-blue-50 dark:border-blue-800 transform hover:scale-102 transition-all duration-300">
+                <div class="relative text-center">
+                   <span class="absolute -top-10 left-1/2 transform -translate-x-1/2 bg-blue-400 text-white text-xs font-bold px-2 py-1 rounded-full">POPULAIRE</span>
+                    <h3 class="text-xl font-semibold mb-2 theme-transition-ready text-gray-700 dark:text-gray-200">Pack Business Lite</h3>
+                    <div class="flex items-center justify-center mb-4">
+                        <span class="text-2xl font-bold theme-transition-ready text-blue-500 dark:text-blue-400">29,99€</span>
+                        <span class="text-sm ml-2 theme-transition-ready text-gray-500 dark:text-gray-400">/mois</span>
+                    </div>
+                </div>
+                <div class="space-y-3 mb-5">
+                   <div class="flex items-center">
+                      <svg class="w-4 h-4 text-blue-500 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                      <p class="text-sm theme-transition-ready text-gray-600 dark:text-gray-300">Accès à 50 templates</p>
+                    </div>
+
+                    <div class="flex items-center">
+                       <svg class="w-4 h-4 text-blue-500 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                       <p class="text-sm theme-transition-ready text-gray-600 dark:text-gray-300">Support standard</p>
+                   </div>
+                </div>
+                <button class="w-full theme-transition-ready px-5 py-2.5 bg-blue-500 hover:bg-blue-600 text-white rounded-lg font-semibold shadow-md hover:shadow-lg transition-all duration-200">
+                    Commencer
+                </button>
+                <p class="text-center text-xs theme-transition-ready text-gray-500 dark:text-gray-400 mt-3">
+                    Annulation gratuite pendant 7 jours
+                </p>
+            </div>`
+    },
+
+    // Carte double avec comparaison
+    compare: {
+      name: "Comparaison",
+      html: `
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto my-10">
+
+            <!-- Carte Gauche - Offre Standard -->
+          <div class="theme-transition-ready bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300">
+                <div class="text-center">
+                    <h3 class="text-xl font-bold mb-2 theme-transition-ready text-gray-800 dark:text-white">Offre Standard</h3>
+                    <div class="flex items-center justify-center mb-4">
+                        <span class="text-3xl font-extrabold theme-transition-ready text-gray-800 dark:text-white">19,99€</span>
+                        <span class="text-sm ml-2 theme-transition-ready text-gray-500 dark:text-gray-400">/mois</span>
+                    </div>
+                    <p class="text-sm text-gray-500 dark:text-gray-400 mb-4">Pour démarrer simplement.</p>
+                </div>
+
+                <div class="space-y-3 mb-6">
+                  <div class="flex items-center">
+                    <svg class="w-7 h-7 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                    <p class="text-sm theme-transition-ready text-gray-600 dark:text-gray-300"><strong>10 Templates Premium</strong></p>
+                  </div>
+
+                  <div class="flex items-center">
+                   <svg class="w-7 h-7 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                    <p class="text-sm theme-transition-ready text-gray-600 dark:text-gray-300"><strong>Support Email Standard</strong></p>
+                   </div>
+                   <div class="flex items-center">
+                   <svg class="w-7 h-7 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                    <p class="text-sm theme-transition-ready text-gray-600 dark:text-gray-300">Fonctionnalités de base</p>
+                   </div>
+                   <div class="flex items-center">
+                   <svg class="w-7 h-7 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                    <p class="text-sm theme-transition-ready text-gray-600 dark:text-gray-300">Watermark Standard</p>
+                   </div>
+                </div>
+                <button class="w-full theme-transition-ready px-6 py-3 bg-gray-600 hover:bg-gray-700 text-white rounded-lg font-semibold transition-colors duration-200">Choisir Standard</button>
+            </div>
+
+            <!-- Carte Droite - Offre Avancée -->
+            <div class="theme-transition-ready bg-gradient-to-br from-purple-100 to-pink-200 dark:from-purple-800 dark:to-pink-900 p-6 rounded-xl shadow-xl border border-purple-200 dark:border-purple-700 transform transition-all duration-300">
+               <div class="text-center relative">
+                <span class="absolute -top-9 left-1/2 transform -translate-x-1/2 bg-pink-500 text-white text-xs font-bold px-3 py-1 rounded-full">RECOMMANDÉ</span>
+                    <h3 class="text-xl font-bold mb-2 theme-transition-ready text-gray-800 dark:text-white">Offre Avancée</h3>
+                    <div class="flex items-center justify-center mb-4">
+                        <span class="text-3xl font-extrabold theme-transition-ready text-pink-600 dark:text-pink-400">39,99€</span>
+                        <span class="text-sm ml-2 theme-transition-ready text-gray-500 dark:text-gray-400">/mois</span>
+                    </div>
+                    <p class="text-sm text-gray-500 dark:text-gray-400 mb-4">Pour projets ambitieux.</p>
+                </div>
+
+               <div class="space-y-3 mb-6">
+                  <div class="flex items-center">
+                     <svg class="w-7 h-7 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                      <p class="text-sm theme-transition-ready text-gray-700 dark:text-gray-200"><strong>Templates Illimités</strong></p>
+                  </div>
+
+                 <div class="flex items-center">
+                   <svg class="w-7 h-7 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                  <p class="text-sm theme-transition-ready text-gray-700 dark:text-gray-200"><strong>Support Prioritaire</strong></p>
+                 </div>
+                 <div class="flex items-center">
+                   <svg class="w-7 h-7 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                  <p class="text-sm theme-transition-ready text-gray-700 dark:text-gray-200"><strong>Fonctionnalités Avancées</strong></p>
+                 </div>
+                 <div class="flex items-center">
+                   <svg class="w-7 h-7 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                  <p class="text-sm theme-transition-ready text-gray-700 dark:text-gray-200"><strong>Mises à jour régulières</strong></p>
+                 </div>
+               </div>
+                <button class="w-full theme-transition-ready px-6 py-3 bg-pink-600 hover:bg-pink-700 text-white rounded-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-200">Choisir Avancée</button>
+            </div>
+        </div>`
+    }
+},
+
 
     // Composants de partage social
     social: {

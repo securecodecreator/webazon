@@ -25,7 +25,7 @@
         <h1 class="text-4xl font-bold theme-transition-ready bg-gradient-to-r from-light-primary to-light-secondary dark:from-dark-primary dark:to-dark-secondary bg-clip-text text-transparent hover:scale-105 transition-transform duration-300">Webazon</h1>
         <p class="flex items-center gap-2 theme-transition-ready text-gray-700 dark:text-gray-300">
             <span class="text-lg">✨</span>
-            <a href="version.html" class="font-medium hover:text-light-primary dark:hover:text-dark-primary transition-colors">V1.0.3</a>
+            <a href="version.html" class="font-medium hover:text-light-primary dark:hover:text-dark-primary transition-colors">V1.0.4</a>
         </p>
     </div>
     
@@ -92,10 +92,10 @@
     <section class="md:w-2/3 w-full theme-transition-ready bg-light-nav dark:bg-dark-nav shadow-lg rounded-xl p-6 flex flex-col md:min-h-0 max-h-[600px] md:h-[calc(100vh-104px)]">
         <h2 class="text-2xl font-semibold text-gray-800 dark:text-gray-200 mb-4 flex-shrink-0 flex items-center gap-4">
             Editeur HTML
-            <button id="toggleSections" class="theme-transition-ready text-gray-600 dark:text-gray-300 hover:text-light-primary dark:hover:text-dark-primary transition-colors duration-200">
+            <button id="toggleSections" class="theme-transition-ready text-gray-600 dark:text-gray-300 hover:text-light-primary dark:hover:text-dark-primary transition-colors duration-200" title="Afficher/Masquer les sections">
                 <i class="fas fa-eye text-xl"></i>
             </button>
-            <button id="resetEditor" class="theme-transition-ready text-gray-600 dark:text-gray-300 hover:text-red-500 dark:hover:text-red-400 transition-colors duration-200 ml-auto">
+            <button id="resetEditor" class="theme-transition-ready text-gray-600 dark:text-gray-300 hover:text-red-500 dark:hover:text-red-400 transition-colors duration-200 ml-auto" title="Réinitialiser l'éditeur">
                 <i class="fas fa-rotate-right text-xl"></i>
             </button>
         </h2>
@@ -127,9 +127,6 @@
         <section class="theme-transition-ready bg-light-nav dark:bg-dark-nav rounded-xl shadow-lg p-6 flex flex-col max-h-[500px] md:min-h-0 md:h-[60%]">
             <div class="flex justify-between items-center mb-4 flex-shrink-0">
                 <h2 class="text-2xl font-semibold text-gray-800 dark:text-gray-200">Personnalisation</h2>
-                <button id="copySelectiveBtn" class="theme-transition-ready text-gray-600 dark:text-gray-300 hover:text-light-primary dark:hover:text-dark-primary" title="Copier un élément spécifique">
-                    <i class="fas fa-clone text-xl"></i>
-                </button>
             </div>
             <div class="flex-1 bg-white dark:bg-dark-bg rounded-lg overflow-auto min-h-0">
                 <div id="customizationAccordion" class="p-6 space-y-4">
@@ -139,25 +136,6 @@
         </section>
     </div>
 </main>
-
-<div id="selectiveModal" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-[999] hidden">
-    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-11/12 max-w-2xl max-h-[80vh] theme-transition-ready bg-light-nav dark:bg-dark-nav rounded-xl shadow-xl flex flex-col">
-        <!-- En-tête de la modale -->
-        <div class="flex justify-between items-center p-8 pb-4">
-            <h2 class="text-2xl font-bold theme-transition-ready text-gray-800 dark:text-gray-200">Sélectionner un élément à copier</h2>
-            <button id="closeSelectiveModal" class="theme-transition-ready text-gray-600 dark:text-gray-300 hover:text-light-primary dark:hover:text-dark-primary">
-                <i class="fas fa-times text-xl"></i>
-            </button>
-        </div>
-
-        <!-- Liste des éléments -->
-        <div class="overflow-y-auto p-8 pt-4">
-            <div id="elementsList" class="space-y-3">
-                <!-- Les éléments seront injectés ici dynamiquement -->
-            </div>
-        </div>
-    </div>
-</div>
 
 <div id="previewModal" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-[999] hidden">
     <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-11/12 max-w-4xl max-h-[80vh] theme-transition-ready bg-light-nav dark:bg-dark-nav rounded-xl shadow-xl flex flex-col">
@@ -176,18 +154,21 @@
             </div>
         </div>
 
-        <!-- Bouton de copie -->
+        <!-- Boutons d'action -->
         <div class="p-8 pt-4 flex justify-end gap-4">
-            <button id="backToSelectiveModal" class="theme-transition-ready border-2 border-light-primary dark:border-dark-primary text-light-primary dark:text-dark-primary px-6 py-3 rounded-lg hover:bg-light-primary/10 hover:dark:bg-dark-primary/20 transition-colors">
-                <i class="fas fa-arrow-left mr-2"></i>
-                Retour à la liste
-            </button>
-            <button id="copyPreviewElement" class="theme-transition-ready bg-light-primary dark:bg-dark-primary text-white px-6 py-3 rounded-lg hover:opacity-90 transition-opacity">
-                <i class="fas fa-copy mr-2"></i>
-                Copier l'élément
+            <button id="addToPreviewFromModal" class="theme-transition-ready border-2 border-light-primary dark:border-dark-primary text-light-primary dark:text-dark-primary px-6 py-3 rounded-lg hover:bg-light-primary/10 hover:dark:bg-dark-primary/20 transition-colors">
+                <i class="fas fa-plus mr-2"></i>
+                Ajouter à l'éditeur
             </button>
         </div>
     </div>
+</div>
+
+<div id="compact-mobile-menu" class="md:hidden hidden py-4 space-y-2 border-t theme-transition-ready border-gray-200 dark:border-gray-800 mt-2">
+    <a href="#" class="block theme-transition-ready text-sm text-gray-600 dark:text-gray-400 hover:text-blue-500 dark:hover:text-blue-400 py-2">Accueil</a>
+    <a href="#" class="block theme-transition-ready text-sm text-gray-600 dark:text-gray-400 hover:text-blue-500 dark:hover:text-blue-400 py-2">Produits</a>
+    <a href="#" class="block theme-transition-ready text-sm text-gray-600 dark:text-gray-400 hover:text-blue-500 dark:hover:text-blue-400 py-2">Support</a>
+    <button class="mt-2 w-full theme-transition-ready text-sm px-3 py-1 bg-blue-500 dark:bg-blue-600 text-white rounded-full hover:bg-blue-600 dark:hover:bg-blue-700">Connexion</button>
 </div>
 
 <script>
