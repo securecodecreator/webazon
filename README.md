@@ -33,29 +33,31 @@ Webazon/
 ├── README.md                                  # Documentation principale
 ├── index.html                                 # Page d'accueil
 └── application/                               # Cœur de l'application
-    ├── public/                               # Ressources publiques
-    │   ├── app.html                          # Application principale
-    │   ├── css/
-    │   │   └── style.css                     # Styles globaux
-    │   ├── images/                           # Ressources graphiques
-    │   │   ├── clair.png                     # Aperçu thème clair
-    │   │   ├── preview.png                   # Image de présentation
-    │   │   ├── release.png                   # Image de version
-    │   │   └── sombre.png                    # Aperçu thème sombre
-    │   └── js/                               # Scripts JavaScript
-    │       ├── components/                    # Composants de l'application
-    │       │   ├── editor.js                 # Éditeur de code
-    │       │   ├── preview.js                # Prévisualisation
-    │       │   └── state.js                  # Gestion d'état
-    │       ├── utils/                        # Utilitaires
-    │       │   ├── dom.js                    # Manipulation DOM
-    │       │   ├── html.js                   # Gestion HTML
-    │       │   ├── selective-copy.js         # Gestion de la copie sélective
-    │       │   └── path.js                   # Gestion chemins
-    │       ├── assets.js                     # Ressources JS
-    │       ├── config.js                     # Configuration
-    │       ├── main.js                       # Point d'entrée JS
-    │       └── theme.js                      # Gestion thèmes
+    └── public/                               # Ressources publiques
+        ├── app.html                          # Application principale
+        ├── version.html                      # Page de version
+        ├── css/                              # Styles CSS
+        │   └── style.css                     # Styles globaux
+        ├── images/                           # Ressources graphiques
+        │   ├── clair.png                     # Aperçu thème clair
+        │   ├── preview.png                   # Image de présentation
+        │   ├── release.png                   # Image de version
+        │   └── sombre.png                    # Aperçu thème sombre
+        └── js/                               # Scripts JavaScript
+            ├── components/                    # Composants de l'application
+            │   ├── customization.js          # Personnalisation
+            │   ├── editor.js                 # Éditeur de code
+            │   ├── preview.js                # Prévisualisation
+            │   └── state.js                  # Gestion d'état
+            ├── utils/                        # Utilitaires
+            │   ├── dom.js                    # Manipulation DOM
+            │   ├── html.js                   # Gestion HTML
+            │   ├── path.js                   # Gestion chemins
+            │   └── selective-copy.js         # Gestion de la copie sélective
+            ├── assets.js                     # Ressources JS
+            ├── config.js                     # Configuration
+            ├── main.js                       # Point d'entrée JS
+            └── theme.js                      # Gestion thèmes
 ```
 
 ## 🚀 Installation

@@ -53,7 +53,7 @@
     </button>
 
     <!-- Menu mobile -->
-    <div id="mainNav" class="fixed inset-y-0 right-0 w-72 theme-transition-ready bg-light-nav/95 dark:bg-dark-nav/95 backdrop-blur-md transform translate-x-full transition-transform duration-300 z-50 md:hidden flex flex-col">
+    <div id="mainNav" class="fixed inset-y-0 right-0 w-72 theme-transition-ready bg-light-nav/95 dark:bg-dark-nav/95 backdrop-blur-md transform translate-x-full transition-transform duration-300 z-[999] md:hidden flex flex-col">
         <!-- En-tête avec bouton fermeture -->
         <div class="flex justify-between items-center p-6">
             <h2 class="text-xl font-bold text-gray-800 dark:text-gray-200">Menu</h2>
@@ -132,214 +132,8 @@
                 </button>
             </div>
             <div class="flex-1 bg-white dark:bg-dark-bg rounded-lg overflow-auto min-h-0">
-                <div class="p-6 space-y-8">
-                    <!-- En-têtes -->
-                    <div class="space-y-4">
-                        <h3 class="text-lg font-semibold theme-transition-ready text-gray-700 dark:text-gray-300">En-têtes</h3>
-                        <div class="space-y-3">
-                            <button data-element="headers.simple" class="w-full text-left px-4 py-3 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 theme-transition-ready text-gray-700 dark:text-gray-300">
-                                En-tête Simple
-                            </button>
-                            <button data-element="headers.withNav" class="w-full text-left px-4 py-3 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 theme-transition-ready text-gray-700 dark:text-gray-300">
-                                En-tête avec Navigation
-                            </button>
-                            <button data-element="headers.modern" class="w-full text-left px-4 py-3 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 theme-transition-ready text-gray-700 dark:text-gray-300">
-                                En-tête Moderne
-                            </button>
-                            <button data-element="headers.minimal" class="w-full text-left px-4 py-3 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 theme-transition-ready text-gray-700 dark:text-gray-300">
-                                En-tête Minimaliste
-                            </button>
-                            <button data-element="headers.gradient" class="w-full text-left px-4 py-3 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 theme-transition-ready text-gray-700 dark:text-gray-300">
-                                En-tête Gradient
-                            </button>
-                            <button data-element="headers.centered" class="w-full text-left px-4 py-3 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 theme-transition-ready text-gray-700 dark:text-gray-300">
-                                En-tête Centré
-                            </button>
-                            <button data-element="headers.minuit" class="w-full text-left px-4 py-3 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 theme-transition-ready text-gray-700 dark:text-gray-300">
-                                En-tête minuit
-                            </button>
-                            <button data-element="headers.compact" class="w-full text-left px-4 py-3 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 theme-transition-ready text-gray-700 dark:text-gray-300">
-                                En-tête Compact
-                            </button>
-                            <button data-element="headers.creative" class="w-full text-left px-4 py-3 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 theme-transition-ready text-gray-700 dark:text-gray-300">
-                                En-tête Créatif
-                            </button>
-                            <button data-element="headers.ecommerce" class="w-full text-left px-4 py-3 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 theme-transition-ready text-gray-700 dark:text-gray-300">
-                                En-tête E-commerce
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- À propos -->
-                    <div class="space-y-4">
-                        <h3 class="text-lg font-semibold theme-transition-ready text-gray-700 dark:text-gray-300">À propos</h3>
-                        <div class="space-y-3">
-                            <button data-element="about.simple" class="w-full text-left px-4 py-3 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 theme-transition-ready text-gray-700 dark:text-gray-300">
-                                À propos Simple
-                            </button>
-                            <button data-element="about.withImage" class="w-full text-left px-4 py-3 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 theme-transition-ready text-gray-700 dark:text-gray-300">
-                                À propos avec Image
-                            </button>
-                            <button data-element="about.team" class="w-full text-left px-4 py-3 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 theme-transition-ready text-gray-700 dark:text-gray-300">
-                                Équipe
-                            </button>
-                            <button data-element="about.stats" class="w-full text-left px-4 py-3 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 theme-transition-ready text-gray-700 dark:text-gray-300">
-                                Statistiques
-                            </button>
-                            <button data-element="about.mission" class="w-full text-left px-4 py-3 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 theme-transition-ready text-gray-700 dark:text-gray-300">
-                                Notre Mission
-                            </button>
-                            <button data-element="about.values" class="w-full text-left px-4 py-3 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 theme-transition-ready text-gray-700 dark:text-gray-300">
-                                Nos Valeurs
-                            </button>
-                            <button data-element="about.timeline" class="w-full text-left px-4 py-3 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 theme-transition-ready text-gray-700 dark:text-gray-300">
-                                Notre Histoire Timeline
-                            </button>
-                            <button data-element="about.testimonials" class="w-full text-left px-4 py-3 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 theme-transition-ready text-gray-700 dark:text-gray-300">
-                                Témoignages
-                            </button>
-                            <button data-element="about.cta" class="w-full text-left px-4 py-3 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 theme-transition-ready text-gray-700 dark:text-gray-300">
-                                Call-to-Action
-                            </button>
-                            <button data-element="about.contact" class="w-full text-left px-4 py-3 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 theme-transition-ready text-gray-700 dark:text-gray-300">
-                                Contact Info
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- Sections -->
-                    <div class="space-y-4">
-                        <h3 class="text-lg font-semibold theme-transition-ready text-gray-700 dark:text-gray-300">Sections</h3>
-                        <div class="space-y-3">
-                            <button data-element="sections.hero" class="w-full text-left px-4 py-3 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 theme-transition-ready text-gray-700 dark:text-gray-300">
-                                Section Héro Simple
-                            </button>
-                            <button data-element="sections.heroWithImage" class="w-full text-left px-4 py-3 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 theme-transition-ready text-gray-700 dark:text-gray-300">
-                                Section Héro avec Image
-                            </button>
-                            <button data-element="sections.heroGradient" class="w-full text-left px-4 py-3 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 theme-transition-ready text-gray-700 dark:text-gray-300">
-                                Section Héro avec Gradient
-                            </button>
-                            <button data-element="sections.features" class="w-full text-left px-4 py-3 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 theme-transition-ready text-gray-700 dark:text-gray-300">
-                                Section Fonctionnalités Simple
-                            </button>
-                            <button data-element="sections.featuresWithIcons" class="w-full text-left px-4 py-3 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 theme-transition-ready text-gray-700 dark:text-gray-300">
-                                Section Fonctionnalités avec Icônes
-                            </button>
-                            <button data-element="sections.featuresGrid" class="w-full text-left px-4 py-3 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 theme-transition-ready text-gray-700 dark:text-gray-300">
-                                Section Fonctionnalités en Grille
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- Formulaires -->
-                    <div class="space-y-4">
-                        <h3 class="text-lg font-semibold theme-transition-ready text-gray-700 dark:text-gray-300">Formulaires</h3>
-                        <div class="space-y-3">
-                            <button data-element="forms.contact" class="w-full text-left px-4 py-3 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 theme-transition-ready text-gray-700 dark:text-gray-300">
-                                Formulaire de Contact
-                            </button>
-                            <button data-element="forms.login" class="w-full text-left px-4 py-3 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 theme-transition-ready text-gray-700 dark:text-gray-300">
-                                Formulaire de Connexion
-                            </button>
-                            <button data-element="forms.register" class="w-full text-left px-4 py-3 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 theme-transition-ready text-gray-700 dark:text-gray-300">
-                                Formulaire d'Inscription
-                            </button>
-                            <button data-element="forms.newsletter" class="w-full text-left px-4 py-3 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 theme-transition-ready text-gray-700 dark:text-gray-300">
-                                Inscription Newsletter
-                            </button>
-                            <button data-element="forms.search" class="w-full text-left px-4 py-3 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 theme-transition-ready text-gray-700 dark:text-gray-300">
-                                Barre de Recherche
-                            </button>
-                            <button data-element="forms.searchAdvanced" class="w-full text-left px-4 py-3 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 theme-transition-ready text-gray-700 dark:text-gray-300">
-                                Recherche Avancée
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- FAQ -->
-                    <div class="space-y-4">
-                        <h3 class="text-lg font-semibold theme-transition-ready text-gray-700 dark:text-gray-300">FAQ</h3>
-                        <div class="space-y-3">
-                            <button data-element="faq.simple" class="w-full text-left px-4 py-3 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 theme-transition-ready text-gray-700 dark:text-gray-300">
-                                FAQ Simple
-                            </button>
-                            <button data-element="faq.modern" class="w-full text-left px-4 py-3 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 theme-transition-ready text-gray-700 dark:text-gray-300">
-                                FAQ Moderne
-                            </button>
-                            <button data-element="faq.gradient" class="w-full text-left px-4 py-3 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 theme-transition-ready text-gray-700 dark:text-gray-300">
-                                FAQ Gradient
-                            </button>
-                            <button data-element="faq.boxed" class="w-full text-left px-4 py-3 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 theme-transition-ready text-gray-700 dark:text-gray-300">
-                                FAQ Encadrée
-                            </button>
-                            <button data-element="faq.numbered" class="w-full text-left px-4 py-3 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 theme-transition-ready text-gray-700 dark:text-gray-300">
-                                FAQ Numérotée
-                            </button>
-                            <button data-element="faq.cards" class="w-full text-left px-4 py-3 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 theme-transition-ready text-gray-700 dark:text-gray-300">
-                                FAQ Accordéon Animé
-                            </button>
-                            <button data-element="faq.minimal" class="w-full text-left px-4 py-3 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 theme-transition-ready text-gray-700 dark:text-gray-300">
-                                FAQ Minimale
-                            </button>
-                            <button data-element="faq.interactive" class="w-full text-left px-4 py-3 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 theme-transition-ready text-gray-700 dark:text-gray-300">
-                                FAQ Interactive
-                            </button>
-                            <button data-element="faq.sidebar" class="w-full text-left px-4 py-3 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 theme-transition-ready text-gray-700 dark:text-gray-300">
-                                FAQ Accordéon Interactif
-                            </button>
-                            <button data-element="faq.grid" class="w-full text-left px-4 py-3 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 theme-transition-ready text-gray-700 dark:text-gray-300">
-                                FAQ Accordéon Élégant
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- Composants sociaux -->
-                    <div class="space-y-4">
-                        <h3 class="text-lg font-semibold theme-transition-ready text-gray-700 dark:text-gray-300">Composants Sociaux</h3>
-                        <div class="space-y-3">
-                            <button data-element="social.simpleIcons" class="w-full text-left px-4 py-3 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 theme-transition-ready text-gray-700 dark:text-gray-300">
-                                Icônes Simples
-                            </button>
-                            <button data-element="social.roundedIcons" class="w-full text-left px-4 py-3 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 theme-transition-ready text-gray-700 dark:text-gray-300">
-                                Icônes Arrondies
-                            </button>
-                            <button data-element="social.coloredIcons" class="w-full text-left px-4 py-3 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 theme-transition-ready text-gray-700 dark:text-gray-300">
-                                Icônes Colorées
-                            </button>
-                            <button data-element="social.floatingBar" class="w-full text-left px-4 py-3 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 theme-transition-ready text-gray-700 dark:text-gray-300">
-                                Barre Flottante
-                            </button>
-                            <button data-element="social.shareButtons" class="w-full text-left px-4 py-3 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 theme-transition-ready text-gray-700 dark:text-gray-300">
-                                Boutons de Partage
-                            </button>
-                            <button data-element="social.minimalShare" class="w-full text-left px-4 py-3 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 theme-transition-ready text-gray-700 dark:text-gray-300">
-                                Partage Minimal
-                            </button>
-                            <button data-element="social.shareCard" class="w-full text-left px-4 py-3 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 theme-transition-ready text-gray-700 dark:text-gray-300">
-                                Carte de Partage
-                            </button>
-                            <button data-element="social.socialStats" class="w-full text-left px-4 py-3 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 theme-transition-ready text-gray-700 dark:text-gray-300">
-                                Statistiques Sociales
-                            </button>
-                            <button data-element="social.shareWithCopy" class="w-full text-left px-4 py-3 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 theme-transition-ready text-gray-700 dark:text-gray-300">
-                                Partage avec Copie
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- Pieds de page -->
-                    <div class="space-y-4">
-                        <h3 class="text-lg font-semibold theme-transition-ready text-gray-700 dark:text-gray-300">Pieds de page</h3>
-                        <div class="space-y-3">
-                            <button data-element="footers.simple" class="w-full text-left px-4 py-3 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 theme-transition-ready text-gray-700 dark:text-gray-300">
-                                Pied de Page Simple
-                            </button>
-                            <button data-element="footers.withLinks" class="w-full text-left px-4 py-3 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 theme-transition-ready text-gray-700 dark:text-gray-300">
-                                Pied de Page avec Liens
-                            </button>
-                        </div>
-                    </div>
+                <div id="customizationAccordion" class="p-6 space-y-4">
+                    <!-- Les sections seront injectées ici dynamiquement -->
                 </div>
             </div>
         </section>
@@ -441,6 +235,9 @@ document.addEventListener('DOMContentLoaded', function() {
     menuLinks.forEach(link => {
         link.addEventListener('click', toggleMenu);
     });
+
+    // Initialisation de l'accordéon de personnalisation
+    initCustomizationAccordion();
 });
 
 document.addEventListener('DOMContentLoaded', function() {

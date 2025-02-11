@@ -4,13 +4,14 @@ import { addElementToPreview, resetEditor } from './components/editor.js';
 import { copyCompleteCode } from './components/preview.js';
 import { restoreState } from './components/state.js';
 import { initSelectiveCopy } from './utils/selective-copy.js';
+import { initCustomizationAccordion } from './components/customization.js';
 
 /**
  * Obtient un élément HTML à partir de son chemin dans l'objet htmlAssets
  * @param {string} path - Le chemin de l'élément dans l'objet htmlAssets
  * @returns {Object} L'élément HTML correspondant
  */
-function getElementByPath(path) {
+export function getElementByPath(path) {
     return path.split('.').reduce((obj, key) => obj[key], htmlAssets.assets);
 }
 
@@ -18,18 +19,9 @@ function getElementByPath(path) {
 document.addEventListener('DOMContentLoaded', () => {
     // Initialiser la copie sélective
     initSelectiveCopy();
-
-    // Ajouter les événements aux boutons de composants
-    const buttons = document.querySelectorAll('[data-element]');
-    buttons.forEach(button => {
-        button.addEventListener('click', () => {
-            const elementPath = button.getAttribute('data-element');
-            const element = getElementByPath(elementPath);
-            if (element) {
-                addElementToPreview(element);
-            }
-        });
-    });
+    
+    // Initialiser l'accordéon de personnalisation
+    initCustomizationAccordion();
 
     // Ajouter l'événement de copie du code
     const copyBtn = document.getElementById('copyCodeBtn');
