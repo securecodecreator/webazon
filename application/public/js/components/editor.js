@@ -107,23 +107,63 @@ export function showLinkEditor(element) {
  */
 export function addElementToPreview(element) {
     const previewContent = document.getElementById('previewContent');
-    
+    if (!previewContent) return;
+
+    // Si c'est le premier élément, nettoyer le contenu par défaut
+    if (previewContent.innerHTML.includes('<!-- Le contenu HTML sera injecté ici -->')) {
+        previewContent.innerHTML = '';
+    }
+
     // Créer un conteneur temporaire pour parser le HTML
-    const temp = document.createElement('div');
-    temp.innerHTML = element.html;
-    const content = temp.firstElementChild;
-    
-    // Créer le conteneur avec les contrôles
-    const elementContainer = createElementContainer(content);
-    
-    // Rendre le texte éditable
-    makeElementEditable(elementContainer);
-    
-    // Attacher les événements
-    attachElementEvents(elementContainer);
-    
-    // Ajouter l'élément à la prévisualisation
-    previewContent.appendChild(elementContainer);
+    const tempContainer = document.createElement('div');
+    tempContainer.innerHTML = element.html;
+    const newElement = tempContainer.firstElementChild;
+
+    if (newElement) {
+        // Créer le conteneur avec les contrôles
+        const elementContainer = createElementContainer(newElement);
+        
+        // Rendre le texte éditable
+        makeElementEditable(elementContainer);
+        
+        // Attacher les événements
+        attachElementEvents(elementContainer);
+        
+        // Ajouter l'élément à la prévisualisation
+        previewContent.appendChild(elementContainer);
+        
+        // Déclencher l'événement de mise à jour
+        window.dispatchEvent(new CustomEvent('preview:update'));
+        window.dispatchEvent(new CustomEvent('state:save'));
+    }
+}
+
+/**
+ * Ajoute plusieurs éléments à la prévisualisation
+ * @param {Array<Object>} elements - Les éléments à ajouter
+ */
+export function addElementsToPreview(elements) {
+    const previewContent = document.getElementById('previewContent');
+    if (!previewContent) return;
+
+    // Nettoyer le contenu existant
+    previewContent.innerHTML = '';
+
+    // Ajouter chaque élément
+    elements.forEach(element => {
+        const tempContainer = document.createElement('div');
+        tempContainer.innerHTML = element.html;
+        const newElement = tempContainer.firstElementChild;
+
+        if (newElement) {
+            const elementContainer = createElementContainer(newElement);
+            makeElementEditable(elementContainer);
+            attachElementEvents(elementContainer);
+            previewContent.appendChild(elementContainer);
+        }
+    });
+
+    // Déclencher les événements de mise à jour
     window.dispatchEvent(new CustomEvent('preview:update'));
     window.dispatchEvent(new CustomEvent('state:save'));
 }

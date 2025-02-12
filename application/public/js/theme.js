@@ -129,3 +129,14 @@ mobileLinks.forEach(link => {
         mobileMenu.classList.remove('block');
     });
 });
+
+function toggleMobileMenu() {
+    const mobileMenu = document.getElementById('mobileMenu');
+    if (mobileMenu.classList.contains('hidden')) {
+        mobileMenu.classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+    } else {
+        mobileMenu.classList.add('hidden');
+        document.body.style.overflow = '';
+    }
+}

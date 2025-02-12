@@ -136,6 +136,12 @@ export function cleanHtml(element) {
         span.parentNode.replaceChild(textNode, span);
     });
     
+    // Supprimer les classes hover-ring de tous les éléments
+    const elementsWithHoverRing = elementCopy.querySelectorAll('[class*="hover:ring"]');
+    elementsWithHoverRing.forEach(el => {
+        el.classList.remove(...Array.from(el.classList).filter(className => className.includes('hover:ring')));
+    });
+    
     // Récupérer le contenu HTML nettoyé
     const cleanElement = elementCopy.querySelector(':scope > :not(.absolute)');
     return cleanElement ? cleanElement.outerHTML : '';

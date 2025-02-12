@@ -1675,7 +1675,7 @@ const htmlAssets = {
             name: "Pied de Page Simple",
             html: `<footer class="theme-transition-ready bg-gray-100 dark:bg-gray-900 p-6 sm:p-8 w-full">
                 <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-                    <p class="theme-transition-ready text-gray-600 dark:text-gray-300 text-center text-sm sm:text-base">&copy; 2024 Votre Entreprise. Tous droits réservés.</p>
+                    <p class="theme-transition-ready text-gray-600 dark:text-gray-300 text-center text-sm sm:text-base">&copy; 2025 Votre Entreprise. Tous droits réservés.</p>
                 </div>
             </footer>`
         },
@@ -1721,7 +1721,7 @@ const htmlAssets = {
     pricing: {
         simple: {
             name: "Prix Simple",
-            html: `<div class="max-w-sm mx-auto theme-transition-ready bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 my-4 p-6 sm:p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300">
+            html: `<div class="max-w-sm mx-auto theme-transition-ready bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 my-12 p-6 sm:p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300">
                 <div class="text-center">
                     <h3 class="text-xl font-bold mb-2 theme-transition-ready text-gray-800 dark:text-white">Offre Starter</h3>
                     <div class="flex items-center justify-center mb-4">
@@ -1756,7 +1756,7 @@ const htmlAssets = {
         },
         premium: {
             name: "Prix Premium",
-            html: `<div class="max-w-sm mx-auto theme-transition-ready bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 p-6 sm:p-8 my-4 rounded-xl shadow-xl border border-blue-100 dark:border-blue-900 transform hover:scale-102 transition-all duration-300">
+            html: `<div class="max-w-sm mx-auto theme-transition-ready bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 p-6 sm:p-8 my-12 rounded-xl shadow-xl border border-blue-100 dark:border-blue-900 transform hover:scale-102 transition-all duration-300">
                 <div class="relative text-center">
                     <span class="absolute -top-10 left-1/2 transform -translate-x-1/2 bg-blue-500 text-white text-xs font-bold px-3 py-1 rounded-full">POPULAIRE</span>
                     <h3 class="text-xl font-bold mb-2 theme-transition-ready text-gray-800 dark:text-white">Pack Business</h3>
@@ -1799,7 +1799,7 @@ const htmlAssets = {
     // Ajout des nouvelles variantes
         basic: {
             name: "Prix Basique",
-            html: `<div class="max-w-sm mx-auto theme-transition-ready bg-gray-100 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 my-4 p-6 rounded-lg shadow hover:shadow-md transition-all duration-300">
+            html: `<div class="max-w-sm mx-auto theme-transition-ready bg-gray-100 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 my-12 p-6 rounded-lg shadow hover:shadow-md transition-all duration-300">
                 <div class="text-center">
                     <h3 class="text-lg font-semibold mb-2 theme-transition-ready text-gray-700 dark:text-white">Offre Basique</h3>
                     <div class="flex items-center justify-center mb-4">
@@ -1824,7 +1824,7 @@ const htmlAssets = {
         },
          enterprise: {
             name: "Prix Entreprise",
-            html: `<div class="max-w-md mx-auto theme-transition-ready bg-gradient-to-r from-purple-500 to-indigo-600 dark:from-purple-700 dark:to-indigo-800 text-white p-8 my-4 rounded-2xl shadow-2xl transform transition-all duration-300">
+            html: `<div class="max-w-md mx-auto theme-transition-ready bg-gradient-to-r from-purple-500 to-indigo-600 dark:from-purple-700 dark:to-indigo-800 text-white p-8 my-12 rounded-2xl shadow-2xl transform transition-all duration-300">
                 <div class="text-center">
                     <h3 class="text-2xl font-bold mb-3">Solution Entreprise</h3>
                     <div class="flex items-center justify-center mb-6">
@@ -1858,7 +1858,7 @@ const htmlAssets = {
         },
         annual: {
             name: "Prix Annuel",
-            html: `<div class="max-w-sm mx-auto theme-transition-ready bg-green-50 dark:bg-green-800 border border-green-200 dark:border-green-700 my-4 p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300">
+            html: `<div class="max-w-sm mx-auto theme-transition-ready bg-green-50 dark:bg-green-800 border border-green-200 dark:border-green-700 my-12 p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300">
             <div class="text-center">
                 <h3 class="text-xl font-bold mb-2 theme-transition-ready text-green-800 dark:text-white">Offre Annuelle</h3>
                 <div class="flex items-center justify-center mb-4">
@@ -1884,7 +1884,7 @@ const htmlAssets = {
         },
         free: {
             name: "Prix Gratuit",
-            html: `<div class="max-w-sm mx-auto theme-transition-ready bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-800 my-4 p-6 rounded-xl shadow hover:shadow-md transition-all duration-300">
+            html: `<div class="max-w-sm mx-auto theme-transition-ready bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-800 my-12 p-6 rounded-xl shadow hover:shadow-md transition-all duration-300">
                 <div class="text-center">
                     <h3 class="text-lg font-semibold mb-2 theme-transition-ready text-gray-700 dark:text-gray-300">Offre Gratuite</h3>
                     <div class="flex items-center justify-center mb-4">
@@ -1909,7 +1909,7 @@ const htmlAssets = {
         },
         student: {
             name: "Prix Étudiant",
-            html: `<div class="max-w-sm mx-auto theme-transition-ready bg-yellow-50 dark:bg-yellow-800 border border-yellow-200 dark:border-yellow-700 my-4 p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300">
+            html: `<div class="max-w-sm mx-auto theme-transition-ready bg-yellow-50 dark:bg-yellow-800 border border-yellow-200 dark:border-yellow-700 my-12 p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300">
                 <div class="text-center">
                    <span class="relative -top-9  transform  bg-yellow-500 text-white text-xs font-bold px-3 py-1 rounded-full uppercase mb-2">Réduction</span>
                     <h3 class="text-xl font-bold mb-2 theme-transition-ready text-yellow-800 dark:text-yellow-200">Offre Étudiant</h3>
@@ -1937,7 +1937,7 @@ const htmlAssets = {
         },
         team: {
             name: "Prix Équipe",
-            html: `<div class="max-w-md mx-auto theme-transition-ready bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 my-4 p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300">
+            html: `<div class="max-w-md mx-auto theme-transition-ready bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 my-12 p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300">
                 <div class="text-center">
                     <h3 class="text-2xl font-bold mb-3 theme-transition-ready text-gray-800 dark:text-white">Pack Équipe</h3>
                     <div class="flex items-center justify-center mb-6">
@@ -1969,7 +1969,7 @@ const htmlAssets = {
         },
         pro: {
             name: "Prix Pro",
-            html: `<div class="max-w-sm mx-auto theme-transition-ready bg-gradient-to-br from-pink-500 to-red-600 dark:from-pink-700 dark:to-red-800 text-white p-6 my-4 rounded-xl shadow-xl border border-pink-100 dark:border-pink-900 transform hover:scale-102 transition-all duration-300">
+            html: `<div class="max-w-sm mx-auto theme-transition-ready bg-gradient-to-br from-pink-500 to-red-600 dark:from-pink-700 dark:to-red-800 text-white p-6 my-12 rounded-xl shadow-xl border border-pink-100 dark:border-pink-900 transform hover:scale-102 transition-all duration-300">
                 <div class="text-center">
                   <span class="relative -top-9  transform  bg-red-500 text-white text-xs font-bold px-3 py-1 rounded-full">AVANCÉ</span>
                     <h3 class="text-xl font-bold mb-2">Offre Pro</h3>
@@ -2129,7 +2129,7 @@ const htmlAssets = {
     //Une carte avec une periode d'essai
     trial: {
         name: "Prix Essai",
-        html: `<div class="max-w-md mx-auto theme-transition-ready bg-gradient-to-r from-teal-400 to-cyan-500 dark:from-teal-600 dark:to-cyan-700 text-white p-8 my-4 rounded-2xl shadow-2xl relative transform hover:scale-103 transition-all duration-500">
+        html: `<div class="max-w-md mx-auto theme-transition-ready bg-gradient-to-r from-teal-400 to-cyan-500 dark:from-teal-600 dark:to-cyan-700 text-white p-8 my-12 rounded-2xl shadow-2xl relative transform hover:scale-103 transition-all duration-500">
                 <div class="absolute top-0 right-0 p-2 bg-red-500 text-white text-xs font-bold rounded-bl-full">ESSAI GRATUIT</div>
                 <div class="text-center">
                     <h3 class="text-2xl font-bold mb-3">Essai Gratuit 14 Jours</h3>
@@ -2158,7 +2158,7 @@ const htmlAssets = {
      // Version "Lite" de la carte "Premium"
     premiumLite: {
       name: "Prix Premium Lite",
-      html: `<div class="max-w-sm mx-auto theme-transition-ready bg-gradient-to-br from-blue-50 to-gray-100 dark:from-gray-700 dark:to-gray-800 p-6 sm:p-8 my-4 rounded-xl shadow-md border border-blue-50 dark:border-blue-800 transform hover:scale-102 transition-all duration-300">
+      html: `<div class="max-w-sm mx-auto theme-transition-ready bg-gradient-to-br from-blue-50 to-gray-100 dark:from-gray-700 dark:to-gray-800 p-6 sm:p-8 my-12 rounded-xl shadow-md border border-blue-50 dark:border-blue-800 transform hover:scale-102 transition-all duration-300">
                 <div class="relative text-center">
                    <span class="absolute -top-10 left-1/2 transform -translate-x-1/2 bg-blue-400 text-white text-xs font-bold px-2 py-1 rounded-full">POPULAIRE</span>
                     <h3 class="text-xl font-semibold mb-2 theme-transition-ready text-gray-700 dark:text-gray-200">Pack Business Lite</h3>
@@ -2191,7 +2191,7 @@ const htmlAssets = {
     compare: {
       name: "Comparaison",
       html: `
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto my-10">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto my-12">
 
             <!-- Carte Gauche - Offre Standard -->
           <div class="theme-transition-ready bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300">
@@ -2263,6 +2263,439 @@ const htmlAssets = {
     }
 },
 
+
+    // composants ecommerce
+        product: {
+            productList: {
+                name: "Liste de Produits (Grille Responsive)",
+                html: `<section class="bg-gray-50 dark:bg-gray-900 py-12">
+                    <div class="container mx-auto px-4">
+                        <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-6">Nouveaux Produits</h2>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                            <!-- Carte Produit 1 -->
+                            <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden">
+                                <a href="#">
+                                    <img class="h-48 w-full object-cover" src="https://placehold.co/300x200" alt="Produit 1">
+                                </a>
+                                <div class="p-4">
+                                    <a href="#">
+                                        <h3 class="text-lg font-semibold text-gray-800 dark:text-white hover:text-blue-500">Nom du Produit 1</h3>
+                                    </a>
+                                    <p class="text-gray-600 dark:text-gray-400 mt-2">Description courte du produit.</p>
+                                    <div class="flex justify-between items-center mt-4">
+                                        <span class="font-bold text-gray-900 dark:text-white">$49.99</span>
+                                        <button class="px-3 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-md text-sm">Ajouter</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Carte Produit 2 -->
+                            <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden">
+                                <a href="#">
+                                    <img class="h-48 w-full object-cover" src="https://placehold.co/300x200" alt="Produit 2">
+                                </a>
+                                <div class="p-4">
+                                    <a href="#">
+                                        <h3 class="text-lg font-semibold text-gray-800 dark:text-white hover:text-blue-500">Nom du Produit 2</h3>
+                                    </a>
+                                    <p class="text-gray-600 dark:text-gray-400 mt-2">Description courte du produit.</p>
+                                    <div class="flex justify-between items-center mt-4">
+                                        <span class="font-bold text-gray-900 dark:text-white">$59.99</span>
+                                        <button class="px-3 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-md text-sm">Ajouter</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Carte Produit 3 -->
+                            <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden">
+                                <a href="#">
+                                    <img class="h-48 w-full object-cover" src="https://placehold.co/300x200" alt="Produit 3">
+                                </a>
+                                <div class="p-4">
+                                    <a href="#">
+                                        <h3 class="text-lg font-semibold text-gray-800 dark:text-white hover:text-blue-500">Nom du Produit 3</h3>
+                                    </a>
+                                    <p class="text-gray-600 dark:text-gray-400 mt-2">Description courte du produit.</p>
+                                    <div class="flex justify-between items-center mt-4">
+                                        <span class="font-bold text-gray-900 dark:text-white">$69.99</span>
+                                        <button class="px-3 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-md text-sm">Ajouter</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Carte Produit 4 -->
+                            <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden">
+                                <a href="#">
+                                    <img class="h-48 w-full object-cover" src="https://placehold.co/300x200" alt="Produit 4">
+                                </a>
+                                <div class="p-4">
+                                    <a href="#">
+                                        <h3 class="text-lg font-semibold text-gray-800 dark:text-white hover:text-blue-500">Nom du Produit 4</h3>
+                                    </a>
+                                    <p class="text-gray-600 dark:text-gray-400 mt-2">Description courte du produit.</p>
+                                    <div class="flex justify-between items-center mt-4">
+                                        <span class="font-bold text-gray-900 dark:text-white">$79.99</span>
+                                        <button class="px-3 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-md text-sm">Ajouter</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>`
+            },
+            productCardWithVariants: {
+                name: "Carte Produit avec Variantes",
+                html: `<div class="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden">
+                    <a href="#">
+                        <img class="h-64 w-full object-cover" src="https://placehold.co/300x200" alt="Produit avec Variantes">
+                    </a>
+                    <div class="p-4">
+                        <a href="#">
+                            <h3 class="text-lg font-semibold text-gray-800 dark:text-white hover:text-blue-500">Produit avec Variantes</h3>
+                        </a>
+                        <p class="text-gray-600 dark:text-gray-400 mt-2">Description avec options de taille et couleur.</p>
+                        <div class="mt-3">
+                            <label for="size" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Taille</label>
+                            <select id="size" name="size" class="mt-1 block w-full py-2 px-3 border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm text-gray-800 dark:text-white">
+                                <option>S</option>
+                                <option>M</option>
+                                <option>L</option>
+                                <option>XL</option>
+                            </select>
+                        </div>
+                        <div class="mt-3">
+                            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Couleur</label>
+                            <div class="flex items-center space-x-2 mt-1">
+                                <button class="w-6 h-6 rounded-full bg-red-500 hover:ring-2 ring-red-500 focus:outline-none"></button>
+                                <button class="w-6 h-6 rounded-full bg-blue-500 hover:ring-2 ring-blue-500 focus:outline-none"></button>
+                                <button class="w-6 h-6 rounded-full bg-green-500 hover:ring-2 ring-green-500 focus:outline-none"></button>
+                            </div>
+                        </div>
+                        <div class="flex justify-between items-center mt-4">
+                            <span class="font-bold text-gray-900 dark:text-white">$79.99</span>
+                            <button class="px-3 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-md text-sm">Ajouter au panier</button>
+                        </div>
+                    </div>
+                </div>`
+            },
+            productCarousel: {
+                name: "Carrousel de Produits (Responsive)",
+                html: `<section class="bg-white dark:bg-gray-900 py-12">
+                    <div class="container mx-auto px-4">
+                        <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-6">Produits Populaires</h2>
+                        <div class="overflow-x-auto whitespace-nowrap">
+                            <!-- Carte Produit Carrousel 1 -->
+                            <div class="inline-block w-64 sm:w-80 mx-2 rounded-lg shadow-md overflow-hidden bg-white dark:bg-gray-800">
+                                <a href="#">
+                                    <img class="h-48 w-full object-cover" src="https://placehold.co/300x200" alt="Produit Carrousel 1">
+                                </a>
+                                <div class="p-4">
+                                    <a href="#">
+                                        <h3 class="text-lg font-semibold text-gray-800 dark:text-white hover:text-blue-500">Produit Populaire 1</h3>
+                                    </a>
+                                    <p class="text-gray-600 dark:text-gray-400 mt-2">Description courte.</p>
+                                    <div class="flex justify-between items-center mt-4">
+                                        <span class="font-bold text-gray-900 dark:text-white">$39.99</span>
+                                        <button class="px-3 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-md text-sm">Voir</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Carte Produit Carrousel 2 -->
+                            <div class="inline-block w-64 sm:w-80 mx-2 rounded-lg shadow-md overflow-hidden bg-white dark:bg-gray-800">
+                                <a href="#">
+                                    <img class="h-48 w-full object-cover" src="https://placehold.co/300x200" alt="Produit Carrousel 2">
+                                </a>
+                                <div class="p-4">
+                                    <a href="#">
+                                        <h3 class="text-lg font-semibold text-gray-800 dark:text-white hover:text-blue-500">Produit Populaire 2</h3>
+                                    </a>
+                                    <p class="text-gray-600 dark:text-gray-400 mt-2">Description courte.</p>
+                                    <div class="flex justify-between items-center mt-4">
+                                        <span class="font-bold text-gray-900 dark:text-white">$49.99</span>
+                                        <button class="px-3 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-md text-sm">Voir</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Carte Produit Carrousel 3 -->
+                            <div class="inline-block w-64 sm:w-80 mx-2 rounded-lg shadow-md overflow-hidden bg-white dark:bg-gray-800">
+                                <a href="#">
+                                    <img class="h-48 w-full object-cover" src="https://placehold.co/300x200" alt="Produit Carrousel 3">
+                                </a>
+                                <div class="p-4">
+                                    <a href="#">
+                                        <h3 class="text-lg font-semibold text-gray-800 dark:text-white hover:text-blue-500">Produit Populaire 3</h3>
+                                    </a>
+                                    <p class="text-gray-600 dark:text-gray-400 mt-2">Description courte.</p>
+                                    <div class="flex justify-between items-center mt-4">
+                                        <span class="font-bold text-gray-900 dark:text-white">$59.99</span>
+                                        <button class="px-3 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-md text-sm">Voir</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Ajoutez d'autres cartes de produit ici -->
+                        </div>
+                    </div>
+                </section>`
+            },
+            productDetails: {
+                name: "Page Détails du Produit (Exemple structure)",
+                html: `<section class="bg-white dark:bg-gray-900">
+                    <div class="container mx-auto px-4 py-8">
+                        <div class="lg:flex lg:space-x-8">
+                            <!-- Galerie d'images -->
+                            <div class="lg:w-1/2">
+                                <img class="w-full rounded-lg mb-4" src="https://placehold.co/600x400" alt="Image principale du produit">
+                                <div class="flex space-x-2 overflow-x-auto">
+                                    <img class="w-20 h-20 rounded-md cursor-pointer border border-blue-500" src="https://placehold.co/100x100" alt="Miniature 1">
+                                    <img class="w-20 h-20 rounded-md cursor-pointer hover:border-blue-500" src="https://placehold.co/100x100" alt="Miniature 2">
+                                    <img class="w-20 h-20 rounded-md cursor-pointer hover:border-blue-500" src="https://placehold.co/100x100" alt="Miniature 3">
+                                    <!-- Plus de miniatures -->
+                                </div>
+                            </div>
+                            <!-- Détails du produit -->
+                            <div class="lg:w-1/2 mt-4 lg:mt-0">
+                                <h1 class="text-3xl font-bold text-gray-900 dark:text-white mb-2">Nom du Produit Détaillé</h1>
+                                <div class="flex items-center mb-4">
+                                    <span class="text-yellow-500 mr-1"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i></span>
+                                    <span class="text-gray-600 dark:text-gray-400">(4.5 Étoiles)</span>
+                                </div>
+                                <p class="text-gray-700 dark:text-gray-300 mb-6">Description détaillée et longue du produit pour donner toutes les informations nécessaires à l'acheteur potentiel. Peut inclure les matériaux, les dimensions, les instructions d'entretien, etc.</p>
+                                <div class="mb-4">
+                                    <span class="font-bold text-xl text-gray-900 dark:text-white">$99.99</span> <span class="text-gray-500 line-through">$129.99</span>
+                                </div>
+                                <div class="mb-4">
+                                    <label for="size-detail" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Taille</label>
+                                    <select id="size-detail" name="size-detail" class="mt-1 block w-full py-2 px-3 border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm text-gray-800 dark:text-white">
+                                        <option>S</option>
+                                        <option>M</option>
+                                        <option>L</option>
+                                        <option>XL</option>
+                                    </select>
+                                </div>
+                                <div class="mb-6">
+                                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Couleur</label>
+                                    <div class="flex items-center space-x-2 mt-1">
+                                        <button class="w-8 h-8 rounded-full bg-red-500 hover:ring-2 ring-red-500 focus:outline-none"></button>
+                                        <button class="w-8 h-8 rounded-full bg-blue-500 hover:ring-2 ring-blue-500 focus:outline-none"></button>
+                                        <button class="w-8 h-8 rounded-full bg-green-500 hover:ring-2 ring-green-500 focus:outline-none"></button>
+                                    </div>
+                                </div>
+                                <button class="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-md font-semibold">Ajouter au panier</button>
+                            </div>
+                        </div>
+                    </div>
+                </section>`
+            },
+            productListFashion: {
+                name: "Liste de Produits Mode (Grille Responsive)",
+                html: `<section class="bg-white dark:bg-gray-900 py-12">
+                    <div class="container mx-auto px-4">
+                        <h2 class="text-2xl font-semibold text-gray-800 dark:text-white mb-8 tracking-tight">Nouvelle Collection</h2>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+                            <!-- Carte Produit Mode 1 -->
+                            <div class="group">
+                                <div class="aspect-w-3 aspect-h-4 rounded-lg overflow-hidden bg-gray-100 dark:bg-gray-800">
+                                    <img src="https://placehold.co/400x500" alt="Vêtement 1" class="object-cover group-hover:opacity-75 transition-opacity duration-300">
+                                </div>
+                                <div class="mt-4 flex justify-between text-base font-medium text-gray-900 dark:text-white">
+                                    <h3>
+                                        <a href="#">
+                                            <span aria-hidden="true" class="absolute inset-0"></span>
+                                            Nom Vêtement 1
+                                        </a>
+                                    </h3>
+                                    <p>$75</p>
+                                </div>
+                                <p class="mt-1 text-sm text-gray-500 dark:text-gray-300">Description courte, matières, etc.</p>
+                            </div>
+                            <!-- Carte Produit Mode 2 -->
+                            <div class="group">
+                                <div class="aspect-w-3 aspect-h-4 rounded-lg overflow-hidden bg-gray-100 dark:bg-gray-800">
+                                    <img src="https://placehold.co/400x500" alt="Vêtement 2" class="object-cover group-hover:opacity-75 transition-opacity duration-300">
+                                </div>
+                                <div class="mt-4 flex justify-between text-base font-medium text-gray-900 dark:text-white">
+                                    <h3>
+                                        <a href="#">
+                                            <span aria-hidden="true" class="absolute inset-0"></span>
+                                            Nom Vêtement 2
+                                        </a>
+                                    </h3>
+                                    <p>$85</p>
+                                </div>
+                                <p class="mt-1 text-sm text-gray-500 dark:text-gray-300">Description courte, matières, etc.</p>
+                            </div>
+                            <!-- Carte Produit Mode 3 -->
+                            <div class="group">
+                                <div class="aspect-w-3 aspect-h-4 rounded-lg overflow-hidden bg-gray-100 dark:bg-gray-800">
+                                    <img src="https://placehold.co/400x500" alt="Vêtement 3" class="object-cover group-hover:opacity-75 transition-opacity duration-300">
+                                </div>
+                                <div class="mt-4 flex justify-between text-base font-medium text-gray-900 dark:text-white">
+                                    <h3>
+                                        <a href="#">
+                                            <span aria-hidden="true" class="absolute inset-0"></span>
+                                            Nom Vêtement 3
+                                        </a>
+                                    </h3>
+                                    <p>$95</p>
+                                </div>
+                                <p class="mt-1 text-sm text-gray-500 dark:text-gray-300">Description courte, matières, etc.</p>
+                            </div>
+                            <!-- Carte Produit Mode 4 -->
+                            <div class="group">
+                                <div class="aspect-w-3 aspect-h-4 rounded-lg overflow-hidden bg-gray-100 dark:bg-gray-800">
+                                    <img src="https://placehold.co/400x500" alt="Vêtement 4" class="object-cover group-hover:opacity-75 transition-opacity duration-300">
+                                </div>
+                                <div class="mt-4 flex justify-between text-base font-medium text-gray-900 dark:text-white">
+                                    <h3>
+                                        <a href="#">
+                                            <span aria-hidden="true" class="absolute inset-0"></span>
+                                            Nom Vêtement 4
+                                        </a>
+                                    </h3>
+                                    <p>$110</p>
+                                </div>
+                                <p class="mt-1 text-sm text-gray-500 dark:text-gray-300">Description courte, matières, etc.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>`
+            },
+            productCardTechWithVariants: {
+                name: "Carte Produit Tech avec Variantes",
+                html: `<div class="bg-gray-100 dark:bg-gray-800 rounded-lg shadow-md overflow-hidden flex flex-col">
+                    <a href="#" class="block">
+                        <img class="h-56 w-full object-contain p-4" src="https://placehold.co/300x200" alt="Produit Tech avec Variantes">
+                    </a>
+                    <div class="p-4 flex-grow">
+                        <a href="#">
+                            <h3 class="text-lg font-semibold text-gray-800 dark:text-white hover:text-blue-500 text-center">Gadget Tech Nom</h3>
+                        </a>
+                        <p class="text-gray-600 dark:text-gray-400 mt-2 text-sm text-center">Dernière génération, performances améliorées.</p>
+                    </div>
+                    <div class="border-t border-gray-200 dark:border-gray-700 px-4 py-3">
+                        <div class="mt-2">
+                            <label for="storage" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Stockage</label>
+                            <select id="storage" name="storage" class="mt-1 block w-full py-2 px-3 border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm text-gray-800 dark:text-white">
+                                <option>128GB</option>
+                                <option>256GB</option>
+                                <option>512GB</option>
+                            </select>
+                        </div>
+                        <div class="flex justify-between items-center mt-4">
+                            <span class="font-bold text-gray-900 dark:text-white">$249.99</span>
+                            <button class="px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-md text-sm font-semibold">Ajouter au panier</button>
+                        </div>
+                    </div>
+                </div>`
+            },
+            productCarouselHomeGoods: {
+                name: "Carrousel de Produits Maison (Responsive)",
+                html: `<section class="bg-gray-50 dark:bg-gray-900 py-12">
+                    <div class="container mx-auto px-4">
+                        <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-6">Inspiration Déco</h2>
+                        <div class="overflow-x-auto whitespace-nowrap pb-4">
+                            <!-- Carte Produit Maison 1 -->
+                            <div class="inline-block w-72 mx-3 rounded-lg shadow-md overflow-hidden bg-white dark:bg-gray-800">
+                                <a href="#">
+                                    <img class="h-56 w-full object-cover" src="https://placehold.co/300x200" alt="Déco Maison 1">
+                                </a>
+                                <div class="p-4">
+                                    <a href="#">
+                                        <h3 class="text-lg font-semibold text-gray-800 dark:text-white hover:text-blue-500">Objet Déco 1</h3>
+                                    </a>
+                                    <p class="text-gray-600 dark:text-gray-400 mt-2 text-sm">Ajoutez une touche chaleureuse à votre intérieur.</p>
+                                    <div class="flex justify-between items-center mt-4">
+                                        <span class="font-bold text-gray-900 dark:text-white">$29.99</span>
+                                        <button class="px-3 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-md text-sm">Voir</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Carte Produit Maison 2 -->
+                            <div class="inline-block w-72 mx-3 rounded-lg shadow-md overflow-hidden bg-white dark:bg-gray-800">
+                                <a href="#">
+                                    <img class="h-56 w-full object-cover" src="https://placehold.co/300x200" alt="Déco Maison 2">
+                                </a>
+                                <div class="p-4">
+                                    <a href="#">
+                                        <h3 class="text-lg font-semibold text-gray-800 dark:text-white hover:text-blue-500">Objet Déco 2</h3>
+                                    </a>
+                                    <p class="text-gray-600 dark:text-gray-400 mt-2 text-sm">Créez une ambiance cosy et relaxante.</p>
+                                    <div class="flex justify-between items-center mt-4">
+                                        <span class="font-bold text-gray-900 dark:text-white">$39.99</span>
+                                        <button class="px-3 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-md text-sm">Voir</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Carte Produit Maison 3 -->
+                            <div class="inline-block w-72 mx-3 rounded-lg shadow-md overflow-hidden bg-white dark:bg-gray-800">
+                                <a href="#">
+                                    <img class="h-56 w-full object-cover" src="https://placehold.co/300x200" alt="Déco Maison 3">
+                                </a>
+                                <div class="p-4">
+                                    <a href="#">
+                                        <h3 class="text-lg font-semibold text-gray-800 dark:text-white hover:text-blue-500">Objet Déco 3</h3>
+                                    </a>
+                                    <p class="text-gray-600 dark:text-gray-400 mt-2 text-sm">Parfait pour illuminer votre salon.</p>
+                                    <div class="flex justify-between items-center mt-4">
+                                        <span class="font-bold text-gray-900 dark:text-white">$49.99</span>
+                                        <button class="px-3 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-md text-sm">Voir</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Ajoutez d'autres cartes de produit ici -->
+                        </div>
+                    </div>
+                </section>`
+            },
+            productDetailsFood: {
+                name: "Page Détails Produit Alimentaire (Structure Appétissante)",
+                html: `<section class="bg-white dark:bg-gray-900">
+                    <div class="container mx-auto px-4 py-8">
+                        <div class="lg:flex lg:space-x-8">
+                            <!-- Galerie d'images Alimentaire -->
+                            <div class="lg:w-1/2">
+                                <img class="w-full rounded-xl mb-6 shadow-lg" src="https://placehold.co/800x600" alt="Image principale du produit alimentaire">
+                                <div class="grid grid-cols-3 gap-2">
+                                    <img class="w-full h-24 object-cover rounded-md cursor-pointer hover:ring-2 ring-blue-500" src="https://placehold.co/200x150" alt="Miniature 1">
+                                    <img class="w-full h-24 object-cover rounded-md cursor-pointer hover:ring-2 ring-blue-500" src="https://placehold.co/200x150" alt="Miniature 2">
+                                    <img class="w-full h-24 object-cover rounded-md cursor-pointer hover:ring-2 ring-blue-500" src="https://placehold.co/200x150" alt="Miniature 3">
+                                </div>
+                            </div>
+                            <!-- Détails du produit Alimentaire -->
+                            <div class="lg:w-1/2 mt-6 lg:mt-0">
+                                <h1 class="text-3xl font-bold text-gray-900 dark:text-white mb-4">Nom du Délice Gourmand</h1>
+                                <div class="mb-6">
+                                    <span class="inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium bg-green-100 text-green-800 dark:bg-green-800 dark:text-green-100">
+                                        Frais & Naturel
+                                    </span>
+                                </div>
+                                <p class="text-gray-700 dark:text-gray-300 mb-8 leading-relaxed">Savourez un plaisir unique avec notre [Nom du Délice]. Préparé avec des ingrédients frais et sélectionnés, c'est l'idéal pour une pause gourmande ou un dessert raffiné. Découvrez nos différentes saveurs et laissez-vous tenter !</p>
+                                <div class="flex items-center justify-between mb-6">
+                                    <div>
+                                        <span class="font-bold text-xl text-gray-900 dark:text-white">$12.99</span>
+                                        <span class="text-gray-500 text-sm">/ portion</span>
+                                    </div>
+                                    <div class="flex items-center space-x-3">
+                                        <button class="px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-md font-semibold">
+                                            <i class="fas fa-shopping-cart mr-2"></i> Ajouter
+                                        </button>
+                                        <button class="px-4 py-2 border border-blue-500 text-blue-500 hover:bg-blue-50 dark:hover:bg-gray-800 rounded-md font-semibold">
+                                            <i class="fas fa-heart mr-2"></i> Favoris
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="border-t border-gray-200 dark:border-gray-700 pt-6">
+                                    <h4 class="text-lg font-semibold text-gray-800 dark:text-white mb-3">Ingrédients & Allergènes</h4>
+                                    <ul class="list-disc list-inside text-gray-600 dark:text-gray-400">
+                                        <li>Ingrédient 1</li>
+                                        <li>Ingrédient 2</li>
+                                        <li>Peut contenir des traces de : Allergène X, Allergène Y</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>`
+            }
+        },
+    
 
     // Composants de partage social
     social: {

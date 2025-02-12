@@ -28,6 +28,10 @@ const categories = {
         name: 'Prix',
         icon: 'fa-money-bill'
     },
+    product: {
+        name: 'Produits',
+        icon: 'fa-shopping-cart'
+    },
     social: {
         name: 'Composants Sociaux',
         icon: 'fa-share-alt'

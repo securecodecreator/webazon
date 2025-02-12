@@ -23,7 +23,7 @@
             <a href="app.html" class="text-4xl font-bold theme-transition-ready bg-gradient-to-r from-light-primary to-light-secondary dark:from-dark-primary dark:to-dark-secondary bg-clip-text text-transparent hover:scale-105 transition-transform duration-300">Webazon</a>
             <p class="flex items-center gap-2 theme-transition-ready text-gray-700 dark:text-gray-300">
                 <span class="text-lg">✨</span>
-                <a href="version.html" class="font-medium hover:text-light-primary dark:hover:text-dark-primary transition-colors">V1.0.4</a>
+                <a href="version.html" class="font-medium hover:text-light-primary dark:hover:text-dark-primary transition-colors">V1.0.5</a>
             </p>
         </div>
         
@@ -32,6 +32,9 @@
             <div class="flex items-center gap-8">
                 <a href="app.html" class="relative theme-transition-ready text-gray-700 dark:text-gray-200 hover:text-light-primary dark:hover:text-dark-primary after:absolute after:block after:content-[''] after:h-0.5 after:w-full after:bg-light-primary dark:after:bg-dark-primary after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-200 after:origin-left after:-bottom-2">
                     Editeur
+                </a>
+                <a href="model.html" class="relative theme-transition-ready text-gray-700 dark:text-gray-200 hover:text-light-primary dark:hover:text-dark-primary after:absolute after:block after:content-[''] after:h-0.5 after:w-full after:bg-light-primary dark:after:bg-dark-primary after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-200 after:origin-left after:-bottom-2">
+                    Template
                 </a>
                 <a href="/" class="relative theme-transition-ready text-gray-700 dark:text-gray-200 hover:text-light-primary dark:hover:text-dark-primary after:absolute after:block after:content-[''] after:h-0.5 after:w-full after:bg-light-primary dark:after:bg-dark-primary after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-200 after:origin-left after:-bottom-2">
                     Présentation
@@ -44,6 +47,49 @@
                 <i class="fas fa-moon absolute inset-0 transition-transform duration-300 rotate-90 scale-0 dark:rotate-0 dark:scale-100"></i>
             </button>
         </nav>
+
+        <!-- Bouton hamburger -->
+        <button id="menuButton" class="md:hidden theme-transition-ready text-gray-600 dark:text-gray-300 hover:text-light-primary dark:hover:text-dark-primary transition-colors duration-200 focus:outline-none z-50">
+            <i class="fas fa-bars text-2xl"></i>
+        </button>
+
+        <!-- Menu mobile -->
+        <div id="mainNav" class="fixed inset-y-0 right-0 w-72 theme-transition-ready bg-light-nav/95 dark:bg-dark-nav/95 backdrop-blur-md transform translate-x-full transition-transform duration-300 z-[999] md:hidden flex flex-col">
+            <!-- En-tête avec bouton fermeture -->
+            <div class="flex justify-between items-center p-6">
+                <h2 class="text-xl font-bold text-gray-800 dark:text-gray-200">Menu</h2>
+                <button id="closeMenu" class="theme-transition-ready text-gray-600 dark:text-gray-300 hover:text-light-primary dark:hover:text-dark-primary transition-colors duration-200 focus:outline-none select-none">
+                    <i class="fas fa-xmark text-2xl"></i>
+                </button>
+            </div>
+
+            <!-- Navigation -->
+            <nav class="flex flex-col gap-2 px-6">
+                <a href="app.html" class="flex items-center gap-3 py-3 theme-transition-ready text-gray-700 dark:text-gray-200 hover:text-light-primary dark:hover:text-dark-primary transition-colors duration-200 select-none focus:outline-none focus:ring-0">
+                    <i class="fas fa-edit text-xl w-6"></i>
+                    <span>Editeur</span>
+                </a>
+                <a href="/" class="flex items-center gap-3 py-3 theme-transition-ready text-gray-700 dark:text-gray-200 hover:text-light-primary dark:hover:text-dark-primary transition-colors duration-200 select-none">
+                    <i class="fas fa-home text-xl w-6"></i>
+                    <span>Présentation</span>
+                </a>
+                <a href="model.html" class="flex items-center gap-3 py-3 theme-transition-ready text-gray-700 dark:text-gray-200 hover:text-light-primary dark:hover:text-dark-primary transition-colors duration-200 select-none">
+                    <i class="fas fa-puzzle-piece text-xl w-6"></i>
+                    <span>Templates</span>
+                </a>
+            </nav>
+
+            <!-- Bouton thème -->
+            <div class="mt-6 px-6">
+                <button onclick="toggleTheme()" class="w-full flex items-center gap-3 py-3 text-gray-700 dark:text-gray-200 hover:text-light-primary dark:hover:text-dark-primary transition-colors duration-200 select-none focus:outline-none focus:ring-0">
+                    <div class="w-6 text-xl relative flex justify-center">
+                        <i class="fas fa-sun transition-transform duration-300 rotate-0 dark:-rotate-90 dark:scale-0"></i>
+                        <i class="fas fa-moon transition-transform duration-300 rotate-90 scale-0 dark:rotate-0 dark:scale-100"></i>
+                    </div>
+                    <span>Thème</span>
+                </button>
+            </div>
+        </div>
     </header>
 
     <main class="container mx-auto px-4 py-8 max-w-4xl">
@@ -141,5 +187,28 @@
     </main>
 
     <script src="js/theme.js"></script>
+    <script>
+        // Gestion du menu mobile
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuButton = document.getElementById('menuButton');
+            const closeMenu = document.getElementById('closeMenu');
+            const mainNav = document.getElementById('mainNav');
+            
+            function toggleMenu() {
+                const isOpen = mainNav.classList.contains('translate-x-0');
+                mainNav.classList.toggle('translate-x-0', !isOpen);
+                mainNav.classList.toggle('translate-x-full', isOpen);
+            }
+            
+            menuButton.addEventListener('click', toggleMenu);
+            closeMenu.addEventListener('click', toggleMenu);
+            
+            // Fermer le menu lors du clic sur un lien
+            const menuLinks = mainNav.querySelectorAll('a');
+            menuLinks.forEach(link => {
+                link.addEventListener('click', toggleMenu);
+            });
+        });
+    </script>
 </body>
 </html> 
