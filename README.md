@@ -18,6 +18,15 @@ Webazon est une application web moderne et intuitive conçue pour simplifier la 
 - **Prévisualisation en Direct**: Rendu en temps réel des modifications
 - **Composants Drag & Drop**: Bibliothèque riche de composants réutilisables
 
+### 🎨 Bibliothèque de Templates
+- **Collection Diversifiée**: Large choix de templates prêts à l'emploi
+- **Filtres Intelligents**: Recherche par catégories (Landing Pages, Portfolios, E-commerce)
+- **Prévisualisation Interactive**: Aperçu détaillé avant utilisation
+- **Personnalisation Facile**: Modification et adaptation rapides des templates
+- **Export Flexible**: Téléchargement du code source ou édition directe dans le builder
+
+![Aperçu des Templates](application/public/images/templates.png)
+
 ### 🛠️ Fonctionnalités Techniques
 - **Architecture Modulaire**: Structure de code organisée et maintenable
 - **Performance Optimisée**: Chargement rapide et exécution fluide
@@ -35,6 +44,8 @@ Webazon/
 └── application/                               # Cœur de l'application
     └── public/                               # Ressources publiques
         ├── app.html                          # Application principale
+        ├── model.html                        # Page des modèles
+        ├── template.html                     # Page des templates
         ├── version.html                      # Page de version
         ├── css/                              # Styles CSS
         │   └── style.css                     # Styles globaux
@@ -42,6 +53,7 @@ Webazon/
         │   ├── clair.png                     # Aperçu thème clair
         │   ├── preview.png                   # Image de présentation
         │   ├── release.png                   # Image de version
+        │   ├── templates.png                 # Image des templates
         │   └── sombre.png                    # Aperçu thème sombre
         └── js/                               # Scripts JavaScript
             ├── components/                    # Composants de l'application
@@ -55,6 +67,7 @@ Webazon/
             │   ├── path.js                   # Gestion chemins
             │   └── selective-copy.js         # Gestion de la copie sélective
             ├── assets.js                     # Ressources JS
+            ├── models.js                     # Gestion des modèles
             ├── config.js                     # Configuration
             ├── main.js                       # Point d'entrée JS
             └── theme.js                      # Gestion thèmes
