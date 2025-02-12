@@ -2695,8 +2695,379 @@ const htmlAssets = {
                 </section>`
             }
         },
-    
 
+        // Gallerie d'images
+        gallery: {
+            simple: {
+                name: "Gallerie d'images simple",
+                html: `<div class="container mx-auto px-4 py-8">
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <div class="overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1">
+                            <img src="https://placehold.co/600x400" alt="Image 1" class="w-full h-64 object-cover hover:scale-110 transition-transform duration-500">
+                        </div>
+                        <div class="overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1">
+                            <img src="https://placehold.co/600x400" alt="Image 2" class="w-full h-64 object-cover hover:scale-110 transition-transform duration-500">
+                        </div>
+                        <div class="overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1">
+                            <img src="https://placehold.co/600x400" alt="Image 3" class="w-full h-64 object-cover hover:scale-110 transition-transform duration-500">
+                        </div>
+                    </div>
+                </div>`
+            },
+            withThumbnails: {
+                name: "Gallerie d'images avec miniatures",
+                html: `<div class="container mx-auto px-4 py-8">
+                    <div class="max-w-4xl mx-auto">
+                        <div class="mb-6 rounded-xl overflow-hidden shadow-xl">
+                            <img src="https://placehold.co/1200x800" alt="Image principale" class="w-full h-[500px] object-cover">
+                        </div>
+                        <div class="grid grid-cols-4 gap-4">
+                            <div class="cursor-pointer rounded-lg overflow-hidden ring-2 ring-blue-500">
+                                <img src="https://placehold.co/300x200" alt="Miniature 1" class="w-full h-24 object-cover hover:opacity-75 transition-opacity">
+                            </div>
+                            <div class="cursor-pointer rounded-lg overflow-hidden hover:ring-2 ring-blue-500 transition-all">
+                                <img src="https://placehold.co/300x200" alt="Miniature 2" class="w-full h-24 object-cover hover:opacity-75 transition-opacity">
+                            </div>
+                            <div class="cursor-pointer rounded-lg overflow-hidden hover:ring-2 ring-blue-500 transition-all">
+                                <img src="https://placehold.co/300x200" alt="Miniature 3" class="w-full h-24 object-cover hover:opacity-75 transition-opacity">
+                            </div>
+                            <div class="cursor-pointer rounded-lg overflow-hidden hover:ring-2 ring-blue-500 transition-all">
+                                <img src="https://placehold.co/300x200" alt="Miniature 4" class="w-full h-24 object-cover hover:opacity-75 transition-opacity">
+                            </div>
+                        </div>
+                    </div>
+                </div>`
+            },
+            withZoom: {
+                name: "Gallerie d'images style album",
+                html: `<div class="container mx-auto px-4 py-12">
+                    <div class="grid grid-cols-3 gap-4 max-w-6xl mx-auto">
+                        <div class="col-span-2 row-span-2">
+                            <div class="group relative h-full overflow-hidden rounded-2xl shadow-xl">
+                                <img src="https://placehold.co/800x800" alt="Image principale" class="w-full h-full object-cover transform scale-100 group-hover:scale-105 transition-transform duration-700">
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
+                                    <div class="absolute bottom-4 left-4 text-white">
+                                        <h3 class="text-xl font-semibold">Photo principale</h3>
+                                        <p class="text-sm opacity-75">Description de l'image</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="transform translate-y-8">
+                            <div class="group relative overflow-hidden rounded-2xl shadow-xl">
+                                <img src="https://placehold.co/400x500" alt="Image 2" class="w-full h-64 object-cover transform scale-100 group-hover:scale-105 transition-transform duration-700">
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                            </div>
+                        </div>
+                        <div class="transform -translate-y-8">
+                            <div class="group relative overflow-hidden rounded-2xl shadow-xl">
+                                <img src="https://placehold.co/400x500" alt="Image 3" class="w-full h-64 object-cover transform scale-100 group-hover:scale-105 transition-transform duration-700">
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>`
+            },
+            withLightbox: {
+                name: "Gallerie style mosaïque",
+                html: `<div class="container mx-auto px-4 py-12">
+                    <div class="columns-2 md:columns-3 lg:columns-4 gap-4 max-w-7xl mx-auto space-y-4">
+                        <div class="break-inside-avoid">
+                            <div class="group relative cursor-pointer rounded-xl overflow-hidden shadow-lg">
+                                <img src="https://placehold.co/400x600" alt="Image 1" class="w-full object-cover transition-transform duration-500 group-hover:scale-105">
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
+                                    <div class="absolute bottom-4 left-4 text-white">
+                                        <p class="text-sm font-medium">Catégorie</p>
+                                        <h3 class="text-lg font-bold">Titre de l'image</h3>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="break-inside-avoid">
+                            <div class="group relative cursor-pointer rounded-xl overflow-hidden shadow-lg">
+                                <img src="https://placehold.co/400x400" alt="Image 2" class="w-full object-cover transition-transform duration-500 group-hover:scale-105">
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
+                                    <div class="absolute bottom-4 left-4 text-white">
+                                        <p class="text-sm font-medium">Catégorie</p>
+                                        <h3 class="text-lg font-bold">Titre de l'image</h3>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="break-inside-avoid">
+                            <div class="group relative cursor-pointer rounded-xl overflow-hidden shadow-lg">
+                                <img src="https://placehold.co/400x500" alt="Image 3" class="w-full object-cover transition-transform duration-500 group-hover:scale-105">
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
+                                    <div class="absolute bottom-4 left-4 text-white">
+                                        <p class="text-sm font-medium">Catégorie</p>
+                                        <h3 class="text-lg font-bold">Titre de l'image</h3>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>`
+            },
+            videoSimple: {
+                name: "Gallerie vidéo simple",
+                html: `<div class="container mx-auto px-4 py-8">
+                    <div class="max-w-4xl mx-auto">
+                        <div class="aspect-video w-full rounded-xl overflow-hidden shadow-lg">
+                            <iframe class="w-full h-full" src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        </div>
+                        <div class="mt-4">
+                            <h3 class="text-xl font-semibold text-gray-900 dark:text-white">Titre de la vidéo</h3>
+                            <p class="mt-2 text-gray-600 dark:text-gray-400">Description détaillée de la vidéo avec des informations pertinentes.</p>
+                        </div>
+                    </div>
+                </div>`
+            },
+            videoGrid: {
+                name: "Grille de vidéos",
+                html: `<div class="container mx-auto px-4 py-8">
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <div class="group">
+                            <div class="aspect-video rounded-xl overflow-hidden shadow-lg">
+                                <iframe class="w-full h-full" src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                            </div>
+                            <h4 class="mt-2 font-medium text-gray-900 dark:text-white group-hover:text-blue-500 transition-colors">Vidéo 1</h4>
+                        </div>
+                        <div class="group">
+                            <div class="aspect-video rounded-xl overflow-hidden shadow-lg">
+                                <iframe class="w-full h-full" src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                            </div>
+                            <h4 class="mt-2 font-medium text-gray-900 dark:text-white group-hover:text-blue-500 transition-colors">Vidéo 2</h4>
+                        </div>
+                        <div class="group">
+                            <div class="aspect-video rounded-xl overflow-hidden shadow-lg">
+                                <iframe class="w-full h-full" src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                            </div>
+                            <h4 class="mt-2 font-medium text-gray-900 dark:text-white group-hover:text-blue-500 transition-colors">Vidéo 3</h4>
+                        </div>
+                    </div>
+                </div>`
+            },
+            videoPlaylist: {
+                name: "Lecteur avec playlist",
+                html: `<div class="container mx-auto px-4 py-8">
+                    <div class="flex flex-col lg:flex-row gap-6 max-w-6xl mx-auto">
+                        <div class="lg:w-2/3">
+                            <div class="aspect-video rounded-xl overflow-hidden shadow-xl">
+                                <iframe class="w-full h-full" src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                            </div>
+                            <div class="mt-4">
+                                <h2 class="text-2xl font-bold text-gray-900 dark:text-white">Titre de la vidéo principale</h2>
+                                <p class="mt-2 text-gray-600 dark:text-gray-400">Description détaillée de la vidéo principale avec des informations pertinentes.</p>
+                            </div>
+                        </div>
+                        <div class="lg:w-1/3">
+                            <div class="bg-gray-100 dark:bg-gray-800 rounded-xl p-4">
+                                <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">Playlist</h3>
+                                <div class="space-y-4">
+                                    <div class="group flex gap-4 cursor-pointer">
+                                        <div class="w-32 aspect-video rounded-lg overflow-hidden">
+                                            <img src="https://placehold.co/240x135" alt="Miniature vidéo" class="w-full h-full object-cover">
+                                        </div>
+                                        <div>
+                                            <h4 class="font-medium text-gray-900 dark:text-white group-hover:text-blue-500 transition-colors">Vidéo suivante 1</h4>
+                                            <p class="text-sm text-gray-500 dark:text-gray-400">3:45</p>
+                                        </div>
+                                    </div>
+                                    <div class="group flex gap-4 cursor-pointer">
+                                        <div class="w-32 aspect-video rounded-lg overflow-hidden">
+                                            <img src="https://placehold.co/240x135" alt="Miniature vidéo" class="w-full h-full object-cover">
+                                        </div>
+                                        <div>
+                                            <h4 class="font-medium text-gray-900 dark:text-white group-hover:text-blue-500 transition-colors">Vidéo suivante 2</h4>
+                                            <p class="text-sm text-gray-500 dark:text-gray-400">4:20</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>`
+            },
+            videoHero: {
+                name: "Vidéo hero avec overlay",
+                html: `<div class="relative h-[70vh] overflow-hidden">
+                    <div class="absolute inset-0">
+                        <video class="w-full h-full object-cover" autoplay loop muted playsinline>
+                            <source src="https://example.com/video.mp4" type="video/mp4">
+                        </video>
+                        <div class="absolute inset-0 bg-black/50"></div>
+                    </div>
+                    <div class="relative h-full flex items-center justify-center text-center px-4">
+                        <div class="max-w-3xl">
+                            <h1 class="text-4xl md:text-5xl font-bold text-white mb-6">Titre principal avec vidéo</h1>
+                            <p class="text-xl text-gray-200 mb-8">Une description captivante qui accompagne votre vidéo de fond</p>
+                            <button class="px-8 py-3 bg-white text-gray-900 rounded-full font-semibold hover:bg-gray-100 transition-colors">
+                                Découvrir plus
+                            </button>
+                        </div>
+                    </div>
+                </div>`
+            }
+        },
+
+        // CTA 
+        cta: {
+            simple: {
+                name: "CTA Moderne",
+                html: `<div class="container mx-auto px-4 py-16">
+                    <div class="max-w-4xl mx-auto bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl p-12 shadow-2xl transform hover:scale-[1.02] transition-all duration-300">
+                        <div class="text-center">
+                            <span class="inline-block px-4 py-1 rounded-full bg-white/20 text-white text-sm font-medium mb-4">🚀 Nouveau</span>
+                            <h2 class="text-4xl font-bold text-white mb-4 leading-tight">Découvrez une nouvelle façon de créer</h2>
+                            <p class="text-xl text-white/90 mb-8 max-w-2xl mx-auto">Rejoignez des milliers d'utilisateurs qui ont déjà transformé leur façon de travailler avec notre solution innovante.</p>
+                            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                                <button class="group px-8 py-4 bg-white text-blue-600 rounded-xl font-semibold hover:bg-blue-50 transition-all duration-300 shadow-lg hover:shadow-xl flex items-center gap-2">
+                                    Commencer maintenant
+                                    <i class="fas fa-arrow-right transform group-hover:translate-x-1 transition-transform"></i>
+                                </button>
+                                <button class="px-8 py-4 bg-transparent border-2 border-white text-white rounded-xl font-semibold hover:bg-white/10 transition-all duration-300">
+                                    En savoir plus
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>`
+            },
+            withImage: {
+                name: "CTA Premium avec Image",
+                html: `<div class="container mx-auto px-4 py-16">
+                    <div class="max-w-6xl mx-auto bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-2xl">
+                        <div class="flex flex-col md:flex-row">
+                            <div class="md:w-1/2 relative overflow-hidden">
+                                <img src="https://placehold.co/800x600" alt="Image du CTA" class="w-full h-full object-cover transform hover:scale-110 transition-transform duration-700">
+                                <div class="absolute inset-0 bg-gradient-to-r from-blue-600/20 to-purple-600/20"></div>
+                            </div>
+                            <div class="md:w-1/2 p-12 lg:p-16 flex flex-col justify-center">
+                                <span class="inline-block px-4 py-1 rounded-full bg-blue-100 dark:bg-blue-900 text-blue-600 dark:text-blue-300 text-sm font-medium mb-6">✨ Premium</span>
+                                <h2 class="text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-6 leading-tight">Élevez votre expérience au niveau supérieur</h2>
+                                <p class="text-lg text-gray-600 dark:text-gray-300 mb-8">Accédez à des fonctionnalités exclusives et débloquez tout le potentiel de notre plateforme avec notre offre premium.</p>
+                                <div class="space-y-4">
+                                    <button class="w-full group px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white rounded-xl font-semibold transition-all duration-300 shadow-lg hover:shadow-xl flex items-center justify-center gap-2">
+                                        Passer à Premium
+                                        <i class="fas fa-crown transform group-hover:rotate-12 transition-transform"></i>
+                                    </button>
+                                    <button class="w-full px-8 py-4 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-200 rounded-xl font-semibold hover:bg-gray-200 dark:hover:bg-gray-600 transition-all duration-300">
+                                        Voir les avantages
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>`
+            },
+            gradientCards: {
+                name: "CTA avec Cartes Gradient",
+                html: `<div class="container mx-auto px-4 py-16">
+                    <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                        <div class="bg-gradient-to-br from-pink-500 to-rose-600 rounded-2xl p-8 shadow-xl transform hover:scale-105 transition-all duration-300">
+                            <div class="text-center text-white">
+                                <i class="fas fa-rocket text-4xl mb-4"></i>
+                                <h3 class="text-2xl font-bold mb-4">Démarrez</h3>
+                                <p class="mb-6">Lancez votre projet dès aujourd'hui</p>
+                                <button class="w-full py-3 bg-white text-rose-600 rounded-lg font-semibold hover:bg-rose-50 transition-colors">
+                                    Commencer
+                                </button>
+                            </div>
+                        </div>
+                        <div class="bg-gradient-to-br from-violet-500 to-purple-600 rounded-2xl p-8 shadow-xl transform hover:scale-105 transition-all duration-300">
+                            <div class="text-center text-white">
+                                <i class="fas fa-star text-4xl mb-4"></i>
+                                <h3 class="text-2xl font-bold mb-4">Premium</h3>
+                                <p class="mb-6">Accédez à toutes les fonctionnalités</p>
+                                <button class="w-full py-3 bg-white text-purple-600 rounded-lg font-semibold hover:bg-purple-50 transition-colors">
+                                    Upgrade
+                                </button>
+                            </div>
+                        </div>
+                        <div class="bg-gradient-to-br from-blue-500 to-cyan-600 rounded-2xl p-8 shadow-xl transform hover:scale-105 transition-all duration-300">
+                            <div class="text-center text-white">
+                                <i class="fas fa-gem text-4xl mb-4"></i>
+                                <h3 class="text-2xl font-bold mb-4">Pro</h3>
+                                <p class="mb-6">Solution entreprise sur mesure</p>
+                                <button class="w-full py-3 bg-white text-blue-600 rounded-lg font-semibold hover:bg-blue-50 transition-colors">
+                                    Contact
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>`
+            },
+            floatingBanner: {
+                name: "Bannière Animée",
+                html: `<div class="container mx-auto px-4 py-16">
+                    <div class="max-w-4xl mx-auto relative">
+                        <div class="absolute inset-0 bg-gradient-to-r from-indigo-600/30 to-purple-600/30 blur-3xl transform -rotate-3"></div>
+                        <div class="relative bg-gradient-to-r from-indigo-600 to-purple-600 rounded-2xl p-12 overflow-hidden">
+                            <div class="absolute top-0 left-0 w-full h-full">
+                                <div class="absolute top-0 left-1/2 -translate-x-1/2 w-1/2 h-1/2 bg-white/10 rounded-full blur-3xl animate-pulse"></div>
+                                <div class="absolute bottom-0 right-0 w-64 h-64 bg-pink-500/20 rounded-full blur-2xl animate-float"></div>
+                            </div>
+                            <div class="relative z-10">
+                                <div class="flex items-center justify-center mb-8">
+                                    <span class="inline-flex items-center px-6 py-3 rounded-full bg-white/20 backdrop-blur-sm text-white text-lg font-bold shadow-lg">
+                                        <i class="fas fa-sparkles mr-2 animate-pulse"></i>
+                                        Offre Exclusive
+                                    </span>
+                                </div>
+                                <div class="text-center max-w-2xl mx-auto">
+                                    <h3 class="font-extrabold text-4xl text-transparent bg-clip-text bg-gradient-to-r from-white to-purple-200 mb-6">
+                                        Découvrez l'Excellence Premium
+                                    </h3>
+                                    <p class="text-white/90 text-xl mb-10 leading-relaxed">
+                                        Libérez tout votre potentiel créatif avec nos outils premium et donnez vie à vos projets les plus ambitieux
+                                    </p>
+                                    <div class="flex flex-col sm:flex-row gap-6 justify-center items-center">
+                                        <button class="group w-full sm:w-auto px-10 py-5 bg-white rounded-xl font-bold text-lg text-indigo-600 hover:text-purple-600 transition-all duration-300 shadow-xl hover:shadow-2xl transform hover:-translate-y-1 hover:scale-105">
+                                            <span class="flex items-center justify-center gap-3">
+                                                <i class="fas fa-crown text-xl bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text"></i>
+                                                Passer Premium
+                                                <i class="fas fa-chevron-right transform group-hover:translate-x-2 transition-transform"></i>
+                                            </span>
+                                        </button>
+                                        <button class="w-full sm:w-auto px-10 py-5 bg-white/20 hover:bg-white/30 text-white text-lg rounded-xl font-bold backdrop-blur-sm transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 hover:scale-105 border-2 border-white/30 hover:border-white/50">
+                                            En savoir plus
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>`
+            },
+            animatedSpotlight: {
+                name: "CTA avec Spotlight",
+                html: `<div class="container mx-auto px-4 py-16">
+                    <div class="relative max-w-4xl mx-auto overflow-hidden">
+                        <div class="absolute inset-0 bg-gradient-to-r from-amber-500 via-orange-500 to-red-500 opacity-75"></div>
+                        <div class="relative bg-black/5 backdrop-blur-sm rounded-2xl p-12">
+                            <div class="text-center">
+                                <span class="inline-block animate-bounce bg-white/20 text-white px-4 py-1 rounded-full text-sm font-medium mb-6">
+                                    🔥 Offre Limitée
+                                </span>
+                                <h2 class="text-4xl font-bold text-white mb-6">Transformez vos idées en réalité</h2>
+                                <p class="text-xl text-white/90 mb-8">Rejoignez notre communauté d'innovateurs et créez l'impossible</p>
+                                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                                    <button class="px-8 py-4 bg-white text-orange-600 rounded-xl font-semibold hover:bg-orange-50 transition-all duration-300 shadow-lg hover:shadow-xl">
+                                        Démarrer Gratuitement
+                                    </button>
+                                    <button class="px-8 py-4 bg-black/20 text-white rounded-xl font-semibold hover:bg-black/30 transition-all duration-300">
+                                        Voir la Démo
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>`
+            }
+        },
+
+        
+        
     // Composants de partage social
     social: {
         simpleIcons: {

@@ -32,6 +32,14 @@ const categories = {
         name: 'Produits',
         icon: 'fa-shopping-cart'
     },
+    gallery: {
+        name: 'Galleries',
+        icon: 'fa-images'
+    },
+    cta: {
+        name: 'CTA',
+        icon: 'fa-bullhorn'
+    },
     social: {
         name: 'Composants Sociaux',
         icon: 'fa-share-alt'
