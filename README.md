@@ -1,6 +1,6 @@
 # 🎨 Webazon - Concepteur de Sites Web Frontend
 
-[![Version](https://img.shields.io/badge/version-1.0.3-blue.svg)](https://github.com/securecodecreator/webazon)
+[![Version](https://img.shields.io/badge/version-1.0.6-blue.svg)](https://github.com/securecodecreator/webazon)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](https://github.com/securecodecreator/webazon/blob/main/LICENSE)
 
 ## 📋 Vue d'ensemble
