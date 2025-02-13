@@ -28,7 +28,6 @@
         </p>
     </div>
     
-    <!-- Navigation desktop -->
     <nav class="hidden md:flex items-center gap-8">
         <div class="flex items-center gap-8">
             <a href="app.html" class="relative theme-transition-ready text-gray-700 dark:text-gray-200 hover:text-light-primary dark:hover:text-dark-primary">
@@ -42,22 +41,18 @@
             </a>
         </div>
         
-        <!-- Bouton thème desktop -->
         <button onclick="toggleTheme()" class="theme-transition-ready text-gray-600 dark:text-gray-300 hover:text-light-primary dark:hover:text-dark-primary w-6 h-6 focus:outline-none focus:ring-0 relative">
             <i class="fas fa-sun absolute inset-0 transition-transform duration-300 rotate-0 dark:-rotate-90 dark:scale-0"></i>
             <i class="fas fa-moon absolute inset-0 transition-transform duration-300 rotate-90 scale-0 dark:rotate-0 dark:scale-100"></i>
         </button>
     </nav>
 
-    <!-- Bouton hamburger -->
     <button id="menuButton" class="md:hidden theme-transition-ready text-gray-600 dark:text-gray-300 hover:text-light-primary dark:hover:text-dark-primary transition-colors duration-200 focus:outline-none z-50">
         <i class="fas fa-bars text-2xl"></i>
     </button>
 </header>
 
-<!-- Menu mobile -->
 <div id="mainNav" class="fixed inset-y-0 right-0 w-72 theme-transition-ready bg-light-nav/95 dark:bg-dark-nav/95 backdrop-blur-md transform translate-x-full transition-transform duration-300 z-[999] md:hidden flex flex-col">
-    <!-- En-tête avec bouton fermeture -->
     <div class="flex justify-between items-center p-6">
         <h2 class="text-xl font-bold text-gray-800 dark:text-gray-200">Menu</h2>
         <button id="closeMenu" class="theme-transition-ready text-gray-600 dark:text-gray-300 hover:text-light-primary dark:hover:text-dark-primary transition-colors duration-200 focus:outline-none select-none">
@@ -65,7 +60,6 @@
         </button>
     </div>
 
-    <!-- Navigation -->
     <nav class="flex flex-col gap-2 px-6">
         <a href="app.html" class="flex items-center gap-3 py-3 theme-transition-ready text-gray-700 dark:text-gray-200 hover:text-light-primary dark:hover:text-dark-primary transition-colors duration-200 select-none focus:outline-none focus:ring-0">
             <i class="fas fa-edit text-xl w-6"></i>
@@ -81,7 +75,6 @@
         </a>
     </nav>
 
-    <!-- Bouton thème -->
     <div class="mt-6 px-6">
         <button onclick="toggleTheme()" class="w-full flex items-center gap-3 py-3 text-gray-700 dark:text-gray-200 hover:text-light-primary dark:hover:text-dark-primary transition-colors duration-200 select-none focus:outline-none focus:ring-0">
             <div class="w-6 text-xl relative flex justify-center">
@@ -99,7 +92,6 @@
         <p class="theme-transition-ready text-gray-600 dark:text-gray-400">Découvrez notre collection de templates prêts à l'emploi. Visualisez, personnalisez et téléchargez-les facilement.</p>
     </div>
 
-    <!-- Filtres -->
     <div class="mb-8 flex flex-wrap gap-4">
         <button class="theme-transition-ready px-4 py-2 rounded-lg bg-light-primary dark:bg-dark-primary text-white">Tous</button>
         <button class="theme-transition-ready px-4 py-2 rounded-lg bg-light-nav dark:bg-dark-nav text-gray-700 dark:text-gray-300 hover:bg-light-primary/10 dark:hover:bg-dark-primary/20">Landing Pages</button>
@@ -107,13 +99,10 @@
         <button class="theme-transition-ready px-4 py-2 rounded-lg bg-light-nav dark:bg-dark-nav text-gray-700 dark:text-gray-300 hover:bg-light-primary/10 dark:hover:bg-dark-primary/20">E-commerce</button>
     </div>
 
-    <!-- Grille des templates -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="templatesGrid">
-        <!-- Les templates seront injectés ici dynamiquement -->
     </div>
 </main>
 
-<!-- Modal de prévisualisation -->
 <div id="previewModal" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-[999] hidden">
     <div class="absolute left-1/2 -translate-x-1/2 w-[90vw] max-w-6xl h-[90vh] theme-transition-ready bg-light-nav dark:bg-dark-nav rounded-xl shadow-xl flex flex-col overflow-hidden">
         <div class="flex justify-between items-center p-4 shrink-0 border-b border-gray-200 dark:border-gray-700">
@@ -124,7 +113,6 @@
         </div>
         <div class="flex-1 overflow-y-auto p-4">
             <div id="previewModalContent" class="bg-white dark:bg-dark-bg rounded-lg min-h-full">
-                <!-- Le contenu sera injecté ici -->
             </div>
         </div>
         <div class="p-4 flex justify-end gap-4 shrink-0 border-t border-gray-200 dark:border-gray-700">
@@ -143,7 +131,6 @@
 <script src="js/theme.js"></script>
 <script type="module" src="js/models.js"></script>
 <script>
-    // Gestion du menu mobile
     document.addEventListener('DOMContentLoaded', function() {
         const menuButton = document.getElementById('menuButton');
         const closeMenu = document.getElementById('closeMenu');
@@ -158,14 +145,12 @@
         menuButton.addEventListener('click', toggleMenu);
         closeMenu.addEventListener('click', toggleMenu);
         
-        // Fermer le menu lors du clic sur un lien
         const menuLinks = mainNav.querySelectorAll('a');
         menuLinks.forEach(link => {
             link.addEventListener('click', toggleMenu);
         });
     });
 
-    // Gestion de l'affichage de la version
     document.addEventListener('DOMContentLoaded', function() {
         const versionLink = document.getElementById('versionLink');
         if (versionLink) {

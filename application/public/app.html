@@ -11,7 +11,6 @@
     <script src="js/config.js"></script>
     <script>
         tailwind.config = tailwindConfig;
-        // Activer les transitions après le chargement initial
         window.addEventListener('load', () => {
             document.documentElement.classList.remove('theme-transition-disabled');
         });
@@ -29,7 +28,6 @@
         </p>
     </div>
     
-    <!-- Navigation desktop -->
     <nav class="hidden md:flex items-center gap-8">
         <div class="flex items-center gap-8">
             <a href="app.html" class="relative theme-transition-ready text-light-primary dark:text-dark-primary">
@@ -43,21 +41,17 @@
             </a>
         </div>
         
-        <!-- Bouton thème desktop -->
         <button onclick="toggleTheme()" class="theme-transition-ready text-gray-600 dark:text-gray-300 hover:text-light-primary dark:hover:text-dark-primary w-6 h-6 focus:outline-none focus:ring-0 relative">
             <i class="fas fa-sun absolute inset-0 transition-transform duration-300 rotate-0 dark:-rotate-90 dark:scale-0"></i>
             <i class="fas fa-moon absolute inset-0 transition-transform duration-300 rotate-90 scale-0 dark:rotate-0 dark:scale-100"></i>
         </button>
     </nav>
 
-    <!-- Bouton hamburger -->
     <button id="menuButton" class="md:hidden theme-transition-ready text-gray-600 dark:text-gray-300 hover:text-light-primary dark:hover:text-dark-primary transition-colors duration-200 focus:outline-none z-50">
         <i class="fas fa-bars text-2xl"></i>
     </button>
 
-    <!-- Menu mobile -->
     <div id="mainNav" class="fixed inset-y-0 right-0 w-72 theme-transition-ready bg-light-nav/95 dark:bg-dark-nav/95 backdrop-blur-md transform translate-x-full transition-transform duration-300 z-[999] md:hidden flex flex-col">
-        <!-- En-tête avec bouton fermeture -->
         <div class="flex justify-between items-center p-6">
             <h2 class="text-xl font-bold text-gray-800 dark:text-gray-200">Menu</h2>
             <button id="closeMenu" class="theme-transition-ready text-gray-600 dark:text-gray-300 hover:text-light-primary dark:hover:text-dark-primary transition-colors duration-200 focus:outline-none select-none">
@@ -65,7 +59,6 @@
             </button>
         </div>
 
-        <!-- Navigation -->
         <nav class="flex flex-col gap-2 px-6">
             <a href="app.html" class="flex items-center gap-3 py-3 theme-transition-ready text-light-primary dark:text-dark-primary transition-colors duration-200 select-none focus:outline-none focus:ring-0">
                 <i class="fas fa-edit text-xl w-6"></i>
@@ -81,7 +74,6 @@
             </a>
         </nav>
 
-        <!-- Bouton thème -->
         <div class="mt-6 px-6">
             <button onclick="toggleTheme()" class="w-full flex items-center gap-3 py-3 text-gray-700 dark:text-gray-200 hover:text-light-primary dark:hover:text-dark-primary transition-colors duration-200 select-none focus:outline-none focus:ring-0">
                 <div class="w-6 text-xl relative flex justify-center">
@@ -95,7 +87,6 @@
 </header>
 
 <main class="flex md:flex-row flex-col gap-6 p-4 md:h-[calc(100vh-88px)] h-auto md:overflow-hidden">
-    <!-- Section principale (plus large) -->
     <section class="md:w-2/3 w-full theme-transition-ready bg-light-nav dark:bg-dark-nav shadow-lg rounded-xl p-6 flex flex-col md:min-h-0 md:h-[calc(100vh-104px)] max-h-[600px] md:max-h-none">
         <h2 class="text-2xl font-semibold text-gray-800 dark:text-gray-200 mb-4 flex-shrink-0 flex items-center gap-4">
             Editeur HTML
@@ -113,9 +104,7 @@
         </div>
     </section>
 
-    <!-- Conteneur des deux sections en colonne -->
     <div class="md:w-1/3 w-full flex flex-col gap-6 md:h-[calc(100vh-104px)]">
-        <!-- Section supérieure -->
         <section class="theme-transition-ready bg-light-nav dark:bg-dark-nav rounded-xl shadow-lg p-6 flex flex-col md:min-h-0 md:h-[40%] max-h-[400px] md:max-h-none">
             <div class="flex justify-between items-center mb-4 flex-shrink-0">
                 <h2 class="text-2xl font-semibold text-gray-800 dark:text-gray-200">Code HTML & CSS</h2>
@@ -130,14 +119,12 @@
             </div>
         </section>
 
-        <!-- Section de personnalisation -->
         <section class="theme-transition-ready bg-light-nav dark:bg-dark-nav rounded-xl shadow-lg p-6 flex flex-col md:min-h-0 md:h-[60%] max-h-[500px] md:max-h-none">
             <div class="flex justify-between items-center mb-4 flex-shrink-0">
                 <h2 class="text-2xl font-semibold text-gray-800 dark:text-gray-200">Personnalisation</h2>
             </div>
             <div class="flex-1 bg-white dark:bg-dark-bg rounded-lg overflow-auto min-h-0">
                 <div id="customizationAccordion" class="p-6 space-y-4">
-                    <!-- Les sections seront injectées ici dynamiquement -->
                 </div>
             </div>
         </section>
@@ -146,7 +133,6 @@
 
 <div id="previewModal" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-[999] hidden">
     <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-11/12 max-w-4xl max-h-[80vh] theme-transition-ready bg-light-nav dark:bg-dark-nav rounded-xl shadow-xl flex flex-col">
-        <!-- En-tête de la modale -->
         <div class="flex justify-between items-center p-8 pb-4">
             <h2 class="text-2xl font-bold theme-transition-ready text-gray-800 dark:text-gray-200">Prévisualisation de l'élément</h2>
             <button id="closePreviewModal" class="theme-transition-ready text-gray-600 dark:text-gray-300 hover:text-light-primary dark:hover:text-dark-primary">
@@ -154,14 +140,11 @@
             </button>
         </div>
 
-        <!-- Contenu de la prévisualisation -->
         <div class="overflow-y-auto p-8 pt-4">
             <div id="previewModalContent" class="bg-white dark:bg-dark-bg rounded-lg p-6">
-                <!-- Le contenu sera injecté ici -->
             </div>
         </div>
 
-        <!-- Boutons d'action -->
         <div class="p-8 pt-4 flex justify-end gap-4">
             <button id="addToPreviewFromModal" class="theme-transition-ready border-2 border-light-primary dark:border-dark-primary text-light-primary dark:text-dark-primary px-6 py-3 rounded-lg hover:bg-light-primary/10 hover:dark:bg-dark-primary/20 transition-colors">
                 <i class="fas fa-plus mr-2"></i>
@@ -179,7 +162,6 @@
 </div>
 
 <script>
-// Gestion du menu mobile
 document.addEventListener('DOMContentLoaded', function() {
     const menuButton = document.getElementById('menuButton');
     const closeMenu = document.getElementById('closeMenu');
@@ -218,29 +200,23 @@ document.addEventListener('DOMContentLoaded', function() {
     menuButton.addEventListener('click', toggleMenu);
     closeMenu.addEventListener('click', toggleMenu);
     
-    // Fermer le menu lors du clic sur un lien
     const menuLinks = mainNav.querySelectorAll('a');
     menuLinks.forEach(link => {
         link.addEventListener('click', toggleMenu);
     });
 
-    // Initialisation de l'accordéon de personnalisation
     initCustomizationAccordion();
 });
 
 document.addEventListener('DOMContentLoaded', function() {
     const selectiveBtn = document.getElementById('copySelectiveBtn');
-    // ... existing code ...
 });
 
-// Gestion de l'affichage de la version
 document.addEventListener('DOMContentLoaded', function() {
     const versionLink = document.getElementById('versionLink');
     if (versionLink) {
         versionLink.textContent = APP_VERSION;
     }
-
-    // ... existing code ...
 });
 </script>
 

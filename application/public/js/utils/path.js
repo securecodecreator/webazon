@@ -1,10 +1,7 @@
-// Fonctions de gestion des chemins d'éléments
-
 /**
- * Génère un chemin unique pour un élément
- * @param {HTMLElement} element - L'élément pour lequel générer le chemin
- * @param {HTMLElement} root - L'élément racine à partir duquel générer le chemin
- * @returns {string} Le chemin unique de l'élément
+ * @param {HTMLElement} element 
+ * @param {HTMLElement} root 
+ * @returns {string} 
  */
 export function generateElementPath(element, root) {
     const path = [];
@@ -23,10 +20,9 @@ export function generateElementPath(element, root) {
 }
 
 /**
- * Trouve un élément par son chemin
- * @param {string} path - Le chemin de l'élément à trouver
- * @param {HTMLElement} root - L'élément racine à partir duquel chercher
- * @returns {HTMLElement|null} L'élément trouvé ou null
+ * @param {string} path 
+ * @param {HTMLElement} root 
+ * @returns {HTMLElement|null} 
  */
 export function findElementByPath(path, root) {
     const parts = path.split(' > ');
@@ -50,9 +46,8 @@ export function findElementByPath(path, root) {
 }
 
 /**
- * Sérialise la structure d'un élément
- * @param {HTMLElement} element - L'élément à sérialiser
- * @returns {Object} La structure sérialisée de l'élément
+ * @param {HTMLElement} element 
+ * @returns {Object} 
  */
 export function serializeStructure(element) {
     return {
@@ -68,9 +63,8 @@ export function serializeStructure(element) {
 }
 
 /**
- * Valide et corrige la structure d'un élément
- * @param {HTMLElement} element - L'élément à valider
- * @param {Object} structure - La structure attendue
+ * @param {HTMLElement} element 
+ * @param {Object} structure 
  */
 export function validateAndFixStructure(element, structure) {
     if (element.tagName.toLowerCase() !== structure.tagName) {
@@ -78,14 +72,12 @@ export function validateAndFixStructure(element, structure) {
         return;
     }
 
-    // Restaurer les attributs manquants
     Object.entries(structure.attributes).forEach(([name, value]) => {
         if (element.getAttribute(name) !== value) {
             element.setAttribute(name, value);
         }
     });
 
-    // Vérifier récursivement les enfants
     const elementChildren = Array.from(element.children);
     structure.children.forEach((childStructure, index) => {
         if (elementChildren[index]) {

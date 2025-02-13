@@ -30,10 +30,8 @@ export function initSelectiveCopy() {
     }
 
     function updateElementsList() {
-        // Vider la liste existante
         elementsList.innerHTML = '';
         
-        // Récupérer tous les éléments éditables de la prévisualisation
         const previewElements = document.querySelectorAll('[data-element]');
         
         if (previewElements.length === 0) {
@@ -45,7 +43,6 @@ export function initSelectiveCopy() {
             return;
         }
 
-        // Créer un bouton pour chaque élément
         previewElements.forEach(element => {
             const dataElement = element.getAttribute('data-element');
             const button = document.createElement('div');
@@ -62,7 +59,6 @@ export function initSelectiveCopy() {
                 </div>
             `;
             
-            // Ajouter les événements
             const previewBtn = button.querySelector('.preview-element');
             const copyBtn = button.querySelector('.copy-element');
             
@@ -101,14 +97,11 @@ export function initSelectiveCopy() {
     }
 
     function copyOriginalElement(elementPath) {
-        // Récupérer l'élément original des assets
         const originalHtml = getElementByPath(elementPath);
         
         if (originalHtml) {
-            // Copier le HTML original dans le presse-papier
             navigator.clipboard.writeText(originalHtml)
                 .then(() => {
-                    // Feedback visuel
                     const originalIcon = copySelectiveBtn.innerHTML;
                     copySelectiveBtn.innerHTML = '<i class="fas fa-check text-xl"></i>';
                     setTimeout(() => {
@@ -117,7 +110,6 @@ export function initSelectiveCopy() {
                 })
                 .catch(err => {
                     console.error('Erreur lors de la copie :', err);
-                    // Feedback d'erreur
                     const originalIcon = copySelectiveBtn.innerHTML;
                     copySelectiveBtn.innerHTML = '<i class="fas fa-times text-xl"></i>';
                     setTimeout(() => {
@@ -127,11 +119,9 @@ export function initSelectiveCopy() {
         }
     }
 
-    // Event listeners pour la modale de sélection
     copySelectiveBtn.addEventListener('click', toggleSelectiveModal);
     closeSelectiveModal.addEventListener('click', toggleSelectiveModal);
     
-    // Event listeners pour la modale de prévisualisation
     closePreviewModal.addEventListener('click', togglePreviewModal);
     backToSelectiveModal.addEventListener('click', switchToSelectiveModal);
     copyPreviewElement.addEventListener('click', () => {
@@ -141,7 +131,6 @@ export function initSelectiveCopy() {
         }
     });
     
-    // Fermer les modales en cliquant en dehors
     selectiveModal.addEventListener('click', (e) => {
         if (e.target === selectiveModal) {
             toggleSelectiveModal();
@@ -154,7 +143,6 @@ export function initSelectiveCopy() {
         }
     });
 
-    // Fermer les modales avec la touche Echap
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape') {
             if (!selectiveModal.classList.contains('hidden')) {

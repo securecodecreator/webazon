@@ -1,6 +1,5 @@
 import htmlAssets from './assets.js';
 
-// Structure des catégories de templates
 const templateCategories = {
     landingPages: {
         name: 'Landing Pages',
@@ -47,18 +46,15 @@ const templateCategories = {
     }
 };
 
-// État actuel
 let currentFilter = 'all';
 let currentTemplate = null;
 
-// Initialisation
 document.addEventListener('DOMContentLoaded', () => {
     initializeTemplates();
     initializeFilters();
     initializeModals();
 });
 
-// Initialise l'affichage des templates
 function initializeTemplates() {
     const templatesGrid = document.getElementById('templatesGrid');
     templatesGrid.innerHTML = '';
@@ -72,7 +68,6 @@ function initializeTemplates() {
     });
 }
 
-// Crée une carte de template
 function createTemplateCard(template) {
     const card = document.createElement('div');
     card.className = 'theme-transition-ready bg-light-nav dark:bg-dark-nav rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300';
@@ -102,7 +97,6 @@ function createTemplateCard(template) {
         </div>
     `;
 
-    // Gestionnaires d'événements
     card.querySelector('.preview-btn').addEventListener('click', () => previewTemplate(template));
     card.querySelector('.edit-btn').addEventListener('click', () => editTemplate(template));
     card.querySelector('.download-btn').addEventListener('click', () => downloadTemplate(template));
@@ -110,12 +104,10 @@ function createTemplateCard(template) {
     return card;
 }
 
-// Initialise les filtres
 function initializeFilters() {
     const filterButtons = document.querySelectorAll('.mb-8 button');
     filterButtons.forEach(button => {
         button.addEventListener('click', () => {
-            // Mettre à jour l'apparence des boutons
             filterButtons.forEach(btn => {
                 btn.classList.remove('bg-light-primary', 'dark:bg-dark-primary', 'text-white');
                 btn.classList.add('bg-light-nav', 'dark:bg-dark-nav', 'text-gray-700', 'dark:text-gray-300');
@@ -124,17 +116,14 @@ function initializeFilters() {
             button.classList.remove('bg-light-nav', 'dark:bg-dark-nav', 'text-gray-700', 'dark:text-gray-300');
             button.classList.add('bg-light-primary', 'dark:bg-dark-primary', 'text-white');
 
-            // Mettre à jour le filtre actuel
             const filterText = button.textContent.trim().toLowerCase();
             currentFilter = filterText === 'tous' ? 'all' : filterText;
             
-            // Rafraîchir l'affichage
             initializeTemplates();
         });
     });
 }
 
-// Initialise les modales
 function initializeModals() {
     const previewModal = document.getElementById('previewModal');
     const closePreviewModal = document.getElementById('closePreviewModal');
@@ -142,13 +131,11 @@ function initializeModals() {
     const downloadBtn = document.getElementById('downloadTemplate');
     const modalContent = previewModal.querySelector('.absolute');
 
-    // Fonction pour mettre à jour la position de la modale
     function updateModalPosition() {
         const scrollY = window.scrollY;
         const viewportHeight = window.innerHeight;
         const modalHeight = modalContent.offsetHeight;
         
-        // Calculer la position optimale
         const topPosition = Math.max(
             viewportHeight * 0.1,
             Math.min(
@@ -160,7 +147,6 @@ function initializeModals() {
         modalContent.style.top = `${topPosition}px`;
     }
 
-    // Gestionnaire d'événements pour le défilement
     let scrollTimeout;
     window.addEventListener('scroll', () => {
         if (!previewModal.classList.contains('hidden')) {
@@ -171,7 +157,6 @@ function initializeModals() {
         }
     });
 
-    // Gestionnaire d'événements pour le redimensionnement
     let resizeTimeout;
     window.addEventListener('resize', () => {
         if (!previewModal.classList.contains('hidden')) {
@@ -192,7 +177,6 @@ function initializeModals() {
         }
     });
 
-    // Gestionnaire d'événements pour le bouton de téléchargement dans la prévisualisation
     if (downloadBtn) {
         downloadBtn.addEventListener('click', () => {
             if (currentTemplate) {
@@ -270,35 +254,29 @@ function initializeModals() {
 </body>
 </html>`;
                 
-                // Créer un blob avec le contenu
                 const blob = new Blob([html], { type: 'text/html' });
                 const url = window.URL.createObjectURL(blob);
                 
-                // Créer un lien de téléchargement
                 const a = document.createElement('a');
                 a.href = url;
                 a.download = `template-${currentTemplate.id}.html`;
                 document.body.appendChild(a);
                 a.click();
                 
-                // Nettoyer
                 window.URL.revokeObjectURL(url);
                 document.body.removeChild(a);
             }
         });
     }
 
-    // Exposer updateModalPosition pour l'utiliser dans previewTemplate
     window.updateModalPosition = updateModalPosition;
 }
 
-// Prévisualise un template
 function previewTemplate(template) {
     currentTemplate = template;
     const previewModal = document.getElementById('previewModal');
     const previewContent = document.getElementById('previewModalContent');
     
-    // Assembler le contenu du template
     let templateContent = '';
     template.components.forEach(componentPath => {
         const [category, name] = componentPath.split('.');
@@ -310,7 +288,6 @@ function previewTemplate(template) {
     previewContent.innerHTML = templateContent;
     previewModal.classList.remove('hidden');
     
-    // Mettre à jour la position après que le contenu soit chargé
     setTimeout(() => {
         if (window.updateModalPosition) {
             window.updateModalPosition();
@@ -318,12 +295,10 @@ function previewTemplate(template) {
     }, 0);
 }
 
-// Édite un template dans le builder
 function editTemplate(template) {
     window.location.href = `app.html?template=${template.id}`;
 }
 
-// Télécharge le code du template depuis la grille
 function downloadTemplate(template) {
     const templateContent = template.components
         .map(componentPath => {
@@ -408,23 +383,19 @@ function downloadTemplate(template) {
 </body>
 </html>`;
     
-    // Créer un blob avec le contenu
     const blob = new Blob([html], { type: 'text/html' });
     const url = window.URL.createObjectURL(blob);
     
-    // Créer un lien de téléchargement
     const a = document.createElement('a');
     a.href = url;
     a.download = `template-${template.id}.html`;
     document.body.appendChild(a);
     a.click();
     
-    // Nettoyer
     window.URL.revokeObjectURL(url);
     document.body.removeChild(a);
 }
 
-// Exporter les fonctions nécessaires
 export {
     templateCategories,
     previewTemplate,

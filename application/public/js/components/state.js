@@ -1,13 +1,10 @@
 import { createElementContainer, makeElementEditable, attachElementEvents } from '../utils/dom.js';
 
-/**
- * Sauvegarde l'état actuel de l'éditeur
- */
+
 export function saveCurrentState() {
     const previewContent = document.getElementById('previewContent');
     if (!previewContent) return;
 
-    // Sauvegarder l'état exact du contenu HTML et la structure
     const elements = previewContent.querySelectorAll(':scope > div.relative');
     const savedState = {
         content: previewContent.innerHTML,
@@ -22,7 +19,6 @@ export function saveCurrentState() {
     
     try {
         localStorage.setItem('webazonEditorState', JSON.stringify(savedState));
-        // Sauvegarder une copie de backup
         sessionStorage.setItem('webazonEditorStateBackup', JSON.stringify(savedState));
     } catch (error) {
         console.error('Erreur lors de la sauvegarde:', error);
@@ -34,9 +30,7 @@ export function saveCurrentState() {
     }
 }
 
-/**
- * Restaure l'état sauvegardé de l'éditeur
- */
+
 export function restoreState() {
     let savedState;
     
@@ -66,32 +60,26 @@ export function restoreState() {
             const state = JSON.parse(savedState);
             
             if (state.elementsOrder && Array.isArray(state.elementsOrder)) {
-                // Restaurer les éléments dans l'ordre sauvegardé
-                previewContent.innerHTML = ''; // Nettoyer le contenu existant
+                previewContent.innerHTML = '';
                 state.elementsOrder.forEach(elementData => {
                     const tempContainer = document.createElement('div');
                     tempContainer.innerHTML = elementData.html;
                     const element = tempContainer.firstElementChild;
                     
                     if (element) {
-                        // Créer le conteneur avec les contrôles
                         const elementContainer = createElementContainer(element);
                         elementContainer.dataset.elementId = elementData.id;
                         
-                        // Rendre le texte éditable
                         makeElementEditable(elementContainer);
                         
-                        // Attacher les événements
                         attachElementEvents(elementContainer);
                         
-                        // Ajouter l'élément à la prévisualisation
                         previewContent.appendChild(elementContainer);
                     }
                 });
                 
                 window.dispatchEvent(new CustomEvent('preview:update'));
             } else if (state.content) {
-                // Fallback pour l'ancien format
                 previewContent.innerHTML = state.content;
                 window.dispatchEvent(new CustomEvent('preview:update'));
             } else {
@@ -106,5 +94,4 @@ export function restoreState() {
     }
 }
 
-// Écouter les événements personnalisés
 window.addEventListener('state:save', saveCurrentState); 

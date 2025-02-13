@@ -1,15 +1,12 @@
-// Fonctions d'édition des éléments
 import { makeElementEditable, createElementContainer, attachElementEvents } from '../utils/dom.js';
 
 /**
- * Rend les éléments interactifs éditables (liens et images)
- * @param {HTMLElement} element - L'élément parent contenant les éléments à rendre éditables
+ * @param {HTMLElement} element
  */
 function makeElementsEditable(element) {
     const mainContent = element.querySelector(':scope > :not(.absolute)');
     if (!mainContent) return;
 
-    // Gestion des liens et boutons
     const buttons = mainContent.querySelectorAll('button, a, .fa, .fas, .fab, .far');
     buttons.forEach(button => {
         button.addEventListener('click', (e) => {
@@ -29,7 +26,6 @@ function makeElementsEditable(element) {
         );
     });
 
-    // Gestion des images
     const images = mainContent.querySelectorAll('img');
     images.forEach(img => {
         img.addEventListener('click', (e) => {
@@ -49,31 +45,26 @@ function makeElementsEditable(element) {
         );
     });
 
-    // Gestion des iframes
     const iframes = mainContent.querySelectorAll('iframe');
     iframes.forEach(iframe => {
         if (!iframe.closest('.move-up, .move-down, .delete-element')) {
-            // Nettoyer les wrappers existants
+
             const existingWrapper = iframe.closest('.iframe-wrapper');
             if (existingWrapper) {
                 existingWrapper.replaceWith(iframe);
             }
             
-            // Créer une surcouche pour rendre l'iframe cliquable
             const overlay = document.createElement('div');
             overlay.className = 'absolute inset-0 bg-transparent cursor-pointer hover:ring-2 hover:ring-blue-500 hover:ring-opacity-50 rounded z-10';
             
-            // Wrapper pour positionner la surcouche
             const wrapper = document.createElement('div');
             wrapper.className = 'relative iframe-wrapper';
             wrapper.style.width = '100%';
             wrapper.style.height = '100%';
             
-            // Placer l'iframe dans le wrapper
             iframe.parentNode.insertBefore(wrapper, iframe);
             wrapper.appendChild(iframe);
             
-            // Ajouter l'overlay uniquement pendant l'édition
             const handleMouseEnter = () => {
                 wrapper.appendChild(overlay);
             };
@@ -97,13 +88,12 @@ function makeElementsEditable(element) {
 }
 
 /**
- * Fonction utilitaire pour le défilement fluide
- * @param {string} targetId - L'ID de l'élément cible
+ * @param {string} targetId 
  */
 function smoothScrollToElement(targetId) {
     const targetElement = document.getElementById(targetId);
     if (targetElement) {
-        const offset = 60; // Offset pour éviter que l'élément soit trop en haut
+        const offset = 60;
         const elementPosition = targetElement.getBoundingClientRect().top;
         const offsetPosition = elementPosition + window.pageYOffset - offset;
 
@@ -115,22 +105,18 @@ function smoothScrollToElement(targetId) {
 }
 
 /**
- * Affiche l'éditeur de lien pour un élément
- * @param {HTMLElement} element - L'élément pour lequel afficher l'éditeur
+ * @param {HTMLElement} element 
  */
 export function showLinkEditor(element) {
-    // Supprimer tout menu flottant existant
     const existingMenu = document.querySelector('.floating-link-editor');
     if (existingMenu) existingMenu.remove();
 
-    // Récupérer uniquement le premier élément avec ID de chaque composant dans la prévisualisation
     const previewContent = document.getElementById('previewContent');
     const elementsWithIds = previewContent ? Array.from(previewContent.children).map(component => component.querySelector('[id]')).filter(Boolean) : [];
     
     const menu = document.createElement('div');
     menu.className = 'floating-link-editor fixed bg-white dark:bg-gray-800 rounded-lg shadow-lg p-4 z-[1000] border dark:border-gray-700';
     
-    // Récupérer le lien existant
     const isIframe = element.tagName === 'IFRAME';
     const currentHref = isIframe ? element.getAttribute('src') : (element.closest('a')?.getAttribute('href') || '');
     const currentTarget = isIframe ? '_self' : (element.closest('a')?.getAttribute('target') || '_self');
@@ -177,14 +163,12 @@ export function showLinkEditor(element) {
         </div>
     `;
 
-    // Positionner le menu près de l'élément
     const rect = element.getBoundingClientRect();
     menu.style.top = `${rect.bottom + window.scrollY + 10}px`;
     menu.style.left = `${rect.left + window.scrollX}px`;
 
     document.body.appendChild(menu);
 
-    // Gestionnaires d'événements pour le type de lien
     const linkType = menu.querySelector('#linkType');
     const urlInput = menu.querySelector('#urlInput');
     const scrollInput = menu.querySelector('#scrollInput');
@@ -199,7 +183,6 @@ export function showLinkEditor(element) {
         }
     });
 
-    // Gestionnaires d'événements
     const handleApply = () => {
         const isScrollLink = linkType.value === 'scroll';
         const url = isScrollLink 
@@ -209,10 +192,8 @@ export function showLinkEditor(element) {
 
         if (url) {
             if (isIframe) {
-                // Pour les iframes, modifier directement l'attribut src
                 element.src = url;
             } else {
-                // Pour les autres éléments, gérer comme un lien normal
                 let targetElement = element;
                 if (!element.closest('a')) {
                     const link = document.createElement('a');
@@ -225,12 +206,9 @@ export function showLinkEditor(element) {
                 linkElement.href = url;
                 
                 if (isScrollLink) {
-                    // Ajouter le gestionnaire d'événements pour le défilement fluide
                     linkElement.removeAttribute('target');
                     linkElement.removeAttribute('rel');
-                    // Ajouter une classe spéciale pour identifier les liens de défilement
                     linkElement.classList.add('smooth-scroll');
-                    // Ajouter le script de défilement fluide directement dans le lien
                     linkElement.setAttribute('onclick', `
                         event.preventDefault();
                         const targetId = this.getAttribute('href').substring(1);
@@ -255,7 +233,6 @@ export function showLinkEditor(element) {
                 }
             }
         } else if (!isIframe && element.closest('a')) {
-            // Supprimer le lien si l'URL est vide (seulement pour les éléments non-iframe)
             const link = element.closest('a');
             link.replaceWith(element);
         }
@@ -272,7 +249,6 @@ export function showLinkEditor(element) {
     document.getElementById('applyLink').addEventListener('click', handleApply);
     document.getElementById('cancelLink').addEventListener('click', handleCancel);
 
-    // Fermer le menu si on clique en dehors
     document.addEventListener('click', (e) => {
         if (!menu.contains(e.target) && !element.contains(e.target)) {
             menu.remove();
@@ -281,68 +257,54 @@ export function showLinkEditor(element) {
 }
 
 /**
- * Ajoute un élément à la prévisualisation
- * @param {Object} element - L'élément à ajouter
+ * @param {Object} element 
  */
 export function addElementToPreview(element) {
     const previewContent = document.getElementById('previewContent');
     if (!previewContent) return;
 
-    // Si c'est le premier élément, nettoyer le contenu par défaut
     if (previewContent.innerHTML.includes('<!-- Le contenu HTML sera injecté ici -->')) {
         previewContent.innerHTML = '';
     }
 
-    // Créer un conteneur temporaire pour parser le HTML
     const tempContainer = document.createElement('div');
     tempContainer.innerHTML = element.html;
     const newElement = tempContainer.firstElementChild;
 
     if (newElement) {
-        // Ajouter un ID basé uniquement sur le nom de l'élément
         const elementName = element.name || 'element';
         newElement.id = elementName;
 
-        // Créer le conteneur avec les contrôles
         const elementContainer = createElementContainer(newElement);
         
-        // Rendre le texte éditable
         makeElementEditable(elementContainer);
         
-        // Rendre les éléments interactifs éditables
         makeElementsEditable(elementContainer);
         
-        // Attacher les événements
         attachElementEvents(elementContainer);
         
-        // Ajouter l'élément à la prévisualisation
         previewContent.appendChild(elementContainer);
         
-        // Déclencher l'événement de mise à jour
         window.dispatchEvent(new CustomEvent('preview:update'));
         window.dispatchEvent(new CustomEvent('state:save'));
     }
 }
 
 /**
- * Ajoute plusieurs éléments à la prévisualisation
- * @param {Array<Object>} elements - Les éléments à ajouter
+ * @param {Array<Object>} elements 
  */
 export function addElementsToPreview(elements) {
     const previewContent = document.getElementById('previewContent');
     if (!previewContent) return;
 
-    // Nettoyer le contenu existant
     previewContent.innerHTML = '';
 
-    // Ajouter chaque élément
     elements.forEach((element, index) => {
         const tempContainer = document.createElement('div');
         tempContainer.innerHTML = element.html;
         const newElement = tempContainer.firstElementChild;
 
         if (newElement) {
-            // Ajouter un ID basé sur le nom de l'élément et l'index
             const elementName = element.name || 'element';
             newElement.id = `${elementName}-${index + 1}`;
 
@@ -354,14 +316,11 @@ export function addElementsToPreview(elements) {
         }
     });
 
-    // Déclencher les événements de mise à jour
     window.dispatchEvent(new CustomEvent('preview:update'));
     window.dispatchEvent(new CustomEvent('state:save'));
 }
 
-/**
- * Réinitialise l'éditeur
- */
+
 export function resetEditor() {
     const confirmReset = () => {
         const dialog = document.createElement('div');
@@ -414,7 +373,6 @@ export function resetEditor() {
     confirmReset().then(confirmed => {
         if (confirmed) {
             try {
-                // Supprimer toutes les données de stockage
                 localStorage.removeItem('webazonEditorState');
                 sessionStorage.removeItem('webazonEditorState');
                 sessionStorage.removeItem('webazonEditorStateBackup');
@@ -439,18 +397,16 @@ export function resetEditor() {
 }
 
 /**
- * Affiche l'éditeur d'image pour un élément
- * @param {HTMLElement} element - L'élément pour lequel afficher l'éditeur
+ * @param {HTMLElement} element 
  */
 export function showImageEditor(element) {
-    // Supprimer tout menu flottant existant
+
     const existingMenu = document.querySelector('.floating-image-editor');
     if (existingMenu) existingMenu.remove();
 
     const menu = document.createElement('div');
     menu.className = 'floating-image-editor fixed bg-white dark:bg-gray-800 rounded-lg shadow-lg p-4 z-[1000] border dark:border-gray-700';
     
-    // Récupérer les attributs existants
     const currentSrc = element.getAttribute('src') || '';
     const currentAlt = element.getAttribute('alt') || '';
 
@@ -481,14 +437,12 @@ export function showImageEditor(element) {
         </div>
     `;
 
-    // Positionner le menu près de l'élément
     const rect = element.getBoundingClientRect();
     menu.style.top = `${rect.bottom + window.scrollY + 10}px`;
     menu.style.left = `${rect.left + window.scrollX}px`;
 
     document.body.appendChild(menu);
 
-    // Gestionnaires d'événements
     const handleApply = () => {
         const src = document.getElementById('imageSrc').value;
         const alt = document.getElementById('imageAlt').value;
@@ -510,7 +464,6 @@ export function showImageEditor(element) {
     document.getElementById('applyImage').addEventListener('click', handleApply);
     document.getElementById('cancelImage').addEventListener('click', handleCancel);
 
-    // Fermer le menu si on clique en dehors
     document.addEventListener('click', (e) => {
         if (!menu.contains(e.target) && !element.contains(e.target)) {
             menu.remove();
@@ -518,7 +471,6 @@ export function showImageEditor(element) {
     });
 }
 
-// Écouter les événements personnalisés
 window.addEventListener('editor:showLinkEditor', (e) => {
     showLinkEditor(e.detail.element);
 });

@@ -50,9 +50,7 @@
         </button>
     </header>
 
-    <!-- Menu mobile -->
     <div id="mainNav" class="fixed inset-y-0 right-0 w-72 theme-transition-ready bg-light-nav/95 dark:bg-dark-nav/95 backdrop-blur-md transform translate-x-full transition-transform duration-300 z-[999] md:hidden flex flex-col">
-        <!-- En-tête avec bouton fermeture -->
         <div class="flex justify-between items-center p-6">
             <h2 class="text-xl font-bold text-gray-800 dark:text-gray-200">Menu</h2>
             <button id="closeMenu" class="theme-transition-ready text-gray-600 dark:text-gray-300 hover:text-light-primary dark:hover:text-dark-primary transition-colors duration-200 focus:outline-none select-none">
@@ -60,7 +58,6 @@
             </button>
         </div>
 
-        <!-- Navigation -->
         <nav class="flex flex-col gap-2 px-6">
             <a href="application/public/app.html" class="flex items-center gap-3 py-3 theme-transition-ready text-gray-700 dark:text-gray-200 hover:text-light-primary dark:hover:text-dark-primary transition-colors duration-200 select-none focus:outline-none focus:ring-0">
                 <i class="fas fa-edit text-xl w-6"></i>
@@ -76,7 +73,6 @@
             </a>
         </nav>
 
-        <!-- Bouton thème -->
         <div class="mt-6 px-6">
             <button onclick="toggleTheme()" class="w-full flex items-center gap-3 py-3 text-gray-700 dark:text-gray-200 hover:text-light-primary dark:hover:text-dark-primary transition-colors duration-200 select-none focus:outline-none focus:ring-0">
                 <div class="w-6 text-xl relative flex justify-center">
@@ -88,7 +84,6 @@
         </div>
     </div>
 
-    <!-- Hero Section -->
     <div class="relative overflow-hidden bg-gradient-to-br from-light-primary/10 to-light-secondary/10 dark:from-dark-primary/10 dark:to-dark-secondary/10 py-20">
         <div class="container mx-auto px-4 max-w-6xl">
             <div class="flex flex-col md:flex-row items-center gap-12">
@@ -115,7 +110,6 @@
     </div>
 
     <main class="container mx-auto px-4 py-16 max-w-6xl" id="start">
-        <!-- Introduction avec statistiques -->
         <section class="mb-20">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div class="theme-transition-ready bg-light-nav dark:bg-dark-nav rounded-xl p-6 shadow-lg transform hover:scale-105 transition-transform duration-300">
@@ -142,7 +136,6 @@
             </div>
         </section>
 
-        <!-- Interface principale avec split design -->
         <section class="mb-20">
             <div class="flex flex-col md:flex-row items-center gap-12">
                 <div class="md:w-1/2 text-center md:text-left w-full">
@@ -188,7 +181,6 @@
             </div>
         </section>
 
-        <!-- Templates pré-configurés -->
         <section class="mb-20">
             <div class="flex flex-col md:flex-row items-center gap-12">
                 <div class="md:w-1/2">
@@ -234,13 +226,11 @@
             </div>
         </section>
 
-        <!-- Composants disponibles -->
         <section class="mb-20">
             <h2 class="text-3xl font-bold mb-12 text-center theme-transition-ready text-gray-800 dark:text-gray-200">
                 Une bibliothèque complète de composants
             </h2>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- En-têtes -->
                 <div class="theme-transition-ready bg-light-nav dark:bg-dark-nav rounded-xl p-6 shadow-lg flex flex-col items-center md:items-start text-center md:text-left">
                     <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-light-primary to-light-secondary dark:from-dark-primary dark:to-dark-secondary flex items-center justify-center text-white mb-4">
                         <i class="fas fa-heading text-xl"></i>
@@ -250,7 +240,6 @@
                     <button onclick="window.location.href='application/public/app.html'" class="text-light-primary dark:text-dark-primary hover:underline">Voir les variantes →</button>
                 </div>
 
-                <!-- Sections -->
                 <div class="theme-transition-ready bg-light-nav dark:bg-dark-nav rounded-xl p-6 shadow-lg flex flex-col items-center md:items-start text-center md:text-left">
                     <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-light-primary to-light-secondary dark:from-dark-primary dark:to-dark-secondary flex items-center justify-center text-white mb-4">
                         <i class="fas fa-layer-group text-xl"></i>
@@ -260,7 +249,6 @@
                     <button onclick="window.location.href='application/public/app.html'" class="text-light-primary dark:text-dark-primary hover:underline">Voir les variantes →</button>
                 </div>
 
-                <!-- Formulaires -->
                 <div class="theme-transition-ready bg-light-nav dark:bg-dark-nav rounded-xl p-6 shadow-lg flex flex-col items-center md:items-start text-center md:text-left">
                     <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-light-primary to-light-secondary dark:from-dark-primary dark:to-dark-secondary flex items-center justify-center text-white mb-4">
                         <i class="fas fa-wpforms text-xl"></i>
@@ -270,7 +258,6 @@
                     <button onclick="window.location.href='application/public/app.html'" class="text-light-primary dark:text-dark-primary hover:underline">Voir les variantes →</button>
                 </div>
 
-                <!-- FAQ -->
                 <div class="theme-transition-ready bg-light-nav dark:bg-dark-nav rounded-xl p-6 shadow-lg flex flex-col items-center md:items-start text-center md:text-left">
                     <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-light-primary to-light-secondary dark:from-dark-primary dark:to-dark-secondary flex items-center justify-center text-white mb-4">
                         <i class="fas fa-question-circle text-xl"></i>
@@ -280,7 +267,6 @@
                     <button onclick="window.location.href='application/public/app.html'" class="text-light-primary dark:text-dark-primary hover:underline">Voir les variantes →</button>
                 </div>
 
-                <!-- Prix -->
                 <div class="theme-transition-ready bg-light-nav dark:bg-dark-nav rounded-xl p-6 shadow-lg flex flex-col items-center md:items-start text-center md:text-left">
                     <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-light-primary to-light-secondary dark:from-dark-primary dark:to-dark-secondary flex items-center justify-center text-white mb-4">
                         <i class="fas fa-dollar-sign text-xl"></i>
@@ -290,7 +276,6 @@
                     <button onclick="window.location.href='application/public/app.html'" class="text-light-primary dark:text-dark-primary hover:underline">Voir les variantes →</button>
                 </div>
 
-                <!-- Produits -->
                 <div class="theme-transition-ready bg-light-nav dark:bg-dark-nav rounded-xl p-6 shadow-lg flex flex-col items-center md:items-start text-center md:text-left">
                     <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-light-primary to-light-secondary dark:from-dark-primary dark:to-dark-secondary flex items-center justify-center text-white mb-4">
                         <i class="fas fa-shopping-cart text-xl"></i>
@@ -301,7 +286,6 @@
                 </div>
                 
                 
-                <!-- Composants sociaux -->
                 <div class="theme-transition-ready bg-light-nav dark:bg-dark-nav rounded-xl p-6 shadow-lg flex flex-col items-center md:items-start text-center md:text-left">
                     <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-light-primary to-light-secondary dark:from-dark-primary dark:to-dark-secondary flex items-center justify-center text-white mb-4">
                         <i class="fas fa-share-alt text-xl"></i>
@@ -311,7 +295,6 @@
                     <button onclick="window.location.href='application/public/app.html'" class="text-light-primary dark:text-dark-primary hover:underline">Voir les variantes →</button>
                 </div>
 
-                <!-- Pieds de page -->
                 <div class="theme-transition-ready bg-light-nav dark:bg-dark-nav rounded-xl p-6 shadow-lg flex flex-col items-center md:items-start text-center md:text-left">
                     <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-light-primary to-light-secondary dark:from-dark-primary dark:to-dark-secondary flex items-center justify-center text-white mb-4">
                         <i class="fas fa-shoe-prints text-xl"></i>
@@ -323,7 +306,6 @@
             </div>
         </section>
 
-        <!-- Mode sombre/clair showcase -->
         <section class="mb-20">
             <div class="relative rounded-2xl overflow-hidden">
                 <div class="absolute inset-0 bg-gradient-to-r from-light-primary to-light-secondary dark:from-dark-primary dark:to-dark-secondary opacity-10"></div>
@@ -351,13 +333,11 @@
             </div>
         </section>
 
-        <!-- Avantages techniques -->
         <section class="mb-20">
             <h2 class="text-3xl font-bold mb-12 text-center theme-transition-ready text-gray-800 dark:text-gray-200">
                 Avantages techniques
             </h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <!-- Code optimisé -->
                 <div class="theme-transition-ready bg-light-nav dark:bg-dark-nav rounded-xl p-8 shadow-lg">
                     <div class="flex items-start gap-6">
                         <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-light-primary to-light-secondary dark:from-dark-primary dark:to-dark-secondary flex items-center justify-center text-white">
@@ -383,7 +363,6 @@
                     </div>
                 </div>
 
-                <!-- Thème adaptatif -->
                 <div class="theme-transition-ready bg-light-nav dark:bg-dark-nav rounded-xl p-8 shadow-lg">
                     <div class="flex items-start gap-6">
                         <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-light-primary to-light-secondary dark:from-dark-primary dark:to-dark-secondary flex items-center justify-center text-white">
@@ -411,7 +390,6 @@
             </div>
         </section>
 
-        <!-- Limites et responsabilités -->
         <section class="mb-20">
             <div class="theme-transition-ready bg-light-nav dark:bg-dark-nav rounded-xl p-6 sm:p-8 shadow-lg">
                 <div class="max-w-3xl mx-auto">
@@ -444,7 +422,6 @@
             </div>
         </section>
 
-        <!-- Call to action -->
         <section>
             <div class="relative rounded-2xl overflow-hidden">
                 <div class="absolute inset-0 bg-gradient-to-r from-light-primary to-light-secondary dark:from-dark-primary dark:to-dark-secondary opacity-90"></div>
@@ -462,7 +439,6 @@
 
     <script src="application/public/js/theme.js"></script>
     <script>
-        // Gestion du menu mobile
         document.addEventListener('DOMContentLoaded', function() {
             const menuButton = document.getElementById('menuButton');
             const closeMenu = document.getElementById('closeMenu');
@@ -477,14 +453,12 @@
             menuButton.addEventListener('click', toggleMenu);
             closeMenu.addEventListener('click', toggleMenu);
             
-            // Fermer le menu lors du clic sur un lien
             const menuLinks = mainNav.querySelectorAll('a');
             menuLinks.forEach(link => {
                 link.addEventListener('click', toggleMenu);
             });
         });
 
-        // Gestion de l'affichage de la version
         document.addEventListener('DOMContentLoaded', function() {
             const versionLink = document.getElementById('versionLink');
             if (versionLink) {

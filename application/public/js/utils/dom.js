@@ -77,8 +77,7 @@ export function createElementContainer(element) {
 }
 
 /**
- * Attache les événements aux contrôles d'un élément
- * @param {HTMLElement} elementContainer - Le conteneur de l'élément
+ * @param {HTMLElement} elementContainer 
  */
 export function attachElementEvents(elementContainer) {
     const moveButtons = elementContainer.querySelector('.absolute');
@@ -90,7 +89,6 @@ export function attachElementEvents(elementContainer) {
         return;
     }
 
-    // Configuration des boutons de déplacement
     const moveUpBtn = moveButtons.querySelector('.move-up');
     const moveDownBtn = moveButtons.querySelector('.move-down');
     
@@ -123,7 +121,6 @@ export function attachElementEvents(elementContainer) {
             }
         };
 
-        // Attacher les événements de déplacement
         moveUpBtn.addEventListener('click', moveUp);
         moveUpBtn.addEventListener('touchstart', moveUp, { passive: false });
         
@@ -131,7 +128,6 @@ export function attachElementEvents(elementContainer) {
         moveDownBtn.addEventListener('touchstart', moveDown, { passive: false });
     }
 
-    // Configuration du bouton de suppression
     if (deleteButton) {
         deleteButton.parentElement.classList.add('z-[200]');
         

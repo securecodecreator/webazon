@@ -1,9 +1,6 @@
-// Fonctions de formatage et manipulation HTML
-
 /**
- * Formate le code HTML pour une meilleure lisibilité
- * @param {string} html - Le code HTML à formater
- * @returns {string} Le code HTML formaté
+ * @param {string} html 
+ * @returns {string} 
  */
 export function formatHtml(html) {
     let formatted = '';
@@ -24,9 +21,8 @@ export function formatHtml(html) {
 }
 
 /**
- * Applique la coloration syntaxique au code HTML
- * @param {string} html - Le code HTML à colorer
- * @returns {string} Le code HTML avec coloration syntaxique
+ * @param {string} html 
+ * @returns {string} 
  */
 export function applySyntaxHighlighting(html) {
     return html
@@ -40,9 +36,8 @@ export function applySyntaxHighlighting(html) {
 }
 
 /**
- * Génère le code HTML complet pour l'exportation
- * @param {string} contentHtml - Le contenu HTML à inclure
- * @returns {string} Le code HTML complet
+ * @param {string} contentHtml 
+ * @returns {string} 
  */
 export function generateCompleteHtml(contentHtml) {
     return `<!DOCTYPE html>
@@ -115,34 +110,28 @@ export function generateCompleteHtml(contentHtml) {
 }
 
 /**
- * Nettoie le HTML des éléments de contrôle
- * @param {HTMLElement} element - L'élément à nettoyer
- * @returns {string} Le HTML nettoyé
+ * @param {HTMLElement} element 
+ * @returns {string} 
  */
 export function cleanHtml(element) {
-    // Créer une copie profonde de l'élément
     const elementCopy = element.cloneNode(true);
     
-    // Supprimer les boutons de suppression
     const deleteButton = elementCopy.querySelector(':scope > .absolute');
     if (deleteButton) {
         deleteButton.remove();
     }
     
-    // Convertir les spans éditables en texte normal
     const editableSpans = elementCopy.querySelectorAll('.editable-text');
     editableSpans.forEach(span => {
         const textNode = document.createTextNode(span.textContent);
         span.parentNode.replaceChild(textNode, span);
     });
     
-    // Supprimer les classes hover-ring de tous les éléments
     const elementsWithHoverRing = elementCopy.querySelectorAll('[class*="hover:ring"]');
     elementsWithHoverRing.forEach(el => {
         el.classList.remove(...Array.from(el.classList).filter(className => className.includes('hover:ring')));
     });
     
-    // Récupérer le contenu HTML nettoyé
     const cleanElement = elementCopy.querySelector(':scope > :not(.absolute)');
     return cleanElement ? cleanElement.outerHTML : '';
 } 

@@ -65,9 +65,7 @@ function insertComponent(html) {
 }
 </script>`;
 
-// Collection d'éléments HTML réutilisables
 const htmlAssets = {
-    // En-têtes
     headers: {
         simple: {
             name: "En-tête Simple",
@@ -3279,7 +3277,6 @@ const htmlAssets = {
     }
 };
 
-// Fonction utilitaire pour copier un composant avec sa configuration
 function copyComponentWithConfig(componentHtml) {
     const fullHtml = `<!DOCTYPE html>
 <html lang="fr">
@@ -3308,7 +3305,6 @@ function copyComponentWithConfig(componentHtml) {
     return fullHtml;
 }
 
-// Fonction pour obtenir un composant prêt à l'emploi
 function getComponent(category, name) {
     const component = htmlAssets[category][name];
     if (!component) {
@@ -3317,7 +3313,6 @@ function getComponent(category, name) {
     return copyComponentWithConfig(component.html);
 }
 
-// Fonction pour insérer directement un composant dans la prévisualisation
 function previewComponent(category, name) {
     const component = htmlAssets[category][name];
     if (!component) {
@@ -3332,7 +3327,6 @@ function previewComponent(category, name) {
     document.head.appendChild(script);
 }
 
-// Exporter les assets et les fonctions utilitaires
 export default {
     assets: htmlAssets,
     getComponent,
