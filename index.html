@@ -23,7 +23,7 @@
         </h1>
         <p class="flex items-center gap-2 theme-transition-ready text-gray-700 dark:text-gray-300">
             <span class="text-lg">✨</span>
-            <a href="application/public/version.html" class="font-medium hover:text-light-primary dark:hover:text-dark-primary transition-colors">V1.0.5</a>
+            <a href="application/public/version.html" id="versionLink" class="font-medium hover:text-light-primary dark:hover:text-dark-primary transition-colors"></a>
         </p>
         
         <nav class="hidden md:flex items-center gap-8">
@@ -482,6 +482,14 @@
             menuLinks.forEach(link => {
                 link.addEventListener('click', toggleMenu);
             });
+        });
+
+        // Gestion de l'affichage de la version
+        document.addEventListener('DOMContentLoaded', function() {
+            const versionLink = document.getElementById('versionLink');
+            if (versionLink) {
+                versionLink.textContent = APP_VERSION;
+            }
         });
     </script>
 </body>

@@ -12,48 +12,41 @@ function makeElementsEditable(element) {
     // Gestion des liens et boutons
     const buttons = mainContent.querySelectorAll('button, a, .fa, .fas, .fab, .far');
     buttons.forEach(button => {
-        if (!button.closest('.move-up, .move-down, .delete-element') && 
-            !button.id?.includes('menu-button') && 
-            !button.closest('[id$="mobile-menu"]') &&
-            !button.closest('script')) {
-            button.addEventListener('click', (e) => {
-                e.preventDefault();
-                e.stopPropagation();
-                window.dispatchEvent(new CustomEvent('editor:showLinkEditor', { 
-                    detail: { element: button }
-                }));
-            });
-            
-            button.classList.add(
-                'cursor-pointer', 
-                'hover:ring-2', 
-                'hover:ring-blue-500', 
-                'hover:ring-opacity-50', 
-                'rounded'
-            );
-        }
+        button.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            window.dispatchEvent(new CustomEvent('editor:showLinkEditor', { 
+                detail: { element: button }
+            }));
+        });
+        
+        button.classList.add(
+            'cursor-pointer', 
+            'hover:ring-2', 
+            'hover:ring-blue-500', 
+            'hover:ring-opacity-50', 
+            'rounded'
+        );
     });
 
     // Gestion des images
     const images = mainContent.querySelectorAll('img');
     images.forEach(img => {
-        if (!img.closest('.move-up, .move-down, .delete-element')) {
-            img.addEventListener('click', (e) => {
-                e.preventDefault();
-                e.stopPropagation();
-                window.dispatchEvent(new CustomEvent('editor:showImageEditor', { 
-                    detail: { element: img }
-                }));
-            });
-            
-            img.classList.add(
-                'cursor-pointer', 
-                'hover:ring-2', 
-                'hover:ring-blue-500', 
-                'hover:ring-opacity-50', 
-                'rounded'
-            );
-        }
+        img.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            window.dispatchEvent(new CustomEvent('editor:showImageEditor', { 
+                detail: { element: img }
+            }));
+        });
+        
+        img.classList.add(
+            'cursor-pointer', 
+            'hover:ring-2', 
+            'hover:ring-blue-500', 
+            'hover:ring-opacity-50', 
+            'rounded'
+        );
     });
 
     // Gestion des iframes
@@ -104,6 +97,24 @@ function makeElementsEditable(element) {
 }
 
 /**
+ * Fonction utilitaire pour le défilement fluide
+ * @param {string} targetId - L'ID de l'élément cible
+ */
+function smoothScrollToElement(targetId) {
+    const targetElement = document.getElementById(targetId);
+    if (targetElement) {
+        const offset = 60; // Offset pour éviter que l'élément soit trop en haut
+        const elementPosition = targetElement.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.pageYOffset - offset;
+
+        window.scrollTo({
+            top: offsetPosition,
+            behavior: 'smooth'
+        });
+    }
+}
+
+/**
  * Affiche l'éditeur de lien pour un élément
  * @param {HTMLElement} element - L'élément pour lequel afficher l'éditeur
  */
@@ -112,6 +123,10 @@ export function showLinkEditor(element) {
     const existingMenu = document.querySelector('.floating-link-editor');
     if (existingMenu) existingMenu.remove();
 
+    // Récupérer uniquement le premier élément avec ID de chaque composant dans la prévisualisation
+    const previewContent = document.getElementById('previewContent');
+    const elementsWithIds = previewContent ? Array.from(previewContent.children).map(component => component.querySelector('[id]')).filter(Boolean) : [];
+    
     const menu = document.createElement('div');
     menu.className = 'floating-link-editor fixed bg-white dark:bg-gray-800 rounded-lg shadow-lg p-4 z-[1000] border dark:border-gray-700';
     
@@ -122,12 +137,26 @@ export function showLinkEditor(element) {
 
     menu.innerHTML = `
         <div class="space-y-4">
-            <div>
+            <div class="mb-4">
+                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Type de lien</label>
+                <select id="linkType" class="w-full px-3 py-2 border rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+                    <option value="url">URL externe</option>
+                    <option value="scroll">Défilement vers un élément</option>
+                </select>
+            </div>
+            <div id="urlInput">
                 <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">URL ${isIframe ? 'de l\'iframe' : 'du lien'}</label>
                 <input type="text" value="${currentHref || ''}" 
                     class="w-full px-3 py-2 border rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white" 
                     placeholder="https://..." 
                     id="linkUrl">
+            </div>
+            <div id="scrollInput" class="hidden">
+                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Élément cible</label>
+                <select id="targetElement" class="w-full px-3 py-2 border rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+                    <option value="">Sélectionnez un élément</option>
+                    ${elementsWithIds.map(el => `<option value="${el.id}">${el.id}</option>`).join('')}
+                </select>
             </div>
             ${!isIframe ? `
             <div class="flex items-center gap-2">
@@ -155,9 +184,27 @@ export function showLinkEditor(element) {
 
     document.body.appendChild(menu);
 
+    // Gestionnaires d'événements pour le type de lien
+    const linkType = menu.querySelector('#linkType');
+    const urlInput = menu.querySelector('#urlInput');
+    const scrollInput = menu.querySelector('#scrollInput');
+
+    linkType.addEventListener('change', () => {
+        if (linkType.value === 'url') {
+            urlInput.classList.remove('hidden');
+            scrollInput.classList.add('hidden');
+        } else {
+            urlInput.classList.add('hidden');
+            scrollInput.classList.remove('hidden');
+        }
+    });
+
     // Gestionnaires d'événements
     const handleApply = () => {
-        const url = document.getElementById('linkUrl').value;
+        const isScrollLink = linkType.value === 'scroll';
+        const url = isScrollLink 
+            ? `#${document.getElementById('targetElement').value}`
+            : document.getElementById('linkUrl').value;
         const newTab = !isIframe && document.getElementById('newTab')?.checked;
 
         if (url) {
@@ -176,11 +223,35 @@ export function showLinkEditor(element) {
 
                 const linkElement = targetElement.closest('a');
                 linkElement.href = url;
-                linkElement.target = newTab ? '_blank' : '_self';
-                if (newTab) {
-                    linkElement.rel = 'noopener noreferrer';
-                } else {
+                
+                if (isScrollLink) {
+                    // Ajouter le gestionnaire d'événements pour le défilement fluide
+                    linkElement.removeAttribute('target');
                     linkElement.removeAttribute('rel');
+                    // Ajouter une classe spéciale pour identifier les liens de défilement
+                    linkElement.classList.add('smooth-scroll');
+                    // Ajouter le script de défilement fluide directement dans le lien
+                    linkElement.setAttribute('onclick', `
+                        event.preventDefault();
+                        const targetId = this.getAttribute('href').substring(1);
+                        const targetElement = document.getElementById(targetId);
+                        if (targetElement) {
+                            const offset = 60;
+                            const elementPosition = targetElement.getBoundingClientRect().top;
+                            const offsetPosition = elementPosition + window.pageYOffset - offset;
+                            window.scrollTo({
+                                top: offsetPosition,
+                                behavior: 'smooth'
+                            });
+                        }
+                    `);
+                } else {
+                    linkElement.target = newTab ? '_blank' : '_self';
+                    if (newTab) {
+                        linkElement.rel = 'noopener noreferrer';
+                    } else {
+                        linkElement.removeAttribute('rel');
+                    }
                 }
             }
         } else if (!isIframe && element.closest('a')) {
@@ -228,6 +299,10 @@ export function addElementToPreview(element) {
     const newElement = tempContainer.firstElementChild;
 
     if (newElement) {
+        // Ajouter un ID basé uniquement sur le nom de l'élément
+        const elementName = element.name || 'element';
+        newElement.id = elementName;
+
         // Créer le conteneur avec les contrôles
         const elementContainer = createElementContainer(newElement);
         
@@ -261,12 +336,16 @@ export function addElementsToPreview(elements) {
     previewContent.innerHTML = '';
 
     // Ajouter chaque élément
-    elements.forEach(element => {
+    elements.forEach((element, index) => {
         const tempContainer = document.createElement('div');
         tempContainer.innerHTML = element.html;
         const newElement = tempContainer.firstElementChild;
 
         if (newElement) {
+            // Ajouter un ID basé sur le nom de l'élément et l'index
+            const elementName = element.name || 'element';
+            newElement.id = `${elementName}-${index + 1}`;
+
             const elementContainer = createElementContainer(newElement);
             makeElementEditable(elementContainer);
             makeElementsEditable(elementContainer);

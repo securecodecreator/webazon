@@ -23,7 +23,7 @@
             <a href="app.html" class="text-4xl font-bold theme-transition-ready bg-gradient-to-r from-light-primary to-light-secondary dark:from-dark-primary dark:to-dark-secondary bg-clip-text text-transparent hover:scale-105 transition-transform duration-300">Webazon</a>
             <p class="flex items-center gap-2 theme-transition-ready text-gray-700 dark:text-gray-300">
                 <span class="text-lg">✨</span>
-                <a href="version.html" class="font-medium hover:text-light-primary dark:hover:text-dark-primary transition-colors">V1.0.5</a>
+                <a href="version.html" id="versionLink" class="font-medium hover:text-light-primary dark:hover:text-dark-primary transition-colors"></a>
             </p>
         </div>
         
@@ -96,13 +96,32 @@
         <h1 class="text-4xl font-bold theme-transition-ready text-gray-800 dark:text-gray-200 mb-8 text-center">Notes de version</h1>
         
         <div class="relative pl-8 space-y-12 before:absolute before:left-[11px] before:top-2 before:bottom-2 before:w-0.5 theme-transition-ready before:bg-light-primary dark:before:bg-dark-primary">
-            <!-- Version 1.0.5 -->
+            <!-- Version 1.0.6 -->
             <div class="relative">
                 <div class="absolute left-[-33px] w-6 h-6 rounded-full theme-transition-ready bg-light-primary dark:bg-dark-primary"></div>
                 <div class="theme-transition-ready bg-white/50 dark:bg-gray-800/50 rounded-lg p-6 shadow-lg">
                     <div class="flex items-center gap-4 mb-4">
-                        <h2 class="text-2xl font-semibold theme-transition-ready text-gray-800 dark:text-gray-200">Version 1.0.5</h2>
+                        <h2 class="text-2xl font-semibold theme-transition-ready text-gray-800 dark:text-gray-200">Version 1.0.6</h2>
                         <span class="px-3 py-1 text-sm rounded-full theme-transition-ready bg-light-primary/20 dark:bg-dark-primary/20 text-light-primary dark:text-dark-primary">Actuelle</span>
+                    </div>
+                    <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">13 Février 2025</p>
+                    <ul class="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300">
+                        <li>Ajout de l'intégration (embed) de lien dans les images et iframes</li>
+                        <li>Ajout de la fonctionnalité pour rediriger vers un composant spécifique</li>
+                        <li>Amélioration de la gestion des éléments dans la prévisualisation</li>
+                        <li>Ajout des attributs id aux éléments pour une meilleure gestion</li>
+                        <li>Ajout des attributs id aux composants des templates pour une meilleure gestion</li>
+                        <li>Correction de bugs divers</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Version 1.0.5 -->
+            <div class="relative">
+                <div class="absolute left-[-33px] w-6 h-6 rounded-full theme-transition-ready bg-gray-300 dark:bg-gray-700"></div>
+                <div class="theme-transition-ready bg-white/50 dark:bg-gray-800/50 rounded-lg p-6 shadow-lg">
+                    <div class="flex items-center gap-4 mb-4">
+                        <h2 class="text-2xl font-semibold theme-transition-ready text-gray-800 dark:text-gray-200">Version 1.0.5</h2>
                     </div>
                     <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">12 Février 2025</p>
                     <ul class="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300">
@@ -226,6 +245,14 @@
             menuLinks.forEach(link => {
                 link.addEventListener('click', toggleMenu);
             });
+        });
+
+        // Gestion de l'affichage de la version
+        document.addEventListener('DOMContentLoaded', function() {
+            const versionLink = document.getElementById('versionLink');
+            if (versionLink) {
+                versionLink.textContent = APP_VERSION;
+            }
         });
     </script>
 </body>

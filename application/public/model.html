@@ -24,7 +24,7 @@
         <h1 class="text-4xl font-bold theme-transition-ready bg-gradient-to-r from-light-primary to-light-secondary dark:from-dark-primary dark:to-dark-secondary bg-clip-text text-transparent hover:scale-105 transition-transform duration-300">Webazon</h1>
         <p class="flex items-center gap-2 theme-transition-ready text-gray-700 dark:text-gray-300">
             <span class="text-lg">✨</span>
-            <a href="version.html" class="font-medium hover:text-light-primary dark:hover:text-dark-primary transition-colors">V1.0.5</a>
+            <a href="version.html" id="versionLink" class="font-medium hover:text-light-primary dark:hover:text-dark-primary transition-colors"></a>
         </p>
     </div>
     
@@ -163,6 +163,14 @@
         menuLinks.forEach(link => {
             link.addEventListener('click', toggleMenu);
         });
+    });
+
+    // Gestion de l'affichage de la version
+    document.addEventListener('DOMContentLoaded', function() {
+        const versionLink = document.getElementById('versionLink');
+        if (versionLink) {
+            versionLink.textContent = APP_VERSION;
+        }
     });
 </script>
 </body>

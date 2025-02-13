@@ -20,6 +20,9 @@ const tailwindConfig = {
     }
 };
 
+// Configuration de la version de l'application
+const APP_VERSION = 'V1.0.6';
+
 // Exporter la configuration pour l'utiliser ailleurs si nécessaire
 if (typeof module !== 'undefined' && module.exports) {
     module.exports = tailwindConfig;
