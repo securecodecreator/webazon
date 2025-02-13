@@ -37,35 +37,6 @@ export function makeElementEditable(element) {
         });
         textNode.parentNode.replaceChild(span, textNode);
     });
-
-    // Ajouter la gestion des liens pour les boutons et icônes
-    const mainContent = element.querySelector(':scope > :not(.absolute)');
-    if (mainContent) {
-        const buttons = mainContent.querySelectorAll('button, a, .fa, .fas, .fab, .far');
-        buttons.forEach(button => {
-            // Vérifier si le bouton n'est pas un bouton de menu mobile ou un élément de contrôle
-            if (!button.closest('.move-up, .move-down, .delete-element') && 
-                !button.id?.includes('menu-button') && 
-                !button.closest('[id$="mobile-menu"]') &&
-                !button.closest('script')) {
-                button.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    window.dispatchEvent(new CustomEvent('editor:showLinkEditor', { 
-                        detail: { element: button }
-                    }));
-                });
-                
-                button.classList.add(
-                    'cursor-pointer', 
-                    'hover:ring-2', 
-                    'hover:ring-blue-500', 
-                    'hover:ring-opacity-50', 
-                    'rounded'
-                );
-            }
-        });
-    }
 }
 
 /**
