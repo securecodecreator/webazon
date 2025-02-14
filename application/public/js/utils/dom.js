@@ -94,8 +94,6 @@ export function createElementContainer(element) {
         </button>
     `;
     
-    // Ajouter une marge au contenu principal pour éviter le chevauchement avec les boutons
-    element.style.marginTop = '2.5rem';
     
     container.appendChild(moveButtons);
     container.appendChild(deleteButton);
@@ -131,49 +129,26 @@ export function attachElementEvents(elementContainer) {
             e.preventDefault();
             e.stopPropagation();
             
-            const sibling = direction === 'up' 
-                ? elementContainer.previousElementSibling 
-                : elementContainer.nextElementSibling;
+            // Récupérer tous les éléments dans leur ordre actuel
+            const elements = Array.from(previewContent.children);
+            const currentIndex = elements.indexOf(elementContainer);
+            const targetIndex = direction === 'up' ? currentIndex - 1 : currentIndex + 1;
+            
+            // Vérifier si le déplacement est possible
+            if (targetIndex >= 0 && targetIndex < elements.length) {
+                const targetElement = elements[targetIndex];
                 
-            if (sibling) {
-                // Sauvegarder les positions initiales
-                const elementRect = elementContainer.getBoundingClientRect();
-                const siblingRect = sibling.getBoundingClientRect();
+                if (direction === 'up') {
+                    previewContent.insertBefore(elementContainer, targetElement);
+                } else {
+                    previewContent.insertBefore(elementContainer, targetElement.nextSibling);
+                }
                 
-                // Créer une animation de transition
-                elementContainer.style.transition = 'transform 0.2s ease-in-out';
-                sibling.style.transition = 'transform 0.2s ease-in-out';
-                
-                // Calculer le déplacement
-                const distance = direction === 'up' 
-                    ? -(elementRect.height + 8) // 8px pour la marge
-                    : (siblingRect.height + 8);
-                
-                // Appliquer l'animation
-                elementContainer.style.transform = `translateY(${distance}px)`;
-                sibling.style.transform = `translateY(${-distance}px)`;
-                
-                // Attendre la fin de l'animation avant de modifier le DOM
-                setTimeout(() => {
-                    // Réinitialiser les styles de transition
-                    elementContainer.style.transition = '';
-                    sibling.style.transition = '';
-                    elementContainer.style.transform = '';
-                    sibling.style.transform = '';
-                    
-                    // Échanger les éléments dans le DOM
-                    const parent = elementContainer.parentNode;
-                    const placeholder = document.createElement('div');
-                    
-                    parent.insertBefore(placeholder, elementContainer);
-                    parent.insertBefore(elementContainer, sibling);
-                    parent.insertBefore(sibling, placeholder);
-                    placeholder.remove();
-                    
-                    // Mettre à jour l'état
+                // Mettre à jour l'état après le déplacement
+                requestAnimationFrame(() => {
                     window.dispatchEvent(new CustomEvent('preview:update'));
                     window.dispatchEvent(new CustomEvent('state:save'));
-                }, 200);
+                });
             }
         };
 

@@ -1,11 +1,8 @@
 import { createElementContainer, makeElementEditable, attachElementEvents } from '../utils/dom.js';
 
 // Configuration
-const AUTO_SAVE_INTERVAL = 30000; // 30 secondes
-const MAX_VERSIONS = 5;
 const NOTIFICATION_DURATION = 2000;
 let lastSaveTime = 0;
-let autoSaveInterval = null;
 
 /**
  * Compresse une chaîne de caractères
@@ -42,44 +39,11 @@ function decompressString(compressed) {
 }
 
 /**
- * Affiche une notification de sauvegarde
- * @param {string} type - Le type de notification ('success' ou 'error')
- * @param {string} message - Le message à afficher
- */
-function showSaveNotification(type, message) {
-    const existingNotification = document.querySelector('.save-notification');
-    if (existingNotification) {
-        existingNotification.remove();
-    }
-
-    const notification = document.createElement('div');
-    notification.className = `save-notification fixed top-0 left-1/2 transform -translate-x-1/2 py-1 px-3 text-xs rounded-b-lg z-[1000] ${
-        type === 'success' 
-            ? 'bg-green-500/80 text-white' 
-            : 'bg-red-500/80 text-white'
-    }`;
-    notification.textContent = message;
-    document.body.appendChild(notification);
-
-    // Animation d'entrée
-    notification.style.transform = 'translate(-50%, -100%)';
-    setTimeout(() => {
-        notification.style.transform = 'translate(-50%, 0)';
-    }, 10);
-
-    // Animation de sortie
-    setTimeout(() => {
-        notification.style.transform = 'translate(-50%, -100%)';
-        setTimeout(() => notification.remove(), 300);
-    }, NOTIFICATION_DURATION);
-}
-
-/**
  * Sauvegarde l'état actuel de l'éditeur
  */
 export function saveCurrentState() {
     const now = Date.now();
-    if (now - lastSaveTime < 1000) return; // Éviter les sauvegardes trop fréquentes
+    if (now - lastSaveTime < 300) return; // Anti-rebond minimal
     lastSaveTime = now;
 
     const previewContent = document.getElementById('previewContent');
@@ -103,25 +67,58 @@ export function saveCurrentState() {
     
     try {
         const compressedState = compressString(JSON.stringify(savedState));
-        const versions = JSON.parse(localStorage.getItem('webazonEditorVersions') || '[]');
-        versions.unshift({
-            timestamp: now,
-            state: compressedState
-        });
         
-        while (versions.length > MAX_VERSIONS) {
-            versions.pop();
+        // Vérifier si l'état est différent de l'état précédent
+        const previousState = localStorage.getItem('webazonEditorState');
+        if (previousState === compressedState) {
+            return; // Éviter les sauvegardes inutiles
         }
         
-        localStorage.setItem('webazonEditorVersions', JSON.stringify(versions));
+        // Sauvegarder l'état
         localStorage.setItem('webazonEditorState', compressedState);
         sessionStorage.setItem('webazonEditorStateBackup', compressedState);
         
-        showSaveNotification('success', 'Modifications sauvegardées');
+        // Sauvegarder uniquement la dernière version
+        const versions = [{
+            timestamp: now,
+            state: compressedState
+        }];
+        localStorage.setItem('webazonEditorVersions', JSON.stringify(versions));
+        
+        // Notification discrète
+        showSaveNotification('success', 'Sauvegardé', true);
     } catch (error) {
         console.error('Erreur lors de la sauvegarde:', error);
-        showSaveNotification('error', 'Échec de la sauvegarde');
+        showSaveNotification('error', 'Échec de la sauvegarde', true);
     }
+}
+
+/**
+ * Affiche une notification de sauvegarde
+ * @param {string} type - Le type de notification ('success' ou 'error')
+ * @param {string} message - Le message à afficher
+ * @param {boolean} [isQuiet=false] - Si true, la notification sera plus discrète
+ */
+function showSaveNotification(type, message, isQuiet = false) {
+    const existingNotification = document.querySelector('.save-notification');
+    if (existingNotification) {
+        existingNotification.remove();
+    }
+
+    const notification = document.createElement('div');
+    notification.className = `save-notification fixed bottom-4 right-4 py-1 px-3 text-xs rounded-lg z-[1000] transition-opacity duration-300 ${
+        type === 'success' 
+            ? 'bg-green-500/40 text-white' 
+            : 'bg-red-500/40 text-white'
+    }`;
+    notification.textContent = message;
+    notification.style.opacity = isQuiet ? '0.5' : '1';
+    document.body.appendChild(notification);
+
+    setTimeout(() => {
+        notification.style.opacity = '0';
+        setTimeout(() => notification.remove(), 300);
+    }, isQuiet ? 1000 : NOTIFICATION_DURATION);
 }
 
 /**
@@ -203,19 +200,9 @@ export function restoreState(versionIndex = 0, isReset = false) {
     }
 }
 
-/**
- * Initialise la sauvegarde automatique
- */
+// Supprimer l'auto-save
 export function initAutoSave() {
-    if (autoSaveInterval) {
-        clearInterval(autoSaveInterval);
-    }
-    
-    autoSaveInterval = setInterval(() => {
-        saveCurrentState();
-    }, AUTO_SAVE_INTERVAL);
-    
-    // Sauvegarder avant de quitter la page
+    // Sauvegarder uniquement avant de quitter la page
     window.addEventListener('beforeunload', saveCurrentState);
 }
 
