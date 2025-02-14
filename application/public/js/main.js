@@ -102,10 +102,14 @@ function loadTemplate(templateId) {
 document.addEventListener('DOMContentLoaded', () => {
     const urlParams = new URLSearchParams(window.location.search);
     const templateId = urlParams.get('template');
+    const isReset = sessionStorage.getItem('isReset') === 'true';
+
+    // Nettoyer le flag de réinitialisation
+    sessionStorage.removeItem('isReset');
 
     if (templateId) {
         loadTemplate(templateId);
-    } else {
+    } else if (!isReset) {
         restoreState();
     }
 

@@ -530,13 +530,8 @@ export function resetEditor() {
                 // Déclencher les événements de mise à jour
                 window.dispatchEvent(new CustomEvent('preview:update'));
                 
-                // Afficher une notification de succès
+                // Afficher la notification de succès
                 showNotification('success', 'Réinitialisation effectuée avec succès');
-                
-                // Recharger la page après un court délai
-                setTimeout(() => {
-                    window.location.reload();
-                }, NOTIFICATION_DURATION);
                 
             } catch (error) {
                 console.error('Erreur lors de la réinitialisation:', error);

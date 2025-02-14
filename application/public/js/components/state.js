@@ -89,129 +89,117 @@ export function saveCurrentState() {
     const savedState = {
         version: 1,
         timestamp: now,
-        content: previewContent.innerHTML,
         elementsOrder: Array.from(elements).map(element => {
             const mainContent = element.querySelector(':scope > :not(.absolute)');
+            const elementId = element.dataset.elementId || Math.random().toString(36).substr(2, 9);
+            element.dataset.elementId = elementId;
             return {
-                id: element.dataset.elementId || Math.random().toString(36).substr(2, 9),
-                html: mainContent ? mainContent.outerHTML : ''
+                id: elementId,
+                html: mainContent ? mainContent.outerHTML : '',
+                position: Array.from(elements).indexOf(element)
             };
-        })
+        }).filter(el => el.html)
     };
     
     try {
-        // Compression des données
         const compressedState = compressString(JSON.stringify(savedState));
-        
-        // Gestion du versionnage
         const versions = JSON.parse(localStorage.getItem('webazonEditorVersions') || '[]');
         versions.unshift({
             timestamp: now,
             state: compressedState
         });
         
-        // Garder uniquement les dernières versions
         while (versions.length > MAX_VERSIONS) {
             versions.pop();
         }
         
-        // Sauvegarder les versions
         localStorage.setItem('webazonEditorVersions', JSON.stringify(versions));
-        
-        // Sauvegarder l'état actuel
         localStorage.setItem('webazonEditorState', compressedState);
         sessionStorage.setItem('webazonEditorStateBackup', compressedState);
         
         showSaveNotification('success', 'Modifications sauvegardées');
     } catch (error) {
         console.error('Erreur lors de la sauvegarde:', error);
-        try {
-            // Tentative de sauvegarde sans compression
-            const fallbackState = JSON.stringify(savedState);
-            sessionStorage.setItem('webazonEditorState', fallbackState);
-            showSaveNotification('error', 'Sauvegarde partielle uniquement');
-        } catch (e) {
-            console.error('Erreur de sauvegarde complète:', e);
-            showSaveNotification('error', 'Échec de la sauvegarde');
-        }
+        showSaveNotification('error', 'Échec de la sauvegarde');
     }
 }
 
 /**
  * Restaure l'état précédemment sauvegardé
  * @param {number} [versionIndex=0] - L'index de la version à restaurer
+ * @param {boolean} [isReset=false] - Indique si c'est une réinitialisation
  */
-export function restoreState(versionIndex = 0) {
-    let savedState;
-    
-    try {
-        const versions = JSON.parse(localStorage.getItem('webazonEditorVersions') || '[]');
-        if (versions.length > versionIndex) {
-            savedState = versions[versionIndex].state;
-        } else {
-        savedState = localStorage.getItem('webazonEditorState');
+export function restoreState(versionIndex = 0, isReset = false) {
+    if (isReset) {
+        localStorage.removeItem('webazonEditorVersions');
+        localStorage.removeItem('webazonEditorState');
+        sessionStorage.removeItem('webazonEditorStateBackup');
+        sessionStorage.removeItem('webazonEditorState');
+
+        const previewContent = document.getElementById('previewContent');
+        if (previewContent) {
+            previewContent.innerHTML = '<!-- Le contenu HTML sera injecté ici -->';
+            showSaveNotification('success', 'Éditeur réinitialisé');
         }
-        
-        if (!savedState) {
-            savedState = sessionStorage.getItem('webazonEditorStateBackup');
-        }
-        if (!savedState) {
-            savedState = sessionStorage.getItem('webazonEditorState');
-        }
-    } catch (error) {
-        console.error('Erreur lors de la récupération de l\'état:', error);
-        showSaveNotification('error', 'Erreur lors de la restauration');
         return;
     }
 
-    if (savedState) {
-        try {
-            const previewContent = document.getElementById('previewContent');
-            const codePreview = document.getElementById('codePreview');
-            
-            if (!previewContent || !codePreview) {
-                console.error('Éléments nécessaires non trouvés');
-                return;
-            }
+    let savedState;
+    try {
+        const versions = JSON.parse(localStorage.getItem('webazonEditorVersions') || '[]');
+        savedState = versions.length > versionIndex ? versions[versionIndex].state : 
+                    localStorage.getItem('webazonEditorState') ||
+                    sessionStorage.getItem('webazonEditorStateBackup') ||
+                    sessionStorage.getItem('webazonEditorState');
 
-            // Décompression et parsing de l'état
-            const decompressed = decompressString(savedState);
-            const state = JSON.parse(decompressed);
+        if (!savedState) return;
+
+        const previewContent = document.getElementById('previewContent');
+        if (!previewContent) return;
+
+        const decompressed = decompressString(savedState);
+        const state = JSON.parse(decompressed);
+        
+        if (state.elementsOrder && Array.isArray(state.elementsOrder)) {
+            const currentElements = new Map();
+            previewContent.querySelectorAll(':scope > div.relative').forEach(el => {
+                if (el.dataset.elementId) {
+                    currentElements.set(el.dataset.elementId, el);
+                }
+            });
+
+            previewContent.innerHTML = '';
+            const sortedElements = [...state.elementsOrder].sort((a, b) => a.position - b.position);
             
-            if (state.elementsOrder && Array.isArray(state.elementsOrder)) {
-                previewContent.innerHTML = '';
-                state.elementsOrder.forEach(elementData => {
+            sortedElements.forEach(elementData => {
+                if (!elementData.html) return;
+                
+                let elementContainer;
+                if (currentElements.has(elementData.id)) {
+                    elementContainer = currentElements.get(elementData.id);
+                } else {
                     const tempContainer = document.createElement('div');
                     tempContainer.innerHTML = elementData.html;
                     const element = tempContainer.firstElementChild;
+                    if (!element) return;
                     
-                    if (element) {
-                        const elementContainer = createElementContainer(element);
-                        elementContainer.dataset.elementId = elementData.id;
-                        
-                        makeElementEditable(elementContainer);
-                        attachElementEvents(elementContainer);
-                        
-                        previewContent.appendChild(elementContainer);
-                    }
-                });
+                    elementContainer = createElementContainer(element);
+                    elementContainer.dataset.elementId = elementData.id;
+                    makeElementEditable(elementContainer);
+                    attachElementEvents(elementContainer);
+                }
                 
+                previewContent.appendChild(elementContainer);
+            });
+
+            requestAnimationFrame(() => {
                 window.dispatchEvent(new CustomEvent('preview:update'));
                 showSaveNotification('success', 'État restauré avec succès');
-            } else if (state.content) {
-                previewContent.innerHTML = state.content;
-                window.dispatchEvent(new CustomEvent('preview:update'));
-                showSaveNotification('success', 'Contenu restauré avec succès');
-            } else {
-                previewContent.innerHTML = '<!-- Le contenu HTML sera injecté ici -->';
-                codePreview.innerHTML = '<!-- Le contenu HTML sera injecté ici -->';
-            }
-        } catch (error) {
-            console.error('Erreur critique lors de la restauration:', error);
-            document.getElementById('previewContent').innerHTML = '<!-- Le contenu HTML sera injecté ici -->';
-            document.getElementById('codePreview').innerHTML = '<!-- Le contenu HTML sera injecté ici -->';
-            showSaveNotification('error', 'Erreur critique lors de la restauration');
+            });
         }
+    } catch (error) {
+        console.error('Erreur lors de la restauration:', error);
+        showSaveNotification('error', 'Erreur lors de la restauration');
     }
 }
 
@@ -235,5 +223,4 @@ export function initAutoSave() {
 document.addEventListener('DOMContentLoaded', initAutoSave);
 
 // Écouter les événements de sauvegarde
-window.addEventListener('state:save', saveCurrentState); 
 window.addEventListener('state:save', saveCurrentState); 
