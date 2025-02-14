@@ -1,5 +1,74 @@
 import { makeElementEditable, createElementContainer, attachElementEvents } from '../utils/dom.js';
 
+// Configuration
+const NOTIFICATION_DURATION = 2000;
+
+/**
+ * Affiche une notification dans le style unifié
+ * @param {string} type - Le type de notification ('success' ou 'error')
+ * @param {string} message - Le message à afficher
+ */
+function showNotification(type, message) {
+    const existingNotification = document.querySelector('.save-notification');
+    if (existingNotification) {
+        existingNotification.remove();
+    }
+
+    const notification = document.createElement('div');
+    notification.className = `save-notification fixed top-0 left-1/2 transform -translate-x-1/2 py-1 px-3 text-xs rounded-b-lg z-[1000] ${
+        type === 'success' 
+            ? 'bg-green-500/80 text-white' 
+            : 'bg-red-500/80 text-white'
+    }`;
+    notification.textContent = message;
+    document.body.appendChild(notification);
+
+    // Animation d'entrée
+    notification.style.transform = 'translate(-50%, -100%)';
+    setTimeout(() => {
+        notification.style.transform = 'translate(-50%, 0)';
+    }, 10);
+
+    // Animation de sortie
+    setTimeout(() => {
+        notification.style.transform = 'translate(-50%, -100%)';
+        setTimeout(() => notification.remove(), 300);
+    }, NOTIFICATION_DURATION);
+}
+
+/**
+ * Initialise l'éditeur et réattache tous les événements nécessaires
+ */
+export function initEditor() {
+    const previewContent = document.getElementById('previewContent');
+    if (!previewContent) return;
+
+    // Réinitialiser les éditeurs flottants existants
+    const existingEditors = document.querySelectorAll('.floating-link-editor, .floating-image-editor');
+    existingEditors.forEach(editor => editor.remove());
+
+    // Réattacher les événements aux éléments existants
+    const elements = previewContent.querySelectorAll(':scope > div.relative');
+    elements.forEach(element => {
+        makeElementEditable(element);
+        makeElementsEditable(element);
+        attachElementEvents(element);
+    });
+
+    // Attacher les événements globaux
+    if (!window._editorEventsAttached) {
+        window.addEventListener('editor:showLinkEditor', (e) => {
+            showLinkEditor(e.detail.element);
+        });
+
+        window.addEventListener('editor:showImageEditor', (e) => {
+            showImageEditor(e.detail.element);
+        });
+
+        window._editorEventsAttached = true;
+    }
+}
+
 /**
  * @param {HTMLElement} element
  */
@@ -7,17 +76,25 @@ function makeElementsEditable(element) {
     const mainContent = element.querySelector(':scope > :not(.absolute)');
     if (!mainContent) return;
 
+    // Nettoyer les événements existants pour éviter les doublons
+    const cleanElement = (el) => {
+        const clone = el.cloneNode(true);
+        el.parentNode.replaceChild(clone, el);
+        return clone;
+    };
+
     const buttons = mainContent.querySelectorAll('button, a, .fa, .fas, .fab, .far');
     buttons.forEach(button => {
-        button.addEventListener('click', (e) => {
+        const cleanButton = cleanElement(button);
+        cleanButton.addEventListener('click', (e) => {
             e.preventDefault();
             e.stopPropagation();
             window.dispatchEvent(new CustomEvent('editor:showLinkEditor', { 
-                detail: { element: button }
+                detail: { element: cleanButton }
             }));
         });
         
-        button.classList.add(
+        cleanButton.classList.add(
             'cursor-pointer', 
             'hover:ring-2', 
             'hover:ring-blue-500', 
@@ -28,15 +105,16 @@ function makeElementsEditable(element) {
 
     const images = mainContent.querySelectorAll('img');
     images.forEach(img => {
-        img.addEventListener('click', (e) => {
+        const cleanImg = cleanElement(img);
+        cleanImg.addEventListener('click', (e) => {
             e.preventDefault();
             e.stopPropagation();
             window.dispatchEvent(new CustomEvent('editor:showImageEditor', { 
-                detail: { element: img }
+                detail: { element: cleanImg }
             }));
         });
         
-        img.classList.add(
+        cleanImg.classList.add(
             'cursor-pointer', 
             'hover:ring-2', 
             'hover:ring-blue-500', 
@@ -48,10 +126,10 @@ function makeElementsEditable(element) {
     const iframes = mainContent.querySelectorAll('iframe');
     iframes.forEach(iframe => {
         if (!iframe.closest('.move-up, .move-down, .delete-element')) {
-
-            const existingWrapper = iframe.closest('.iframe-wrapper');
+            const cleanIframe = cleanElement(iframe);
+            const existingWrapper = cleanIframe.closest('.iframe-wrapper');
             if (existingWrapper) {
-                existingWrapper.replaceWith(iframe);
+                existingWrapper.replaceWith(cleanIframe);
             }
             
             const overlay = document.createElement('div');
@@ -62,8 +140,8 @@ function makeElementsEditable(element) {
             wrapper.style.width = '100%';
             wrapper.style.height = '100%';
             
-            iframe.parentNode.insertBefore(wrapper, iframe);
-            wrapper.appendChild(iframe);
+            cleanIframe.parentNode.insertBefore(wrapper, cleanIframe);
+            wrapper.appendChild(cleanIframe);
             
             const handleMouseEnter = () => {
                 wrapper.appendChild(overlay);
@@ -80,7 +158,7 @@ function makeElementsEditable(element) {
                 e.preventDefault();
                 e.stopPropagation();
                 window.dispatchEvent(new CustomEvent('editor:showLinkEditor', { 
-                    detail: { element: iframe }
+                    detail: { element: cleanIframe }
                 }));
             });
         }
@@ -126,22 +204,22 @@ export function showLinkEditor(element) {
             <div class="mb-4">
                 <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Type de lien</label>
                 <select id="linkType" class="w-full px-3 py-2 border rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white">
-                    <option value="url">URL externe</option>
-                    <option value="scroll">Défilement vers un élément</option>
+                    <option value="url" ${!currentHref.startsWith('#') ? 'selected' : ''}>URL externe</option>
+                    <option value="scroll" ${currentHref.startsWith('#') ? 'selected' : ''}>Défilement vers un élément</option>
                 </select>
             </div>
-            <div id="urlInput">
+            <div id="urlInput" class="${currentHref.startsWith('#') ? 'hidden' : ''}">
                 <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">URL ${isIframe ? 'de l\'iframe' : 'du lien'}</label>
-                <input type="text" value="${currentHref || ''}" 
+                <input type="text" value="${currentHref.startsWith('#') ? '' : currentHref}" 
                     class="w-full px-3 py-2 border rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white" 
                     placeholder="https://..." 
                     id="linkUrl">
             </div>
-            <div id="scrollInput" class="hidden">
+            <div id="scrollInput" class="${!currentHref.startsWith('#') ? 'hidden' : ''}">
                 <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Élément cible</label>
                 <select id="targetElement" class="w-full px-3 py-2 border rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white">
                     <option value="">Sélectionnez un élément</option>
-                    ${elementsWithIds.map(el => `<option value="${el.id}">${el.id}</option>`).join('')}
+                    ${elementsWithIds.map(el => `<option value="${el.id}" ${currentHref === '#' + el.id ? 'selected' : ''}>${el.id}</option>`).join('')}
                 </select>
             </div>
             ${!isIframe ? `
@@ -153,10 +231,10 @@ export function showLinkEditor(element) {
             </div>
             ` : ''}
             <div class="flex justify-end gap-2">
-                <button class="px-3 py-1 text-sm bg-gray-200 dark:bg-gray-700 rounded-lg" id="cancelLink">
+                <button class="px-3 py-1 text-sm bg-gray-200 dark:bg-gray-700 rounded-lg hover:bg-gray-300 dark:hover:bg-gray-600" id="cancelLink">
                     Annuler
                 </button>
-                <button class="px-3 py-1 text-sm bg-blue-500 text-white rounded-lg" id="applyLink">
+                <button class="px-3 py-1 text-sm bg-blue-500 text-white rounded-lg hover:bg-blue-600" id="applyLink">
                     Appliquer
                 </button>
             </div>
@@ -186,30 +264,33 @@ export function showLinkEditor(element) {
     const handleApply = () => {
         const isScrollLink = linkType.value === 'scroll';
         const url = isScrollLink 
-            ? `#${document.getElementById('targetElement').value}`
-            : document.getElementById('linkUrl').value;
-        const newTab = !isIframe && document.getElementById('newTab')?.checked;
+            ? `#${menu.querySelector('#targetElement').value}`
+            : menu.querySelector('#linkUrl').value;
+        const newTab = !isIframe && menu.querySelector('#newTab')?.checked;
 
         if (url) {
             if (isIframe) {
                 element.src = url;
             } else {
                 let targetElement = element;
-                if (!element.closest('a')) {
+                const existingLink = element.closest('a');
+                
+                if (!existingLink) {
                     const link = document.createElement('a');
                     element.parentNode.insertBefore(link, element);
                     link.appendChild(element);
                     targetElement = link;
+                } else {
+                    targetElement = existingLink;
                 }
 
-                const linkElement = targetElement.closest('a');
-                linkElement.href = url;
+                targetElement.href = url;
                 
                 if (isScrollLink) {
-                    linkElement.removeAttribute('target');
-                    linkElement.removeAttribute('rel');
-                    linkElement.classList.add('smooth-scroll');
-                    linkElement.setAttribute('onclick', `
+                    targetElement.removeAttribute('target');
+                    targetElement.removeAttribute('rel');
+                    targetElement.classList.add('smooth-scroll');
+                    targetElement.setAttribute('onclick', `
                         event.preventDefault();
                         const targetId = this.getAttribute('href').substring(1);
                         const targetElement = document.getElementById(targetId);
@@ -224,17 +305,16 @@ export function showLinkEditor(element) {
                         }
                     `);
                 } else {
-                    linkElement.target = newTab ? '_blank' : '_self';
+                    targetElement.target = newTab ? '_blank' : '_self';
                     if (newTab) {
-                        linkElement.rel = 'noopener noreferrer';
+                        targetElement.rel = 'noopener noreferrer';
                     } else {
-                        linkElement.removeAttribute('rel');
+                        targetElement.removeAttribute('rel');
                     }
+                    targetElement.removeAttribute('onclick');
+                    targetElement.classList.remove('smooth-scroll');
                 }
             }
-        } else if (!isIframe && element.closest('a')) {
-            const link = element.closest('a');
-            link.replaceWith(element);
         }
 
         menu.remove();
@@ -246,14 +326,36 @@ export function showLinkEditor(element) {
         menu.remove();
     };
 
-    document.getElementById('applyLink').addEventListener('click', handleApply);
-    document.getElementById('cancelLink').addEventListener('click', handleCancel);
+    menu.querySelector('#applyLink').addEventListener('click', handleApply);
+    menu.querySelector('#cancelLink').addEventListener('click', handleCancel);
 
-    document.addEventListener('click', (e) => {
+    // Fermer le menu si on clique en dehors
+    const handleClickOutside = (e) => {
         if (!menu.contains(e.target) && !element.contains(e.target)) {
             menu.remove();
+            document.removeEventListener('click', handleClickOutside);
         }
-    });
+    };
+
+    // Attendre le prochain tick pour ajouter l'écouteur de clic
+    setTimeout(() => {
+        document.addEventListener('click', handleClickOutside);
+    }, 0);
+
+    // Gestion des touches du clavier
+    const handleKeydown = (e) => {
+        if (e.key === 'Escape') {
+            menu.remove();
+            document.removeEventListener('keydown', handleKeydown);
+            document.removeEventListener('click', handleClickOutside);
+        } else if (e.key === 'Enter' && e.ctrlKey) {
+            handleApply();
+            document.removeEventListener('keydown', handleKeydown);
+            document.removeEventListener('click', handleClickOutside);
+        }
+    };
+
+    document.addEventListener('keydown', handleKeydown);
 }
 
 /**
@@ -320,7 +422,6 @@ export function addElementsToPreview(elements) {
     window.dispatchEvent(new CustomEvent('state:save'));
 }
 
-
 export function resetEditor() {
     const confirmReset = () => {
         const dialog = document.createElement('div');
@@ -373,10 +474,20 @@ export function resetEditor() {
     confirmReset().then(confirmed => {
         if (confirmed) {
             try {
-                localStorage.removeItem('webazonEditorState');
-                sessionStorage.removeItem('webazonEditorState');
-                sessionStorage.removeItem('webazonEditorStateBackup');
+                // Sauvegarder le thème actuel
+                const currentTheme = localStorage.getItem('theme');
                 
+                // Nettoyer tous les états stockés
+                for (const key in localStorage) {
+                    if (key !== 'theme') {
+                        localStorage.removeItem(key);
+                    }
+                }
+                for (const key in sessionStorage) {
+                    sessionStorage.removeItem(key);
+                }
+                
+                // Réinitialiser les contenus
                 const previewContent = document.getElementById('previewContent');
                 const codePreview = document.getElementById('codePreview');
                 
@@ -388,9 +499,48 @@ export function resetEditor() {
                     codePreview.innerHTML = '<!-- Le contenu HTML sera injecté ici -->';
                 }
                 
+                // Nettoyer les éditeurs flottants
+                const floatingEditors = document.querySelectorAll('.floating-link-editor, .floating-image-editor');
+                floatingEditors.forEach(editor => editor.remove());
+                
+                // Réinitialiser les modales
+                const modals = document.querySelectorAll('#previewModal, #selectiveModal');
+                modals.forEach(modal => {
+                    if (modal) {
+                        modal.classList.add('hidden');
+                        const modalContent = modal.querySelector('[id$="ModalContent"]');
+                        if (modalContent) {
+                            modalContent.innerHTML = '';
+                        }
+                    }
+                });
+                
+                // Restaurer le thème
+                if (currentTheme) {
+                    localStorage.setItem('theme', currentTheme);
+                }
+                
+                // Nettoyer l'URL des paramètres de template
+                const url = new URL(window.location.href);
+                if (url.searchParams.has('template')) {
+                    url.searchParams.delete('template');
+                    window.history.replaceState({}, '', url.toString());
+                }
+                
+                // Déclencher les événements de mise à jour
                 window.dispatchEvent(new CustomEvent('preview:update'));
+                
+                // Afficher une notification de succès
+                showNotification('success', 'Réinitialisation effectuée avec succès');
+                
+                // Recharger la page après un court délai
+                setTimeout(() => {
+                    window.location.reload();
+                }, NOTIFICATION_DURATION);
+                
             } catch (error) {
                 console.error('Erreur lors de la réinitialisation:', error);
+                showNotification('error', 'Erreur lors de la réinitialisation');
             }
         }
     });
@@ -471,10 +621,14 @@ export function showImageEditor(element) {
     });
 }
 
-window.addEventListener('editor:showLinkEditor', (e) => {
-    showLinkEditor(e.detail.element);
-});
+// Supprimer les écouteurs d'événements globaux existants
+window.removeEventListener('editor:showLinkEditor', showLinkEditor);
+window.removeEventListener('editor:showImageEditor', showImageEditor);
 
-window.addEventListener('editor:showImageEditor', (e) => {
-    showImageEditor(e.detail.element);
+// Initialiser l'éditeur au chargement de la page
+document.addEventListener('DOMContentLoaded', initEditor);
+
+// Réinitialiser l'éditeur après les mises à jour du contenu
+window.addEventListener('preview:update', () => {
+    setTimeout(initEditor, 0);
 }); 
