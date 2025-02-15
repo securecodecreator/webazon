@@ -1770,7 +1770,301 @@ const htmlAssets = {
                     </div>
                 </div>
             </footer>`
-        }
+        },
+    footerCreatif: {
+        name: "Footer Créatif",
+        html: `<footer class="theme-transition-ready bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 py-12 px-6">
+            <div class="max-w-6xl mx-auto">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16 md:gap-12">
+                    <div class="text-center md:text-left space-y-6">
+                        <div class="flex justify-center md:justify-start">
+                            <span class="text-4xl font-black bg-clip-text text-transparent bg-gradient-to-r from-purple-600 to-pink-500">LOGO</span>
+                        </div>
+                        <p class="theme-transition-ready text-gray-600 dark:text-gray-300 text-sm leading-relaxed max-w-xs mx-auto md:mx-0">
+                            Créons ensemble l'avenir numérique. Innovation, créativité et excellence au service de vos projets.
+                        </p>
+                    </div>
+                    
+                    <div class="text-center md:text-left">
+                        <div class="flex flex-col items-center md:items-start">
+                            <h4 class="font-bold mb-2 theme-transition-ready text-gray-800 dark:text-white text-lg">
+                                Navigation
+                            </h4>
+                            <span class="block w-12 h-1 bg-gradient-to-r from-purple-600 to-pink-500 mb-6"></span>
+                        </div>
+                        <ul class="space-y-4">
+                            <li>
+                                <a href="#" class="group theme-transition-ready text-gray-600 dark:text-gray-300 hover:text-purple-500 dark:hover:text-purple-400 flex items-center justify-center md:justify-start">
+                                    <span class="w-2 h-2 rounded-full bg-purple-500 mr-2 transform scale-0 group-hover:scale-100 transition-transform duration-300"></span>
+                                    Découvrir
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="group theme-transition-ready text-gray-600 dark:text-gray-300 hover:text-purple-500 dark:hover:text-purple-400 flex items-center justify-center md:justify-start">
+                                    <span class="w-2 h-2 rounded-full bg-purple-500 mr-2 transform scale-0 group-hover:scale-100 transition-transform duration-300"></span>
+                                    Nos Services
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="group theme-transition-ready text-gray-600 dark:text-gray-300 hover:text-purple-500 dark:hover:text-purple-400 flex items-center justify-center md:justify-start">
+                                    <span class="w-2 h-2 rounded-full bg-purple-500 mr-2 transform scale-0 group-hover:scale-100 transition-transform duration-300"></span>
+                                    Blog
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="text-center md:text-left">
+                        <div class="flex flex-col items-center md:items-start">
+                            <h4 class="font-bold mb-2 theme-transition-ready text-gray-800 dark:text-white text-lg">
+                                Contact
+                            </h4>
+                            <span class="block w-12 h-1 bg-gradient-to-r from-purple-600 to-pink-500 mb-6"></span>
+                        </div>
+                        <div class="space-y-6">
+                            <a href="mailto:contact@example.com" class="theme-transition-ready text-gray-600 dark:text-gray-300 hover:text-purple-500 dark:hover:text-purple-400 flex items-center justify-center md:justify-start">
+                                <span class="w-10 h-10 rounded-lg bg-purple-100 dark:bg-purple-900/30 flex items-center justify-center mr-3">
+                                    <i class="far fa-envelope text-purple-500"></i>
+                                </span>
+                                contact@example.com
+                            </a>
+                            <a href="tel:+33123456789" class="theme-transition-ready text-gray-600 dark:text-gray-300 hover:text-purple-500 dark:hover:text-purple-400 flex items-center justify-center md:justify-start">
+                                <span class="w-10 h-10 rounded-lg bg-purple-100 dark:bg-purple-900/30 flex items-center justify-center mr-3">
+                                    <i class="fas fa-phone text-purple-500"></i>
+                                </span>
+                                +33 1 23 45 67 89
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="text-center md:text-left">
+                        <div class="flex flex-col items-center md:items-start">
+                            <h4 class="font-bold mb-2 theme-transition-ready text-gray-800 dark:text-white text-lg">
+                                Newsletter
+                            </h4>
+                            <span class="block w-12 h-1 bg-gradient-to-r from-purple-600 to-pink-500 mb-6"></span>
+                        </div>
+                        <div class="relative max-w-xs mx-auto md:mx-0">
+                            <input type="email" placeholder="Votre email" class="w-full px-4 py-3 rounded-lg theme-transition-ready bg-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600 focus:outline-none focus:ring-2 focus:ring-purple-500">
+                            <button class="absolute right-2 top-1/2 transform -translate-y-1/2 px-4 py-1.5 bg-gradient-to-r from-purple-600 to-pink-500 text-white rounded-md hover:opacity-90 transition-opacity">
+                                <i class="fas fa-paper-plane"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mt-16 pt-8 border-t border-gray-200 dark:border-gray-700">
+                    <div class="flex flex-col md:flex-row items-center justify-between gap-8 md:gap-0">
+                        <p class="theme-transition-ready text-gray-600 dark:text-gray-300 text-sm order-2 md:order-1">
+                            &copy; 2025 Votre Entreprise. Tous droits réservés.
+                        </p>
+                        <div class="flex space-x-6 order-1 md:order-2">
+                            <a href="#" class="group">
+                                <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-purple-600 to-pink-500 p-0.5">
+                                    <div class="w-full h-full theme-transition-ready bg-white dark:bg-gray-800 rounded-lg flex items-center justify-center group-hover:bg-transparent transition-colors">
+                                        <i class="fab fa-facebook-f text-purple-500 group-hover:text-white transition-colors"></i>
+                                    </div>
+                                </div>
+                            </a>
+                            <a href="#" class="group">
+                                <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-purple-600 to-pink-500 p-0.5">
+                                    <div class="w-full h-full theme-transition-ready bg-white dark:bg-gray-800 rounded-lg flex items-center justify-center group-hover:bg-transparent transition-colors">
+                                        <i class="fab fa-twitter text-purple-500 group-hover:text-white transition-colors"></i>
+                                    </div>
+                                </div>
+                            </a>
+                            <a href="#" class="group">
+                                <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-purple-600 to-pink-500 p-0.5">
+                                    <div class="w-full h-full theme-transition-ready bg-white dark:bg-gray-800 rounded-lg flex items-center justify-center group-hover:bg-transparent transition-colors">
+                                        <i class="fab fa-instagram text-purple-500 group-hover:text-white transition-colors"></i>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>`
+    },
+    gradientFooter: {
+        name: "Pied de Page Gradient Bleu",
+        html: `<footer class="theme-transition-ready bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-blue-900 p-6 sm:p-8 w-full">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 text-center sm:text-left">
+                    <div>
+                        <div class="flex flex-col items-center sm:items-start">
+                            <h4 class="font-bold mb-2 theme-transition-ready text-blue-800 dark:text-blue-300 text-lg">
+                                À propos
+                            </h4>
+                            <span class="block w-12 h-1 bg-gradient-to-r from-blue-400 to-indigo-500 mb-6"></span>
+                        </div>
+                        <p class="theme-transition-ready text-blue-700 dark:text-blue-200">Description courte de votre entreprise avec un style unique</p>
+                    </div>
+                    
+                    <div>
+                        <div class="flex flex-col items-center sm:items-start">
+                            <h4 class="font-bold mb-2 theme-transition-ready text-blue-800 dark:text-blue-300 text-lg">
+                                Navigation
+                            </h4>
+                            <span class="block w-12 h-1 bg-gradient-to-r from-blue-400 to-indigo-500 mb-6"></span>
+                        </div>
+                        <ul class="space-y-3">
+                            <li><a href="#" class="theme-transition-ready text-blue-600 dark:text-blue-300 hover:text-indigo-500 dark:hover:text-indigo-400 flex items-center justify-center sm:justify-start group">
+                                <span class="relative overflow-hidden">
+                                    <span class="inline-block transform transition-transform duration-300 group-hover:-translate-y-full">Accueil</span>
+                                    <span class="absolute top-0 left-0 transform translate-y-full transition-transform duration-300 group-hover:-translate-y-0 text-indigo-500">Accueil</span>
+                                </span>
+                            </a></li>
+                            <li><a href="#" class="theme-transition-ready text-blue-600 dark:text-blue-300 hover:text-indigo-500 dark:hover:text-indigo-400 flex items-center justify-center sm:justify-start group">
+                                <span class="relative overflow-hidden">
+                                    <span class="inline-block transform transition-transform duration-300 group-hover:-translate-y-full">Services</span>
+                                    <span class="absolute top-0 left-0 transform translate-y-full transition-transform duration-300 group-hover:-translate-y-0 text-indigo-500">Services</span>
+                                </span>
+                            </a></li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <div class="flex flex-col items-center sm:items-start">
+                            <h4 class="font-bold mb-2 theme-transition-ready text-blue-800 dark:text-blue-300 text-lg">
+                                Contact
+                            </h4>
+                            <span class="block w-12 h-1 bg-gradient-to-r from-blue-400 to-indigo-500 mb-6"></span>
+                        </div>
+                        <div class="space-y-3">
+                            <a href="mailto:contact@email.com" class="theme-transition-ready text-blue-600 dark:text-blue-300 block hover:scale-105 transform transition-all duration-300">
+                                <i class="far fa-envelope mr-2"></i>contact@email.com
+                            </a>
+                            <p class="theme-transition-ready text-blue-600 dark:text-blue-300 block hover:scale-105 transform transition-all duration-300">
+                                <i class="fas fa-phone mr-2"></i>+33 1 23 45 67 89
+                            </p>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="flex flex-col items-center sm:items-start">
+                            <h4 class="font-bold mb-2 theme-transition-ready text-blue-800 dark:text-blue-300 text-lg">
+                                Newsletter
+                            </h4>
+                            <span class="block w-12 h-1 bg-gradient-to-r from-blue-400 to-indigo-500 mb-6"></span>
+                        </div>
+                        <div class="relative">
+                            <input type="email" placeholder="Votre email" class="w-full px-4 py-3 rounded-lg theme-transition-ready bg-white/50 dark:bg-white/10 backdrop-blur-sm border border-blue-200 dark:border-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-400 text-blue-800 dark:text-blue-200 placeholder-blue-400 dark:placeholder-blue-300">
+                            <button class="absolute right-2 top-1/2 transform -translate-y-1/2 w-8 h-8 bg-gradient-to-r from-blue-500 to-indigo-500 text-white rounded-full hover:from-blue-600 hover:to-indigo-600 transition-all duration-300 flex items-center justify-center group">
+                                <i class="fas fa-paper-plane transform group-hover:-translate-y-1 group-hover:translate-x-1 transition-transform duration-300"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-16 pt-8 border-t border-blue-200 dark:border-blue-800">
+                    <div class="flex flex-col md:flex-row items-center justify-between gap-8 md:gap-0">
+                        <p class="theme-transition-ready text-blue-600 dark:text-blue-300 text-sm order-2 md:order-1">
+                            &copy; 2025 Votre Entreprise. Tous droits réservés.
+                        </p>
+                        <div class="flex space-x-6 order-1 md:order-2">
+                            <a href="#" class="group relative">
+                                <div class="absolute inset-0 bg-gradient-to-r from-blue-400 to-indigo-500 rounded-lg blur transition-all duration-300 group-hover:blur-xl"></div>
+                                <div class="w-10 h-10 relative rounded-lg bg-gradient-to-r from-blue-500 to-indigo-600 p-0.5 transition-all duration-300 group-hover:from-blue-600 group-hover:to-indigo-700">
+                                    <div class="w-full h-full bg-white dark:bg-gray-900 rounded-lg flex items-center justify-center group-hover:bg-transparent transition-colors duration-300">
+                                        <i class="fab fa-facebook-f text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-indigo-500 group-hover:text-white transition-colors duration-300"></i>
+                                    </div>
+                                </div>
+                            </a>
+                            <a href="#" class="group relative">
+                                <div class="absolute inset-0 bg-gradient-to-r from-blue-400 to-indigo-500 rounded-lg blur transition-all duration-300 group-hover:blur-xl"></div>
+                                <div class="w-10 h-10 relative rounded-lg bg-gradient-to-r from-blue-500 to-indigo-600 p-0.5 transition-all duration-300 group-hover:from-blue-600 group-hover:to-indigo-700">
+                                    <div class="w-full h-full bg-white dark:bg-gray-900 rounded-lg flex items-center justify-center group-hover:bg-transparent transition-colors duration-300">
+                                        <i class="fab fa-twitter text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-indigo-500 group-hover:text-white transition-colors duration-300"></i>
+                                    </div>
+                                </div>
+                            </a>
+                            <a href="#" class="group relative">
+                                <div class="absolute inset-0 bg-gradient-to-r from-blue-400 to-indigo-500 rounded-lg blur transition-all duration-300 group-hover:blur-xl"></div>
+                                <div class="w-10 h-10 relative rounded-lg bg-gradient-to-r from-blue-500 to-indigo-600 p-0.5 transition-all duration-300 group-hover:from-blue-600 group-hover:to-indigo-700">
+                                    <div class="w-full h-full bg-white dark:bg-gray-900 rounded-lg flex items-center justify-center group-hover:bg-transparent transition-colors duration-300">
+                                        <i class="fab fa-linkedin-in text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-indigo-500 group-hover:text-white transition-colors duration-300"></i>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>`
+    },
+    retroGlow: {
+        name: "Footer Rétro Lumineux",
+        html: `<footer class="theme-transition-ready bg-gray-50 dark:bg-gray-900 p-8 w-full">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+                    <div class="text-center md:text-left">
+                        <div class="inline-block">
+                            <h4 class="font-mono text-xl mb-2 theme-transition-ready text-amber-700 dark:text-amber-300">
+                                Retrowave
+                            </h4>
+                            <div class="w-12 h-1 bg-gradient-to-r from-amber-300 to-pink-400 mb-6"></div>
+                        </div>
+                        <p class="font-mono theme-transition-ready text-gray-600 dark:text-gray-400">
+                            Une expérience unique inspirée des années 80
+                        </p>
+                    </div>
+
+                    <div class="text-center md:text-left">
+                        <div class="space-y-4">
+                            <h4 class="font-mono text-lg theme-transition-ready text-amber-700 dark:text-amber-300">Navigation</h4>
+                            <ul class="space-y-3">
+                                <li><a href="#" class="font-mono theme-transition-ready text-gray-600 hover:text-amber-600 dark:text-gray-400 dark:hover:text-amber-300">Accueil</a></li>
+                                <li><a href="#" class="font-mono theme-transition-ready text-gray-600 hover:text-amber-600 dark:text-gray-400 dark:hover:text-amber-300">À propos</a></li>
+                                <li><a href="#" class="font-mono theme-transition-ready text-gray-600 hover:text-amber-600 dark:text-gray-400 dark:hover:text-amber-300">Services</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="text-center md:text-left">
+                        <div class="space-y-4">
+                            <h4 class="font-mono text-lg theme-transition-ready text-amber-700 dark:text-amber-300">Newsletter</h4>
+                            <div class="flex flex-col space-y-3">
+                                <input type="email" placeholder="votre@email.com" class="font-mono px-4 py-2 rounded theme-transition-ready bg-gray-100 dark:bg-gray-800 border border-amber-200 dark:border-amber-800 focus:outline-none focus:border-amber-400 text-gray-700 dark:text-gray-300">
+                                <button class="font-mono py-2 px-4 bg-gradient-to-r from-amber-400 to-pink-400 text-white rounded hover:from-amber-500 hover:to-pink-500 transition-all duration-300">
+                                    S'abonner
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="text-center md:text-left">
+                        <div class="space-y-4">
+                            <h4 class="font-mono text-lg theme-transition-ready text-amber-700 dark:text-amber-300">Contact</h4>
+                            <div class="space-y-3 font-mono theme-transition-ready text-gray-600 dark:text-gray-400">
+                                <p>contact@retrowave.com</p>
+                                <p>+33 1 23 45 67 89</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-12 pt-8 border-t border-amber-200 dark:border-amber-800">
+                    <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+                        <p class="font-mono theme-transition-ready text-gray-600 dark:text-gray-400 text-sm">
+                            &copy; 2025 Retrowave. Tous droits réservés.
+                        </p>
+                        <div class="flex space-x-6">
+                            <a href="#" class="w-10 h-10 flex items-center justify-center rounded-lg theme-transition-ready bg-gradient-to-r from-amber-400 to-pink-400 text-white hover:from-amber-500 hover:to-pink-500 transition-all duration-300">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <a href="#" class="w-10 h-10 flex items-center justify-center rounded-lg theme-transition-ready bg-gradient-to-r from-amber-400 to-pink-400 text-white hover:from-amber-500 hover:to-pink-500 transition-all duration-300">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                            <a href="#" class="w-10 h-10 flex items-center justify-center rounded-lg theme-transition-ready bg-gradient-to-r from-amber-400 to-pink-400 text-white hover:from-amber-500 hover:to-pink-500 transition-all duration-300">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>`
+    }
     },    
     
     // composants de prix
