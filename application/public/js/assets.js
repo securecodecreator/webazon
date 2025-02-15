@@ -1712,8 +1712,66 @@ const htmlAssets = {
                     </div>
                 </div>
             </footer>`
+        },
+        withSocialLinks: {
+            name: "Pied de Page avec Liens + Social",
+            html: `<footer class="theme-transition-ready bg-gray-100 dark:bg-gray-800 p-6 sm:p-8 w-full">
+                <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 text-center sm:text-left">
+                        <div>
+                            <h4 class="font-bold mb-4 theme-transition-ready text-gray-800 dark:text-white text-base sm:text-lg">À propos</h4>
+                            <p class="theme-transition-ready text-gray-600 dark:text-gray-300 text-sm sm:text-base">Description courte de votre entreprise</p>
+                        </div>
+                        <div>
+                            <h4 class="font-bold mb-4 theme-transition-ready text-gray-800 dark:text-white text-base sm:text-lg">Liens Rapides</h4>
+                            <ul class="space-y-2">
+                                <li><a href="#" class="theme-transition-ready text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400 text-sm sm:text-base flex items-center justify-center sm:justify-start">
+                                    <i class="fas fa-home mr-2"></i>Accueil
+                                </a></li>
+                                <li><a href="#" class="theme-transition-ready text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400 text-sm sm:text-base flex items-center justify-center sm:justify-start">
+                                    <i class="fas fa-cogs mr-2"></i>Services
+                                </a></li>
+                                <li><a href="#" class="theme-transition-ready text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400 text-sm sm:text-base flex items-center justify-center sm:justify-start">
+                                    <i class="fas fa-envelope mr-2"></i>Contact
+                                </a></li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="font-bold mb-4 theme-transition-ready text-gray-800 dark:text-white text-base sm:text-lg">Contact</h4>
+                            <ul class="space-y-2">
+                                <li class="theme-transition-ready text-gray-600 dark:text-gray-300 text-sm sm:text-base flex items-center justify-center sm:justify-start">
+                                    <i class="far fa-envelope mr-2"></i>contact@email.com
+                                </li>
+                                <li class="theme-transition-ready text-gray-600 dark:text-gray-300 text-sm sm:text-base flex items-center justify-center sm:justify-start">
+                                    <i class="fas fa-phone mr-2"></i>+33 1 23 45 67 89
+                                </li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="font-bold mb-4 theme-transition-ready text-gray-800 dark:text-white text-base sm:text-lg">Suivez-nous</h4>
+                            <div class="flex justify-center sm:justify-start space-x-4">
+                                <a href="#" class="w-10 h-10 flex items-center justify-center rounded-full bg-blue-600 hover:bg-blue-700 transition-colors duration-300">
+                                    <i class="fab fa-facebook-f text-white"></i>
+                                </a>
+                                <a href="#" class="w-10 h-10 flex items-center justify-center rounded-full bg-sky-500 hover:bg-sky-600 transition-colors duration-300">
+                                    <i class="fab fa-twitter text-white"></i>
+                                </a>
+                                <a href="#" class="w-10 h-10 flex items-center justify-center rounded-full bg-pink-600 hover:bg-pink-700 transition-colors duration-300">
+                                    <i class="fab fa-instagram text-white"></i>
+                                </a>
+                                <a href="#" class="w-10 h-10 flex items-center justify-center rounded-full bg-blue-800 hover:bg-blue-900 transition-colors duration-300">
+                                    <i class="fab fa-linkedin-in text-white"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-8 pt-8 border-t border-gray-200 dark:border-gray-700">
+                        <p class="theme-transition-ready text-gray-600 dark:text-gray-300 text-center text-sm">&copy; 2025 Votre Entreprise. Tous droits réservés.</p>
+                    </div>
+                </div>
+            </footer>`
         }
-    },
+    },    
     
     // composants de prix
     pricing: {
@@ -2701,13 +2759,13 @@ const htmlAssets = {
                 html: `<div class="container mx-auto px-4 py-8">
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                         <div class="overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1">
-                            <img src="https://placehold.co/600x400" alt="Image 1" class="w-full h-64 object-cover hover:scale-110 transition-transform duration-500">
+                            <img src="https://placehold.co/600x400" alt="Image 1" class="w-full h-64 object-cover transition-transform duration-500">
                         </div>
                         <div class="overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1">
-                            <img src="https://placehold.co/600x400" alt="Image 2" class="w-full h-64 object-cover hover:scale-110 transition-transform duration-500">
+                            <img src="https://placehold.co/600x400" alt="Image 2" class="w-full h-64 object-cover transition-transform duration-500">
                         </div>
                         <div class="overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1">
-                            <img src="https://placehold.co/600x400" alt="Image 3" class="w-full h-64 object-cover hover:scale-110 transition-transform duration-500">
+                            <img src="https://placehold.co/600x400" alt="Image 3" class="w-full h-64 object-cover transition-transform duration-500">
                         </div>
                     </div>
                 </div>`
@@ -2720,7 +2778,7 @@ const htmlAssets = {
                             <img src="https://placehold.co/1200x800" alt="Image principale" class="w-full h-[500px] object-cover">
                         </div>
                         <div class="grid grid-cols-4 gap-4">
-                            <div class="cursor-pointer rounded-lg overflow-hidden ring-2 ring-blue-500">
+                            <div class="cursor-pointer rounded-lg overflow-hidden hover:ring-2 ring-blue-500 transition-all">
                                 <img src="https://placehold.co/300x200" alt="Miniature 1" class="w-full h-24 object-cover hover:opacity-75 transition-opacity">
                             </div>
                             <div class="cursor-pointer rounded-lg overflow-hidden hover:ring-2 ring-blue-500 transition-all">
@@ -2742,25 +2800,17 @@ const htmlAssets = {
                     <div class="grid grid-cols-3 gap-4 max-w-6xl mx-auto">
                         <div class="col-span-2 row-span-2">
                             <div class="group relative h-full overflow-hidden rounded-2xl shadow-xl">
-                                <img src="https://placehold.co/800x800" alt="Image principale" class="w-full h-full object-cover transform scale-100 group-hover:scale-105 transition-transform duration-700">
-                                <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
-                                    <div class="absolute bottom-4 left-4 text-white">
-                                        <h3 class="text-xl font-semibold">Photo principale</h3>
-                                        <p class="text-sm opacity-75">Description de l'image</p>
-                                    </div>
-                                </div>
+                                <img src="https://placehold.co/800x800" alt="Image principale" class="w-full h-full object-cover transform transition-transform duration-700">
                             </div>
                         </div>
                         <div class="transform translate-y-8">
                             <div class="group relative overflow-hidden rounded-2xl shadow-xl">
-                                <img src="https://placehold.co/400x500" alt="Image 2" class="w-full h-64 object-cover transform scale-100 group-hover:scale-105 transition-transform duration-700">
-                                <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                                <img src="https://placehold.co/400x500" alt="Image 2" class="w-full h-64 object-cover transform transition-transform duration-700">
                             </div>
                         </div>
                         <div class="transform -translate-y-8">
                             <div class="group relative overflow-hidden rounded-2xl shadow-xl">
-                                <img src="https://placehold.co/400x500" alt="Image 3" class="w-full h-64 object-cover transform scale-100 group-hover:scale-105 transition-transform duration-700">
-                                <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                                <img src="https://placehold.co/400x500" alt="Image 3" class="w-full h-64 object-cover transform transition-transform duration-700">
                             </div>
                         </div>
                     </div>
@@ -2772,35 +2822,22 @@ const htmlAssets = {
                     <div class="columns-2 md:columns-3 lg:columns-4 gap-4 max-w-7xl mx-auto space-y-4">
                         <div class="break-inside-avoid">
                             <div class="group relative cursor-pointer rounded-xl overflow-hidden shadow-lg">
-                                <img src="https://placehold.co/400x600" alt="Image 1" class="w-full object-cover transition-transform duration-500 group-hover:scale-105">
-                                <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
-                                    <div class="absolute bottom-4 left-4 text-white">
-                                        <p class="text-sm font-medium">Catégorie</p>
-                                        <h3 class="text-lg font-bold">Titre de l'image</h3>
-                                    </div>
-                                </div>
+                                <img src="https://placehold.co/400x600" alt="Image 1" class="w-full object-cover transition-transform duration-500">
                             </div>
                         </div>
                         <div class="break-inside-avoid">
                             <div class="group relative cursor-pointer rounded-xl overflow-hidden shadow-lg">
-                                <img src="https://placehold.co/400x400" alt="Image 2" class="w-full object-cover transition-transform duration-500 group-hover:scale-105">
-                                <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
-                                    <div class="absolute bottom-4 left-4 text-white">
-                                        <p class="text-sm font-medium">Catégorie</p>
-                                        <h3 class="text-lg font-bold">Titre de l'image</h3>
-                                    </div>
-                                </div>
+                                <img src="https://placehold.co/400x400" alt="Image 2" class="w-full object-cover transition-transform duration-500">
                             </div>
                         </div>
                         <div class="break-inside-avoid">
                             <div class="group relative cursor-pointer rounded-xl overflow-hidden shadow-lg">
-                                <img src="https://placehold.co/400x500" alt="Image 3" class="w-full object-cover transition-transform duration-500 group-hover:scale-105">
-                                <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
-                                    <div class="absolute bottom-4 left-4 text-white">
-                                        <p class="text-sm font-medium">Catégorie</p>
-                                        <h3 class="text-lg font-bold">Titre de l'image</h3>
-                                    </div>
-                                </div>
+                                <img src="https://placehold.co/400x500" alt="Image 3" class="w-full object-cover transition-transform duration-500">
+                            </div>
+                        </div>
+                        <div class="break-inside-avoid">
+                            <div class="group relative cursor-pointer rounded-xl overflow-hidden shadow-lg">
+                                <img src="https://placehold.co/400x600" alt="Image 3" class="w-full object-cover transition-transform duration-500">
                             </div>
                         </div>
                     </div>
@@ -2864,7 +2901,7 @@ const htmlAssets = {
                                 <div class="space-y-4">
                                     <div class="group flex gap-4 cursor-pointer">
                                         <div class="w-32 aspect-video rounded-lg overflow-hidden">
-                                            <img src="https://placehold.co/240x135" alt="Miniature vidéo" class="w-full h-full object-cover">
+                                            <iframe class="w-full h-full" src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                                         </div>
                                         <div>
                                             <h4 class="font-medium text-gray-900 dark:text-white group-hover:text-blue-500 transition-colors">Vidéo suivante 1</h4>
@@ -2873,7 +2910,7 @@ const htmlAssets = {
                                     </div>
                                     <div class="group flex gap-4 cursor-pointer">
                                         <div class="w-32 aspect-video rounded-lg overflow-hidden">
-                                            <img src="https://placehold.co/240x135" alt="Miniature vidéo" class="w-full h-full object-cover">
+                                            <iframe class="w-full h-full" src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                                         </div>
                                         <div>
                                             <h4 class="font-medium text-gray-900 dark:text-white group-hover:text-blue-500 transition-colors">Vidéo suivante 2</h4>
@@ -2887,21 +2924,11 @@ const htmlAssets = {
                 </div>`
             },
             videoHero: {
-                name: "Vidéo hero avec overlay",
-                html: `<div class="relative h-[70vh] overflow-hidden">
-                    <div class="absolute inset-0">
-                        <video class="w-full h-full object-cover" autoplay loop muted playsinline>
-                            <source src="https://example.com/video.mp4" type="video/mp4">
-                        </video>
-                        <div class="absolute inset-0 bg-black/50"></div>
-                    </div>
-                    <div class="relative h-full flex items-center justify-center text-center px-4">
-                        <div class="max-w-3xl">
-                            <h1 class="text-4xl md:text-5xl font-bold text-white mb-6">Titre principal avec vidéo</h1>
-                            <p class="text-xl text-gray-200 mb-8">Une description captivante qui accompagne votre vidéo de fond</p>
-                            <button class="px-8 py-3 bg-white text-gray-900 rounded-full font-semibold hover:bg-gray-100 transition-colors">
-                                Découvrir plus
-                            </button>
+                name: "Vidéo seule",
+                html: `<div class="container mx-auto px-4 py-8">
+                    <div class="max-w-4xl mx-auto">
+                        <div class="aspect-video w-full rounded-xl overflow-hidden shadow-lg">
+                            <iframe class="w-full h-full" src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                         </div>
                     </div>
                 </div>`
