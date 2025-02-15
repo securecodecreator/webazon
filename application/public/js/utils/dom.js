@@ -129,26 +129,49 @@ export function attachElementEvents(elementContainer) {
             e.preventDefault();
             e.stopPropagation();
             
-            // Récupérer tous les éléments dans leur ordre actuel
-            const elements = Array.from(previewContent.children);
-            const currentIndex = elements.indexOf(elementContainer);
-            const targetIndex = direction === 'up' ? currentIndex - 1 : currentIndex + 1;
+            const currentElement = elementContainer;
             
-            // Vérifier si le déplacement est possible
-            if (targetIndex >= 0 && targetIndex < elements.length) {
-                const targetElement = elements[targetIndex];
+            // Trouver l'élément cible en fonction de la direction
+            let targetElement = direction === 'up' 
+                ? currentElement.previousElementSibling
+                : currentElement.nextElementSibling;
+            
+            if (targetElement) {
+                // Ajouter une animation de transition
+                currentElement.style.transition = 'transform 0.2s ease-out';
+                targetElement.style.transition = 'transform 0.2s ease-out';
                 
+                // Calculer la hauteur pour l'animation
+                const currentHeight = currentElement.offsetHeight;
+                const targetHeight = targetElement.offsetHeight;
+                
+                // Appliquer l'animation
                 if (direction === 'up') {
-                    previewContent.insertBefore(elementContainer, targetElement);
+                    currentElement.style.transform = `translateY(-${targetHeight}px)`;
+                    targetElement.style.transform = `translateY(${currentHeight}px)`;
                 } else {
-                    previewContent.insertBefore(elementContainer, targetElement.nextSibling);
+                    currentElement.style.transform = `translateY(${targetHeight}px)`;
+                    targetElement.style.transform = `translateY(-${currentHeight}px)`;
                 }
                 
-                // Mettre à jour l'état après le déplacement
-                requestAnimationFrame(() => {
+                // Effectuer le déplacement réel après l'animation
+                setTimeout(() => {
+                    if (direction === 'up') {
+                        previewContent.insertBefore(currentElement, targetElement);
+                    } else {
+                        previewContent.insertBefore(currentElement, targetElement.nextSibling);
+                    }
+                    
+                    // Réinitialiser les styles
+                    currentElement.style.transform = '';
+                    targetElement.style.transform = '';
+                    currentElement.style.transition = '';
+                    targetElement.style.transition = '';
+                    
+                    // Mettre à jour l'état
                     window.dispatchEvent(new CustomEvent('preview:update'));
                     window.dispatchEvent(new CustomEvent('state:save'));
-                });
+                }, 200);
             }
         };
 
