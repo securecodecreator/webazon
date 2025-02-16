@@ -39,6 +39,10 @@ const categories = {
         name: 'CTA',
         icon: 'fa-bullhorn'
     },
+    counters: {
+        name: 'Compteurs',
+        icon: 'fa-calculator'
+    },
     social: {
         name: 'Composants Sociaux',
         icon: 'fa-share-alt'

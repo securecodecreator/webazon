@@ -20,7 +20,7 @@ const tailwindConfig = {
     }
 };
 
-const APP_VERSION = 'V1.0.6';
+const APP_VERSION = 'V1.0.7';
 
 if (typeof module !== 'undefined' && module.exports) {
     module.exports = tailwindConfig;

@@ -981,8 +981,370 @@ const htmlAssets = {
         }
     },
 
-    
+    // Compteurs
+    counters: {
+        counterSimple: {
+            name: "Compteur Inversé",
+            html: `<div class="container mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20 lg:py-24">
+                <div class="max-w-7xl mx-auto">
+                    <div class="text-center mb-16">
+                        <span class="inline-block px-4 py-2 rounded-full bg-red-500 text-white text-sm font-semibold mb-4">Offre Limitée</span>
+                        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold theme-transition-ready text-gray-900 dark:text-white mb-8">Ne Manquez Pas Cette Opportunité</h2>
+                        <p class="text-gray-600 dark:text-gray-400 mb-8">Cette offre exceptionnelle se termine bientôt !</p>
+                        <div class="grid grid-cols-4 gap-4 max-w-lg mx-auto mb-8">
+                            <div class="theme-transition-ready bg-gradient-to-b from-purple-500 to-purple-600 p-4 rounded-2xl shadow-lg">
+                                <div id="days" class="text-4xl lg:text-5xl font-bold text-white">01</div>
+                                <div class="text-xs lg:text-sm text-white/90 mt-1">Jours</div>
+                            </div>
+                            <div class="theme-transition-ready bg-gradient-to-b from-red-500 to-red-600 p-4 rounded-2xl shadow-lg">
+                                <div id="hours" class="text-4xl lg:text-5xl font-bold text-white">08</div>
+                                <div class="text-xs lg:text-sm text-white/90 mt-1">Heures</div>
+                            </div>
+                            <div class="theme-transition-ready bg-gradient-to-b from-orange-500 to-orange-600 p-4 rounded-2xl shadow-lg">
+                                <div id="minutes" class="text-4xl lg:text-5xl font-bold text-white">20</div>
+                                <div class="text-xs lg:text-sm text-white/90 mt-1">Minutes</div>
+                            </div>
+                            <div class="theme-transition-ready bg-gradient-to-b from-yellow-500 to-yellow-600 p-4 rounded-2xl shadow-lg">
+                                <div id="seconds" class="text-4xl lg:text-5xl font-bold text-white">18</div>
+                                <div class="text-xs lg:text-sm text-white/90 mt-1">Secondes</div>
+                            </div>
+                        </div>
+                        <button class="bg-red-500 hover:bg-red-600 text-white font-semibold py-3 px-6 sm:py-4 sm:px-8 rounded-full transition-colors duration-200 shadow-lg hover:shadow-xl">
+                            Profiter de l'Offre Maintenant
+                        </button>
+                    </div>
+                </div>
+                <script>
+                    (function() {
+                        const STORAGE_KEY = 'countdownEndTime';
+                        let endTime = localStorage.getItem(STORAGE_KEY);
+                        const COUNTDOWN_DURATION = 60 * 60 * 1000; // 1 heure en millisecondes
+                        
+                        function resetCountdown() {
+                            const now = new Date();
+                            endTime = now.getTime() + COUNTDOWN_DURATION;
+                            localStorage.setItem(STORAGE_KEY, endTime);
+                        }
+                        
+                        if (!endTime) {
+                            resetCountdown();
+                        }
 
+                        function updateCountdown() {
+                            const now = new Date().getTime();
+                            const distance = endTime - now;
+
+                            if (distance < 0) {
+                                resetCountdown();
+                                return;
+                            }
+
+                            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                            document.getElementById('days').textContent = days.toString().padStart(2, '0');
+                            document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+                            document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+                            document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+                        }
+
+                        updateCountdown();
+                        setInterval(updateCountdown, 1000);
+                    })();
+                </script>
+            </div>`
+        },
+        neonCountdown: {
+            name: "Compteur Néon Moderne",
+            html: `<div class="theme-transition-ready bg-gray-900 p-8 rounded-2xl shadow-2xl">
+                <div class="max-w-4xl mx-auto">
+                    <h2 class="text-center mb-8 text-2xl sm:text-3xl md:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-purple-500 to-blue-500 [text-shadow:_0_0_10px_rgb(236_72_153_/_60%)]">
+                        Offre Limitée
+                    </h2>
+                    
+                    <div class="flex flex-col items-center space-y-8">
+                        <div class="grid grid-cols-4 gap-4 sm:gap-6 w-full max-w-2xl">
+                            <div class="flex flex-col items-center">
+                                <div id="neon-days" class="text-2xl sm:text-4xl md:text-5xl font-bold text-white p-4 rounded-lg bg-gradient-to-b from-gray-800 to-gray-900 border border-purple-500/30 [text-shadow:_0_0_10px_rgb(168_85_247_/_80%)] [box-shadow:_0_0_15px_rgb(168_85_247_/_30%)]">
+                                    00
+                                </div>
+                                <div class="text-xs sm:text-sm text-purple-400 mt-2 font-medium">Jours</div>
+                            </div>
+                            
+                            <div class="flex flex-col items-center">
+                                <div id="neon-hours" class="text-2xl sm:text-4xl md:text-5xl font-bold text-white p-4 rounded-lg bg-gradient-to-b from-gray-800 to-gray-900 border border-blue-500/30 [text-shadow:_0_0_10px_rgb(59_130_246_/_80%)] [box-shadow:_0_0_15px_rgb(59_130_246_/_30%)]">
+                                    00
+                                </div>
+                                <div class="text-xs sm:text-sm text-blue-400 mt-2 font-medium">Heures</div>
+                            </div>
+                            
+                            <div class="flex flex-col items-center">
+                                <div id="neon-minutes" class="text-2xl sm:text-4xl md:text-5xl font-bold text-white p-4 rounded-lg bg-gradient-to-b from-gray-800 to-gray-900 border border-pink-500/30 [text-shadow:_0_0_10px_rgb(236_72_153_/_80%)] [box-shadow:_0_0_15px_rgb(236_72_153_/_30%)]">
+                                    00
+                                </div>
+                                <div class="text-xs sm:text-sm text-pink-400 mt-2 font-medium">Minutes</div>
+                            </div>
+                            
+                            <div class="flex flex-col items-center">
+                                <div id="neon-seconds" class="text-2xl sm:text-4xl md:text-5xl font-bold text-white p-4 rounded-lg bg-gradient-to-b from-gray-800 to-gray-900 border border-cyan-500/30 [text-shadow:_0_0_10px_rgb(34_211_238_/_80%)] [box-shadow:_0_0_15px_rgb(34_211_238_/_30%)]">
+                                    00
+                                </div>
+                                <div class="text-xs sm:text-sm text-cyan-400 mt-2 font-medium">Secondes</div>
+                            </div>
+                        </div>
+                        
+                        <button class="relative px-8 py-4 rounded-full bg-gradient-to-r from-purple-600 to-blue-600 text-white font-semibold text-lg overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-[0_0_25px_rgb(168_85_247_/_50%)] group">
+                            <span class="relative z-10">Profiter de l'Offre</span>
+                            <div class="absolute inset-0 bg-gradient-to-r from-purple-600 to-blue-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-xl"></div>
+                        </button>
+                    </div>
+                </div>
+                
+                <script>
+                    (function() {
+                        const STORAGE_KEY = 'neonCountdownEndTime';
+                        let endTime = localStorage.getItem(STORAGE_KEY);
+                        const COUNTDOWN_DURATION = 60 * 60 * 1000; // 1 heure
+                        
+                        function resetCountdown() {
+                            const now = new Date();
+                            endTime = now.getTime() + COUNTDOWN_DURATION;
+                            localStorage.setItem(STORAGE_KEY, endTime);
+                        }
+                        
+                        if (!endTime) {
+                            resetCountdown();
+                        }
+
+                        function updateCountdown() {
+                            const now = new Date().getTime();
+                            const distance = endTime - now;
+
+                            if (distance < 0) {
+                                resetCountdown();
+                                return;
+                            }
+
+                            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                            document.getElementById('neon-days').textContent = days.toString().padStart(2, '0');
+                            document.getElementById('neon-hours').textContent = hours.toString().padStart(2, '0');
+                            document.getElementById('neon-minutes').textContent = minutes.toString().padStart(2, '0');
+                            document.getElementById('neon-seconds').textContent = seconds.toString().padStart(2, '0');
+                        }
+
+                        updateCountdown();
+                        setInterval(updateCountdown, 1000);
+                    })();
+                </script>
+            </div>`
+        },
+        retro: {
+            name: "Compteur Rétro",
+            html: `<div class="theme-transition-ready bg-white dark:bg-gray-900 p-8 rounded-xl shadow-lg">
+                <div class="max-w-3xl mx-auto">
+                    <h2 class="text-2xl md:text-3xl font-bold text-center theme-transition-ready text-gray-800 dark:text-gray-200 mb-8">Offre Limitée</h2>
+                    
+                    <div class="flex justify-center gap-4 md:gap-8 mb-8">
+                        <div class="relative w-20 h-24 md:w-24 md:h-28 bg-gradient-to-b from-gray-200 to-gray-300 dark:from-gray-700 dark:to-gray-800 rounded-lg shadow-inner overflow-hidden">
+                            <div class="absolute inset-0.5 bg-white dark:bg-gray-900 rounded-md"></div>
+                            <span id="retro-days" class="absolute inset-0 flex items-center justify-center font-mono text-3xl md:text-4xl font-bold theme-transition-ready text-gray-800 dark:text-gray-200">00</span>
+                            <span class="absolute bottom-1 left-0 right-0 text-center text-xs theme-transition-ready text-gray-600 dark:text-gray-400">JOURS</span>
+                        </div>
+
+                        <div class="relative w-20 h-24 md:w-24 md:h-28 bg-gradient-to-b from-gray-200 to-gray-300 dark:from-gray-700 dark:to-gray-800 rounded-lg shadow-inner overflow-hidden">
+                            <div class="absolute inset-0.5 bg-white dark:bg-gray-900 rounded-md"></div>
+                            <span id="retro-hours" class="absolute inset-0 flex items-center justify-center font-mono text-3xl md:text-4xl font-bold theme-transition-ready text-gray-800 dark:text-gray-200">00</span>
+                            <span class="absolute bottom-1 left-0 right-0 text-center text-xs theme-transition-ready text-gray-600 dark:text-gray-400">HEURES</span>
+                        </div>
+
+                        <div class="relative w-20 h-24 md:w-24 md:h-28 bg-gradient-to-b from-gray-200 to-gray-300 dark:from-gray-700 dark:to-gray-800 rounded-lg shadow-inner overflow-hidden">
+                            <div class="absolute inset-0.5 bg-white dark:bg-gray-900 rounded-md"></div>
+                            <span id="retro-minutes" class="absolute inset-0 flex items-center justify-center font-mono text-3xl md:text-4xl font-bold theme-transition-ready text-gray-800 dark:text-gray-200">00</span>
+                            <span class="absolute bottom-1 left-0 right-0 text-center text-xs theme-transition-ready text-gray-600 dark:text-gray-400">MINUTES</span>
+                        </div>
+
+                        <div class="relative w-20 h-24 md:w-24 md:h-28 bg-gradient-to-b from-gray-200 to-gray-300 dark:from-gray-700 dark:to-gray-800 rounded-lg shadow-inner overflow-hidden">
+                            <div class="absolute inset-0.5 bg-white dark:bg-gray-900 rounded-md"></div>
+                            <span id="retro-seconds" class="absolute inset-0 flex items-center justify-center font-mono text-3xl md:text-4xl font-bold theme-transition-ready text-gray-800 dark:text-gray-200">00</span>
+                            <span class="absolute bottom-1 left-0 right-0 text-center text-xs theme-transition-ready text-gray-600 dark:text-gray-400">SECONDES</span>
+                        </div>
+                    </div>
+
+                    <button class="mx-auto block px-8 py-3 rounded-lg theme-transition-ready bg-gray-800 dark:bg-gray-700 hover:bg-gray-700 dark:hover:bg-gray-600 text-white font-medium text-lg transition-all duration-300">
+                        Profiter de l'Offre
+                    </button>
+                </div>
+
+                <script>
+                    (function() {
+                        const STORAGE_KEY = 'retroCountdownEndTime';
+                        let endTime = localStorage.getItem(STORAGE_KEY);
+                        const COUNTDOWN_DURATION = 60 * 60 * 1000; // 1 heure
+                        
+                        function resetCountdown() {
+                            const now = new Date();
+                            endTime = now.getTime() + COUNTDOWN_DURATION;
+                            localStorage.setItem(STORAGE_KEY, endTime);
+                        }
+                        
+                        if (!endTime) {
+                            resetCountdown();
+                        }
+
+                        function updateCountdown() {
+                            const now = new Date().getTime();
+                            const distance = endTime - now;
+
+                            if (distance < 0) {
+                                resetCountdown();
+                                return;
+                            }
+
+                            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                            // Ajout d'une animation de flip
+                            function updateElement(id, value) {
+                                const element = document.getElementById(id);
+                                if (element.textContent !== value.toString().padStart(2, '0')) {
+                                    element.style.transform = 'rotateX(90deg)';
+                                    setTimeout(() => {
+                                        element.textContent = value.toString().padStart(2, '0');
+                                        element.style.transform = 'rotateX(0deg)';
+                                    }, 150);
+                                }
+                            }
+
+                            updateElement('retro-days', days);
+                            updateElement('retro-hours', hours);
+                            updateElement('retro-minutes', minutes);
+                            updateElement('retro-seconds', seconds);
+                        }
+
+                        updateCountdown();
+                        setInterval(updateCountdown, 1000);
+
+                        
+                    })();
+                </script>
+            </div>`
+        },
+hologram: {
+    name: "Compte à rebours Hologramme",
+    html: `<div class="theme-transition-ready bg-gradient-to-r from-gray-900 to-gray-800 p-8 rounded-2xl relative overflow-hidden">
+        <div class="absolute inset-0 bg-grid-pattern opacity-10"></div>
+        <div class="relative z-10">
+            <h2 class="text-center mb-8 text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-blue-500 animate-pulse">Temps Restant</h2>
+            
+            <div class="grid grid-cols-4 gap-4 max-w-2xl mx-auto">
+                <div class="relative group">
+                    <div class="absolute inset-0 bg-gradient-to-r from-cyan-500/20 to-blue-500/20 rounded-lg blur-xl group-hover:blur-2xl transition-all duration-300"></div>
+                    <div class="relative bg-black/50 backdrop-blur-sm p-4 rounded-lg border border-cyan-500/30 group-hover:border-cyan-400 transition-colors">
+                        <div id="holo-days" class="text-4xl font-bold text-center text-cyan-400 mb-2 [text-shadow:0_0_15px_rgba(34,211,238,0.5)]">00</div>
+                        <div class="text-sm text-center text-cyan-300/80">Jours</div>
+                    </div>
+                </div>
+                
+                <div class="relative group">
+                    <div class="absolute inset-0 bg-gradient-to-r from-cyan-500/20 to-blue-500/20 rounded-lg blur-xl group-hover:blur-2xl transition-all duration-300"></div>
+                    <div class="relative bg-black/50 backdrop-blur-sm p-4 rounded-lg border border-cyan-500/30 group-hover:border-cyan-400 transition-colors">
+                        <div id="holo-hours" class="text-4xl font-bold text-center text-cyan-400 mb-2 [text-shadow:0_0_15px_rgba(34,211,238,0.5)]">00</div>
+                        <div class="text-sm text-center text-cyan-300/80">Heures</div>
+                    </div>
+                </div>
+                
+                <div class="relative group">
+                    <div class="absolute inset-0 bg-gradient-to-r from-cyan-500/20 to-blue-500/20 rounded-lg blur-xl group-hover:blur-2xl transition-all duration-300"></div>
+                    <div class="relative bg-black/50 backdrop-blur-sm p-4 rounded-lg border border-cyan-500/30 group-hover:border-cyan-400 transition-colors">
+                        <div id="holo-minutes" class="text-4xl font-bold text-center text-cyan-400 mb-2 [text-shadow:0_0_15px_rgba(34,211,238,0.5)]">00</div>
+                        <div class="text-sm text-center text-cyan-300/80">Minutes</div>
+                    </div>
+                </div>
+                
+                <div class="relative group">
+                    <div class="absolute inset-0 bg-gradient-to-r from-cyan-500/20 to-blue-500/20 rounded-lg blur-xl group-hover:blur-2xl transition-all duration-300"></div>
+                    <div class="relative bg-black/50 backdrop-blur-sm p-4 rounded-lg border border-cyan-500/30 group-hover:border-cyan-400 transition-colors">
+                        <div id="holo-seconds" class="text-4xl font-bold text-center text-cyan-400 mb-2 [text-shadow:0_0_15px_rgba(34,211,238,0.5)]">00</div>
+                        <div class="text-sm text-center text-cyan-300/80">Secondes</div>
+                    </div>
+                </div>
+            </div>
+
+            <style>
+                .bg-grid-pattern {
+                    background-image: linear-gradient(rgba(34, 211, 238, 0.1) 1px, transparent 1px),
+                                    linear-gradient(90deg, rgba(34, 211, 238, 0.1) 1px, transparent 1px);
+                    background-size: 20px 20px;
+                }
+            </style>
+
+            <script>
+                (function() {
+                    const COUNTDOWN_DURATION = 24 * 60 * 60 * 1000; // 24 heures
+                    const STORAGE_KEY = 'holoCountdownEnd';
+                    let endTime = parseInt(localStorage.getItem(STORAGE_KEY));
+
+                    function resetCountdown() {
+                        const now = new Date();
+                        endTime = now.getTime() + COUNTDOWN_DURATION;
+                        localStorage.setItem(STORAGE_KEY, endTime);
+                    }
+
+                    if (!endTime) {
+                        resetCountdown();
+                    }
+
+                    function updateCountdown() {
+                        const now = new Date().getTime();
+                        const distance = endTime - now;
+
+                        if (distance < 0) {
+                            resetCountdown();
+                            return;
+                        }
+
+                        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                        function updateElement(id, value) {
+                            const element = document.getElementById(id);
+                            if (element && element.textContent !== value.toString().padStart(2, '0')) {
+                                element.style.transform = 'perspective(400px) rotateX(90deg)';
+                                element.style.opacity = '0';
+                                setTimeout(() => {
+                                    element.textContent = value.toString().padStart(2, '0');
+                                    element.style.transform = 'perspective(400px) rotateX(0deg)';
+                                    element.style.opacity = '1';
+                                }, 150);
+                            }
+                        }
+
+                        updateElement('holo-days', days);
+                        updateElement('holo-hours', hours);
+                        updateElement('holo-minutes', minutes);
+                        updateElement('holo-seconds', seconds);
+                    }
+
+                    updateCountdown();
+                    setInterval(updateCountdown, 1000);
+                })();
+            </script>
+        </div>
+    </div>`
+}
+},
+    
+    
     // Formulaires
     forms: {
         contact: {
