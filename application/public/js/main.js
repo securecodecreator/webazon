@@ -15,8 +15,15 @@ export function getElementByPath(path) {
 
 /**
  * @param {string} templateId 
+ * @returns {Promise<void>}
  */
-function loadTemplate(templateId) {
+async function loadTemplate(templateId) {
+    // Vérifier si le template a déjà été chargé
+    const loadedTemplate = sessionStorage.getItem('loadedTemplate');
+    if (loadedTemplate === templateId) {
+        return;
+    }
+
     let template = null;
     for (const category of Object.values(templateCategories)) {
         const found = category.templates.find(t => t.id === templateId);
@@ -27,79 +34,110 @@ function loadTemplate(templateId) {
     }
 
     if (template) {
-        const previewContent = document.getElementById('previewContent');
-        const hasContent = previewContent && 
-            previewContent.children.length > 0 &&
-            !previewContent.innerHTML.includes('<!-- Le contenu HTML sera injecté ici -->');
+        // Attendre que le DOM soit complètement chargé
+        const checkAndLoadContent = () => {
+            return new Promise((resolve) => {
+                const previewContent = document.getElementById('previewContent');
+                if (!previewContent) {
+                    setTimeout(() => resolve(checkAndLoadContent()), 100);
+                    return;
+                }
 
-        const loadTemplateContent = () => {
-            if (previewContent) {
-                previewContent.innerHTML = '';
-            }
+                // S'assurer que le contenu est stable
+                setTimeout(() => {
+                    const hasContent = previewContent && 
+                        previewContent.children.length > 0 && 
+                        previewContent.textContent.trim() !== '' &&
+                        !previewContent.innerHTML.includes('<!-- Le contenu HTML sera injecté ici -->') &&
+                        !previewContent.innerHTML.includes('Aucun élément ajouté') &&
+                        previewContent.querySelector(':not(script):not(style)') !== null;
 
-            const elements = template.components
-                .map(componentPath => {
-                    const [category, name] = componentPath.split('.');
-                    if (htmlAssets.assets[category] && htmlAssets.assets[category][name]) {
-                        return htmlAssets.assets[category][name];
+                    const loadTemplateContent = () => {
+                        return new Promise(resolveLoad => {
+                            if (previewContent) {
+                                previewContent.innerHTML = '';
+                            }
+
+                            const elements = template.components
+                                .map(componentPath => {
+                                    const [category, name] = componentPath.split('.');
+                                    if (htmlAssets.assets[category] && htmlAssets.assets[category][name]) {
+                                        return htmlAssets.assets[category][name];
+                                    }
+                                    return null;
+                                })
+                                .filter(element => element !== null);
+
+                            addElementsToPreview(elements);
+                            // Sauvegarder l'ID du template chargé
+                            sessionStorage.setItem('loadedTemplate', templateId);
+                            setTimeout(resolveLoad, 100);
+                        });
+                    };
+
+                    if (hasContent) {
+                        const dialog = document.createElement('div');
+                        dialog.className = 'fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-[1000]';
+                        dialog.innerHTML = `
+                            <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-xl max-w-md w-full mx-4">
+                                <h3 class="text-lg font-semibold mb-4 text-gray-900 dark:text-white">Charger le template</h3>
+                                <p class="text-gray-600 dark:text-gray-300 mb-6">Voulez-vous charger ce template ? Cela écrasera le contenu actuel de l'éditeur.</p>
+                                <div class="flex justify-end gap-4">
+                                    <button id="cancelLoad" class="px-4 py-2 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg">
+                                        Annuler
+                                    </button>
+                                    <button id="confirmLoad" class="px-4 py-2 bg-light-primary dark:bg-dark-primary text-white rounded-lg hover:opacity-90">
+                                        Charger
+                                    </button>
+                                </div>
+                            </div>
+                        `;
+                        
+                        document.body.appendChild(dialog);
+                        
+                        return new Promise(resolveDialog => {
+                            const handleCancel = () => {
+                                dialog.remove();
+                                document.removeEventListener('keydown', handleKeyDown);
+                                resolveDialog();
+                            };
+                            
+                            const handleConfirm = async () => {
+                                dialog.remove();
+                                document.removeEventListener('keydown', handleKeyDown);
+                                await loadTemplateContent();
+                                resolveDialog();
+                            };
+                            
+                            dialog.querySelector('#cancelLoad').addEventListener('click', handleCancel);
+                            dialog.querySelector('#confirmLoad').addEventListener('click', handleConfirm);
+                            
+                            dialog.addEventListener('click', (e) => {
+                                if (e.target === dialog) {
+                                    handleCancel();
+                                }
+                            });
+                            
+                            const handleKeyDown = (e) => {
+                                if (e.key === 'Escape' && document.body.contains(dialog)) {
+                                    handleCancel();
+                                }
+                            };
+                            
+                            document.addEventListener('keydown', handleKeyDown);
+                        });
+                    } else {
+                        return loadTemplateContent();
                     }
-                    return null;
-                })
-                .filter(element => element !== null);
-
-            addElementsToPreview(elements);
+                }, 100);
+            });
         };
 
-        if (hasContent) {
-            const dialog = document.createElement('div');
-            dialog.className = 'fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-[1000]';
-            dialog.innerHTML = `
-                <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-xl max-w-md w-full mx-4">
-                    <h3 class="text-lg font-semibold mb-4 text-gray-900 dark:text-white">Charger le template</h3>
-                    <p class="text-gray-600 dark:text-gray-300 mb-6">Voulez-vous charger ce template ? Cela écrasera le contenu actuel de l'éditeur.</p>
-                    <div class="flex justify-end gap-4">
-                        <button id="cancelLoad" class="px-4 py-2 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg">
-                            Annuler
-                        </button>
-                        <button id="confirmLoad" class="px-4 py-2 bg-light-primary dark:bg-dark-primary text-white rounded-lg hover:opacity-90">
-                            Charger
-                        </button>
-                    </div>
-                </div>
-            `;
-            
-            document.body.appendChild(dialog);
-            
-            const handleCancel = () => {
-                dialog.remove();
-            };
-            
-            const handleConfirm = () => {
-                dialog.remove();
-                loadTemplateContent();
-            };
-            
-            dialog.querySelector('#cancelLoad').addEventListener('click', handleCancel);
-            dialog.querySelector('#confirmLoad').addEventListener('click', handleConfirm);
-            
-            dialog.addEventListener('click', (e) => {
-                if (e.target === dialog) {
-                    handleCancel();
-                }
-            });
-            
-            document.addEventListener('keydown', (e) => {
-                if (e.key === 'Escape') {
-                    handleCancel();
-                }
-            });
-        } else {
-            loadTemplateContent();
-        }
+        await checkAndLoadContent();
     }
 }
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
     const urlParams = new URLSearchParams(window.location.search);
     const templateId = urlParams.get('template');
     const isReset = sessionStorage.getItem('isReset') === 'true';
@@ -107,10 +145,23 @@ document.addEventListener('DOMContentLoaded', () => {
     // Nettoyer le flag de réinitialisation
     sessionStorage.removeItem('isReset');
 
+    // Si on change de template, nettoyer le flag de template chargé
+    const currentLoadedTemplate = sessionStorage.getItem('loadedTemplate');
+    if (templateId && currentLoadedTemplate && templateId !== currentLoadedTemplate) {
+        sessionStorage.removeItem('loadedTemplate');
+    }
+
+    // Attendre un court instant pour s'assurer que le DOM est stable
+    await new Promise(resolve => setTimeout(resolve, 100));
+
+    if (!isReset) {
+        await restoreState();
+    }
+
     if (templateId) {
+        // Attendre un court instant après la restauration du state
+        await new Promise(resolve => setTimeout(resolve, 100));
         loadTemplate(templateId);
-    } else if (!isReset) {
-        restoreState();
     }
 
     initCustomizationAccordion();

@@ -308,19 +308,26 @@ export function showLinkEditor(element) {
                     targetElement.removeAttribute('target');
                     targetElement.removeAttribute('rel');
                     targetElement.classList.add('smooth-scroll');
+                    
+                    // Générer un identifiant unique pour ce lien
+                    const uniqueId = `scroll_${Math.random().toString(36).substr(2, 9)}`;
+                    targetElement.setAttribute('data-scroll-id', uniqueId);
+                    
                     targetElement.setAttribute('onclick', `
                         event.preventDefault();
-                        const targetId = this.getAttribute('href').substring(1);
-                        const targetElement = document.getElementById(targetId);
-                        if (targetElement) {
-                            const offset = 60;
-                            const elementPosition = targetElement.getBoundingClientRect().top;
-                            const offsetPosition = elementPosition + window.pageYOffset - offset;
-                            window.scrollTo({
-                                top: offsetPosition,
-                                behavior: 'smooth'
-                            });
-                        }
+                        (function() {
+                            const targetId = this.getAttribute('href').substring(1);
+                            const scrollTarget = document.getElementById(targetId);
+                            if (scrollTarget) {
+                                const offset = 60;
+                                const elementPosition = scrollTarget.getBoundingClientRect().top;
+                                const offsetPosition = elementPosition + window.pageYOffset - offset;
+                                window.scrollTo({
+                                    top: offsetPosition,
+                                    behavior: 'smooth'
+                                });
+                            }
+                        }).call(this);
                     `);
                 } else {
                     targetElement.target = newTab ? '_blank' : '_self';
@@ -442,73 +449,54 @@ export function addElementsToPreview(elements) {
 
 export function resetEditor() {
     const confirmReset = () => {
-        const dialog = document.createElement('div');
-        dialog.className = 'fixed inset-0 bg-black/50 backdrop-blur-sm z-[1000] flex items-center justify-center';
-        dialog.innerHTML = `
-            <div class="w-[90vw] max-w-md theme-transition-ready bg-light-nav dark:bg-dark-nav rounded-xl shadow-xl overflow-hidden">
-                <div class="flex justify-between items-center p-4 shrink-0 border-b border-gray-200 dark:border-gray-700">
-                    <h3 class="text-xl font-bold text-gray-900 dark:text-white">Confirmer la réinitialisation</h3>
-                    <button id="closeResetDialog" class="theme-transition-ready text-gray-600 dark:text-gray-300 hover:text-light-primary dark:hover:text-dark-primary">
-                        <i class="fas fa-times text-xl"></i>
-                    </button>
-                </div>
-                <div class="p-6">
-                    <p class="text-gray-600 dark:text-gray-300 mb-6">Êtes-vous sûr de vouloir réinitialiser l'éditeur ? Cette action est irréversible.</p>
+        return new Promise((resolve) => {
+            const dialog = document.createElement('div');
+            dialog.className = 'fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-[1000]';
+            dialog.innerHTML = `
+                <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-xl max-w-md w-full mx-4">
+                    <h3 class="text-lg font-semibold mb-4 text-gray-900 dark:text-white">Réinitialiser l'éditeur</h3>
+                    <p class="text-gray-600 dark:text-gray-300 mb-6">Voulez-vous vraiment réinitialiser l'éditeur ? Cette action est irréversible.</p>
                     <div class="flex justify-end gap-4">
-                        <button id="cancelReset" class="px-4 py-2 rounded-lg theme-transition-ready bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-600">
+                        <button id="cancelReset" class="px-4 py-2 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg">
                             Annuler
                         </button>
-                        <button id="confirmReset" class="px-4 py-2 rounded-lg theme-transition-ready bg-red-500 text-white hover:bg-red-600">
+                        <button id="confirmReset" class="px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600">
                             Réinitialiser
                         </button>
                     </div>
                 </div>
-            </div>
-        `;
-        
-        document.body.appendChild(dialog);
-        
-        return new Promise((resolve) => {
+            `;
+
+            document.body.appendChild(dialog);
+
             const handleCancel = () => {
-                dialog.classList.add('opacity-0');
-                setTimeout(() => {
-                    dialog.remove();
-                    resolve(false);
-                }, 200);
+                dialog.remove();
+                document.removeEventListener('keydown', handleKeyDown);
+                resolve(false);
             };
-            
+
             const handleConfirm = () => {
-                dialog.classList.add('opacity-0');
-                setTimeout(() => {
-                    dialog.remove();
-                    resolve(true);
-                }, 200);
+                dialog.remove();
+                document.removeEventListener('keydown', handleKeyDown);
+                resolve(true);
             };
-            
+
             dialog.querySelector('#cancelReset').addEventListener('click', handleCancel);
-            dialog.querySelector('#closeResetDialog').addEventListener('click', handleCancel);
             dialog.querySelector('#confirmReset').addEventListener('click', handleConfirm);
-            
+
             dialog.addEventListener('click', (e) => {
                 if (e.target === dialog) {
                     handleCancel();
                 }
             });
-            
-            document.addEventListener('keydown', (e) => {
-                if (e.key === 'Escape') {
+
+            const handleKeyDown = (e) => {
+                if (e.key === 'Escape' && document.body.contains(dialog)) {
                     handleCancel();
                 }
-            });
+            };
 
-            // Animation d'entrée
-            requestAnimationFrame(() => {
-                dialog.style.opacity = '0';
-                requestAnimationFrame(() => {
-                    dialog.style.transition = 'opacity 0.2s ease-out';
-                    dialog.style.opacity = '1';
-                });
-            });
+            document.addEventListener('keydown', handleKeyDown);
         });
     };
 
@@ -527,6 +515,9 @@ export function resetEditor() {
                 for (const key in sessionStorage) {
                     sessionStorage.removeItem(key);
                 }
+                
+                // Nettoyer spécifiquement le flag de template chargé
+                sessionStorage.removeItem('loadedTemplate');
                 
                 // Réinitialiser les contenus
                 const previewContent = document.getElementById('previewContent');
