@@ -77,11 +77,11 @@ export function createElementContainer(element) {
     const moveButtons = document.createElement('div');
     moveButtons.className = 'absolute left-1 top-1 opacity-0 md:opacity-0 group-hover:opacity-100 flex flex-col gap-0.5 z-[200]';
     moveButtons.innerHTML = `
-        <button class="move-up bg-gray-500 hover:bg-gray-600 active:bg-gray-700 text-white p-2 rounded-lg transition-colors w-8 h-8 md:w-6 md:h-6 flex items-center justify-center touch-manipulation">
-            <i class="fas fa-chevron-up text-xs md:text-[10px]"></i>
+        <button class="move-up bg-gray-500 hover:bg-gray-600 active:bg-gray-700 text-white p-1.5 rounded-lg transition-colors w-7 h-7 md:w-5 md:h-5 flex items-center justify-center touch-manipulation">
+            <i class="fas fa-chevron-up text-[10px] md:text-[8px]"></i>
         </button>
-        <button class="move-down bg-gray-500 hover:bg-gray-600 active:bg-gray-700 text-white p-2 rounded-lg transition-colors w-8 h-8 md:w-6 md:h-6 flex items-center justify-center touch-manipulation">
-            <i class="fas fa-chevron-down text-xs md:text-[10px]"></i>
+        <button class="move-down bg-gray-500 hover:bg-gray-600 active:bg-gray-700 text-white p-1.5 rounded-lg transition-colors w-7 h-7 md:w-5 md:h-5 flex items-center justify-center touch-manipulation">
+            <i class="fas fa-chevron-down text-[10px] md:text-[8px]"></i>
         </button>
     `;
     
@@ -89,8 +89,8 @@ export function createElementContainer(element) {
     const deleteButton = document.createElement('div');
     deleteButton.className = 'absolute right-1 top-1 opacity-100 md:opacity-0 group-hover:opacity-100 z-[100]';
     deleteButton.innerHTML = `
-        <button class="delete-element bg-red-500 text-white p-2 rounded-lg hover:bg-red-600 active:bg-red-700 transition-colors w-8 h-8 md:w-6 md:h-6 flex items-center justify-center touch-manipulation">
-            <i class="fas fa-trash text-sm md:text-xs"></i>
+        <button class="delete-element bg-red-500 text-white p-1.5 rounded-lg hover:bg-red-600 active:bg-red-700 transition-colors w-7 h-7 md:w-5 md:h-5 flex items-center justify-center touch-manipulation">
+            <i class="fas fa-trash text-[10px] md:text-[8px]"></i>
         </button>
     `;
     

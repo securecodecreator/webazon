@@ -85,22 +85,40 @@ function makeElementsEditable(element) {
 
     const buttons = mainContent.querySelectorAll('button, a, .fa, .fas, .fab, .far');
     buttons.forEach(button => {
-        const cleanButton = cleanElement(button);
-        cleanButton.addEventListener('click', (e) => {
-            e.preventDefault();
-            e.stopPropagation();
-            window.dispatchEvent(new CustomEvent('editor:showLinkEditor', { 
-                detail: { element: cleanButton }
-            }));
-        });
+        // Vérifier si le bouton est lié à un menu mobile
+        const buttonClasses = Array.from(button.classList).join(' ').toLowerCase();
+        const buttonId = button.id?.toLowerCase() || '';
+        const ariaControls = button.getAttribute('aria-controls')?.toLowerCase() || '';
+        const dataTarget = button.getAttribute('data-target')?.toLowerCase() || '';
         
-        cleanButton.classList.add(
-            'cursor-pointer', 
-            'hover:ring-2', 
-            'hover:ring-blue-500', 
-            'hover:ring-opacity-50', 
-            'rounded'
-        );
+        const isMobileMenuButton = buttonClasses.includes('mobile-menu') || 
+                                 buttonClasses.includes('menu-button') ||
+                                 buttonId.includes('mobile-menu') ||
+                                 buttonId.includes('menu-button') ||
+                                 ariaControls.includes('mobile-menu') ||
+                                 ariaControls.includes('menu-button') ||
+                                 dataTarget.includes('mobile-menu') ||
+                                 dataTarget.includes('menu-button') ||
+                                 button.closest('[class*="mobile-menu"], [class*="menu-button"]');
+
+        if (!isMobileMenuButton) {
+            const cleanButton = cleanElement(button);
+            cleanButton.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                window.dispatchEvent(new CustomEvent('editor:showLinkEditor', { 
+                    detail: { element: cleanButton }
+                }));
+            });
+            
+            cleanButton.classList.add(
+                'cursor-pointer', 
+                'hover:ring-2', 
+                'hover:ring-blue-500', 
+                'hover:ring-opacity-50', 
+                'rounded'
+            );
+        }
     });
 
     const images = mainContent.querySelectorAll('img');
@@ -425,18 +443,25 @@ export function addElementsToPreview(elements) {
 export function resetEditor() {
     const confirmReset = () => {
         const dialog = document.createElement('div');
-        dialog.className = 'fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-[1000]';
+        dialog.className = 'fixed inset-0 bg-black/50 backdrop-blur-sm z-[1000] flex items-center justify-center';
         dialog.innerHTML = `
-            <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-xl max-w-md w-full mx-4">
-                <h3 class="text-lg font-semibold mb-4 text-gray-900 dark:text-white">Confirmer la réinitialisation</h3>
-                <p class="text-gray-600 dark:text-gray-300 mb-6">Êtes-vous sûr de vouloir réinitialiser l'éditeur ? Cette action est irréversible.</p>
-                <div class="flex justify-end gap-4">
-                    <button id="cancelReset" class="px-4 py-2 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg">
-                        Annuler
+            <div class="w-[90vw] max-w-md theme-transition-ready bg-light-nav dark:bg-dark-nav rounded-xl shadow-xl overflow-hidden">
+                <div class="flex justify-between items-center p-4 shrink-0 border-b border-gray-200 dark:border-gray-700">
+                    <h3 class="text-xl font-bold text-gray-900 dark:text-white">Confirmer la réinitialisation</h3>
+                    <button id="closeResetDialog" class="theme-transition-ready text-gray-600 dark:text-gray-300 hover:text-light-primary dark:hover:text-dark-primary">
+                        <i class="fas fa-times text-xl"></i>
                     </button>
-                    <button id="confirmReset" class="px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600">
-                        Réinitialiser
-                    </button>
+                </div>
+                <div class="p-6">
+                    <p class="text-gray-600 dark:text-gray-300 mb-6">Êtes-vous sûr de vouloir réinitialiser l'éditeur ? Cette action est irréversible.</p>
+                    <div class="flex justify-end gap-4">
+                        <button id="cancelReset" class="px-4 py-2 rounded-lg theme-transition-ready bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-600">
+                            Annuler
+                        </button>
+                        <button id="confirmReset" class="px-4 py-2 rounded-lg theme-transition-ready bg-red-500 text-white hover:bg-red-600">
+                            Réinitialiser
+                        </button>
+                    </div>
                 </div>
             </div>
         `;
@@ -445,16 +470,23 @@ export function resetEditor() {
         
         return new Promise((resolve) => {
             const handleCancel = () => {
-                dialog.remove();
-                resolve(false);
+                dialog.classList.add('opacity-0');
+                setTimeout(() => {
+                    dialog.remove();
+                    resolve(false);
+                }, 200);
             };
             
             const handleConfirm = () => {
-                dialog.remove();
-                resolve(true);
+                dialog.classList.add('opacity-0');
+                setTimeout(() => {
+                    dialog.remove();
+                    resolve(true);
+                }, 200);
             };
             
             dialog.querySelector('#cancelReset').addEventListener('click', handleCancel);
+            dialog.querySelector('#closeResetDialog').addEventListener('click', handleCancel);
             dialog.querySelector('#confirmReset').addEventListener('click', handleConfirm);
             
             dialog.addEventListener('click', (e) => {
@@ -467,6 +499,15 @@ export function resetEditor() {
                 if (e.key === 'Escape') {
                     handleCancel();
                 }
+            });
+
+            // Animation d'entrée
+            requestAnimationFrame(() => {
+                dialog.style.opacity = '0';
+                requestAnimationFrame(() => {
+                    dialog.style.transition = 'opacity 0.2s ease-out';
+                    dialog.style.opacity = '1';
+                });
             });
         });
     };

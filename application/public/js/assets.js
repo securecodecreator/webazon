@@ -111,8 +111,10 @@ const htmlAssets = {
                             </nav>
                         </div>
                         <div class="flex items-center space-x-4">
-                            <button class="theme-transition-ready px-4 py-2 rounded-lg bg-blue-500 hover:bg-blue-600 text-white">Connexion</button>
-                            <button class="theme-transition-ready px-4 py-2 rounded-lg border border-blue-500 text-blue-500 hover:bg-blue-50 dark:hover:bg-gray-800">Inscription</button>
+                            <div class="hidden md:flex space-x-4">
+                                <button class="theme-transition-ready px-4 py-2 rounded-lg bg-blue-500 hover:bg-blue-600 text-white">Connexion</button>
+                                <button class="theme-transition-ready px-4 py-2 rounded-lg border border-blue-500 text-blue-500 hover:bg-blue-50 dark:hover:bg-gray-800">Inscription</button>
+                            </div>
                             <button id="modern-menu-button" onclick="this.querySelector('.menu-open').classList.toggle('hidden'); this.querySelector('.menu-close').classList.toggle('hidden'); document.getElementById('modern-mobile-menu').classList.toggle('hidden');" class="md:hidden theme-transition-ready text-gray-600 dark:text-gray-300 hover:text-blue-500">
                                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path class="menu-open" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
@@ -126,6 +128,10 @@ const htmlAssets = {
                         <a href="#" class="block theme-transition-ready text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400 py-2">Produits</a>
                         <a href="#" class="block theme-transition-ready text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400 py-2">Services</a>
                         <a href="#" class="block theme-transition-ready text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400 py-2">Contact</a>
+                        <div class="pt-4 space-y-2">
+                            <button class="w-full theme-transition-ready px-4 py-2 rounded-lg bg-blue-500 hover:bg-blue-600 text-white">Connexion</button>
+                            <button class="w-full theme-transition-ready px-4 py-2 rounded-lg border border-blue-500 text-blue-500 hover:bg-blue-50 dark:hover:bg-gray-800">Inscription</button>
+                        </div>
                     </nav>
                 </div>
             </header>`
@@ -497,27 +503,61 @@ const htmlAssets = {
         },
         stats: {
             name: "Statistiques",
-            html: `<section class="theme-transition-ready bg-white dark:bg-gray-900 py-16">
+            html: `<section class="theme-transition-ready bg-gradient-to-br from-white to-gray-50 dark:from-gray-900 dark:to-gray-800 py-16">
                 <div class="container mx-auto px-4 sm:px-6 lg:px-8">
                     <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
-                        <div class="text-center">
-                            <h3 class="text-4xl font-bold theme-transition-ready text-gray-800 dark:text-white mb-2">2K+</h3>
+                        <div class="text-center p-6 rounded-xl bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm hover:transform hover:scale-105 transition-all duration-300 shadow-lg">
+                            <h3 class="text-4xl font-bold bg-gradient-to-r from-amber-400 to-pink-500 bg-clip-text text-transparent mb-2" data-count="2000" data-suffix="+">0</h3>
                             <p class="theme-transition-ready text-gray-600 dark:text-gray-300">Clients</p>
                         </div>
-                        <div class="text-center">
-                            <h3 class="text-4xl font-bold theme-transition-ready text-gray-800 dark:text-white mb-2">500+</h3>
+                        <div class="text-center p-6 rounded-xl bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm hover:transform hover:scale-105 transition-all duration-300 shadow-lg">
+                            <h3 class="text-4xl font-bold bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent mb-2" data-count="500" data-suffix="+">0</h3>
                             <p class="theme-transition-ready text-gray-600 dark:text-gray-300">Projets</p>
                         </div>
-                        <div class="text-center">
-                            <h3 class="text-4xl font-bold theme-transition-ready text-gray-800 dark:text-white mb-2">50+</h3>
+                        <div class="text-center p-6 rounded-xl bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm hover:transform hover:scale-105 transition-all duration-300 shadow-lg">
+                            <h3 class="text-4xl font-bold bg-gradient-to-r from-green-400 to-teal-500 bg-clip-text text-transparent mb-2" data-count="50" data-suffix="+">0</h3>
                             <p class="theme-transition-ready text-gray-600 dark:text-gray-300">Employés</p>
                         </div>
-                        <div class="text-center">
-                            <h3 class="text-4xl font-bold theme-transition-ready text-gray-800 dark:text-white mb-2">15+</h3>
+                        <div class="text-center p-6 rounded-xl bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm hover:transform hover:scale-105 transition-all duration-300 shadow-lg">
+                            <h3 class="text-4xl font-bold bg-gradient-to-r from-red-400 to-orange-500 bg-clip-text text-transparent mb-2" data-count="15" data-suffix="+">0</h3>
                             <p class="theme-transition-ready text-gray-600 dark:text-gray-300">Pays</p>
                         </div>
                     </div>
                 </div>
+                <script>
+                    const observer = new IntersectionObserver((entries) => {
+                        entries.forEach(entry => {
+                            if (entry.isIntersecting) {
+                                const counters = entry.target.querySelectorAll('[data-count]');
+                                counters.forEach(counter => {
+                                    const target = parseInt(counter.dataset.count);
+                                    const suffix = counter.dataset.suffix || '';
+                                    const duration = 2000;
+                                    const increment = target / (duration / 16);
+                                    let current = 0;
+                                    
+                                    const updateCounter = () => {
+                                        current += increment;
+                                        if (current < target) {
+                                            counter.textContent = Math.floor(current) + suffix;
+                                            requestAnimationFrame(updateCounter);
+                                        } else {
+                                            counter.textContent = target + suffix;
+                                        }
+                                    };
+                                    
+                                    updateCounter();
+                                });
+                                observer.unobserve(entry.target);
+                            }
+                        });
+                    }, { threshold: 0.5 });
+
+                    document.addEventListener('DOMContentLoaded', () => {
+                        const statsSection = document.querySelector('section');
+                        if (statsSection) observer.observe(statsSection);
+                    });
+                </script>
             </section>`
         },
         mission: {
