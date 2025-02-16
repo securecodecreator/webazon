@@ -35,7 +35,7 @@ export function makeElementEditable(element) {
             const span = document.createElement('span');
             span.contentEditable = true;
             span.textContent = textNode.textContent;
-            span.className = 'editable-text focus:outline-none focus:bg-gray-100 dark:focus:bg-gray-800 px-1 rounded';
+            span.className = 'editable-text focus:outline-none focus:caret-blue-500 caret-blue-500 px-1 rounded';
             
             // Utiliser un debounce pour les événements d'input
             let inputTimeout;

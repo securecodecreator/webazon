@@ -524,40 +524,6 @@ const htmlAssets = {
                         </div>
                     </div>
                 </div>
-                <script>
-                    const observer = new IntersectionObserver((entries) => {
-                        entries.forEach(entry => {
-                            if (entry.isIntersecting) {
-                                const counters = entry.target.querySelectorAll('[data-count]');
-                                counters.forEach(counter => {
-                                    const target = parseInt(counter.dataset.count);
-                                    const suffix = counter.dataset.suffix || '';
-                                    const duration = 2000;
-                                    const increment = target / (duration / 16);
-                                    let current = 0;
-                                    
-                                    const updateCounter = () => {
-                                        current += increment;
-                                        if (current < target) {
-                                            counter.textContent = Math.floor(current) + suffix;
-                                            requestAnimationFrame(updateCounter);
-                                        } else {
-                                            counter.textContent = target + suffix;
-                                        }
-                                    };
-                                    
-                                    updateCounter();
-                                });
-                                observer.unobserve(entry.target);
-                            }
-                        });
-                    }, { threshold: 0.5 });
-
-                    document.addEventListener('DOMContentLoaded', () => {
-                        const statsSection = document.querySelector('section');
-                        if (statsSection) observer.observe(statsSection);
-                    });
-                </script>
             </section>`
         },
         mission: {
