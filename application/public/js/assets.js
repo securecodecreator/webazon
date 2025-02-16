@@ -991,25 +991,25 @@ const htmlAssets = {
                         <span class="inline-block px-4 py-2 rounded-full bg-red-500 text-white text-sm font-semibold mb-4">Offre Limitée</span>
                         <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold theme-transition-ready text-gray-900 dark:text-white mb-8">Ne Manquez Pas Cette Opportunité</h2>
                         <p class="text-gray-600 dark:text-gray-400 mb-8">Cette offre exceptionnelle se termine bientôt !</p>
-                        <div class="grid grid-cols-4 gap-4 max-w-lg mx-auto mb-8">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-lg mx-auto mb-8">
                             <div class="theme-transition-ready bg-gradient-to-b from-purple-500 to-purple-600 p-4 rounded-2xl shadow-lg">
                                 <div id="days" class="text-4xl lg:text-5xl font-bold text-white">01</div>
-                                <div class="text-xs lg:text-sm text-white/90 mt-1">Jours</div>
+                                <div class="text-sm lg:text-base text-white/90 mt-1">J</div>
                             </div>
                             <div class="theme-transition-ready bg-gradient-to-b from-red-500 to-red-600 p-4 rounded-2xl shadow-lg">
                                 <div id="hours" class="text-4xl lg:text-5xl font-bold text-white">08</div>
-                                <div class="text-xs lg:text-sm text-white/90 mt-1">Heures</div>
+                                <div class="text-sm lg:text-base text-white/90 mt-1">H</div>
                             </div>
                             <div class="theme-transition-ready bg-gradient-to-b from-orange-500 to-orange-600 p-4 rounded-2xl shadow-lg">
                                 <div id="minutes" class="text-4xl lg:text-5xl font-bold text-white">20</div>
-                                <div class="text-xs lg:text-sm text-white/90 mt-1">Minutes</div>
+                                <div class="text-sm lg:text-base text-white/90 mt-1">M</div>
                             </div>
                             <div class="theme-transition-ready bg-gradient-to-b from-yellow-500 to-yellow-600 p-4 rounded-2xl shadow-lg">
                                 <div id="seconds" class="text-4xl lg:text-5xl font-bold text-white">18</div>
-                                <div class="text-xs lg:text-sm text-white/90 mt-1">Secondes</div>
+                                <div class="text-sm lg:text-base text-white/90 mt-1">S</div>
                             </div>
                         </div>
-                        <button class="bg-red-500 hover:bg-red-600 text-white font-semibold py-3 px-6 sm:py-4 sm:px-8 rounded-full transition-colors duration-200 shadow-lg hover:shadow-xl">
+                        <button class="w-full sm:w-auto bg-red-500 hover:bg-red-600 text-white font-semibold py-3 px-6 sm:py-4 sm:px-8 rounded-full transition-colors duration-200 shadow-lg hover:shadow-xl">
                             Profiter de l'Offre Maintenant
                         </button>
                     </div>
@@ -1058,44 +1058,44 @@ const htmlAssets = {
         },
         neonCountdown: {
             name: "Compteur Néon Moderne",
-            html: `<div class="theme-transition-ready bg-gray-900 p-8 rounded-2xl shadow-2xl">
+            html: `<div class="theme-transition-ready bg-gray-900 p-4 sm:p-6 md:p-8 shadow-2xl">
                 <div class="max-w-4xl mx-auto">
-                    <h2 class="text-center mb-8 text-2xl sm:text-3xl md:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-purple-500 to-blue-500 [text-shadow:_0_0_10px_rgb(236_72_153_/_60%)]">
+                    <h2 class="text-center mb-6 sm:mb-8 text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-purple-500 to-blue-500 [text-shadow:_0_0_10px_rgb(236_72_153_/_60%)]">
                         Offre Limitée
                     </h2>
                     
-                    <div class="flex flex-col items-center space-y-8">
-                        <div class="grid grid-cols-4 gap-4 sm:gap-6 w-full max-w-2xl">
+                    <div class="flex flex-col items-center space-y-6 sm:space-y-8">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-6 w-full max-w-2xl">
                             <div class="flex flex-col items-center">
-                                <div id="neon-days" class="text-2xl sm:text-4xl md:text-5xl font-bold text-white p-4 rounded-lg bg-gradient-to-b from-gray-800 to-gray-900 border border-purple-500/30 [text-shadow:_0_0_10px_rgb(168_85_247_/_80%)] [box-shadow:_0_0_15px_rgb(168_85_247_/_30%)]">
+                                <div id="neon-days" class="w-full text-xl sm:text-2xl md:text-4xl lg:text-5xl font-bold text-white p-2 sm:p-3 md:p-4 rounded-lg bg-gradient-to-b from-gray-800 to-gray-900 border border-purple-500/30 [text-shadow:_0_0_10px_rgb(168_85_247_/_80%)] [box-shadow:_0_0_15px_rgb(168_85_247_/_30%)] text-center">
                                     00
                                 </div>
                                 <div class="text-xs sm:text-sm text-purple-400 mt-2 font-medium">Jours</div>
                             </div>
                             
                             <div class="flex flex-col items-center">
-                                <div id="neon-hours" class="text-2xl sm:text-4xl md:text-5xl font-bold text-white p-4 rounded-lg bg-gradient-to-b from-gray-800 to-gray-900 border border-blue-500/30 [text-shadow:_0_0_10px_rgb(59_130_246_/_80%)] [box-shadow:_0_0_15px_rgb(59_130_246_/_30%)]">
+                                <div id="neon-hours" class="w-full text-xl sm:text-2xl md:text-4xl lg:text-5xl font-bold text-white p-2 sm:p-3 md:p-4 rounded-lg bg-gradient-to-b from-gray-800 to-gray-900 border border-blue-500/30 [text-shadow:_0_0_10px_rgb(59_130_246_/_80%)] [box-shadow:_0_0_15px_rgb(59_130_246_/_30%)] text-center">
                                     00
                                 </div>
                                 <div class="text-xs sm:text-sm text-blue-400 mt-2 font-medium">Heures</div>
                             </div>
                             
                             <div class="flex flex-col items-center">
-                                <div id="neon-minutes" class="text-2xl sm:text-4xl md:text-5xl font-bold text-white p-4 rounded-lg bg-gradient-to-b from-gray-800 to-gray-900 border border-pink-500/30 [text-shadow:_0_0_10px_rgb(236_72_153_/_80%)] [box-shadow:_0_0_15px_rgb(236_72_153_/_30%)]">
+                                <div id="neon-minutes" class="w-full text-xl sm:text-2xl md:text-4xl lg:text-5xl font-bold text-white p-2 sm:p-3 md:p-4 rounded-lg bg-gradient-to-b from-gray-800 to-gray-900 border border-pink-500/30 [text-shadow:_0_0_10px_rgb(236_72_153_/_80%)] [box-shadow:_0_0_15px_rgb(236_72_153_/_30%)] text-center">
                                     00
                                 </div>
                                 <div class="text-xs sm:text-sm text-pink-400 mt-2 font-medium">Minutes</div>
                             </div>
                             
                             <div class="flex flex-col items-center">
-                                <div id="neon-seconds" class="text-2xl sm:text-4xl md:text-5xl font-bold text-white p-4 rounded-lg bg-gradient-to-b from-gray-800 to-gray-900 border border-cyan-500/30 [text-shadow:_0_0_10px_rgb(34_211_238_/_80%)] [box-shadow:_0_0_15px_rgb(34_211_238_/_30%)]">
+                                <div id="neon-seconds" class="w-full text-xl sm:text-2xl md:text-4xl lg:text-5xl font-bold text-white p-2 sm:p-3 md:p-4 rounded-lg bg-gradient-to-b from-gray-800 to-gray-900 border border-cyan-500/30 [text-shadow:_0_0_10px_rgb(34_211_238_/_80%)] [box-shadow:_0_0_15px_rgb(34_211_238_/_30%)] text-center">
                                     00
                                 </div>
                                 <div class="text-xs sm:text-sm text-cyan-400 mt-2 font-medium">Secondes</div>
                             </div>
                         </div>
                         
-                        <button class="relative px-8 py-4 rounded-full bg-gradient-to-r from-purple-600 to-blue-600 text-white font-semibold text-lg overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-[0_0_25px_rgb(168_85_247_/_50%)] group">
+                        <button class="w-full sm:w-auto relative px-6 sm:px-8 py-3 sm:py-4 rounded-full bg-gradient-to-r from-purple-600 to-blue-600 text-white font-semibold text-base sm:text-lg overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-[0_0_25px_rgb(168_85_247_/_50%)] group">
                             <span class="relative z-10">Profiter de l'Offre</span>
                             <div class="absolute inset-0 bg-gradient-to-r from-purple-600 to-blue-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-xl"></div>
                         </button>
@@ -1146,38 +1146,39 @@ const htmlAssets = {
         },
         retro: {
             name: "Compteur Rétro",
-            html: `<div class="theme-transition-ready bg-white dark:bg-gray-900 p-8 rounded-xl shadow-lg">
+            html: `<div class="theme-transition-ready bg-white dark:bg-gray-900 p-8 shadow-lg">
                 <div class="max-w-3xl mx-auto">
                     <h2 class="text-2xl md:text-3xl font-bold text-center theme-transition-ready text-gray-800 dark:text-gray-200 mb-8">Offre Limitée</h2>
                     
-                    <div class="flex justify-center gap-4 md:gap-8 mb-8">
-                        <div class="relative w-20 h-24 md:w-24 md:h-28 bg-gradient-to-b from-gray-200 to-gray-300 dark:from-gray-700 dark:to-gray-800 rounded-lg shadow-inner overflow-hidden">
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 md:gap-8 mb-8">
+                        <div class="relative w-full h-24 md:h-28 bg-gradient-to-b from-gray-200 to-gray-300 dark:from-gray-700 dark:to-gray-800 rounded-lg shadow-inner overflow-hidden">
                             <div class="absolute inset-0.5 bg-white dark:bg-gray-900 rounded-md"></div>
-                            <span id="retro-days" class="absolute inset-0 flex items-center justify-center font-mono text-3xl md:text-4xl font-bold theme-transition-ready text-gray-800 dark:text-gray-200">00</span>
+                            <span id="retro-days" class="absolute inset-0 flex items-center justify-center font-mono text-2xl sm:text-3xl md:text-4xl font-bold theme-transition-ready text-gray-800 dark:text-gray-200">00</span>
                             <span class="absolute bottom-1 left-0 right-0 text-center text-xs theme-transition-ready text-gray-600 dark:text-gray-400">JOURS</span>
                         </div>
 
-                        <div class="relative w-20 h-24 md:w-24 md:h-28 bg-gradient-to-b from-gray-200 to-gray-300 dark:from-gray-700 dark:to-gray-800 rounded-lg shadow-inner overflow-hidden">
+                        <div class="relative w-full h-24 md:h-28 bg-gradient-to-b from-gray-200 to-gray-300 dark:from-gray-700 dark:to-gray-800 rounded-lg shadow-inner overflow-hidden">
                             <div class="absolute inset-0.5 bg-white dark:bg-gray-900 rounded-md"></div>
-                            <span id="retro-hours" class="absolute inset-0 flex items-center justify-center font-mono text-3xl md:text-4xl font-bold theme-transition-ready text-gray-800 dark:text-gray-200">00</span>
+                            <span id="retro-hours" class="absolute inset-0 flex items-center justify-center font-mono text-2xl sm:text-3xl md:text-4xl font-bold theme-transition-ready text-gray-800 dark:text-gray-200">00</span>
                             <span class="absolute bottom-1 left-0 right-0 text-center text-xs theme-transition-ready text-gray-600 dark:text-gray-400">HEURES</span>
                         </div>
 
-                        <div class="relative w-20 h-24 md:w-24 md:h-28 bg-gradient-to-b from-gray-200 to-gray-300 dark:from-gray-700 dark:to-gray-800 rounded-lg shadow-inner overflow-hidden">
+                        <div class="relative w-full h-24 md:h-28 bg-gradient-to-b from-gray-200 to-gray-300 dark:from-gray-700 dark:to-gray-800 rounded-lg shadow-inner overflow-hidden">
                             <div class="absolute inset-0.5 bg-white dark:bg-gray-900 rounded-md"></div>
-                            <span id="retro-minutes" class="absolute inset-0 flex items-center justify-center font-mono text-3xl md:text-4xl font-bold theme-transition-ready text-gray-800 dark:text-gray-200">00</span>
+                            <span id="retro-minutes" class="absolute inset-0 flex items-center justify-center font-mono text-2xl sm:text-3xl md:text-4xl font-bold theme-transition-ready text-gray-800 dark:text-gray-200">00</span>
                             <span class="absolute bottom-1 left-0 right-0 text-center text-xs theme-transition-ready text-gray-600 dark:text-gray-400">MINUTES</span>
                         </div>
 
-                        <div class="relative w-20 h-24 md:w-24 md:h-28 bg-gradient-to-b from-gray-200 to-gray-300 dark:from-gray-700 dark:to-gray-800 rounded-lg shadow-inner overflow-hidden">
+                        <div class="relative w-full h-24 md:h-28 bg-gradient-to-b from-gray-200 to-gray-300 dark:from-gray-700 dark:to-gray-800 rounded-lg shadow-inner overflow-hidden">
                             <div class="absolute inset-0.5 bg-white dark:bg-gray-900 rounded-md"></div>
-                            <span id="retro-seconds" class="absolute inset-0 flex items-center justify-center font-mono text-3xl md:text-4xl font-bold theme-transition-ready text-gray-800 dark:text-gray-200">00</span>
+                            <span id="retro-seconds" class="absolute inset-0 flex items-center justify-center font-mono text-2xl sm:text-3xl md:text-4xl font-bold theme-transition-ready text-gray-800 dark:text-gray-200">00</span>
                             <span class="absolute bottom-1 left-0 right-0 text-center text-xs theme-transition-ready text-gray-600 dark:text-gray-400">SECONDES</span>
                         </div>
                     </div>
 
-                    <button class="mx-auto block px-8 py-3 rounded-lg theme-transition-ready bg-gray-800 dark:bg-gray-700 hover:bg-gray-700 dark:hover:bg-gray-600 text-white font-medium text-lg transition-all duration-300">
-                        Profiter de l'Offre
+                    <button class="group relative mx-auto block px-8 py-3 rounded-lg theme-transition-ready bg-gray-800 dark:bg-gray-700 hover:bg-gray-700 dark:hover:bg-gray-600 text-white font-medium text-lg transition-all duration-300 overflow-hidden">
+                        <span class="relative z-10">Profiter de l'Offre</span>
+                        <div class="absolute inset-0 bg-gradient-to-r from-gray-700 to-gray-600 dark:from-gray-600 dark:to-gray-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-xl"></div>
                     </button>
                 </div>
 
@@ -1239,42 +1240,49 @@ const htmlAssets = {
         },
 hologram: {
     name: "Compte à rebours Hologramme",
-    html: `<div class="theme-transition-ready bg-gradient-to-r from-gray-900 to-gray-800 p-8 rounded-2xl relative overflow-hidden">
+    html: `<div class="theme-transition-ready bg-gradient-to-r from-gray-900 to-gray-800 p-4 sm:p-6 md:p-8 relative overflow-hidden">
         <div class="absolute inset-0 bg-grid-pattern opacity-10"></div>
         <div class="relative z-10">
-            <h2 class="text-center mb-8 text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-blue-500 animate-pulse">Temps Restant</h2>
+            <h2 class="text-center mb-4 sm:mb-6 md:mb-8 text-xl sm:text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-blue-500 animate-pulse">Temps Restant</h2>
             
-            <div class="grid grid-cols-4 gap-4 max-w-2xl mx-auto">
+            <div class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-2 sm:gap-3 md:gap-4 max-w-xs sm:max-w-xl md:max-w-2xl mx-auto">
                 <div class="relative group">
                     <div class="absolute inset-0 bg-gradient-to-r from-cyan-500/20 to-blue-500/20 rounded-lg blur-xl group-hover:blur-2xl transition-all duration-300"></div>
-                    <div class="relative bg-black/50 backdrop-blur-sm p-4 rounded-lg border border-cyan-500/30 group-hover:border-cyan-400 transition-colors">
-                        <div id="holo-days" class="text-4xl font-bold text-center text-cyan-400 mb-2 [text-shadow:0_0_15px_rgba(34,211,238,0.5)]">00</div>
-                        <div class="text-sm text-center text-cyan-300/80">Jours</div>
+                    <div class="relative bg-black/50 backdrop-blur-sm p-2 sm:p-3 md:p-4 rounded-lg border border-cyan-500/30 group-hover:border-cyan-400 transition-colors">
+                        <div id="holo-days" class="text-2xl sm:text-3xl md:text-4xl font-bold text-center text-cyan-400 mb-1 sm:mb-2 [text-shadow:0_0_15px_rgba(34,211,238,0.5)]">00</div>
+                        <div class="text-xs sm:text-sm text-center text-cyan-300/80">Jours</div>
                     </div>
                 </div>
                 
                 <div class="relative group">
                     <div class="absolute inset-0 bg-gradient-to-r from-cyan-500/20 to-blue-500/20 rounded-lg blur-xl group-hover:blur-2xl transition-all duration-300"></div>
-                    <div class="relative bg-black/50 backdrop-blur-sm p-4 rounded-lg border border-cyan-500/30 group-hover:border-cyan-400 transition-colors">
-                        <div id="holo-hours" class="text-4xl font-bold text-center text-cyan-400 mb-2 [text-shadow:0_0_15px_rgba(34,211,238,0.5)]">00</div>
-                        <div class="text-sm text-center text-cyan-300/80">Heures</div>
+                    <div class="relative bg-black/50 backdrop-blur-sm p-2 sm:p-3 md:p-4 rounded-lg border border-cyan-500/30 group-hover:border-cyan-400 transition-colors">
+                        <div id="holo-hours" class="text-2xl sm:text-3xl md:text-4xl font-bold text-center text-cyan-400 mb-1 sm:mb-2 [text-shadow:0_0_15px_rgba(34,211,238,0.5)]">00</div>
+                        <div class="text-xs sm:text-sm text-center text-cyan-300/80">Heures</div>
                     </div>
                 </div>
                 
                 <div class="relative group">
                     <div class="absolute inset-0 bg-gradient-to-r from-cyan-500/20 to-blue-500/20 rounded-lg blur-xl group-hover:blur-2xl transition-all duration-300"></div>
-                    <div class="relative bg-black/50 backdrop-blur-sm p-4 rounded-lg border border-cyan-500/30 group-hover:border-cyan-400 transition-colors">
-                        <div id="holo-minutes" class="text-4xl font-bold text-center text-cyan-400 mb-2 [text-shadow:0_0_15px_rgba(34,211,238,0.5)]">00</div>
-                        <div class="text-sm text-center text-cyan-300/80">Minutes</div>
+                    <div class="relative bg-black/50 backdrop-blur-sm p-2 sm:p-3 md:p-4 rounded-lg border border-cyan-500/30 group-hover:border-cyan-400 transition-colors">
+                        <div id="holo-minutes" class="text-2xl sm:text-3xl md:text-4xl font-bold text-center text-cyan-400 mb-1 sm:mb-2 [text-shadow:0_0_15px_rgba(34,211,238,0.5)]">00</div>
+                        <div class="text-xs sm:text-sm text-center text-cyan-300/80">Minutes</div>
                     </div>
                 </div>
                 
                 <div class="relative group">
                     <div class="absolute inset-0 bg-gradient-to-r from-cyan-500/20 to-blue-500/20 rounded-lg blur-xl group-hover:blur-2xl transition-all duration-300"></div>
-                    <div class="relative bg-black/50 backdrop-blur-sm p-4 rounded-lg border border-cyan-500/30 group-hover:border-cyan-400 transition-colors">
-                        <div id="holo-seconds" class="text-4xl font-bold text-center text-cyan-400 mb-2 [text-shadow:0_0_15px_rgba(34,211,238,0.5)]">00</div>
-                        <div class="text-sm text-center text-cyan-300/80">Secondes</div>
+                    <div class="relative bg-black/50 backdrop-blur-sm p-2 sm:p-3 md:p-4 rounded-lg border border-cyan-500/30 group-hover:border-cyan-400 transition-colors">
+                        <div id="holo-seconds" class="text-2xl sm:text-3xl md:text-4xl font-bold text-center text-cyan-400 mb-1 sm:mb-2 [text-shadow:0_0_15px_rgba(34,211,238,0.5)]">00</div>
+                        <div class="text-xs sm:text-sm text-center text-cyan-300/80">Secondes</div>
                     </div>
+                </div>
+                <div class="col-span-2 sm:col-span-2 md:col-span-4 flex justify-center mt-4">
+                    <button class="relative group overflow-hidden px-6 py-3 rounded-lg bg-gradient-to-r from-cyan-500 to-blue-500 text-white font-semibold transform hover:scale-105 transition-all duration-300">
+                        <span class="relative z-10">Profiter de l'offre</span>
+                        <div class="absolute inset-0 bg-gradient-to-r from-cyan-400 to-blue-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        <div class="absolute inset-0 bg-grid-pattern opacity-20"></div>
+                    </button>
                 </div>
             </div>
 
