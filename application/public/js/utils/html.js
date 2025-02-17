@@ -46,6 +46,23 @@ export function generateCompleteHtml(contentHtml) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Webazon site</title>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {}
+            }
+        }
+    </script>
+    <script>
+        (function() {
+            const savedTheme = localStorage.getItem('theme') || 
+                (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+            if (savedTheme === 'dark') {
+                document.documentElement.classList.add('dark');
+            }
+        })();
+    </script>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
@@ -78,13 +95,6 @@ export function generateCompleteHtml(contentHtml) {
         </svg>
     </button>
     <script>
-    tailwind.config = {
-        darkMode: 'class',
-        theme: {
-            extend: {}
-        }
-    }
-
     // Fonction pour gérer le thème
         function initTheme() {
             const savedTheme = localStorage.getItem('theme') || 'light';

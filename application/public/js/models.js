@@ -187,6 +187,24 @@ function initializeModals() {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>${currentTemplate.name}</title>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {}
+            }
+        }
+    </script>
+    <!-- Empêcher le flash blanc en appliquant le bon thème immédiatement -->
+    <script>
+        (function() {
+            const savedTheme = localStorage.getItem('theme') || 
+                (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+            if (savedTheme === 'dark') {
+                document.documentElement.classList.add('dark');
+            }
+        })();
+    </script>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -224,12 +242,6 @@ function initializeModals() {
         </svg>
     </button>
     <script>
-    tailwind.config = {
-        darkMode: 'class',
-        theme: {
-            extend: {}
-        }
-    }
     // Fonction pour gérer le thème
         function initTheme() {
             const savedTheme = localStorage.getItem('theme') || 'light';
