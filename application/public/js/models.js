@@ -195,7 +195,6 @@ function initializeModals() {
             }
         }
     </script>
-    <!-- Empêcher le flash blanc en appliquant le bon thème immédiatement -->
     <script>
         (function() {
             const savedTheme = localStorage.getItem('theme') || 
